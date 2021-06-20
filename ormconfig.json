@@ -1,6 +1,6 @@
 {
    "type": "mysql",
-   "host": "localhost",
+   "host": " https://salty-mesa-01132.herokuapp.com/",
    "port": 3306,
    "username": "root",
    "password": "",
