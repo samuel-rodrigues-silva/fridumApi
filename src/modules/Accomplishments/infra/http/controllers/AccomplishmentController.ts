@@ -13,6 +13,16 @@ class AccomplishmentController {
             console.log("errorMessage =>", error.message);
         }
     }
+
+    public async fetchAll(request: Request, response: Response): Promise<Response> {
+        try {
+            const repo = getRepository(Accomplishment);
+            const res = await repo.find();
+            return response.status(201).send(res);
+        } catch (error) {
+            console.log("errorMessage =>", error.message);
+        }
+    }
 }
 
 export default AccomplishmentController;
