@@ -8,7 +8,7 @@ class SessionController {
         try {
             const repo = getRepository(Session);
             const res = await repo.save(request.body);
-            return response.status(201).send(res);
+            return response.status(201).send(res).header('Content-Type:json/application');
         } catch (error) {
             return response.send(error.message);
             //console.log("errorMessage =>", error.message);
