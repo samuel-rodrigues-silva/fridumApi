@@ -10,7 +10,8 @@ class SessionController {
             const res = await repo.save(request.body);
             return response.status(201).send(res);
         } catch (error) {
-            console.log("errorMessage =>", error.message);
+            return response.send(error.message);
+            //console.log("errorMessage =>", error.message);
         }
     }
 }
