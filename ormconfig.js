@@ -9,17 +9,15 @@ module.exports = {
    "synchronize": true,
    "logging": false,
    "entities": [
-      "build/modules/**/infra/typeorm/entities/*.js"
+      "./src/modules/**/infra/typeorm/entities/*.ts"
    ],
    "migrations": [
-      "build/database/migration/*.js"
+      "./src/database/migration/*.ts"
    ],
-   "subscribers": [
-      "build/subscriber/**/*.js"
-   ],
+
    "cli": {
-      "migrationsDir": "src/database/migration",
-      "subscribersDir": "src/subscriber",
-      "entitiesDir": "src/modules/**/typeorm/entities"
+      "migrationsDir": ".src/database/migration",
+      "subscribersDir": ".src/subscriber",
+      "entitiesDir": ".src/modules/**/typeorm/entities"
    }
 }
