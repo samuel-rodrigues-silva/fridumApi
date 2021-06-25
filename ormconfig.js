@@ -7,16 +7,18 @@ module.exports = {
    // "password": "",
    // "database": "fridum",
    "synchronize": true,
-   "logging": false,
    "entities": [
-      "./src/modules/**/infra/typeorm/entities/*.ts"
+      "./build/modules/**/infra/typeorm/entities/*.js"
    ],
    "migrations": [
-      "./src/database/migration/*.ts"
+      "./build/database/migration/*.js"
+   ],
+   "subscribers": [
+      "./build/subscriber/**/*.js"
    ],
    "cli": {
-      "migrationsDir": ".src/database/migration",
-      "subscribersDir": ".src/subscriber",
-      "entitiesDir": ".src/modules/**/typeorm/entities"
+      "migrationsDir": "./src/database/migration",
+      "subscribersDir": "./src/subscriber",
+      "entitiesDir": "./src/modules/**/typeorm/entities"
    }
 }
