@@ -14,6 +14,17 @@ class SessionController {
             //console.log("errorMessage =>", error.message);
         }
     }
+
+    public async fetchAll(request: Request, response: Response): Promise<Response> {
+        try {
+            const repo = getRepository(Session);
+            const res = repo.find();
+            return response.status(201).send(res);
+        } catch (error) {
+            return response.send(error.message);
+            //console.log("errorMessage =>", error.message);
+        }
+    }
 }
 
 export default SessionController;

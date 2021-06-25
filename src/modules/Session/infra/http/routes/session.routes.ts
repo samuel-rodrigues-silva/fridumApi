@@ -12,5 +12,6 @@ sessionRouter.post('/', celebrate({
     }
 }), sessionController.create)
 
+sessionRouter.get('/', sessionController.fetchAll);
 
 export default sessionRouter;
