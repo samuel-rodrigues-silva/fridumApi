@@ -18,7 +18,7 @@ class SessionController {
     public async fetchAll(request: Request, response: Response): Promise<Response> {
         try {
             const repo = getRepository(Session);
-            const res = repo.find();
+            const res = await repo.find();
             return response.status(201).send(res);
         } catch (error) {
             return response.send(error.message);
