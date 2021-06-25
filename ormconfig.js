@@ -15,11 +15,11 @@ module.exports = {
       "build/database/migration/*.js"
    ],
    "subscribers": [
-      "./build/subscriber/**/*.js"
+      "build/subscriber/**/*.js"
    ],
    "cli": {
-      "migrationsDir": "./src/database/migration",
-      "subscribersDir": "./src/subscriber",
-      "entitiesDir": "./src/modules/**/typeorm/entities"
+      "migrationsDir": "src/database/migration",
+      "subscribersDir": "src/subscriber",
+      "entitiesDir": "src/modules/**/typeorm/entities"
    }
 }
