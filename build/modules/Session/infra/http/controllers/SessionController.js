@@ -61,6 +61,60 @@ var SessionController = /** @class */ (function () {
             });
         });
     };
+    SessionController.prototype.fetchBy = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var repo, res, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        console.log(request.params);
+                        repo = typeorm_1.getRepository(Session_1.Session);
+                        return [4 /*yield*/, repo.find(request.params)];
+                    case 1:
+                        res = _a.sent();
+                        return [2 /*return*/, response.status(201).send(res)];
+                    case 2:
+                        error_2 = _a.sent();
+                        return [2 /*return*/, response.send(error_2.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SessionController.prototype.update = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                try {
+                }
+                catch (error) {
+                    return [2 /*return*/, response.send(error.message)];
+                    //console.log("errorMessage =>", error.message);
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    SessionController.prototype.remove = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var repo, res, error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        repo = typeorm_1.getRepository(Session_1.Session);
+                        return [4 /*yield*/, repo.delete(request.params.id)];
+                    case 1:
+                        res = _a.sent();
+                        return [2 /*return*/, response.status(201).send(res)];
+                    case 2:
+                        error_3 = _a.sent();
+                        return [2 /*return*/, response.send(error_3.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     return SessionController;
 }());
 exports.default = SessionController;

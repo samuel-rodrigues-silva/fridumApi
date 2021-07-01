@@ -1,9 +1,15 @@
-import { celebrate, Joi, Segments } from 'celebrate';
-import { Router } from 'express';
-import SessionController from '../controllers/SessionController';
-const sessionController = new SessionController();
+import { celebrate, Joi, Segments } from 'celebrate'
+import { Router } from 'express'
+import SessionController from '../controllers/SessionController'
+const sessionController = new SessionController()
 
-const sessionRouter = Router();
+const sessionRouter = Router()
+
+sessionRouter.get('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), sessionController.fetchBy)
 
 sessionRouter.post('/', celebrate({
     [Segments.BODY]: {
@@ -12,6 +18,16 @@ sessionRouter.post('/', celebrate({
     }
 }), sessionController.create)
 
-sessionRouter.get('/', sessionController.fetchAll);
+sessionRouter.put('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), sessionController.update)
 
-export default sessionRouter;
+sessionRouter.delete('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), sessionController.remove)
+
+export default sessionRouter
