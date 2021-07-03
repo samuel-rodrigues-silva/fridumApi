@@ -1,12 +1,10 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import AccomplishmentController from '../controllers/AccomplishmentController';
-const accomplishmentRoutes = Router();
+const accomplishmentRouter = Router();
 const accomplishmentController = new AccomplishmentController();
 
-accomplishmentRoutes.get('/', accomplishmentController.fetchAll)
-
-accomplishmentRoutes.post('/', celebrate({
+accomplishmentRouter.post('/', celebrate({
     [Segments.BODY]: {
         title: Joi.string().min(3).required(),
         description: Joi.string().required(),
@@ -14,4 +12,23 @@ accomplishmentRoutes.post('/', celebrate({
     }
 }), accomplishmentController.create)
 
-export default accomplishmentRoutes;
+accomplishmentRouter.get('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), accomplishmentController.fetchBy)
+
+accomplishmentRouter.put('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), accomplishmentController.update)
+
+accomplishmentRouter.delete('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), accomplishmentController.remove)
+
+
+export default accomplishmentRouter;

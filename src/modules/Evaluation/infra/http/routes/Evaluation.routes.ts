@@ -1,10 +1,10 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import EvaluationController from '../controllers/EvaluationController';
-const evaluationRoutes = Router();
+const evaluationRouter = Router();
 const evaluationController = new EvaluationController();
 
-evaluationRoutes.post('/', celebrate({
+evaluationRouter.post('/', celebrate({
     [Segments.BODY]: {
         service_id: Joi.string().required(),
         description: Joi.string().required(),
@@ -12,4 +12,23 @@ evaluationRoutes.post('/', celebrate({
     }
 }), evaluationController.create)
 
-export default evaluationRoutes;
+evaluationRouter.get('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), evaluationController.fetchBy)
+
+evaluationRouter.put('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), evaluationController.update)
+
+evaluationRouter.delete('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), evaluationController.remove)
+
+
+export default evaluationRouter;

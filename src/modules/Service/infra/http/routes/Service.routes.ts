@@ -1,15 +1,36 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import ServiceController from '../controllers/ServiceController';
-const serviceRoutes = Router();
+const serviceRouter = Router();
 const serviceController = new ServiceController();
 
-serviceRoutes.post('/', celebrate({
+serviceRouter.get('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), serviceController.fetchBy)
+
+serviceRouter.post('/', celebrate({
     [Segments.BODY]: {
-        title: Joi.string().min(3).required(),
-        description: Joi.string().required(),
-        image: Joi.string()
+        user_id: Joi.string().uuid().required(),
+        post_id: Joi.string().uuid().required(),
+        follow_id: Joi.string().uuid().required(),
+        status: Joi.string().required(),
+        finished_at: Joi.number()
     }
 }), serviceController.create)
 
-export default serviceRoutes;
+serviceRouter.put('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), serviceController.update)
+
+serviceRouter.delete('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), serviceController.remove)
+
+
+export default serviceRouter;

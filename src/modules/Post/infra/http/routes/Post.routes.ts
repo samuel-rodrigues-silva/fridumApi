@@ -1,10 +1,10 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import PostController from '../controllers/PostController';
-const postRoutes = Router();
+const postRouter = Router();
 const postController = new PostController();
 
-postRoutes.post('/', celebrate({
+postRouter.post('/', celebrate({
     [Segments.BODY]: {
         user_id: Joi.string().required(),
         description: Joi.string().required(),
@@ -15,4 +15,22 @@ postRoutes.post('/', celebrate({
     }
 }), postController.create)
 
-export default postRoutes;
+postRouter.get('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), postController.fetchBy)
+
+postRouter.put('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), postController.update)
+
+postRouter.delete('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), postController.remove)
+
+export default postRouter;

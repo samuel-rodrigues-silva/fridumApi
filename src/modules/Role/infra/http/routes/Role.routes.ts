@@ -1,15 +1,33 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import RoleController from '../controllers/RoleController';
-const roleRoutes = Router();
+const roleRouter = Router();
 const roleController = new RoleController();
 
-roleRoutes.post('/', celebrate({
+roleRouter.get('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), roleController.fetchBy)
+
+roleRouter.post('/', celebrate({
     [Segments.BODY]: {
-        title: Joi.string().min(3).required(),
-        description: Joi.string().required(),
-        image: Joi.string()
+        title: Joi.string().required(),
+        description: Joi.string().required()
     }
 }), roleController.create)
 
-export default roleRoutes;
+roleRouter.put('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), roleController.update)
+
+roleRouter.delete('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), roleController.remove)
+
+
+export default roleRouter;

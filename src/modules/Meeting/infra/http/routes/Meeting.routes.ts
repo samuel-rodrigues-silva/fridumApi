@@ -1,10 +1,10 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import MeetingController from '../controllers/MeetingController';
-const meetingRoutes = Router();
+const meetingRouter = Router();
 const meetingController = new MeetingController();
 
-meetingRoutes.post('/', celebrate({
+meetingRouter.post('/', celebrate({
     [Segments.BODY]: {
         user_id: Joi.string().required(),
         follow_id: Joi.string().required(),
@@ -13,4 +13,23 @@ meetingRoutes.post('/', celebrate({
     }
 }), meetingController.create)
 
-export default meetingRoutes;
+meetingRouter.get('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), meetingController.fetchBy)
+
+meetingRouter.put('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), meetingController.update)
+
+meetingRouter.delete('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), meetingController.remove)
+
+
+export default meetingRouter;
