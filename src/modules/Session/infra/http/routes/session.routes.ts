@@ -5,6 +5,10 @@ const sessionController = new SessionController()
 
 const sessionRouter = Router()
 
+sessionRouter.get('/', celebrate({
+}), sessionController.fetchAll)
+
+
 sessionRouter.get('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()

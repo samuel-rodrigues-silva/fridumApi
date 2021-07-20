@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn, BeforeUpdate } from "typeorm";
 import { Exclude } from 'class-transformer';
+import bcrypt from 'bcryptjs'
 import { User } from '../../../../User/infra/typeorm/entities/User';
 @Entity('session')
 export class Session {
@@ -23,5 +24,11 @@ export class Session {
 
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    hashPassword() {
+        this.password = bcrypt.hashSync(this.password, 8)
+    }
 
 }
