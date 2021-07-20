@@ -6,9 +6,19 @@ class SessionController {
 
     public async create(request: Request, response: Response): Promise<Response> {
         try {
+            const [email, password] = request.body
             const repo = getRepository(Session);
-            const res = await repo.save(request.body);
-            return response.status(201).send(res);
+
+            const userExists = await repo.findOne({ where: { email } })
+
+            if (userExists) {
+                return response.status(409)
+            } else {
+                const user = repo.create({ email, password })
+                await repo.save(user);
+                return response.status(201).send(user)
+            }
+
         } catch (error) {
             return response.send(error.message);
             //console.log("errorMessage =>", error.message);
