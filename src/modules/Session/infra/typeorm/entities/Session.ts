@@ -19,16 +19,16 @@ export class Session {
     @Exclude()
     password: string;
 
-    @CreateDateColumn({ type: 'timestamp', name: 'created_At' })
-    createdAt: Timestamp;
-
-    @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
-    updatedAt: Timestamp;
-
     @BeforeInsert()
     @BeforeUpdate()
     hashPassword() {
         this.password = bcrypt.hashSync(this.password, 8)
     }
+
+    @CreateDateColumn({ type: 'timestamp', name: 'created_At' })
+    createdAt: Timestamp;
+
+    @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
+    updatedAt: Timestamp;
 
 }
