@@ -15,17 +15,6 @@ class SessionController {
         }
     }
 
-    public async fetchAll(request: Request, response: Response): Promise<Response> {
-        try {
-            const repo = getRepository(Session);
-            const res = repo.find({ where: { id: String } })
-            return response.status(201).send(res)
-        } catch (error) {
-            return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
-        }
-    }
-
     public async fetchBy(request: Request, response: Response): Promise<Response> {
         try {
             console.log(request.params)
