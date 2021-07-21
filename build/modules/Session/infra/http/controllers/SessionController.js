@@ -64,7 +64,7 @@ var SessionController = /** @class */ (function () {
                     case 4: return [3 /*break*/, 6];
                     case 5:
                         error_1 = _b.sent();
-                        return [2 /*return*/, response.send(error_1.message)];
+                        return [2 /*return*/, response.send('ERROR:' + error_1.message)];
                     case 6: return [2 /*return*/];
                 }
             });

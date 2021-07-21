@@ -20,7 +20,7 @@ class SessionController {
             }
 
         } catch (error) {
-            return response.send(error.message);
+            return response.send('ERROR:' + error.message);
             //console.log("errorMessage =>", error.message);
         }
     }
