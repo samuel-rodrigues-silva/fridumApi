@@ -43,20 +43,29 @@ var SessionController = /** @class */ (function () {
     }
     SessionController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var _a, email, password, repo, userExists, user, error_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
+                        _b.trys.push([0, 5, , 6]);
+                        _a = request.body, email = _a[0], password = _a[1];
                         repo = typeorm_1.getRepository(Session_1.Session);
-                        return [4 /*yield*/, repo.save(request.body)];
+                        return [4 /*yield*/, repo.findOne({ where: { email: email } })];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        userExists = _b.sent();
+                        if (!userExists) return [3 /*break*/, 2];
+                        return [2 /*return*/, response.status(409)];
                     case 2:
-                        error_1 = _a.sent();
+                        user = repo.create({ email: email, password: password });
+                        return [4 /*yield*/, repo.save(user)];
+                    case 3:
+                        _b.sent();
+                        return [2 /*return*/, response.status(201).send(user)];
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        error_1 = _b.sent();
                         return [2 /*return*/, response.send(error_1.message)];
-                    case 3: return [2 /*return*/];
+                    case 6: return [2 /*return*/];
                 }
             });
         });
