@@ -1,6 +1,7 @@
 import { celebrate, Joi, Segments } from 'celebrate'
 import { Router } from 'express'
 import SessionController from '../controllers/SessionController'
+import verifyAuth from './../middlewares/verifyAuth';
 const sessionController = new SessionController()
 
 const sessionRouter = Router()
@@ -9,7 +10,7 @@ sessionRouter.get('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     }
-}), sessionController.fetchBy)
+}), verifyAuth, sessionController.fetchBy)
 
 sessionRouter.post('/', celebrate({
     [Segments.BODY]: {
@@ -17,6 +18,13 @@ sessionRouter.post('/', celebrate({
         password: Joi.string().required()
     }
 }), sessionController.create)
+
+sessionRouter.post('/auth', celebrate({
+    [Segments.BODY]: {
+        email: Joi.string().email().required(),
+        password: Joi.string().required()
+    }
+}), sessionController.auth)
 
 sessionRouter.put('/:id', celebrate({
     [Segments.PARAMS]: {
@@ -28,6 +36,6 @@ sessionRouter.delete('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     }
-}), sessionController.remove)
+}), verifyAuth, sessionController.remove)
 
 export default sessionRouter

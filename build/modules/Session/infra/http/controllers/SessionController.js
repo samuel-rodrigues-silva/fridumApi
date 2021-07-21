@@ -35,9 +35,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var Session_1 = require("../../typeorm/entities/Session");
+var bcryptjs_1 = __importDefault(require("bcryptjs"));
+var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var SessionController = /** @class */ (function () {
     function SessionController() {
     }
@@ -48,7 +53,7 @@ var SessionController = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 5, , 6]);
-                        _a = request.body, email = _a[0], password = _a[1];
+                        _a = request.body, email = _a.email, password = _a.password;
                         repo = typeorm_1.getRepository(Session_1.Session);
                         return [4 /*yield*/, repo.findOne({ where: { email: email } })];
                     case 1:
@@ -70,9 +75,45 @@ var SessionController = /** @class */ (function () {
             });
         });
     };
+    SessionController.prototype.auth = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, email, password, repo, user, isPasswordValid, token, error_2;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _b.trys.push([0, 3, , 4]);
+                        _a = request.body, email = _a.email, password = _a.password;
+                        repo = typeorm_1.getRepository(Session_1.Session);
+                        return [4 /*yield*/, repo.findOne({ where: { email: email } })];
+                    case 1:
+                        user = _b.sent();
+                        console.log(user);
+                        if (!user) {
+                            return [2 /*return*/, response.status(409).send('Email not found')];
+                        }
+                        return [4 /*yield*/, bcryptjs_1.default.compare(password, user.password)];
+                    case 2:
+                        isPasswordValid = _b.sent();
+                        token = jsonwebtoken_1.default.sign({ id: user.id }, process.env.ENCRYPT_HASH, { expiresIn: '16h' });
+                        if (!isPasswordValid) {
+                            return [2 /*return*/, response.status(409).send('Invalid password')];
+                        }
+                        return [2 /*return*/, response.status(201).send({
+                                id: user.id,
+                                email: user.email,
+                                token: token
+                            })];
+                    case 3:
+                        error_2 = _b.sent();
+                        return [2 /*return*/, response.send('ERROR:' + error_2.message)];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     SessionController.prototype.fetchBy = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_2;
+            var repo, res, error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -84,8 +125,8 @@ var SessionController = /** @class */ (function () {
                         res = _a.sent();
                         return [2 /*return*/, response.status(201).send(res)];
                     case 2:
-                        error_2 = _a.sent();
-                        return [2 /*return*/, response.send(error_2.message)];
+                        error_3 = _a.sent();
+                        return [2 /*return*/, response.send(error_3.message)];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -106,21 +147,17 @@ var SessionController = /** @class */ (function () {
     };
     SessionController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_3;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        repo = typeorm_1.getRepository(Session_1.Session);
-                        return [4 /*yield*/, repo.delete(request.params.id)];
-                    case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
-                    case 2:
-                        error_3 = _a.sent();
-                        return [2 /*return*/, response.send(error_3.message)];
-                    case 3: return [2 /*return*/];
+                try {
+                    response.status(201).send({ userId: request.userId });
+                    // const repo = getRepository(Session);
+                    // const res = await repo.delete(request.params.id)
+                    // return response.status(201).send(res);
                 }
+                catch (error) {
+                    return [2 /*return*/, response.send(error.message)];
+                }
+                return [2 /*return*/];
             });
         });
     };
