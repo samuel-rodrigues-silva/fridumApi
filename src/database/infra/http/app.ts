@@ -1,7 +1,14 @@
 import express from 'express';
+import cors from 'cors'
 import routes from './routes/index';
 const app = express();
 
+const corsOptions = {
+    origin: '*',
+    optionSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
 
 app.use((request, response, next) => {
     response.header("Access-Control-Allow-Origin", "*");
