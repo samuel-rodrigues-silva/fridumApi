@@ -4,8 +4,8 @@ import routes from './routes/index';
 const app = express();
 
 const corsOptions = {
-    origin: '*',
-    optionSuccessStatus: 200
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
 }
 
 app.use(cors(corsOptions))
