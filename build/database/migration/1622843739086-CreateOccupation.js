@@ -53,6 +53,11 @@ var CreateOccupation1622843739086 = /** @class */ (function () {
                             isPrimary: true,
                         },
                         {
+                            name: 'user',
+                            type: 'varchar',
+                            isPrimary: true,
+                        },
+                        {
                             name: 'role',
                             type: 'varchar'
                         },

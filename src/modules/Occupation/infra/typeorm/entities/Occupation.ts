@@ -1,10 +1,15 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { User } from "../../../../User/infra/typeorm/entities/User";
 
 @Entity('occupation')
 export class Occupation {
 
     @PrimaryGeneratedColumn('uuid')
     id: string;
+
+    @ManyToOne(() => User)
+    @JoinColumn({ name: 'id' })
+    user: User
 
     @Column('varchar')
     role: string;

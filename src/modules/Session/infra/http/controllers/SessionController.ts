@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 import { getRepository } from 'typeorm';
 import { Session } from '../../typeorm/entities/Session';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
+import CreateSessionService from '../../../services/CreateSessionService';
 
 class SessionController {
 
@@ -14,11 +16,11 @@ class SessionController {
             const userExists = await repo.findOne({ where: { email } })
 
             if (userExists) {
-                return response.status(409)
+                return response.status(409).send("Email already exists")
             } else {
-                const user = repo.create({ email, password })
-                await repo.save(user);
-                return response.status(201).send(user)
+                const session = container.resolve(CreateSessionService)
+                const resp = await session.execute({ email, password });
+                return response.status(201).json(resp)
             }
 
         } catch (error) {
@@ -64,8 +66,8 @@ class SessionController {
             const res = await repo.find(request.params);
             return response.status(201).send(res);
         } catch (error) {
+            console.log("errorMessage =>", error.message);
             return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
         }
     }
 

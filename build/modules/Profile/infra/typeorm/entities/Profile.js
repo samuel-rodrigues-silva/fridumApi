@@ -11,9 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Profile = void 0;
 var typeorm_1 = require("typeorm");
-var Accomplishment_1 = require("../../../../Accomplishments/infra/typeorm/entities/Accomplishment");
-var Occupation_1 = require("../../../../Occupation/infra/typeorm/entities/Occupation");
-var FocusArea_1 = require("../../../../FocusArea/infra/typeorm/entities/FocusArea");
 var Role_1 = require("../../../../Role/infra/typeorm/entities/Role");
 var User_1 = require("../../../../User/infra/typeorm/entities/User");
 var Profile = /** @class */ (function () {
@@ -24,24 +21,12 @@ var Profile = /** @class */ (function () {
         __metadata("design:type", String)
     ], Profile.prototype, "id", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return User_1.User; }, function (user) { return user.id; }),
+        typeorm_1.OneToOne(function () { return User_1.User; }, function (user) { return user.id; }, { cascade: true }),
         typeorm_1.JoinColumn(),
         __metadata("design:type", User_1.User)
     ], Profile.prototype, "user_id", void 0);
     __decorate([
-        typeorm_1.OneToMany(function () { return Accomplishment_1.Accomplishment; }, function (accomplishment) { return accomplishment.id; }),
-        __metadata("design:type", Array)
-    ], Profile.prototype, "accomplishment", void 0);
-    __decorate([
-        typeorm_1.OneToMany(function () { return Occupation_1.Occupation; }, function (occupation) { return occupation.id; }),
-        __metadata("design:type", Array)
-    ], Profile.prototype, "occupation", void 0);
-    __decorate([
-        typeorm_1.OneToMany(function () { return FocusArea_1.FocusArea; }, function (FocusArea) { return FocusArea.id; }),
-        __metadata("design:type", Array)
-    ], Profile.prototype, "FocusArea", void 0);
-    __decorate([
-        typeorm_1.OneToMany(function () { return Role_1.Role; }, function (role) { return role.id; }),
+        typeorm_1.OneToMany(function () { return Role_1.Role; }, function (role) { return role.id; }, { cascade: true }),
         __metadata("design:type", Array)
     ], Profile.prototype, "role", void 0);
     __decorate([

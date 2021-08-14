@@ -12,6 +12,11 @@ export class CreateOccupation1622843739086 implements MigrationInterface {
                     isPrimary: true,
                 },
                 {
+                    name: 'user',
+                    type: 'varchar',
+                    isPrimary: true,
+                },
+                {
                     name: 'role',
                     type: 'varchar'
                 },

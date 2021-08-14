@@ -14,7 +14,8 @@ export class CreateService1622843760743 implements MigrationInterface {
                 },
                 {
                     name: 'status',
-                    type: 'varchar'
+                    type: 'enum',
+                    enum: ['done', 'doing', 'penging', 'refused']
                 },
                 {
                     name: 'finishedAt',

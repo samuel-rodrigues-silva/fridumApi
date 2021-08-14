@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { User } from './../../../../User/infra/typeorm/entities/User';
 
 @Entity('focusarea')
 export class FocusArea {
@@ -6,8 +7,12 @@ export class FocusArea {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
+    @ManyToOne(() => User)
+    @JoinColumn({ name: 'id' })
+    user: User
+
     @Column('varchar')
-    bussines: string;
+    business: string;
 
     @CreateDateColumn({ type: 'timestamp', name: 'created_At' })
     createdAt: Timestamp;

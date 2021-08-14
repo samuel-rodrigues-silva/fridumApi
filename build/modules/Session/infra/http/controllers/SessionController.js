@@ -39,16 +39,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var tsyringe_1 = require("tsyringe");
 var typeorm_1 = require("typeorm");
 var Session_1 = require("../../typeorm/entities/Session");
 var bcryptjs_1 = __importDefault(require("bcryptjs"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+var CreateSessionService_1 = __importDefault(require("../../../services/CreateSessionService"));
 var SessionController = /** @class */ (function () {
     function SessionController() {
     }
     SessionController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, email, password, repo, userExists, user, error_1;
+            var _a, email, password, repo, userExists, session, resp, error_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -59,13 +61,13 @@ var SessionController = /** @class */ (function () {
                     case 1:
                         userExists = _b.sent();
                         if (!userExists) return [3 /*break*/, 2];
-                        return [2 /*return*/, response.status(409)];
+                        return [2 /*return*/, response.status(409).send("Email already exists")];
                     case 2:
-                        user = repo.create({ email: email, password: password });
-                        return [4 /*yield*/, repo.save(user)];
+                        session = tsyringe_1.container.resolve(CreateSessionService_1.default);
+                        return [4 /*yield*/, session.execute({ email: email, password: password })];
                     case 3:
-                        _b.sent();
-                        return [2 /*return*/, response.status(201).send(user)];
+                        resp = _b.sent();
+                        return [2 /*return*/, response.status(201).json(resp)];
                     case 4: return [3 /*break*/, 6];
                     case 5:
                         error_1 = _b.sent();
@@ -126,6 +128,7 @@ var SessionController = /** @class */ (function () {
                         return [2 /*return*/, response.status(201).send(res)];
                     case 2:
                         error_3 = _a.sent();
+                        console.log("errorMessage =>", error_3.message);
                         return [2 /*return*/, response.send(error_3.message)];
                     case 3: return [2 /*return*/];
                 }

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FocusArea = void 0;
 var typeorm_1 = require("typeorm");
+var User_1 = require("./../../../../User/infra/typeorm/entities/User");
 var FocusArea = /** @class */ (function () {
     function FocusArea() {
     }
@@ -19,9 +20,14 @@ var FocusArea = /** @class */ (function () {
         __metadata("design:type", String)
     ], FocusArea.prototype, "id", void 0);
     __decorate([
+        typeorm_1.ManyToOne(function () { return User_1.User; }),
+        typeorm_1.JoinColumn({ name: 'id' }),
+        __metadata("design:type", User_1.User)
+    ], FocusArea.prototype, "user", void 0);
+    __decorate([
         typeorm_1.Column('varchar'),
         __metadata("design:type", String)
-    ], FocusArea.prototype, "bussines", void 0);
+    ], FocusArea.prototype, "business", void 0);
     __decorate([
         typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)

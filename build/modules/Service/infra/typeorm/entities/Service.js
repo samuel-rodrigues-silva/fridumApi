@@ -37,7 +37,7 @@ var Service = /** @class */ (function () {
         __metadata("design:type", Follow_1.Follow)
     ], Service.prototype, "follow_id", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        typeorm_1.Column({ type: 'enum', enum: ['done', 'doing', 'pending', 'refused'] }),
         __metadata("design:type", String)
     ], Service.prototype, "status", void 0);
     __decorate([

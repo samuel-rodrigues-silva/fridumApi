@@ -35,35 +35,43 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
+var tsyringe_1 = require("tsyringe");
 var Accomplishment_1 = require("../../typeorm/entities/Accomplishment");
+var CreateAccomplishmentService_1 = __importDefault(require("./../../../services/CreateAccomplishmentService"));
 var AccomplishmentController = /** @class */ (function () {
     function AccomplishmentController() {
     }
     AccomplishmentController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var _a, user_id, title, description, image, createAccomplishment, accomplishment, err_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        repo = typeorm_1.getRepository(Accomplishment_1.Accomplishment);
-                        return [4 /*yield*/, repo.save(request.body)];
+                        _a = request.body, user_id = _a.user_id, title = _a.title, description = _a.description, image = _a.image;
+                        _b.label = 1;
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        _b.trys.push([1, 3, , 4]);
+                        createAccomplishment = tsyringe_1.container.resolve(CreateAccomplishmentService_1.default);
+                        return [4 /*yield*/, createAccomplishment.execute({ user_id: user_id, title: title, description: description, image: image })];
                     case 2:
-                        error_1 = _a.sent();
-                        return [2 /*return*/, response.send(error_1.message)];
-                    case 3: return [2 /*return*/];
+                        accomplishment = _b.sent();
+                        return [2 /*return*/, response.status(200).json(accomplishment)];
+                    case 3:
+                        err_1 = _b.sent();
+                        return [2 /*return*/, response.status(401).send(err_1.message)];
+                    case 4: return [2 /*return*/];
                 }
             });
         });
     };
     AccomplishmentController.prototype.fetchBy = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_2;
+            var repo, res, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -75,8 +83,8 @@ var AccomplishmentController = /** @class */ (function () {
                         res = _a.sent();
                         return [2 /*return*/, response.status(201).send(res)];
                     case 2:
-                        error_2 = _a.sent();
-                        return [2 /*return*/, response.send(error_2.message)];
+                        error_1 = _a.sent();
+                        return [2 /*return*/, response.send(error_1.message)];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -97,7 +105,7 @@ var AccomplishmentController = /** @class */ (function () {
     };
     AccomplishmentController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_3;
+            var repo, res, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -108,8 +116,8 @@ var AccomplishmentController = /** @class */ (function () {
                         res = _a.sent();
                         return [2 /*return*/, response.status(201).send(res)];
                     case 2:
-                        error_3 = _a.sent();
-                        return [2 /*return*/, response.send(error_3.message)];
+                        error_2 = _a.sent();
+                        return [2 /*return*/, response.send(error_2.message)];
                     case 3: return [2 /*return*/];
                 }
             });

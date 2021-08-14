@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Role = void 0;
 var typeorm_1 = require("typeorm");
+var Profile_1 = require("../../../../Profile/infra/typeorm/entities/Profile");
 var Role = /** @class */ (function () {
     function Role() {
     }
@@ -18,6 +19,11 @@ var Role = /** @class */ (function () {
         typeorm_1.PrimaryGeneratedColumn('uuid'),
         __metadata("design:type", String)
     ], Role.prototype, "id", void 0);
+    __decorate([
+        typeorm_1.ManyToOne(function () { return Profile_1.Profile; }),
+        typeorm_1.JoinColumn({ name: 'id' }),
+        __metadata("design:type", Profile_1.Profile)
+    ], Role.prototype, "profile", void 0);
     __decorate([
         typeorm_1.Column('varchar'),
         __metadata("design:type", String)

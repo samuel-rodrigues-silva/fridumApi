@@ -22,8 +22,8 @@ export class Service {
     @JoinColumn()
     follow_id: Follow;
 
-    @Column('varchar')
-    status: string;
+    @Column({ type: 'enum', enum: ['done', 'doing', 'pending', 'refused'] })
+    status: 'done' | 'doing' | 'pending' | 'refused';
 
     @Column({ type: 'timestamp' })
     finishedAt: Timestamp;

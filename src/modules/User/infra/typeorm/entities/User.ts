@@ -1,4 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, Timestamp, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, Timestamp, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { FocusArea } from "../../../../FocusArea/infra/typeorm/entities/FocusArea";
+import { Occupation } from './../../../../Occupation/infra/typeorm/entities/Occupation';
+import { Accomplishment } from './../../../../Accomplishments/infra/typeorm/entities/Accomplishment';
 
 @Entity('user')
 export class User {
@@ -32,5 +35,14 @@ export class User {
 
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
+
+    @OneToMany(() => FocusArea, (focusArea) => focusArea.user, { cascade: true })
+    focusArea?: FocusArea[]
+
+    @OneToMany(() => Occupation, (occupation) => occupation.user, { cascade: true })
+    occupation?: Occupation[]
+
+    @OneToMany(() => Accomplishment, (accomplishment) => accomplishment.user, { cascade: true })
+    accomplishment?: Accomplishment[]
 
 }

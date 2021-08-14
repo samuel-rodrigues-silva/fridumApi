@@ -1,18 +1,24 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import { container } from 'tsyringe';
 import { Accomplishment } from '../../typeorm/entities/Accomplishment';
+import CreateAccomplishmentService from './../../../services/CreateAccomplishmentService';
 
 class AccomplishmentController {
 
     public async create(request: Request, response: Response): Promise<Response> {
+        const { user_id, title, description, image } = request.body;
+
         try {
-            const repo = getRepository(Accomplishment);
-            const res = await repo.save(request.body);
-            return response.status(201).send(res);
-        } catch (error) {
-            return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
+            const createAccomplishment = container.resolve(CreateAccomplishmentService)
+            const accomplishment = await createAccomplishment.execute({ user_id, title, description, image });
+
+            return response.status(200).json(accomplishment)
+        } catch (err) {
+            return response.status(401).send(err.message);
         }
+
+
     }
 
     public async fetchBy(request: Request, response: Response): Promise<Response> {

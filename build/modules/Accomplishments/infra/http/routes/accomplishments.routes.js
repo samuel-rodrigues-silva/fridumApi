@@ -11,6 +11,8 @@ var accomplishmentRouter = express_1.Router();
 var accomplishmentController = new AccomplishmentController_1.default();
 accomplishmentRouter.post('/', celebrate_1.celebrate((_a = {},
     _a[celebrate_1.Segments.BODY] = {
+        id: celebrate_1.Joi.string().uuid(),
+        user_id: celebrate_1.Joi.string().uuid().required(),
         title: celebrate_1.Joi.string().min(3).required(),
         description: celebrate_1.Joi.string().required(),
         image: celebrate_1.Joi.string()

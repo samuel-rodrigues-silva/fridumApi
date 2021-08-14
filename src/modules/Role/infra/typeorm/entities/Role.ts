@@ -1,10 +1,15 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Profile } from "../../../../Profile/infra/typeorm/entities/Profile";
 
 @Entity('role')
 export class Role {
 
     @PrimaryGeneratedColumn('uuid')
     id: string;
+
+    @ManyToOne(() => Profile)
+    @JoinColumn({ name: 'id' })
+    profile: Profile
 
     @Column('varchar')
     title: string;
