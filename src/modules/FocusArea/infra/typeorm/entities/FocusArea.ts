@@ -7,7 +7,10 @@ export class FocusArea {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => User, {
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+    })
     @JoinColumn({ name: 'id' })
     user: User
 

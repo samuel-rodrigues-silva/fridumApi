@@ -7,8 +7,11 @@ export class Evaluation {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @OneToOne(() => Service, (service) => service.id)
-    @JoinColumn()
+    @OneToOne(() => Service, {
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+    })
+    @JoinColumn({ name: 'id' })
     service_id: Service;
 
     @Column('text')

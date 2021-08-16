@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, Timestamp, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, Timestamp, CreateDateColumn, UpdateDateColumn, OneToMany, JoinColumn, OneToOne } from "typeorm";
 import { FocusArea } from "../../../../FocusArea/infra/typeorm/entities/FocusArea";
 import { Occupation } from './../../../../Occupation/infra/typeorm/entities/Occupation';
 import { Accomplishment } from './../../../../Accomplishments/infra/typeorm/entities/Accomplishment';
+import { Profile } from "../../../../Profile/infra/typeorm/entities/Profile";
 
 @Entity('user')
 export class User {
@@ -44,5 +45,9 @@ export class User {
 
     @OneToMany(() => Accomplishment, (accomplishment) => accomplishment.user, { cascade: true })
     accomplishment?: Accomplishment[]
+
+    @OneToOne(() => Profile, (profile) => profile.user_id, { cascade: true })
+    @JoinColumn()
+    profile: Profile;
 
 }

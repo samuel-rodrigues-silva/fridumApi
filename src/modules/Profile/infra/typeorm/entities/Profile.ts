@@ -9,8 +9,11 @@ export class Profile {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @OneToOne(() => User, (user) => user.id, { cascade: true })
-    @JoinColumn()
+    @OneToOne(() => User, {
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+    })
+    @JoinColumn({ name: 'id' })
     user_id: User;
 
     @OneToMany(() => Role, (role) => role.id, { cascade: true })
