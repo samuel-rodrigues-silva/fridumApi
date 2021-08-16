@@ -47,7 +47,7 @@ var SessionRepository = /** @class */ (function () {
             var session;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.findOne(data)];
+                    case 0: return [4 /*yield*/, this.ormRepository.findOne({ where: data, relations: ['user'] })];
                     case 1:
                         session = _a.sent();
                         return [2 /*return*/, session];
@@ -72,15 +72,17 @@ var SessionRepository = /** @class */ (function () {
     };
     SessionRepository.prototype.update = function (session, sessionId) {
         return __awaiter(this, void 0, void 0, function () {
-            var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        data = this.ormRepository.create(session);
-                        return [4 /*yield*/, this.ormRepository.update(sessionId, session)];
+                    case 0: return [4 /*yield*/, typeorm_1.getConnection()
+                            .createQueryBuilder()
+                            .update(Session_1.Session)
+                            .set(session)
+                            .where("id = :id", { id: sessionId })
+                            .execute()];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, data];
+                        return [2 /*return*/];
                 }
             });
         });

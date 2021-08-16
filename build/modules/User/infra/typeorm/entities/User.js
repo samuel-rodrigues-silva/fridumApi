@@ -14,6 +14,7 @@ var typeorm_1 = require("typeorm");
 var FocusArea_1 = require("../../../../FocusArea/infra/typeorm/entities/FocusArea");
 var Occupation_1 = require("./../../../../Occupation/infra/typeorm/entities/Occupation");
 var Accomplishment_1 = require("./../../../../Accomplishments/infra/typeorm/entities/Accomplishment");
+var Profile_1 = require("../../../../Profile/infra/typeorm/entities/Profile");
 var User = /** @class */ (function () {
     function User() {
     }
@@ -69,6 +70,11 @@ var User = /** @class */ (function () {
         typeorm_1.OneToMany(function () { return Accomplishment_1.Accomplishment; }, function (accomplishment) { return accomplishment.user; }, { cascade: true }),
         __metadata("design:type", Array)
     ], User.prototype, "accomplishment", void 0);
+    __decorate([
+        typeorm_1.OneToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.user_id; }, { cascade: true }),
+        typeorm_1.JoinColumn(),
+        __metadata("design:type", Profile_1.Profile)
+    ], User.prototype, "profile", void 0);
     User = __decorate([
         typeorm_1.Entity('user')
     ], User);

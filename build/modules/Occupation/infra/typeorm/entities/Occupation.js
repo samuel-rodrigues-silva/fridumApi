@@ -20,7 +20,10 @@ var Occupation = /** @class */ (function () {
         __metadata("design:type", String)
     ], Occupation.prototype, "id", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return User_1.User; }),
+        typeorm_1.ManyToOne(function () { return User_1.User; }, {
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+        }),
         typeorm_1.JoinColumn({ name: 'id' }),
         __metadata("design:type", User_1.User)
     ], Occupation.prototype, "user", void 0);

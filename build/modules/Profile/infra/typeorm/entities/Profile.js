@@ -21,8 +21,11 @@ var Profile = /** @class */ (function () {
         __metadata("design:type", String)
     ], Profile.prototype, "id", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return User_1.User; }, function (user) { return user.id; }, { cascade: true }),
-        typeorm_1.JoinColumn(),
+        typeorm_1.OneToOne(function () { return User_1.User; }, {
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+        }),
+        typeorm_1.JoinColumn({ name: 'id' }),
         __metadata("design:type", User_1.User)
     ], Profile.prototype, "user_id", void 0);
     __decorate([
