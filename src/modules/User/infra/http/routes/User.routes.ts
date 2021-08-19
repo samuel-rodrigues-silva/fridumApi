@@ -10,7 +10,7 @@ userRoutes.get('/:id', celebrate({
     }
 }), userController.fetchBy)
 
-userRoutes.post('/', celebrate({
+userRoutes.patch('/', celebrate({
     [Segments.BODY]: {
         name: Joi.string().min(3).required(),
         birthDate: Joi.string().required(),
@@ -19,6 +19,7 @@ userRoutes.post('/', celebrate({
         district: Joi.string().required(),
         street: Joi.string().required(),
         phNumber: Joi.string().required(),
+        profile: Joi.object()
     }
 }), userController.create)
 

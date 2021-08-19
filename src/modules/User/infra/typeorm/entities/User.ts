@@ -3,6 +3,8 @@ import { FocusArea } from "../../../../FocusArea/infra/typeorm/entities/FocusAre
 import { Occupation } from './../../../../Occupation/infra/typeorm/entities/Occupation';
 import { Accomplishment } from './../../../../Accomplishments/infra/typeorm/entities/Accomplishment';
 import { Profile } from "../../../../Profile/infra/typeorm/entities/Profile";
+import { Session } from './../../../../Session/infra/typeorm/entities/Session';
+import { session } from "passport";
 
 @Entity('user')
 export class User {
@@ -37,16 +39,7 @@ export class User {
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
 
-    @OneToMany(() => FocusArea, (focusArea) => focusArea.user, { cascade: true })
-    focusArea?: FocusArea[]
-
-    @OneToMany(() => Occupation, (occupation) => occupation.user, { cascade: true })
-    occupation?: Occupation[]
-
-    @OneToMany(() => Accomplishment, (accomplishment) => accomplishment.user, { cascade: true })
-    accomplishment?: Accomplishment[]
-
-    @OneToOne(() => Profile, (profile) => profile.user_id, { cascade: true })
+    @OneToOne(() => Profile, (profile) => profile.id)
     @JoinColumn()
     profile: Profile;
 

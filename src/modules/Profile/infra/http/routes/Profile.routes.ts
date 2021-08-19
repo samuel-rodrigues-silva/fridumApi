@@ -6,10 +6,16 @@ const profileController = new ProfileController();
 
 profileRoutes.post('/', celebrate({
     [Segments.BODY]: {
-        user_id: Joi.string().required(),
-        description: Joi.string().required(),
+        work_resume: Joi.string(),
+        description: Joi.string(),
         image: Joi.string()
     }
 }), profileController.create)
+
+profileRoutes.get('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), profileController.fetchBy)
 
 export default profileRoutes;

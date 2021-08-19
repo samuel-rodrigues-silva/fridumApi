@@ -5,12 +5,14 @@ import { Session } from '../../typeorm/entities/Session';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
 import CreateSessionService from '../../../services/CreateSessionService';
+import DeleteSessionService from './../../../services/DeleteSessionService';
+import UpdateSessionService from './../../../services/UpdateSessionService';
 
 class SessionController {
 
     public async create(request: Request, response: Response): Promise<Response> {
         try {
-            const { email, password } = request.body
+            const { email, password, user_id } = request.body
             const repo = getRepository(Session);
 
             const userExists = await repo.findOne({ where: { email } })
@@ -19,7 +21,7 @@ class SessionController {
                 return response.status(409).send("Email already exists")
             } else {
                 const session = container.resolve(CreateSessionService)
-                const resp = await session.execute({ email, password });
+                const resp = await session.execute({ email, password, user_id });
                 return response.status(201).json(resp)
             }
 
@@ -34,23 +36,23 @@ class SessionController {
             const { email, password } = request.body
             const repo = getRepository(Session);
 
-            const user = await repo.findOne({ where: { email } })
-            console.log(user)
-            if (!user) {
+            const session = await repo.findOne({ where: { email }, relations: ['user'] })
+            if (!session) {
                 return response.status(409).send('Email not found')
             }
 
-            const isPasswordValid = await bcrypt.compare(password, user.password)
-            const token = jwt.sign({ id: user.id }, process.env.ENCRYPT_HASH, { expiresIn: '16h' })
+            const isPasswordValid = await bcrypt.compare(password, session.password)
+            const token = jwt.sign({ id: session.id }, process.env.ENCRYPT_HASH, { expiresIn: '16h' })
 
             if (!isPasswordValid) {
                 return response.status(409).send('Invalid password')
             }
 
-            return response.status(201).send({
-                id: user.id,
-                email: user.email,
-                token: token
+            return response.status(200).send({
+                id: session.id,
+                email: session.email,
+                token: token,
+                user: session.user
             })
 
         } catch (error) {
@@ -61,9 +63,9 @@ class SessionController {
 
     public async fetchBy(request: Request, response: Response): Promise<Response> {
         try {
-            console.log(request.params)
+            const { id } = request.params;
             const repo = getRepository(Session);
-            const res = await repo.find(request.params);
+            const res = await repo.findOne({ where: { id: id }, relations: ['user'] });
             return response.status(201).send(res);
         } catch (error) {
             console.log("errorMessage =>", error.message);
@@ -73,19 +75,28 @@ class SessionController {
 
     public async update(request: Request, response: Response): Promise<Response> {
         try {
+            const { id } = request.params
+            const { email, password } = request.body
+            const repo = getRepository(Session);
+            const findSession = await repo.findOne(id);
+
+            if (findSession) {
+                const session = container.resolve(UpdateSessionService)
+                const res = await session.execute({ email, password }, id);
+                return response.status(200).send(res);
+            }
 
         } catch (error) {
             return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
         }
     }
 
     public async remove(request: Request, response: Response): Promise<Response> {
         try {
-            response.status(201).send({ userId: request.userId })
-            // const repo = getRepository(Session);
-            // const res = await repo.delete(request.params.id)
-            // return response.status(201).send(res);
+            const { id } = request.params
+            const repo = container.resolve(DeleteSessionService)
+            await repo.execute(id);
+            return response.status(200);
         } catch (error) {
             return response.send(error.message);
         }

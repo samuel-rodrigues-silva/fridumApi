@@ -1,29 +1,30 @@
+import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
-import { User } from '../../typeorm/entities/User';
+import { container } from 'tsyringe';
+import CreateUserService from '../../../services/CreateUserService';
+import ShowUserService from '../../../services/ShowUserService';
+import DeleteUserService from './../../../services/DeleteUserService';
 
 class UserController {
 
     public async create(request: Request, response: Response): Promise<Response> {
         try {
-            const repo = getRepository(User);
-            const res = await repo.save(request.body);
-            return response.status(201).send(res);
+            const repo = container.resolve(CreateUserService)
+            const user = await repo.execute(request.body);
+            return response.json(classToClass(user));
         } catch (error) {
             return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
         }
     }
 
     public async fetchBy(request: Request, response: Response): Promise<Response> {
         try {
-            console.log(request.params)
-            const repo = getRepository(User);
-            const res = await repo.find(request.params);
-            return response.status(201).send(res);
+            const { id } = request.params;
+            const repo = container.resolve(ShowUserService);
+            const user = await repo.execute(id);
+            return response.json(classToClass(user));
         } catch (error) {
             return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
         }
     }
 
@@ -38,9 +39,10 @@ class UserController {
 
     public async remove(request: Request, response: Response): Promise<Response> {
         try {
-            const repo = getRepository(User);
-            const res = await repo.delete(request.params.id)
-            return response.status(201).send(res);
+            const { id } = request.params;
+            const repo = container.resolve(DeleteUserService);
+            const user = await repo.execute(id);
+            return response.json(classToClass(user));
         } catch (error) {
             return response.send(error.message);
         }

@@ -28,10 +28,10 @@ var Session = /** @class */ (function () {
         __metadata("design:type", String)
     ], Session.prototype, "id", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return User_1.User; }, function (user) { return user.id; }),
-        typeorm_1.JoinColumn(),
+        typeorm_1.OneToOne(function () { return User_1.User; }, function (user) { return user.id; }, { cascade: true, onDelete: 'CASCADE' }),
+        typeorm_1.JoinColumn({ name: 'userId' }),
         __metadata("design:type", User_1.User)
-    ], Session.prototype, "user_id", void 0);
+    ], Session.prototype, "user", void 0);
     __decorate([
         typeorm_1.Column({ type: 'varchar', unique: true }),
         __metadata("design:type", String)

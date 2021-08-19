@@ -18,7 +18,8 @@ sessionRouter.get('/:id', celebrate_1.celebrate((_a = {},
 sessionRouter.post('/', celebrate_1.celebrate((_b = {},
     _b[celebrate_1.Segments.BODY] = {
         email: celebrate_1.Joi.string().email().required(),
-        password: celebrate_1.Joi.string().required()
+        password: celebrate_1.Joi.string().required(),
+        user_id: celebrate_1.Joi.string().uuid().allow(null)
     },
     _b)), sessionController.create);
 sessionRouter.post('/auth', celebrate_1.celebrate((_c = {},
@@ -27,9 +28,13 @@ sessionRouter.post('/auth', celebrate_1.celebrate((_c = {},
         password: celebrate_1.Joi.string().required()
     },
     _c)), sessionController.auth);
-sessionRouter.put('/:id', celebrate_1.celebrate((_d = {},
+sessionRouter.patch('/:id', celebrate_1.celebrate((_d = {},
     _d[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
+    },
+    _d[celebrate_1.Segments.BODY] = {
+        email: celebrate_1.Joi.string().email().required(),
+        password: celebrate_1.Joi.string().required()
     },
     _d)), sessionController.update);
 sessionRouter.delete('/:id', celebrate_1.celebrate((_e = {},

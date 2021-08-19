@@ -63,17 +63,17 @@ var ProfileController = /** @class */ (function () {
     };
     ProfileController.prototype.fetchBy = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_2;
+            var id, repo, res, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        console.log(request.params);
+                        id = request.params.id;
                         repo = typeorm_1.getRepository(Profile_1.Profile);
-                        return [4 /*yield*/, repo.find(request.params)];
+                        return [4 /*yield*/, repo.find({ where: { id: id }, relations: ['accomplishment', 'focusArea', 'occupation'] })];
                     case 1:
                         res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        return [2 /*return*/, response.status(200).send(res)];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, response.send(error_2.message)];

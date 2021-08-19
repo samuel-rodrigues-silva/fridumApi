@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Accomplishment = void 0;
 var typeorm_1 = require("typeorm");
-var User_1 = require("../../../../User/infra/typeorm/entities/User");
+var Profile_1 = require("./../../../../Profile/infra/typeorm/entities/Profile");
 var Accomplishment = /** @class */ (function () {
     function Accomplishment() {
     }
@@ -19,11 +19,6 @@ var Accomplishment = /** @class */ (function () {
         typeorm_1.PrimaryGeneratedColumn('uuid'),
         __metadata("design:type", String)
     ], Accomplishment.prototype, "id", void 0);
-    __decorate([
-        typeorm_1.ManyToOne(function () { return User_1.User; }),
-        typeorm_1.JoinColumn({ name: 'id' }),
-        __metadata("design:type", User_1.User)
-    ], Accomplishment.prototype, "user", void 0);
     __decorate([
         typeorm_1.Column('varchar'),
         __metadata("design:type", String)
@@ -44,6 +39,10 @@ var Accomplishment = /** @class */ (function () {
         typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Accomplishment.prototype, "updatedAt", void 0);
+    __decorate([
+        typeorm_1.ManyToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.accomplishment; }),
+        __metadata("design:type", Profile_1.Profile)
+    ], Accomplishment.prototype, "profile", void 0);
     Accomplishment = __decorate([
         typeorm_1.Entity('accomplishment')
     ], Accomplishment);

@@ -14,7 +14,7 @@ userRoutes.get('/:id', celebrate_1.celebrate((_a = {},
         id: celebrate_1.Joi.string().uuid().required()
     },
     _a)), userController.fetchBy);
-userRoutes.post('/', celebrate_1.celebrate((_b = {},
+userRoutes.patch('/', celebrate_1.celebrate((_b = {},
     _b[celebrate_1.Segments.BODY] = {
         name: celebrate_1.Joi.string().min(3).required(),
         birthDate: celebrate_1.Joi.string().required(),
@@ -23,6 +23,7 @@ userRoutes.post('/', celebrate_1.celebrate((_b = {},
         district: celebrate_1.Joi.string().required(),
         street: celebrate_1.Joi.string().required(),
         phNumber: celebrate_1.Joi.string().required(),
+        profile: celebrate_1.Joi.object()
     },
     _b)), userController.create);
 userRoutes.put('/:id', celebrate_1.celebrate((_c = {},

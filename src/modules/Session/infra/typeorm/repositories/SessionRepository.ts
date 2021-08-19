@@ -2,7 +2,7 @@ import { getConnection, getRepository, Repository } from 'typeorm';
 import ISessionRepository from './../../../repositories/ISessionRepository';
 import { Session } from './../entities/Session';
 import ICreateSessionDTO from './../../../dtos/ICreateSessionDTO';
-import { id } from 'date-fns/locale';
+import { User } from '../../../../User/infra/typeorm/entities/User';
 
 class SessionRepository implements ISessionRepository {
     private ormRepository: Repository<Session>;
@@ -10,13 +10,19 @@ class SessionRepository implements ISessionRepository {
         this.ormRepository = getRepository(Session);
     }
 
-    public async fetchBy(data: Session): Promise<Session> {
-        const session = await this.ormRepository.findOne({ where: data, relations: ['user'] });
+    public async fetchBy(sessionId: string): Promise<Session> {
+        const session = await this.ormRepository.findOne({
+            where: { id: sessionId }, relations: [
+                'user']
+        });
         return session;
     }
 
     public async create(session: ICreateSessionDTO): Promise<Session> {
+        const userRepo = getRepository(User);
+        const user = await userRepo.findOne({ where: { id: session.user_id } });
         const data = this.ormRepository.create(session);
+        data.user = user;
         await this.ormRepository.save(data);
 
         return data;
@@ -32,8 +38,8 @@ class SessionRepository implements ISessionRepository {
 
     }
 
-    public async remove(sessionId: string): Promise<string> {
-        return ''
+    public async remove(sessionId: string): Promise<void> {
+        await this.ormRepository.delete(sessionId);
     }
 
 }

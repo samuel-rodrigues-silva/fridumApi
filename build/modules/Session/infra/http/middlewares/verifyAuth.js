@@ -18,7 +18,7 @@ function verifyAuth(req, res, next) {
         return next();
     }
     catch (_a) {
-        return res.status(401);
+        return res.status(401).json('JWT token missing');
     }
 }
 exports.default = verifyAuth;

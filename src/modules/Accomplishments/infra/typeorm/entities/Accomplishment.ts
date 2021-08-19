@@ -1,15 +1,12 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { User } from "../../../../User/infra/typeorm/entities/User";
+import { Profile } from './../../../../Profile/infra/typeorm/entities/Profile';
 
 @Entity('accomplishment')
 export class Accomplishment {
 
     @PrimaryGeneratedColumn('uuid')
     id: string;
-
-    @ManyToOne(() => User)
-    @JoinColumn({ name: 'id' })
-    user: User
 
     @Column('varchar')
     title: string;
@@ -25,6 +22,9 @@ export class Accomplishment {
 
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
+
+    @ManyToOne(() => Profile, (profile) => profile.accomplishment)
+    profile: Profile
 }
 
 

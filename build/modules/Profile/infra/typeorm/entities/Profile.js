@@ -12,7 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Profile = void 0;
 var typeorm_1 = require("typeorm");
 var Role_1 = require("../../../../Role/infra/typeorm/entities/Role");
-var User_1 = require("../../../../User/infra/typeorm/entities/User");
+var FocusArea_1 = require("./../../../../FocusArea/infra/typeorm/entities/FocusArea");
+var Occupation_1 = require("./../../../../Occupation/infra/typeorm/entities/Occupation");
+var Accomplishment_1 = require("./../../../../Accomplishments/infra/typeorm/entities/Accomplishment");
 var Profile = /** @class */ (function () {
     function Profile() {
     }
@@ -20,14 +22,6 @@ var Profile = /** @class */ (function () {
         typeorm_1.PrimaryGeneratedColumn('uuid'),
         __metadata("design:type", String)
     ], Profile.prototype, "id", void 0);
-    __decorate([
-        typeorm_1.OneToOne(function () { return User_1.User; }, {
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-        }),
-        typeorm_1.JoinColumn({ name: 'id' }),
-        __metadata("design:type", User_1.User)
-    ], Profile.prototype, "user_id", void 0);
     __decorate([
         typeorm_1.OneToMany(function () { return Role_1.Role; }, function (role) { return role.id; }, { cascade: true }),
         __metadata("design:type", Array)
@@ -52,6 +46,18 @@ var Profile = /** @class */ (function () {
         typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Profile.prototype, "updatedAt", void 0);
+    __decorate([
+        typeorm_1.OneToMany(function () { return FocusArea_1.FocusArea; }, function (focusProfile) { return focusProfile.profile; }),
+        __metadata("design:type", Array)
+    ], Profile.prototype, "focusArea", void 0);
+    __decorate([
+        typeorm_1.OneToMany(function () { return Occupation_1.Occupation; }, function (occupation) { return occupation.profile; }),
+        __metadata("design:type", Array)
+    ], Profile.prototype, "occupation", void 0);
+    __decorate([
+        typeorm_1.OneToMany(function () { return Accomplishment_1.Accomplishment; }, function (accomplishment) { return accomplishment.profile; }),
+        __metadata("design:type", Array)
+    ], Profile.prototype, "accomplishment", void 0);
     Profile = __decorate([
         typeorm_1.Entity('profile')
     ], Profile);

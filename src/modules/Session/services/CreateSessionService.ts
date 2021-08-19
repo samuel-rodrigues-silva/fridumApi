@@ -11,8 +11,8 @@ class CreateSessionService {
         private sessionRepository: ISessionRepository,
     ) { }
 
-    public async execute({ email, password }: ICreateSessionDTO): Promise<Session> {
-        const session = await this.sessionRepository.create({ email, password });
+    public async execute({ email, password, user_id }: ICreateSessionDTO): Promise<Session> {
+        const session = await this.sessionRepository.create({ email, password, user_id });
         return session;
 
     }

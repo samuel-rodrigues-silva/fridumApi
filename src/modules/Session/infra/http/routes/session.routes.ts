@@ -15,7 +15,8 @@ sessionRouter.get('/:id', celebrate({
 sessionRouter.post('/', celebrate({
     [Segments.BODY]: {
         email: Joi.string().email().required(),
-        password: Joi.string().required()
+        password: Joi.string().required(),
+        user_id: Joi.string().uuid().allow(null)
     }
 }), sessionController.create)
 
@@ -26,9 +27,13 @@ sessionRouter.post('/auth', celebrate({
     }
 }), sessionController.auth)
 
-sessionRouter.put('/:id', celebrate({
+sessionRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
+    },
+    [Segments.BODY]: {
+        email: Joi.string().email().required(),
+        password: Joi.string().required()
     }
 }), sessionController.update)
 

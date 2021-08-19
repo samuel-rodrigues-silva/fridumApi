@@ -8,9 +8,9 @@ export class Session {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @OneToOne(() => User, (user) => user.id)
-    @JoinColumn()
-    user_id: User;
+    @OneToOne(() => User, (user) => user.id, { cascade: true, onDelete: 'CASCADE' })
+    @JoinColumn({ name: 'userId' })
+    user: User;
 
     @Column({ type: 'varchar', unique: true })
     email: string;

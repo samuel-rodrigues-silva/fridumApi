@@ -23,7 +23,7 @@ export default function verifyAuth(req: Request, res: Response, next: NextFuncti
         req.userId = id
         return next()
     } catch {
-        return res.status(401);
+        return res.status(401).json('JWT token missing');
     }
 
 

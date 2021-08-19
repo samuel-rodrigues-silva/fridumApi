@@ -1,6 +1,6 @@
 export default interface ICreateUserDTO {
     name: string;
-    birth_date: string;
+    birthDate: string;
     document: string;
     city: string;
     district: string;

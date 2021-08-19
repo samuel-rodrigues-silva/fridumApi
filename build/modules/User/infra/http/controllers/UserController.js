@@ -35,24 +35,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var typeorm_1 = require("typeorm");
-var User_1 = require("../../typeorm/entities/User");
+var class_transformer_1 = require("class-transformer");
+var tsyringe_1 = require("tsyringe");
+var CreateUserService_1 = __importDefault(require("../../../services/CreateUserService"));
+var ShowUserService_1 = __importDefault(require("../../../services/ShowUserService"));
+var DeleteUserService_1 = __importDefault(require("./../../../services/DeleteUserService"));
 var UserController = /** @class */ (function () {
     function UserController() {
     }
     UserController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_1;
+            var repo, user, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        repo = typeorm_1.getRepository(User_1.User);
-                        return [4 /*yield*/, repo.save(request.body)];
+                        repo = tsyringe_1.container.resolve(CreateUserService_1.default);
+                        return [4 /*yield*/, repo.execute(request.body)];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        user = _a.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(user))];
                     case 2:
                         error_1 = _a.sent();
                         return [2 /*return*/, response.send(error_1.message)];
@@ -63,17 +69,17 @@ var UserController = /** @class */ (function () {
     };
     UserController.prototype.fetchBy = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_2;
+            var id, repo, user, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        console.log(request.params);
-                        repo = typeorm_1.getRepository(User_1.User);
-                        return [4 /*yield*/, repo.find(request.params)];
+                        id = request.params.id;
+                        repo = tsyringe_1.container.resolve(ShowUserService_1.default);
+                        return [4 /*yield*/, repo.execute(id)];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        user = _a.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(user))];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, response.send(error_2.message)];
@@ -97,16 +103,17 @@ var UserController = /** @class */ (function () {
     };
     UserController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_3;
+            var id, repo, user, error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        repo = typeorm_1.getRepository(User_1.User);
-                        return [4 /*yield*/, repo.delete(request.params.id)];
+                        id = request.params.id;
+                        repo = tsyringe_1.container.resolve(DeleteUserService_1.default);
+                        return [4 /*yield*/, repo.execute(id)];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        user = _a.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(user))];
                     case 2:
                         error_3 = _a.sent();
                         return [2 /*return*/, response.send(error_3.message)];

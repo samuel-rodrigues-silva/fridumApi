@@ -52,31 +52,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var tsyringe_1 = require("tsyringe");
-var SessionRepository_1 = __importDefault(require("../infra/typeorm/repositories/SessionRepository"));
-var CreateSessionService = /** @class */ (function () {
-    function CreateSessionService(sessionRepository) {
+var UserRepository_1 = __importDefault(require("./../infra/typeorm/repositories/UserRepository"));
+var DeleteUserService = /** @class */ (function () {
+    function DeleteUserService(sessionRepository) {
         this.sessionRepository = sessionRepository;
     }
-    CreateSessionService.prototype.execute = function (_a) {
-        var email = _a.email, password = _a.password, user_id = _a.user_id;
+    DeleteUserService.prototype.execute = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var session;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4 /*yield*/, this.sessionRepository.create({ email: email, password: password, user_id: user_id })];
-                    case 1:
-                        session = _b.sent();
-                        return [2 /*return*/, session];
-                }
+            return __generator(this, function (_a) {
+                this.sessionRepository.remove(id);
+                return [2 /*return*/];
             });
         });
     };
-    CreateSessionService = __decorate([
+    DeleteUserService = __decorate([
         tsyringe_1.injectable(),
-        __param(0, tsyringe_1.inject(tsyringe_1.delay(function () { return SessionRepository_1.default; }))),
+        __param(0, tsyringe_1.inject(tsyringe_1.delay(function () { return UserRepository_1.default; }))),
         __metadata("design:paramtypes", [Object])
-    ], CreateSessionService);
-    return CreateSessionService;
+    ], DeleteUserService);
+    return DeleteUserService;
 }());
-exports.default = CreateSessionService;
-//# sourceMappingURL=CreateSessionService.js.map
+exports.default = DeleteUserService;
+//# sourceMappingURL=DeleteUserService.js.map

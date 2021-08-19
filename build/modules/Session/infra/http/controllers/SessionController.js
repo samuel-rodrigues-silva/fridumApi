@@ -45,17 +45,19 @@ var Session_1 = require("../../typeorm/entities/Session");
 var bcryptjs_1 = __importDefault(require("bcryptjs"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var CreateSessionService_1 = __importDefault(require("../../../services/CreateSessionService"));
+var DeleteSessionService_1 = __importDefault(require("./../../../services/DeleteSessionService"));
+var UpdateSessionService_1 = __importDefault(require("./../../../services/UpdateSessionService"));
 var SessionController = /** @class */ (function () {
     function SessionController() {
     }
     SessionController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, email, password, repo, userExists, session, resp, error_1;
+            var _a, email, password, user_id, repo, userExists, session, resp, error_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 5, , 6]);
-                        _a = request.body, email = _a.email, password = _a.password;
+                        _a = request.body, email = _a.email, password = _a.password, user_id = _a.user_id;
                         repo = typeorm_1.getRepository(Session_1.Session);
                         return [4 /*yield*/, repo.findOne({ where: { email: email } })];
                     case 1:
@@ -64,7 +66,7 @@ var SessionController = /** @class */ (function () {
                         return [2 /*return*/, response.status(409).send("Email already exists")];
                     case 2:
                         session = tsyringe_1.container.resolve(CreateSessionService_1.default);
-                        return [4 /*yield*/, session.execute({ email: email, password: password })];
+                        return [4 /*yield*/, session.execute({ email: email, password: password, user_id: user_id })];
                     case 3:
                         resp = _b.sent();
                         return [2 /*return*/, response.status(201).json(resp)];
@@ -79,31 +81,31 @@ var SessionController = /** @class */ (function () {
     };
     SessionController.prototype.auth = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, email, password, repo, user, isPasswordValid, token, error_2;
+            var _a, email, password, repo, session, isPasswordValid, token, error_2;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 3, , 4]);
                         _a = request.body, email = _a.email, password = _a.password;
                         repo = typeorm_1.getRepository(Session_1.Session);
-                        return [4 /*yield*/, repo.findOne({ where: { email: email } })];
+                        return [4 /*yield*/, repo.findOne({ where: { email: email }, relations: ['user'] })];
                     case 1:
-                        user = _b.sent();
-                        console.log(user);
-                        if (!user) {
+                        session = _b.sent();
+                        if (!session) {
                             return [2 /*return*/, response.status(409).send('Email not found')];
                         }
-                        return [4 /*yield*/, bcryptjs_1.default.compare(password, user.password)];
+                        return [4 /*yield*/, bcryptjs_1.default.compare(password, session.password)];
                     case 2:
                         isPasswordValid = _b.sent();
-                        token = jsonwebtoken_1.default.sign({ id: user.id }, process.env.ENCRYPT_HASH, { expiresIn: '16h' });
+                        token = jsonwebtoken_1.default.sign({ id: session.id }, process.env.ENCRYPT_HASH, { expiresIn: '16h' });
                         if (!isPasswordValid) {
                             return [2 /*return*/, response.status(409).send('Invalid password')];
                         }
-                        return [2 /*return*/, response.status(201).send({
-                                id: user.id,
-                                email: user.email,
-                                token: token
+                        return [2 /*return*/, response.status(200).send({
+                                id: session.id,
+                                email: session.email,
+                                token: token,
+                                user: session.user
                             })];
                     case 3:
                         error_2 = _b.sent();
@@ -115,14 +117,14 @@ var SessionController = /** @class */ (function () {
     };
     SessionController.prototype.fetchBy = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_3;
+            var id, repo, res, error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        console.log(request.params);
+                        id = request.params.id;
                         repo = typeorm_1.getRepository(Session_1.Session);
-                        return [4 /*yield*/, repo.find(request.params)];
+                        return [4 /*yield*/, repo.findOne({ where: { id: id }, relations: ['user'] })];
                     case 1:
                         res = _a.sent();
                         return [2 /*return*/, response.status(201).send(res)];
@@ -137,30 +139,50 @@ var SessionController = /** @class */ (function () {
     };
     SessionController.prototype.update = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                try {
+            var id, _a, email, password, repo, findSession, session, res, error_4;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _b.trys.push([0, 4, , 5]);
+                        id = request.params.id;
+                        _a = request.body, email = _a.email, password = _a.password;
+                        repo = typeorm_1.getRepository(Session_1.Session);
+                        return [4 /*yield*/, repo.findOne(id)];
+                    case 1:
+                        findSession = _b.sent();
+                        if (!findSession) return [3 /*break*/, 3];
+                        session = tsyringe_1.container.resolve(UpdateSessionService_1.default);
+                        return [4 /*yield*/, session.execute({ email: email, password: password }, id)];
+                    case 2:
+                        res = _b.sent();
+                        return [2 /*return*/, response.status(200).send(res)];
+                    case 3: return [3 /*break*/, 5];
+                    case 4:
+                        error_4 = _b.sent();
+                        return [2 /*return*/, response.send(error_4.message)];
+                    case 5: return [2 /*return*/];
                 }
-                catch (error) {
-                    return [2 /*return*/, response.send(error.message)];
-                    //console.log("errorMessage =>", error.message);
-                }
-                return [2 /*return*/];
             });
         });
     };
     SessionController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
+            var id, repo, error_5;
             return __generator(this, function (_a) {
-                try {
-                    response.status(201).send({ userId: request.userId });
-                    // const repo = getRepository(Session);
-                    // const res = await repo.delete(request.params.id)
-                    // return response.status(201).send(res);
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        id = request.params.id;
+                        repo = tsyringe_1.container.resolve(DeleteSessionService_1.default);
+                        return [4 /*yield*/, repo.execute(id)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, response.status(200)];
+                    case 2:
+                        error_5 = _a.sent();
+                        return [2 /*return*/, response.send(error_5.message)];
+                    case 3: return [2 /*return*/];
                 }
-                catch (error) {
-                    return [2 /*return*/, response.send(error.message)];
-                }
-                return [2 /*return*/];
             });
         });
     };

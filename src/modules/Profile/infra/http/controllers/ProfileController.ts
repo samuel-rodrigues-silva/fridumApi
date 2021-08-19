@@ -17,10 +17,10 @@ class ProfileController {
 
     public async fetchBy(request: Request, response: Response): Promise<Response> {
         try {
-            console.log(request.params)
+            const { id } = request.params
             const repo = getRepository(Profile);
-            const res = await repo.find(request.params);
-            return response.status(201).send(res);
+            const res = await repo.find({ where: { id: id }, relations: ['accomplishment', 'focusArea', 'occupation'] });
+            return response.status(200).send(res);
         } catch (error) {
             return response.send(error.message);
             //console.log("errorMessage =>", error.message);

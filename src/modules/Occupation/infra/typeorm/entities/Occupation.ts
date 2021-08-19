@@ -1,18 +1,12 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { User } from "../../../../User/infra/typeorm/entities/User";
+import { Profile } from './../../../../Profile/infra/typeorm/entities/Profile';
 
 @Entity('occupation')
 export class Occupation {
 
     @PrimaryGeneratedColumn('uuid')
     id: string;
-
-    @ManyToOne(() => User, {
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-    })
-    @JoinColumn({ name: 'id' })
-    user: User
 
     @Column('varchar')
     role: string;
@@ -31,5 +25,8 @@ export class Occupation {
 
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
+
+    @ManyToOne(() => Profile, (profile) => profile.occupation)
+    profile: Profile
 
 }

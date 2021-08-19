@@ -39,30 +39,62 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var typeorm_2 = require("typeorm");
 var User_1 = require("../entities/User");
+var Profile_1 = require("./../../../../Profile/infra/typeorm/entities/Profile");
 var UserRepository = /** @class */ (function () {
     function UserRepository() {
-        this.ormRepository = typeorm_1.getRepository(User_1.User);
+        this.userRepository = typeorm_1.getRepository(User_1.User);
+        this.profileRepository = typeorm_1.getRepository(Profile_1.Profile);
     }
+    UserRepository.prototype.listAll = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var user;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.userRepository.find({ relations: ['profile'] })];
+                    case 1:
+                        user = _a.sent();
+                        return [2 /*return*/, user];
+                }
+            });
+        });
+    };
     UserRepository.prototype.findById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var user;
             return __generator(this, function (_a) {
-                user = this.ormRepository.findOne({ where: id, relations: ['profile'] });
-                return [2 /*return*/, user];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id }, relations: ['profile'] })];
+                    case 1:
+                        user = _a.sent();
+                        return [2 /*return*/, user];
+                }
             });
         });
     };
     UserRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, user;
+            var profile, pr, repo, resp;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        repo = this.ormRepository.create(data);
-                        return [4 /*yield*/, this.ormRepository.save(repo)];
+                        profile = this.profileRepository.create({
+                            work_resume: '',
+                            image: '',
+                            description: '',
+                            accomplishment: [],
+                            focusArea: [],
+                            occupation: []
+                        });
+                        return [4 /*yield*/, this.profileRepository.save(profile)];
                     case 1:
-                        user = _a.sent();
-                        return [2 /*return*/, user];
+                        pr = _a.sent();
+                        console.log(pr);
+                        repo = this.userRepository.create(data);
+                        repo.profile = pr;
+                        return [4 /*yield*/, this.userRepository.save(repo)];
+                    case 2:
+                        resp = _a.sent();
+                        return [2 /*return*/, resp];
                 }
             });
         });
@@ -77,6 +109,18 @@ var UserRepository = /** @class */ (function () {
                             .set(data)
                             .where("id = :id", { id: id })
                             .execute()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    UserRepository.prototype.remove = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.userRepository.delete(id)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
