@@ -18,4 +18,15 @@ profileRoutes.get('/:id', celebrate({
     }
 }), profileController.fetchBy)
 
+profileRoutes.patch('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid(),
+    },
+    [Segments.BODY]: {
+        work_resume: Joi.string(),
+        image: Joi.string(),
+        description: Joi.string(),
+    }
+}), profileController.update);
+
 export default profileRoutes;

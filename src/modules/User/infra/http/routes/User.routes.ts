@@ -10,7 +10,7 @@ userRoutes.get('/:id', celebrate({
     }
 }), userController.fetchBy)
 
-userRoutes.patch('/', celebrate({
+userRoutes.post('/', celebrate({
     [Segments.BODY]: {
         name: Joi.string().min(3).required(),
         birthDate: Joi.string().required(),
@@ -19,9 +19,24 @@ userRoutes.patch('/', celebrate({
         district: Joi.string().required(),
         street: Joi.string().required(),
         phNumber: Joi.string().required(),
-        profile: Joi.object()
     }
 }), userController.create)
+
+
+userRoutes.patch('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid(),
+    },
+    [Segments.BODY]: {
+        name: Joi.string().min(3).required(),
+        birthDate: Joi.string().required(),
+        document: Joi.string().required(),
+        city: Joi.string().required(),
+        district: Joi.string().required(),
+        street: Joi.string().required(),
+        phNumber: Joi.string().required(),
+    }
+}), userController.update)
 
 userRoutes.put('/:id', celebrate({
     [Segments.PARAMS]: {

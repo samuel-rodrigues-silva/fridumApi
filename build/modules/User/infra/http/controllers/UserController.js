@@ -44,6 +44,7 @@ var tsyringe_1 = require("tsyringe");
 var CreateUserService_1 = __importDefault(require("../../../services/CreateUserService"));
 var ShowUserService_1 = __importDefault(require("../../../services/ShowUserService"));
 var DeleteUserService_1 = __importDefault(require("./../../../services/DeleteUserService"));
+var UpdateUserService_1 = __importDefault(require("./../../../services/UpdateUserService"));
 var UserController = /** @class */ (function () {
     function UserController() {
     }
@@ -90,8 +91,22 @@ var UserController = /** @class */ (function () {
     };
     UserController.prototype.update = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
+            var id, _a, name, birthDate, document, city, district, street, phNumber, repo, user;
+            return __generator(this, function (_b) {
                 try {
+                    id = request.params.id;
+                    _a = request.body, name = _a.name, birthDate = _a.birthDate, document = _a.document, city = _a.city, district = _a.district, street = _a.street, phNumber = _a.phNumber;
+                    repo = tsyringe_1.container.resolve(UpdateUserService_1.default);
+                    user = repo.execute({
+                        name: name,
+                        birthDate: birthDate,
+                        document: document,
+                        city: city,
+                        district: district,
+                        street: street,
+                        phNumber: phNumber
+                    }, id);
+                    return [2 /*return*/, response.json(user)];
                 }
                 catch (error) {
                     return [2 /*return*/, response.send(error.message)];

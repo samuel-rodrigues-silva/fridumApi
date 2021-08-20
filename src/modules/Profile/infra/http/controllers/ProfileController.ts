@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import { Profile } from '../../typeorm/entities/Profile';
+import { getConnection } from 'typeorm';
+import { classToClass } from 'class-transformer';
 
 class ProfileController {
 
@@ -11,7 +13,6 @@ class ProfileController {
             return response.status(201).send(res);
         } catch (error) {
             return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
         }
     }
 
@@ -29,6 +30,22 @@ class ProfileController {
 
     public async update(request: Request, response: Response): Promise<Response> {
         try {
+            const { id } = request.params
+            const { work_resume,
+                image,
+                description,
+            } = request.body
+            const repo = await getConnection()
+                .createQueryBuilder()
+                .update(Profile)
+                .set({
+                    work_resume,
+                    image,
+                    description,
+                })
+                .where("id = :id", { id: id })
+                .execute();
+            return response.json(repo);
 
         } catch (error) {
             return response.send(error.message);

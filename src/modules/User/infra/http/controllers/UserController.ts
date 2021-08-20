@@ -4,6 +4,9 @@ import { container } from 'tsyringe';
 import CreateUserService from '../../../services/CreateUserService';
 import ShowUserService from '../../../services/ShowUserService';
 import DeleteUserService from './../../../services/DeleteUserService';
+import { getConnection } from 'typeorm';
+import { User } from './../../typeorm/entities/User';
+import UpdateUserService from './../../../services/UpdateUserService';
 
 class UserController {
 
@@ -30,7 +33,26 @@ class UserController {
 
     public async update(request: Request, response: Response): Promise<Response> {
         try {
-
+            const { id } = request.params
+            const { name,
+                birthDate,
+                document,
+                city,
+                district,
+                street,
+                phNumber
+            } = request.body
+            const repo = container.resolve(UpdateUserService);
+            const user = repo.execute({
+                name,
+                birthDate,
+                document,
+                city,
+                district,
+                street,
+                phNumber
+            }, id);
+            return response.json(user);
         } catch (error) {
             return response.send(error.message);
             //console.log("errorMessage =>", error.message);

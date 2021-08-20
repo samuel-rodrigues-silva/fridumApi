@@ -12,7 +12,7 @@ class UpdateUserService {
     ) { }
 
     public async execute(data: ICreateUserDTO, id: string): Promise<void> {
-        const user = await this.userRepository.update(data, id);
+        await this.userRepository.update(data, id);
     }
 }
 

@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var Profile_1 = require("../../typeorm/entities/Profile");
+var typeorm_2 = require("typeorm");
 var ProfileController = /** @class */ (function () {
     function ProfileController() {
     }
@@ -84,20 +85,37 @@ var ProfileController = /** @class */ (function () {
     };
     ProfileController.prototype.update = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                try {
+            var id, _a, work_resume, image, description, repo, error_3;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _b.trys.push([0, 2, , 3]);
+                        id = request.params.id;
+                        _a = request.body, work_resume = _a.work_resume, image = _a.image, description = _a.description;
+                        return [4 /*yield*/, typeorm_2.getConnection()
+                                .createQueryBuilder()
+                                .update(Profile_1.Profile)
+                                .set({
+                                work_resume: work_resume,
+                                image: image,
+                                description: description,
+                            })
+                                .where("id = :id", { id: id })
+                                .execute()];
+                    case 1:
+                        repo = _b.sent();
+                        return [2 /*return*/, response.json(repo)];
+                    case 2:
+                        error_3 = _b.sent();
+                        return [2 /*return*/, response.send(error_3.message)];
+                    case 3: return [2 /*return*/];
                 }
-                catch (error) {
-                    return [2 /*return*/, response.send(error.message)];
-                    //console.log("errorMessage =>", error.message);
-                }
-                return [2 /*return*/];
             });
         });
     };
     ProfileController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_3;
+            var repo, res, error_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -108,8 +126,8 @@ var ProfileController = /** @class */ (function () {
                         res = _a.sent();
                         return [2 /*return*/, response.status(201).send(res)];
                     case 2:
-                        error_3 = _a.sent();
-                        return [2 /*return*/, response.send(error_3.message)];
+                        error_4 = _a.sent();
+                        return [2 /*return*/, response.send(error_4.message)];
                     case 3: return [2 /*return*/];
                 }
             });

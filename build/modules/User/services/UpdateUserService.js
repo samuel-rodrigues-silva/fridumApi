@@ -59,12 +59,11 @@ var UpdateUserService = /** @class */ (function () {
     }
     UpdateUserService.prototype.execute = function (data, id) {
         return __awaiter(this, void 0, void 0, function () {
-            var user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.update(data, id)];
                     case 1:
-                        user = _a.sent();
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });

@@ -52,6 +52,7 @@ class UserRepository implements IUserRepository {
             .set(data)
             .where("id = :id", { id: id })
             .execute();
+
     }
 
     public async remove(id: string): Promise<void> {
