@@ -47,6 +47,7 @@ var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var CreateSessionService_1 = __importDefault(require("../../../services/CreateSessionService"));
 var DeleteSessionService_1 = __importDefault(require("./../../../services/DeleteSessionService"));
 var UpdateSessionService_1 = __importDefault(require("./../../../services/UpdateSessionService"));
+var class_transformer_1 = require("class-transformer");
 var SessionController = /** @class */ (function () {
     function SessionController() {
     }
@@ -137,9 +138,31 @@ var SessionController = /** @class */ (function () {
             });
         });
     };
+    SessionController.prototype.fetchByEmail = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var email, repo, res, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        email = request.body.email;
+                        repo = typeorm_1.getRepository(Session_1.Session);
+                        return [4 /*yield*/, repo.findOne({ where: { email: email } })];
+                    case 1:
+                        res = _a.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(res))];
+                    case 2:
+                        error_4 = _a.sent();
+                        console.log("errorMessage =>", error_4.message);
+                        return [2 /*return*/, response.send(error_4.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     SessionController.prototype.update = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, _a, email, password, repo, findSession, session, res, error_4;
+            var id, _a, email, password, repo, findSession, session, res, error_5;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -158,8 +181,8 @@ var SessionController = /** @class */ (function () {
                         return [2 /*return*/, response.status(200).send(res)];
                     case 3: return [3 /*break*/, 5];
                     case 4:
-                        error_4 = _b.sent();
-                        return [2 /*return*/, response.send(error_4.message)];
+                        error_5 = _b.sent();
+                        return [2 /*return*/, response.send(error_5.message)];
                     case 5: return [2 /*return*/];
                 }
             });
@@ -167,7 +190,7 @@ var SessionController = /** @class */ (function () {
     };
     SessionController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, error_5;
+            var id, repo, error_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -179,8 +202,8 @@ var SessionController = /** @class */ (function () {
                         _a.sent();
                         return [2 /*return*/, response.status(200)];
                     case 2:
-                        error_5 = _a.sent();
-                        return [2 /*return*/, response.send(error_5.message)];
+                        error_6 = _a.sent();
+                        return [2 /*return*/, response.send(error_6.message)];
                     case 3: return [2 /*return*/];
                 }
             });

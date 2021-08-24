@@ -12,6 +12,12 @@ sessionRouter.get('/:id', celebrate({
     }
 }), verifyAuth, sessionController.fetchBy)
 
+sessionRouter.get('/:id', celebrate({
+    [Segments.PARAMS]: {
+        email: Joi.string().email().required()
+    }
+}), verifyAuth, sessionController.fetchByEmail)
+
 sessionRouter.post('/', celebrate({
     [Segments.BODY]: {
         email: Joi.string().email().required(),

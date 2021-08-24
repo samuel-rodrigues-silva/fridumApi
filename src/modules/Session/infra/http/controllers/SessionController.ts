@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken'
 import CreateSessionService from '../../../services/CreateSessionService';
 import DeleteSessionService from './../../../services/DeleteSessionService';
 import UpdateSessionService from './../../../services/UpdateSessionService';
+import { classToClass } from 'class-transformer';
 
 class SessionController {
 
@@ -67,6 +68,18 @@ class SessionController {
             const repo = getRepository(Session);
             const res = await repo.findOne({ where: { id: id }, relations: ['user'] });
             return response.status(201).send(res);
+        } catch (error) {
+            console.log("errorMessage =>", error.message);
+            return response.send(error.message);
+        }
+    }
+
+    public async fetchByEmail(request: Request, response: Response): Promise<Response> {
+        try {
+            const { email } = request.body;
+            const repo = getRepository(Session);
+            const res = await repo.findOne({ where: { email: email } });
+            return response.json(classToClass(res));
         } catch (error) {
             console.log("errorMessage =>", error.message);
             return response.send(error.message);
