@@ -15,8 +15,8 @@ sessionRouter.get('/:id', celebrate_1.celebrate((_a = {},
         id: celebrate_1.Joi.string().uuid().required()
     },
     _a)), verifyAuth_1.default, sessionController.fetchBy);
-sessionRouter.get('/:id', celebrate_1.celebrate((_b = {},
-    _b[celebrate_1.Segments.PARAMS] = {
+sessionRouter.post('/', celebrate_1.celebrate((_b = {},
+    _b[celebrate_1.Segments.BODY] = {
         email: celebrate_1.Joi.string().email().required()
     },
     _b)), verifyAuth_1.default, sessionController.fetchByEmail);
