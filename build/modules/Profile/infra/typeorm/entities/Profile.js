@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Profile = void 0;
 var typeorm_1 = require("typeorm");
-var Role_1 = require("../../../../Role/infra/typeorm/entities/Role");
 var FocusArea_1 = require("./../../../../FocusArea/infra/typeorm/entities/FocusArea");
 var Occupation_1 = require("./../../../../Occupation/infra/typeorm/entities/Occupation");
 var Accomplishment_1 = require("./../../../../Accomplishments/infra/typeorm/entities/Accomplishment");
@@ -23,8 +22,8 @@ var Profile = /** @class */ (function () {
         __metadata("design:type", String)
     ], Profile.prototype, "id", void 0);
     __decorate([
-        typeorm_1.OneToMany(function () { return Role_1.Role; }, function (role) { return role.id; }, { cascade: true }),
-        __metadata("design:type", Array)
+        typeorm_1.Column('varchar'),
+        __metadata("design:type", String)
     ], Profile.prototype, "role", void 0);
     __decorate([
         typeorm_1.Column('varchar'),

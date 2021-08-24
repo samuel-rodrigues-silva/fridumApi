@@ -53,29 +53,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var tsyringe_1 = require("tsyringe");
 var ProfileRepository_1 = __importDefault(require("./../infra/typeorm/repositories/ProfileRepository"));
-var ShowProfileService = /** @class */ (function () {
-    function ShowProfileService(profileRepository) {
+var DeleteProfileService = /** @class */ (function () {
+    function DeleteProfileService(profileRepository) {
         this.profileRepository = profileRepository;
     }
-    ShowProfileService.prototype.execute = function (id) {
+    DeleteProfileService.prototype.execute = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.profileRepository.findBy(id)];
+                    case 0: return [4 /*yield*/, this.profileRepository.remove(id)];
                     case 1:
-                        repo = _a.sent();
-                        return [2 /*return*/, repo];
+                        _a.sent();
+                        return [2 /*return*/];
                 }
             });
         });
     };
-    ShowProfileService = __decorate([
+    DeleteProfileService = __decorate([
         tsyringe_1.injectable(),
         __param(0, tsyringe_1.inject(tsyringe_1.delay(function () { return ProfileRepository_1.default; }))),
         __metadata("design:paramtypes", [Object])
-    ], ShowProfileService);
-    return ShowProfileService;
+    ], DeleteProfileService);
+    return DeleteProfileService;
 }());
-exports.default = ShowProfileService;
-//# sourceMappingURL=ShowProfileService.js.map
+exports.default = DeleteProfileService;
+//# sourceMappingURL=DeleteProfileService.js.map

@@ -4,9 +4,8 @@ import { container } from 'tsyringe';
 import CreateUserService from '../../../services/CreateUserService';
 import ShowUserService from '../../../services/ShowUserService';
 import DeleteUserService from './../../../services/DeleteUserService';
-import { getConnection } from 'typeorm';
-import { User } from './../../typeorm/entities/User';
 import UpdateUserService from './../../../services/UpdateUserService';
+import ListUserService from './../../../services/ListUserService';
 
 class UserController {
 
@@ -14,6 +13,16 @@ class UserController {
         try {
             const repo = container.resolve(CreateUserService)
             const user = await repo.execute(request.body);
+            return response.json(classToClass(user));
+        } catch (error) {
+            return response.send(error.message);
+        }
+    }
+
+    public async listAll(request: Request, response: Response): Promise<Response> {
+        try {
+            const repo = container.resolve(ListUserService);
+            const user = await repo.execute();
             return response.json(classToClass(user));
         } catch (error) {
             return response.send(error.message);

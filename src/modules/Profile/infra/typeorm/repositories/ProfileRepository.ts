@@ -12,12 +12,16 @@ class ProfileRepository implements IProfileRepository {
         this.ormRepository = getRepository(Profile);
     }
     public async fetchBy(id: string): Promise<Profile> {
-        const res = await this.ormRepository.findOne({ where: { id: id }, relations: ['accomplishment', 'focusArea', 'occupation'] });
-        return res;
+        return await this.ormRepository.findOne({ where: { id: id }, relations: ['accomplishment', 'focusArea', 'occupation'] });
     }
+    public async listAll(): Promise<Profile[]> {
+        return await this.ormRepository.find();
+    }
+
     public async create(data: ICreateProfileDTO): Promise<Profile> {
-        const res = await this.ormRepository.save(data);
-        return res
+        const repo = this.ormRepository.create(data);
+        const profile = await this.ormRepository.save(repo);
+        return profile
     }
     public async update(data: ICreateProfileDTO, id: string): Promise<void> {
         await getConnection()

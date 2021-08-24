@@ -35,45 +35,61 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var typeorm_1 = require("typeorm");
-var Post_1 = require("../../typeorm/entities/Post");
+var tsyringe_1 = require("tsyringe");
+var CreatePostService_1 = __importDefault(require("./../../../services/CreatePostService"));
+var class_transformer_1 = require("class-transformer");
+var ShowPostService_1 = __importDefault(require("./../../../services/ShowPostService"));
+var ListPostService_1 = __importDefault(require("./../../../services/ListPostService"));
+var UpdatePostService_1 = __importDefault(require("./../../../services/UpdatePostService"));
+var DeletePostService_1 = __importDefault(require("./../../../services/DeletePostService"));
 var PostController = /** @class */ (function () {
     function PostController() {
     }
     PostController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var _a, user_id, description, title, image, price, expected_date_of_delivery, repo, post, error_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        repo = typeorm_1.getRepository(Post_1.Post);
-                        return [4 /*yield*/, repo.save(request.body)];
+                        _b.trys.push([0, 2, , 3]);
+                        _a = request.body, user_id = _a.user_id, description = _a.description, title = _a.title, image = _a.image, price = _a.price, expected_date_of_delivery = _a.expected_date_of_delivery;
+                        repo = tsyringe_1.container.resolve(CreatePostService_1.default);
+                        return [4 /*yield*/, repo.execute({
+                                user_id: user_id,
+                                description: description,
+                                title: title,
+                                image: image,
+                                price: price,
+                                expected_date_of_delivery: expected_date_of_delivery
+                            })];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        post = _b.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(post))];
                     case 2:
-                        error_1 = _a.sent();
+                        error_1 = _b.sent();
                         return [2 /*return*/, response.send(error_1.message)];
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    PostController.prototype.fetchBy = function (request, response) {
+    PostController.prototype.listByCity = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_2;
+            var area, repo, list, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        console.log(request.params);
-                        repo = typeorm_1.getRepository(Post_1.Post);
-                        return [4 /*yield*/, repo.find(request.params)];
+                        area = request.body.area;
+                        repo = tsyringe_1.container.resolve(ListPostService_1.default);
+                        return [4 /*yield*/, repo.execute()];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        list = _a.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(list))];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, response.send(error_2.message)];
@@ -82,34 +98,68 @@ var PostController = /** @class */ (function () {
             });
         });
     };
-    PostController.prototype.update = function (request, response) {
+    PostController.prototype.fetchBy = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
+            var id, repo, post;
             return __generator(this, function (_a) {
                 try {
+                    id = request.params.id;
+                    repo = tsyringe_1.container.resolve(ShowPostService_1.default);
+                    post = repo.execute(id);
+                    return [2 /*return*/, response.json(class_transformer_1.classToClass(post))];
                 }
                 catch (error) {
                     return [2 /*return*/, response.send(error.message)];
-                    //console.log("errorMessage =>", error.message);
                 }
                 return [2 /*return*/];
             });
         });
     };
+    PostController.prototype.update = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, _a, user_id, description, title, image, price, expected_date_of_delivery, repo, post, error_3;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _b.trys.push([0, 2, , 3]);
+                        id = request.params.id;
+                        _a = request.body, user_id = _a.user_id, description = _a.description, title = _a.title, image = _a.image, price = _a.price, expected_date_of_delivery = _a.expected_date_of_delivery;
+                        repo = tsyringe_1.container.resolve(UpdatePostService_1.default);
+                        return [4 /*yield*/, repo.execute({
+                                user_id: user_id,
+                                description: description,
+                                title: title,
+                                image: image,
+                                price: price,
+                                expected_date_of_delivery: expected_date_of_delivery
+                            }, id)];
+                    case 1:
+                        post = _b.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(post))];
+                    case 2:
+                        error_3 = _b.sent();
+                        return [2 /*return*/, response.send(error_3.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     PostController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_3;
+            var id, repo, error_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        repo = typeorm_1.getRepository(Post_1.Post);
-                        return [4 /*yield*/, repo.delete(request.params.id)];
+                        id = request.params.id;
+                        repo = tsyringe_1.container.resolve(DeletePostService_1.default);
+                        return [4 /*yield*/, repo.execute(id)];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        _a.sent();
+                        return [3 /*break*/, 3];
                     case 2:
-                        error_3 = _a.sent();
-                        return [2 /*return*/, response.send(error_3.message)];
+                        error_4 = _a.sent();
+                        return [2 /*return*/, response.send(error_4.message)];
                     case 3: return [2 /*return*/];
                 }
             });

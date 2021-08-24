@@ -40,7 +40,7 @@ var Accomplishment = /** @class */ (function () {
         __metadata("design:type", typeorm_1.Timestamp)
     ], Accomplishment.prototype, "updatedAt", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.accomplishment; }),
+        typeorm_1.ManyToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.accomplishment; }, { cascade: true, onDelete: 'CASCADE' }),
         __metadata("design:type", Profile_1.Profile)
     ], Accomplishment.prototype, "profile", void 0);
     Accomplishment = __decorate([

@@ -11,8 +11,8 @@ export class Profile {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @OneToMany(() => Role, (role) => role.id, { cascade: true })
-    role?: Role[];
+    @Column('varchar')
+    role?: string;
 
     @Column('varchar')
     work_resume?: string;

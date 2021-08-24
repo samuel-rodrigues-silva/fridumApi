@@ -3,15 +3,14 @@ import ProfileRepository from './../infra/typeorm/repositories/ProfileRepository
 import { Profile } from './../infra/typeorm/entities/Profile';
 
 @injectable()
-class ShowProfileService {
+class DeleteProfileService {
     constructor(
         @inject(delay(() => ProfileRepository))
         private profileRepository
     ) { }
-    public async execute(id: string): Promise<Profile> {
-        const repo = await this.profileRepository.findBy(id);
-        return repo
+    public async execute(id: string): Promise<void> {
+        await this.profileRepository.remove(id);
     }
 }
 
-export default ShowProfileService
+export default DeleteProfileService

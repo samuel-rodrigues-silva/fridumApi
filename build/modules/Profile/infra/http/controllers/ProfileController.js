@@ -35,25 +35,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var typeorm_1 = require("typeorm");
-var Profile_1 = require("../../typeorm/entities/Profile");
-var typeorm_2 = require("typeorm");
+var class_transformer_1 = require("class-transformer");
+var tsyringe_1 = require("tsyringe");
+var ListProfileService_1 = __importDefault(require("./../../../services/ListProfileService"));
+var ShowProfileService_1 = __importDefault(require("./../../../services/ShowProfileService"));
+var UpdateProfileService_1 = __importDefault(require("./../../../services/UpdateProfileService"));
+var DeleteProfileService_1 = __importDefault(require("./../../../services/DeleteProfileService"));
 var ProfileController = /** @class */ (function () {
     function ProfileController() {
     }
-    ProfileController.prototype.create = function (request, response) {
+    ProfileController.prototype.listAll = function (reques, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_1;
+            var repo, profileList, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        repo = typeorm_1.getRepository(Profile_1.Profile);
-                        return [4 /*yield*/, repo.save(request.body)];
+                        repo = tsyringe_1.container.resolve(ListProfileService_1.default);
+                        return [4 /*yield*/, repo.execute()];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        profileList = _a.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(profileList))];
                     case 2:
                         error_1 = _a.sent();
                         return [2 /*return*/, response.send(error_1.message)];
@@ -64,17 +70,17 @@ var ProfileController = /** @class */ (function () {
     };
     ProfileController.prototype.fetchBy = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, res, error_2;
+            var id, repo, profile, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         id = request.params.id;
-                        repo = typeorm_1.getRepository(Profile_1.Profile);
-                        return [4 /*yield*/, repo.find({ where: { id: id }, relations: ['accomplishment', 'focusArea', 'occupation'] })];
+                        repo = tsyringe_1.container.resolve(ShowProfileService_1.default);
+                        return [4 /*yield*/, repo.execute(id)];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(200).send(res)];
+                        profile = _a.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(profile))];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, response.send(error_2.message)];
@@ -85,26 +91,23 @@ var ProfileController = /** @class */ (function () {
     };
     ProfileController.prototype.update = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, _a, work_resume, image, description, repo, error_3;
+            var id, _a, role, work_resume, image, description, repo, profile, error_3;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 2, , 3]);
                         id = request.params.id;
-                        _a = request.body, work_resume = _a.work_resume, image = _a.image, description = _a.description;
-                        return [4 /*yield*/, typeorm_2.getConnection()
-                                .createQueryBuilder()
-                                .update(Profile_1.Profile)
-                                .set({
+                        _a = request.body, role = _a.role, work_resume = _a.work_resume, image = _a.image, description = _a.description;
+                        repo = tsyringe_1.container.resolve(UpdateProfileService_1.default);
+                        return [4 /*yield*/, repo.execute({
+                                role: role,
                                 work_resume: work_resume,
                                 image: image,
                                 description: description,
-                            })
-                                .where("id = :id", { id: id })
-                                .execute()];
+                            }, id)];
                     case 1:
-                        repo = _b.sent();
-                        return [2 /*return*/, response.json(repo)];
+                        profile = _b.sent();
+                        return [2 /*return*/, response.json(profile)];
                     case 2:
                         error_3 = _b.sent();
                         return [2 /*return*/, response.send(error_3.message)];
@@ -115,16 +118,17 @@ var ProfileController = /** @class */ (function () {
     };
     ProfileController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_4;
+            var id, repo, error_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        repo = typeorm_1.getRepository(Profile_1.Profile);
-                        return [4 /*yield*/, repo.delete(request.params.id)];
+                        id = request.params.id;
+                        repo = tsyringe_1.container.resolve(DeleteProfileService_1.default);
+                        return [4 /*yield*/, repo.execute(id)];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        _a.sent();
+                        return [3 /*break*/, 3];
                     case 2:
                         error_4 = _a.sent();
                         return [2 /*return*/, response.send(error_4.message)];

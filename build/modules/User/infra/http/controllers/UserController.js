@@ -45,6 +45,7 @@ var CreateUserService_1 = __importDefault(require("../../../services/CreateUserS
 var ShowUserService_1 = __importDefault(require("../../../services/ShowUserService"));
 var DeleteUserService_1 = __importDefault(require("./../../../services/DeleteUserService"));
 var UpdateUserService_1 = __importDefault(require("./../../../services/UpdateUserService"));
+var ListUserService_1 = __importDefault(require("./../../../services/ListUserService"));
 var UserController = /** @class */ (function () {
     function UserController() {
     }
@@ -68,9 +69,29 @@ var UserController = /** @class */ (function () {
             });
         });
     };
+    UserController.prototype.listAll = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var repo, user, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        repo = tsyringe_1.container.resolve(ListUserService_1.default);
+                        return [4 /*yield*/, repo.execute()];
+                    case 1:
+                        user = _a.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(user))];
+                    case 2:
+                        error_2 = _a.sent();
+                        return [2 /*return*/, response.send(error_2.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     UserController.prototype.fetchBy = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, user, error_2;
+            var id, repo, user, error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -82,8 +103,8 @@ var UserController = /** @class */ (function () {
                         user = _a.sent();
                         return [2 /*return*/, response.json(class_transformer_1.classToClass(user))];
                     case 2:
-                        error_2 = _a.sent();
-                        return [2 /*return*/, response.send(error_2.message)];
+                        error_3 = _a.sent();
+                        return [2 /*return*/, response.send(error_3.message)];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -118,7 +139,7 @@ var UserController = /** @class */ (function () {
     };
     UserController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, user, error_3;
+            var id, repo, user, error_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -130,8 +151,8 @@ var UserController = /** @class */ (function () {
                         user = _a.sent();
                         return [2 /*return*/, response.json(class_transformer_1.classToClass(user))];
                     case 2:
-                        error_3 = _a.sent();
-                        return [2 /*return*/, response.send(error_3.message)];
+                        error_4 = _a.sent();
+                        return [2 /*return*/, response.send(error_4.message)];
                     case 3: return [2 /*return*/];
                 }
             });

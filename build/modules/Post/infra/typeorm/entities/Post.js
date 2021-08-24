@@ -20,8 +20,8 @@ var Post = /** @class */ (function () {
         __metadata("design:type", String)
     ], Post.prototype, "id", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return User_1.User; }, function (user) { return user.id; }),
-        __metadata("design:type", User_1.User)
+        typeorm_1.ManyToOne(function () { return User_1.User; }, function (user) { return user.id; }, { cascade: true, onDelete: 'CASCADE' }),
+        __metadata("design:type", String)
     ], Post.prototype, "user_id", void 0);
     __decorate([
         typeorm_1.Column('text'),

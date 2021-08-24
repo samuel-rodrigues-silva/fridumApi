@@ -4,13 +4,8 @@ import ProfileController from '../controllers/ProfileController';
 const profileRoutes = Router();
 const profileController = new ProfileController();
 
-profileRoutes.post('/', celebrate({
-    [Segments.BODY]: {
-        work_resume: Joi.string(),
-        description: Joi.string(),
-        image: Joi.string()
-    }
-}), profileController.create)
+profileRoutes.get('/', profileController.listAll)
+
 
 profileRoutes.get('/:id', celebrate({
     [Segments.PARAMS]: {
@@ -23,6 +18,7 @@ profileRoutes.patch('/:id', celebrate({
         id: Joi.string().uuid(),
     },
     [Segments.BODY]: {
+        role: Joi.string(),
         work_resume: Joi.string(),
         image: Joi.string(),
         description: Joi.string(),

@@ -17,7 +17,7 @@ export class FocusArea {
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
 
-    @ManyToOne(() => Profile, (profile) => profile.focusArea)
+    @ManyToOne(() => Profile, (profile) => profile.focusArea, { cascade: true, onDelete: 'CASCADE' })
     profile: Profile
 
 }

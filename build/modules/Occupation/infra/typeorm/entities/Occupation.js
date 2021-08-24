@@ -44,7 +44,7 @@ var Occupation = /** @class */ (function () {
         __metadata("design:type", typeorm_1.Timestamp)
     ], Occupation.prototype, "updatedAt", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.occupation; }),
+        typeorm_1.ManyToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.occupation; }, { cascade: true, onDelete: 'CASCADE' }),
         __metadata("design:type", Profile_1.Profile)
     ], Occupation.prototype, "profile", void 0);
     Occupation = __decorate([

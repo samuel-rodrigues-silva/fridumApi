@@ -32,7 +32,7 @@ var FocusArea = /** @class */ (function () {
         __metadata("design:type", typeorm_1.Timestamp)
     ], FocusArea.prototype, "updatedAt", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.focusArea; }),
+        typeorm_1.ManyToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.focusArea; }, { cascade: true, onDelete: 'CASCADE' }),
         __metadata("design:type", Profile_1.Profile)
     ], FocusArea.prototype, "profile", void 0);
     FocusArea = __decorate([

@@ -26,7 +26,7 @@ export class Occupation {
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
 
-    @ManyToOne(() => Profile, (profile) => profile.occupation)
+    @ManyToOne(() => Profile, (profile) => profile.occupation, { cascade: true, onDelete: 'CASCADE' })
     profile: Profile
 
 }

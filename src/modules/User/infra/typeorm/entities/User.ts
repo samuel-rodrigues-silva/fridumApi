@@ -39,7 +39,7 @@ export class User {
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
 
-    @OneToOne(() => Profile, (profile) => profile.id)
+    @OneToOne(() => Profile, (profile) => profile.id, { cascade: true, onDelete: 'CASCADE' })
     @JoinColumn()
     profile: Profile;
 

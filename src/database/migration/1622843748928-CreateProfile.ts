@@ -13,6 +13,10 @@ export class CreateProfile1622843748928 implements MigrationInterface {
                     isPrimary: true,
                 },
                 {
+                    name: 'role',
+                    type: 'varchar'
+                },
+                {
                     name: 'work_resume',
                     type: 'varchar'
                 },

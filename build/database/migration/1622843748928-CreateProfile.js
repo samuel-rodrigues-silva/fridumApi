@@ -53,6 +53,10 @@ var CreateProfile1622843748928 = /** @class */ (function () {
                             isPrimary: true,
                         },
                         {
+                            name: 'role',
+                            type: 'varchar'
+                        },
+                        {
                             name: 'work_resume',
                             type: 'varchar'
                         },

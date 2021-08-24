@@ -3,14 +3,19 @@ import { getRepository } from 'typeorm';
 import { Profile } from '../../typeorm/entities/Profile';
 import { getConnection } from 'typeorm';
 import { classToClass } from 'class-transformer';
+import { container } from 'tsyringe';
+import ListProfileService from './../../../services/ListProfileService';
+import ShowProfileService from './../../../services/ShowProfileService';
+import UpdateProfileService from './../../../services/UpdateProfileService';
+import DeleteProfileService from './../../../services/DeleteProfileService';
 
 class ProfileController {
 
-    public async create(request: Request, response: Response): Promise<Response> {
+    public async listAll(reques: Request, response: Response): Promise<Response> {
         try {
-            const repo = getRepository(Profile);
-            const res = await repo.save(request.body);
-            return response.status(201).send(res);
+            const repo = container.resolve(ListProfileService);
+            const profileList = await repo.execute();
+            return response.json(classToClass(profileList));
         } catch (error) {
             return response.send(error.message);
         }
@@ -19,45 +24,41 @@ class ProfileController {
     public async fetchBy(request: Request, response: Response): Promise<Response> {
         try {
             const { id } = request.params
-            const repo = getRepository(Profile);
-            const res = await repo.find({ where: { id: id }, relations: ['accomplishment', 'focusArea', 'occupation'] });
-            return response.status(200).send(res);
+            const repo = container.resolve(ShowProfileService);
+            const profile = await repo.execute(id);
+            return response.json(classToClass(profile));
         } catch (error) {
             return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
         }
     }
 
     public async update(request: Request, response: Response): Promise<Response> {
         try {
             const { id } = request.params
-            const { work_resume,
+            const { role,
+                work_resume,
                 image,
                 description,
             } = request.body
-            const repo = await getConnection()
-                .createQueryBuilder()
-                .update(Profile)
-                .set({
-                    work_resume,
-                    image,
-                    description,
-                })
-                .where("id = :id", { id: id })
-                .execute();
-            return response.json(repo);
+            const repo = container.resolve(UpdateProfileService);
+            const profile = await repo.execute({
+                role,
+                work_resume,
+                image,
+                description,
+            }, id);
+            return response.json(profile);
 
         } catch (error) {
             return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
         }
     }
 
     public async remove(request: Request, response: Response): Promise<Response> {
         try {
-            const repo = getRepository(Profile);
-            const res = await repo.delete(request.params.id)
-            return response.status(201).send(res);
+            const { id } = request.params;
+            const repo = container.resolve(DeleteProfileService);
+            await repo.execute(id);
         } catch (error) {
             return response.send(error.message);
         }

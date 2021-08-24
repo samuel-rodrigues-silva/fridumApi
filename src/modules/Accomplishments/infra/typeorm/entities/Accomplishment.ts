@@ -23,7 +23,7 @@ export class Accomplishment {
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
 
-    @ManyToOne(() => Profile, (profile) => profile.accomplishment)
+    @ManyToOne(() => Profile, (profile) => profile.accomplishment, { cascade: true, onDelete: 'CASCADE' })
     profile: Profile
 }
 

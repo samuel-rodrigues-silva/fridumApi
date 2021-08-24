@@ -4,6 +4,9 @@ import UserController from '../controllers/UserController';
 const userRoutes = Router();
 const userController = new UserController();
 
+userRoutes.get('/', userController.listAll)
+
+
 userRoutes.get('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
@@ -38,17 +41,11 @@ userRoutes.patch('/:id', celebrate({
     }
 }), userController.update)
 
-userRoutes.put('/:id', celebrate({
-    [Segments.PARAMS]: {
-        id: Joi.string().uuid().required()
-    }
-}), userController.fetchBy)
-
 userRoutes.delete('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     }
-}), userController.fetchBy)
+}), userController.remove)
 
 
 export default userRoutes;

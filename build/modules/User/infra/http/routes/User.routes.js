@@ -2,13 +2,14 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d;
 Object.defineProperty(exports, "__esModule", { value: true });
 var celebrate_1 = require("celebrate");
 var express_1 = require("express");
 var UserController_1 = __importDefault(require("../controllers/UserController"));
 var userRoutes = express_1.Router();
 var userController = new UserController_1.default();
+userRoutes.get('/', userController.listAll);
 userRoutes.get('/:id', celebrate_1.celebrate((_a = {},
     _a[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
@@ -39,15 +40,10 @@ userRoutes.patch('/:id', celebrate_1.celebrate((_c = {},
         phNumber: celebrate_1.Joi.string().required(),
     },
     _c)), userController.update);
-userRoutes.put('/:id', celebrate_1.celebrate((_d = {},
+userRoutes.delete('/:id', celebrate_1.celebrate((_d = {},
     _d[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
-    _d)), userController.fetchBy);
-userRoutes.delete('/:id', celebrate_1.celebrate((_e = {},
-    _e[celebrate_1.Segments.PARAMS] = {
-        id: celebrate_1.Joi.string().uuid().required()
-    },
-    _e)), userController.fetchBy);
+    _d)), userController.remove);
 exports.default = userRoutes;
 //# sourceMappingURL=User.routes.js.map

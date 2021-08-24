@@ -7,8 +7,8 @@ export class Post {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(() => User, (user) => user.id)
-    user_id: User;
+    @ManyToOne(() => User, (user) => user.id, { cascade: true, onDelete: 'CASCADE' })
+    user_id: string;
 
     @Column('text')
     description: string;

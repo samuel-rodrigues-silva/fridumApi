@@ -30,6 +30,7 @@ class UserRepository implements IUserRepository {
 
     public async create(data: ICreateUserDTO): Promise<User> {
         const profile = this.profileRepository.create({
+            role: '',
             work_resume: '',
             image: '',
             description: '',

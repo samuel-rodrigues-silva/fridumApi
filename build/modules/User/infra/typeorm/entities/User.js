@@ -56,7 +56,7 @@ var User = /** @class */ (function () {
         __metadata("design:type", typeorm_1.Timestamp)
     ], User.prototype, "updatedAt", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.id; }),
+        typeorm_1.OneToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.id; }, { cascade: true, onDelete: 'CASCADE' }),
         typeorm_1.JoinColumn(),
         __metadata("design:type", Profile_1.Profile)
     ], User.prototype, "profile", void 0);

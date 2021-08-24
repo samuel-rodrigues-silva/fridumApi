@@ -78,6 +78,7 @@ var UserRepository = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         profile = this.profileRepository.create({
+                            role: '',
                             work_resume: '',
                             image: '',
                             description: '',
