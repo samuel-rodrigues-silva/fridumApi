@@ -77,6 +77,8 @@ class SessionController {
     public async fetchByEmail(request: Request, response: Response): Promise<Response> {
         try {
             const { email } = request.body;
+            console.log(email);
+
             const repo = getRepository(Session);
             const res = await repo.findOne({ where: { email: email } });
             return response.json(classToClass(res));

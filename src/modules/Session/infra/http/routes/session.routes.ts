@@ -16,7 +16,7 @@ sessionRouter.post('/', celebrate({
     [Segments.BODY]: {
         email: Joi.string().email().required()
     }
-}), verifyAuth, sessionController.fetchByEmail)
+}), sessionController.fetchByEmail)
 
 sessionRouter.post('/', celebrate({
     [Segments.BODY]: {

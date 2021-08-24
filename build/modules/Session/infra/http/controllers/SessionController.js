@@ -146,6 +146,7 @@ var SessionController = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         email = request.body.email;
+                        console.log(email);
                         repo = typeorm_1.getRepository(Session_1.Session);
                         return [4 /*yield*/, repo.findOne({ where: { email: email } })];
                     case 1:

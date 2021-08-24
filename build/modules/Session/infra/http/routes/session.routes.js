@@ -19,7 +19,7 @@ sessionRouter.post('/', celebrate_1.celebrate((_b = {},
     _b[celebrate_1.Segments.BODY] = {
         email: celebrate_1.Joi.string().email().required()
     },
-    _b)), verifyAuth_1.default, sessionController.fetchByEmail);
+    _b)), sessionController.fetchByEmail);
 sessionRouter.post('/', celebrate_1.celebrate((_c = {},
     _c[celebrate_1.Segments.BODY] = {
         email: celebrate_1.Joi.string().email().required(),
