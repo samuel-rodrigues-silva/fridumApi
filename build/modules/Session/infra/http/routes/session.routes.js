@@ -24,7 +24,7 @@ sessionRouter.post('/', celebrate_1.celebrate((_c = {},
     _c[celebrate_1.Segments.BODY] = {
         email: celebrate_1.Joi.string().required(),
         password: celebrate_1.Joi.string().required(),
-        userId: celebrate_1.Joi.string().uuid().required()
+        userId: celebrate_1.Joi.string().required()
     },
     _c)), sessionController.create);
 sessionRouter.post('/auth', celebrate_1.celebrate((_d = {},
