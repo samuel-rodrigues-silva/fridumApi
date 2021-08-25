@@ -89,7 +89,7 @@ var SessionController = /** @class */ (function () {
                         _b.trys.push([0, 3, , 4]);
                         _a = request.body, email = _a.email, password = _a.password;
                         repo = typeorm_1.getRepository(Session_1.Session);
-                        return [4 /*yield*/, repo.findOne({ where: { email: email }, relations: ['user'] })];
+                        return [4 /*yield*/, repo.findOne({ where: { email: email }, relations: ['user', 'user.profile'] })];
                     case 1:
                         session = _b.sent();
                         if (!session) {
@@ -102,11 +102,18 @@ var SessionController = /** @class */ (function () {
                         if (!isPasswordValid) {
                             return [2 /*return*/, response.status(409).send('Invalid password')];
                         }
+                        console.log({
+                            id: session.id,
+                            email: session.email,
+                            token: token,
+                            user: session.user,
+                            profile: session.user.profile
+                        });
                         return [2 /*return*/, response.status(200).send({
                                 id: session.id,
                                 email: session.email,
                                 token: token,
-                                user: session.user
+                                user: session.user,
                             })];
                     case 3:
                         error_2 = _b.sent();

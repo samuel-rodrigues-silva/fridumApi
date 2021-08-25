@@ -36,8 +36,7 @@ class SessionController {
         try {
             const { email, password } = request.body
             const repo = getRepository(Session);
-
-            const session = await repo.findOne({ where: { email }, relations: ['user'] })
+            const session = await repo.findOne({ where: { email }, relations: ['user', 'user.profile'] })
             if (!session) {
                 return response.status(409).send('Email not found')
             }
@@ -49,11 +48,18 @@ class SessionController {
                 return response.status(409).send('Invalid password')
             }
 
+            console.log({
+                id: session.id,
+                email: session.email,
+                token: token,
+                user: session.user,
+                profile: session.user.profile
+            });
             return response.status(200).send({
                 id: session.id,
                 email: session.email,
                 token: token,
-                user: session.user
+                user: session.user,
             })
 
         } catch (error) {
