@@ -15,16 +15,16 @@ sessionRouter.get('/:id', celebrate_1.celebrate((_a = {},
         id: celebrate_1.Joi.string().uuid().required()
     },
     _a)), verifyAuth_1.default, sessionController.fetchBy);
-sessionRouter.post('/', celebrate_1.celebrate((_b = {},
+sessionRouter.post('/verify', celebrate_1.celebrate((_b = {},
     _b[celebrate_1.Segments.BODY] = {
         email: celebrate_1.Joi.string().email().required()
     },
     _b)), sessionController.fetchByEmail);
 sessionRouter.post('/', celebrate_1.celebrate((_c = {},
     _c[celebrate_1.Segments.BODY] = {
-        email: celebrate_1.Joi.string().required(),
+        email: celebrate_1.Joi.string().email().required(),
         password: celebrate_1.Joi.string().required(),
-        userId: celebrate_1.Joi.string().required()
+        userId: celebrate_1.Joi.string().uuid().required()
     },
     _c)), sessionController.create);
 sessionRouter.post('/auth', celebrate_1.celebrate((_d = {},

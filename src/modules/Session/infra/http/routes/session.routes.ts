@@ -12,7 +12,7 @@ sessionRouter.get('/:id', celebrate({
     }
 }), verifyAuth, sessionController.fetchBy)
 
-sessionRouter.post('/', celebrate({
+sessionRouter.post('/verify', celebrate({
     [Segments.BODY]: {
         email: Joi.string().email().required()
     }
@@ -20,9 +20,9 @@ sessionRouter.post('/', celebrate({
 
 sessionRouter.post('/', celebrate({
     [Segments.BODY]: {
-        email: Joi.string().required(),
+        email: Joi.string().email().required(),
         password: Joi.string().required(),
-        userId: Joi.string().required()
+        userId: Joi.string().uuid().required()
     }
 }), sessionController.create)
 
