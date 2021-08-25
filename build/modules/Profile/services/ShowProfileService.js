@@ -62,7 +62,7 @@ var ShowProfileService = /** @class */ (function () {
             var repo;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.profileRepository.findBy(id)];
+                    case 0: return [4 /*yield*/, this.profileRepository.fetchBy(id)];
                     case 1:
                         repo = _a.sent();
                         return [2 /*return*/, repo];
