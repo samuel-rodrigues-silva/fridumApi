@@ -67,7 +67,7 @@ var SessionRepository = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         userRepo = typeorm_1.getRepository(User_1.User);
-                        return [4 /*yield*/, userRepo.findOne({ where: { id: session.user_id } })];
+                        return [4 /*yield*/, userRepo.findOne({ where: { id: session.userId } })];
                     case 1:
                         user = _a.sent();
                         data = this.ormRepository.create(session);

@@ -20,7 +20,7 @@ class SessionRepository implements ISessionRepository {
 
     public async create(session: ICreateSessionDTO): Promise<Session> {
         const userRepo = getRepository(User);
-        const user = await userRepo.findOne({ where: { id: session.user_id } });
+        const user = await userRepo.findOne({ where: { id: session.userId } });
         const data = this.ormRepository.create(session);
         data.user = user;
         await this.ormRepository.save(data);

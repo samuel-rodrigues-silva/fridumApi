@@ -53,12 +53,12 @@ var SessionController = /** @class */ (function () {
     }
     SessionController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, email, password, user_id, repo, userExists, session, resp, error_1;
+            var _a, email, password, userId, repo, userExists, session, resp, error_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 5, , 6]);
-                        _a = request.body, email = _a.email, password = _a.password, user_id = _a.user_id;
+                        _a = request.body, email = _a.email, password = _a.password, userId = _a.userId;
                         repo = typeorm_1.getRepository(Session_1.Session);
                         return [4 /*yield*/, repo.findOne({ where: { email: email } })];
                     case 1:
@@ -67,7 +67,7 @@ var SessionController = /** @class */ (function () {
                         return [2 /*return*/, response.status(409).send("Email already exists")];
                     case 2:
                         session = tsyringe_1.container.resolve(CreateSessionService_1.default);
-                        return [4 /*yield*/, session.execute({ email: email, password: password, user_id: user_id })];
+                        return [4 /*yield*/, session.execute({ email: email, password: password, userId: userId })];
                     case 3:
                         resp = _b.sent();
                         return [2 /*return*/, response.status(201).json(resp)];

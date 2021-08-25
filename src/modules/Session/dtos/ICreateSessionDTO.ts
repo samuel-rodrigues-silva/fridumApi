@@ -5,5 +5,5 @@ export default interface ICreateSessionDTO {
     email: string;
     password: string;
     token?: string;
-    user_id?: string;
+    userId?: string;
 }

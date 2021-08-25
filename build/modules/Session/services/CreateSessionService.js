@@ -58,12 +58,12 @@ var CreateSessionService = /** @class */ (function () {
         this.sessionRepository = sessionRepository;
     }
     CreateSessionService.prototype.execute = function (_a) {
-        var email = _a.email, password = _a.password, user_id = _a.user_id;
+        var email = _a.email, password = _a.password, userId = _a.userId;
         return __awaiter(this, void 0, void 0, function () {
             var session;
             return __generator(this, function (_b) {
                 switch (_b.label) {
-                    case 0: return [4 /*yield*/, this.sessionRepository.create({ email: email, password: password, user_id: user_id })];
+                    case 0: return [4 /*yield*/, this.sessionRepository.create({ email: email, password: password, userId: userId })];
                     case 1:
                         session = _b.sent();
                         return [2 /*return*/, session];

@@ -13,7 +13,7 @@ class SessionController {
 
     public async create(request: Request, response: Response): Promise<Response> {
         try {
-            const { email, password, user_id } = request.body
+            const { email, password, userId } = request.body
             const repo = getRepository(Session);
 
             const userExists = await repo.findOne({ where: { email } })
@@ -22,7 +22,7 @@ class SessionController {
                 return response.status(409).send("Email already exists")
             } else {
                 const session = container.resolve(CreateSessionService)
-                const resp = await session.execute({ email, password, user_id });
+                const resp = await session.execute({ email, password, userId });
                 return response.status(201).json(resp)
             }
 
