@@ -22,7 +22,7 @@ sessionRouter.post('/', celebrate({
     [Segments.BODY]: {
         email: Joi.string().email().required(),
         password: Joi.string().required(),
-        user_id: Joi.string().uuid().allow(null)
+        user_id: Joi.string().uuid().required()
     }
 }), sessionController.create)
 
