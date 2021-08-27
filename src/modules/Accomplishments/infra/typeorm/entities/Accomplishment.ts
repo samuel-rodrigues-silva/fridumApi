@@ -1,5 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
-import { User } from "../../../../User/infra/typeorm/entities/User";
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { Profile } from './../../../../Profile/infra/typeorm/entities/Profile';
 
 @Entity('accomplishment')
@@ -23,7 +22,7 @@ export class Accomplishment {
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
 
-    @ManyToOne(() => Profile, (profile) => profile.accomplishment, { cascade: true, onDelete: 'CASCADE' })
+    @ManyToOne(() => Profile, (profile) => profile.accomplishment)
     profile: Profile
 }
 

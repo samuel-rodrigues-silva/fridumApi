@@ -7,12 +7,9 @@ import CreateAccomplishmentService from './../../../services/CreateAccomplishmen
 class AccomplishmentController {
 
     public async create(request: Request, response: Response): Promise<Response> {
-        const { user_id, title, description, image } = request.body;
-
         try {
             const createAccomplishment = container.resolve(CreateAccomplishmentService)
-            const accomplishment = await createAccomplishment.execute({ user_id, title, description, image });
-
+            const accomplishment = await createAccomplishment.execute(request.body);
             return response.status(200).json(accomplishment)
         } catch (err) {
             return response.status(401).send(err.message);

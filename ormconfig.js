@@ -8,13 +8,10 @@ module.exports = {
    // "database": "fridum",
    "synchronize": true,
    "entities": [
-      "./build/modules/**/infra/typeorm/entities/*.js"
+      "./build/src/modules/**/infra/typeorm/entities/*.js"
    ],
    "migrations": [
-      "./build/database/migration/*.js"
-   ],
-   "subscribers": [
-      "./build/subscriber/**/*.js"
+      "./build/src/database/migration/*.js"
    ],
    "cli": {
       "migrationsDir": "./src/database/migration",

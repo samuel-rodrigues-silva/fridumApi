@@ -1,10 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, Timestamp, CreateDateColumn, UpdateDateColumn, OneToMany, JoinColumn, OneToOne } from "typeorm";
-import { FocusArea } from "../../../../FocusArea/infra/typeorm/entities/FocusArea";
-import { Occupation } from './../../../../Occupation/infra/typeorm/entities/Occupation';
-import { Accomplishment } from './../../../../Accomplishments/infra/typeorm/entities/Accomplishment';
 import { Profile } from "../../../../Profile/infra/typeorm/entities/Profile";
-import { Session } from './../../../../Session/infra/typeorm/entities/Session';
-import { session } from "passport";
 
 @Entity('user')
 export class User {

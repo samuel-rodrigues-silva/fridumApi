@@ -1,5 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
-import { Role } from '../../../../Role/infra/typeorm/entities/Role';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { FocusArea } from './../../../../FocusArea/infra/typeorm/entities/FocusArea';
 import { Occupation } from './../../../../Occupation/infra/typeorm/entities/Occupation';
 import { Accomplishment } from './../../../../Accomplishments/infra/typeorm/entities/Accomplishment';

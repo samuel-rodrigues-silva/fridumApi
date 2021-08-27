@@ -1,18 +1,20 @@
-import { injectable, inject } from 'tsyringe';
+import { injectable, inject, delay } from 'tsyringe';
+import { Accomplishment } from '../infra/typeorm/entities/Accomplishment';
 import IAccomplishmentRepository from '../repositories/IAccomplishmentRepository';
 import ICreateAcomplishmentDTO from './../dtos/ICreateAccomplishmentDTO';
+import AccomplishmentRepository from './../infra/typeorm/repositories/AccomplishmentRepository';
 
 @injectable()
 class CreateAccomplishmentService {
 
     constructor(
-        @inject('AccomplishmentRepository')
+        @inject(delay(()=> AccomplishmentRepository))
         private accomplishmentRepository: IAccomplishmentRepository) { }
 
     public async execute(
-        { user_id, title, description, image }: ICreateAcomplishmentDTO
-    ): Promise<any> {
-        const accomplishment = await this.accomplishmentRepository.create({ user_id, title, description, image })
+        data: ICreateAcomplishmentDTO
+    ): Promise<Accomplishment> {
+        const accomplishment = await this.accomplishmentRepository.create(data);
         return accomplishment;
     }
 }

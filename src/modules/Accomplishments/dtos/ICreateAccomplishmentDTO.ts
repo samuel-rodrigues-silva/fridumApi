@@ -1,6 +1,5 @@
 export default interface ICreateAcomplishmentDTO {
-    id?: string;
-    user_id: string;
+    profileId: string;
     title: string;
     description?: string;
     image?: string;

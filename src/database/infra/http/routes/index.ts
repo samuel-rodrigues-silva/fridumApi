@@ -10,11 +10,11 @@ import meetingRouter from '../../../../modules/Meeting/infra/http/routes/Meeting
 import occupationRouter from '../../../../modules/Occupation/infra/http/routes/Occupation.routes';
 import postRouter from '../../../../modules/Post/infra/http/routes/Post.routes';
 import profileRouter from '../../../../modules/Profile/infra/http/routes/Profile.routes';
-import roleRouter from '../../../../modules/Role/infra/http/routes/Role.routes';
 import serviceRouter from '../../../../modules/Service/infra/http/routes/Service.routes';
 import sessionRouter from '../../../../modules/Session/infra/http/routes/session.routes';
 import starredRouter from '../../../../modules/Starred/infra/http/routes/Starred.routes';
 import userRouter from '../../../../modules/User/infra/http/routes/User.routes';
+import languageRouter from './../../../../modules/Language/infra/http/routes/Language.routes';
 
 const routes = express.Router();
 
@@ -29,7 +29,7 @@ routes.use('/meeting', meetingRouter)
 routes.use('/occupation', occupationRouter)
 routes.use('/post', postRouter)
 routes.use('/profile', profileRouter)
-routes.use('/role', roleRouter)
+routes.use('/language', languageRouter)
 routes.use('/service', serviceRouter)
 routes.use('/session', sessionRouter)
 routes.use('/starred', starredRouter)

@@ -6,6 +6,7 @@ const occupationController = new OccupationController();
 
 occupationRouter.post('/', celebrate({
     [Segments.BODY]: {
+        profileId: Joi.string().required(),
         role: Joi.string().required(),
         company: Joi.string().required(),
         date_in: Joi.number().required(),

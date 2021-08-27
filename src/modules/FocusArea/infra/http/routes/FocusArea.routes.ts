@@ -6,6 +6,7 @@ const focusAreaController = new FocusAreaController();
 
 focusAreaRouter.post('/', celebrate({
     [Segments.BODY]: {
+        profileId: Joi.string().required(),
         bussines: Joi.string().required(),
     }
 }), focusAreaController.create)

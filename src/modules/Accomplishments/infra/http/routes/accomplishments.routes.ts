@@ -6,8 +6,7 @@ const accomplishmentController = new AccomplishmentController();
 
 accomplishmentRouter.post('/', celebrate({
     [Segments.BODY]: {
-        id: Joi.string().uuid(),
-        user_id: Joi.string().uuid().required(),
+        profileId: Joi.string().uuid().required(),
         title: Joi.string().min(3).required(),
         description: Joi.string().required(),
         image: Joi.string()
