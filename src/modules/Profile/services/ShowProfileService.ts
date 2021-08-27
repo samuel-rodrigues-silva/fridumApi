@@ -9,7 +9,7 @@ class ShowProfileService {
         private profileRepository
     ) { }
     public async execute(id: string): Promise<Profile> {
-        const repo = await this.profileRepository.findBy(id);
+        const repo = await this.profileRepository.fetchBy(id);
         return repo
     }
 }
