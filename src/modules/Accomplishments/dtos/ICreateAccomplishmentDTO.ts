@@ -1,4 +1,4 @@
-export default interface ICreateAcomplishmentDTO {
+export default interface ICreateAccomplishmentDTO {
     profileId: string;
     title: string;
     description?: string;

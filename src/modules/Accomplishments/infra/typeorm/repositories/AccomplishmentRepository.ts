@@ -1,9 +1,7 @@
-import { getRepository, Repository } from "typeorm";
+import { getConnection, getRepository, Repository } from "typeorm";
 import IAccomplishmentRepository from "../../../repositories/IAccomplishmentRepository";
 import { Accomplishment } from './../entities/Accomplishment';
-import ICreateAcomplishmentDTO from './../../../dtos/ICreateAccomplishmentDTO';
-import { User } from "../../../../User/infra/typeorm/entities/User";
-import ProfileRepository from './../../../../Profile/infra/typeorm/repositories/ProfileRepository';
+import ICreateAccomplishmentDTO from './../../../dtos/ICreateAccomplishmentDTO';
 import { Profile } from './../../../../Profile/infra/typeorm/entities/Profile';
 
 
@@ -16,13 +14,7 @@ class AccomplishmentRepository implements IAccomplishmentRepository {
         this.profileRepository = getRepository(Profile);
     }
 
-    public async findById(userId: User): Promise<Accomplishment[]> {
-        const accomplishment = this.ormRepository.find(userId);
-
-        return accomplishment;
-    }
-
-    public async create(data: ICreateAcomplishmentDTO): Promise<Accomplishment> {
+    public async create(data: ICreateAccomplishmentDTO): Promise<Accomplishment> {
         const profile = await this.profileRepository.findOne({where :{ id :data.profileId } })
         const accomplishment = this.ormRepository.create(data);
         accomplishment.profile = profile;
@@ -31,16 +23,17 @@ class AccomplishmentRepository implements IAccomplishmentRepository {
         return accomplishment;
     }
 
-    public async update(data: Accomplishment, accomplishmentId: string): Promise<Accomplishment> {
-        const accomplishment = this.ormRepository.create(data);
-        await this.ormRepository.update(accomplishmentId, accomplishment);
-
-        return accomplishment;
+    public async update(data: ICreateAccomplishmentDTO, accomplishmentId: string): Promise<void> {
+        await getConnection()
+            .createQueryBuilder()
+            .update(Accomplishment)
+            .set(data)
+            .where("id = :id", { id: accomplishmentId })
+            .execute();
     }
 
     public async delete(accomplishmentId: string): Promise<void> {
         await this.ormRepository.delete(accomplishmentId);
-
     }
 }
 

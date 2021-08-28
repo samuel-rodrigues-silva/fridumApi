@@ -12,7 +12,7 @@ export class Evaluation {
         onUpdate: 'CASCADE',
     })
     @JoinColumn({ name: 'id' })
-    service_id: Service;
+    service: Service;
 
     @Column('text')
     description: string;

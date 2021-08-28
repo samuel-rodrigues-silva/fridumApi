@@ -6,9 +6,9 @@ import IUserRepository from './../repositories/IUserRepository';
 export default class DeleteUserService {
     constructor(
         @inject(delay(() => UserRepository))
-        private sessionRepository: IUserRepository) { }
+        private userRepository: IUserRepository) { }
 
     public async execute(id: string) {
-        this.sessionRepository.remove(id);
+        this.userRepository.remove(id);
     }
 }

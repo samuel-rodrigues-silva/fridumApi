@@ -1,5 +1,5 @@
 export default interface ICreateEvaluationDTO {
-    service_id: string;
+    serviceId: string;
     description?: string;
     rating: number;
 }

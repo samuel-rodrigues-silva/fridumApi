@@ -1,5 +1,4 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
-import { User } from './../../../../User/infra/typeorm/entities/User';
 import { Profile } from './../../../../Profile/infra/typeorm/entities/Profile';
 
 @Entity('focusarea')

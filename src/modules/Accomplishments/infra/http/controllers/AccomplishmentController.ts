@@ -3,6 +3,9 @@ import { getRepository } from 'typeorm';
 import { container } from 'tsyringe';
 import { Accomplishment } from '../../typeorm/entities/Accomplishment';
 import CreateAccomplishmentService from './../../../services/CreateAccomplishmentService';
+import { classToClass } from 'class-transformer';
+import UpdateAccomplishmentService from './../../../services/UpdateAccomplishmentService';
+import DeleteAccomplishmentService from './../../../services/DeleteAccomplishmentService';
 
 class AccomplishmentController {
 
@@ -10,7 +13,7 @@ class AccomplishmentController {
         try {
             const createAccomplishment = container.resolve(CreateAccomplishmentService)
             const accomplishment = await createAccomplishment.execute(request.body);
-            return response.status(200).json(accomplishment)
+            return response.json(classToClass(accomplishment))
         } catch (err) {
             return response.status(401).send(err.message);
         }
@@ -18,32 +21,22 @@ class AccomplishmentController {
 
     }
 
-    public async fetchBy(request: Request, response: Response): Promise<Response> {
-        try {
-            console.log(request.params)
-            const repo = getRepository(Accomplishment);
-            const res = await repo.find(request.params);
-            return response.status(201).send(res);
-        } catch (error) {
-            return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
-        }
-    }
-
     public async update(request: Request, response: Response): Promise<Response> {
         try {
+            const {id} = request.params;
+            const repo = container.resolve(UpdateAccomplishmentService);
+            await repo.execute(request.body, id);
 
         } catch (error) {
             return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
         }
     }
 
     public async remove(request: Request, response: Response): Promise<Response> {
         try {
-            const repo = getRepository(Accomplishment);
-            const res = await repo.delete(request.params.id)
-            return response.status(201).send(res);
+            const {id} = request.params;
+            const repo = container.resolve(DeleteAccomplishmentService);
+            await repo.execute(id);
         } catch (error) {
             return response.send(error.message);
         }
