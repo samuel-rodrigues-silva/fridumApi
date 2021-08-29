@@ -2,7 +2,7 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a, _b, _c, _d;
+var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 var celebrate_1 = require("celebrate");
 var express_1 = require("express");
@@ -17,20 +17,15 @@ academicFormationRouter.post('/', celebrate_1.celebrate((_a = {},
         image: celebrate_1.Joi.string()
     },
     _a)), academicFormationController.create);
-academicFormationRouter.get('/:id', celebrate_1.celebrate((_b = {},
+academicFormationRouter.patch('/:id', celebrate_1.celebrate((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
-    _b)), academicFormationController.fetchBy);
-academicFormationRouter.put('/:id', celebrate_1.celebrate((_c = {},
+    _b)), academicFormationController.update);
+academicFormationRouter.delete('/:id', celebrate_1.celebrate((_c = {},
     _c[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
-    _c)), academicFormationController.update);
-academicFormationRouter.delete('/:id', celebrate_1.celebrate((_d = {},
-    _d[celebrate_1.Segments.PARAMS] = {
-        id: celebrate_1.Joi.string().uuid().required()
-    },
-    _d)), academicFormationController.remove);
+    _c)), academicFormationController.remove);
 exports.default = academicFormationRouter;
 //# sourceMappingURL=academicFormation.routes.js.map

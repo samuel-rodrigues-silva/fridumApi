@@ -26,7 +26,7 @@ var Evaluation = /** @class */ (function () {
         }),
         typeorm_1.JoinColumn({ name: 'id' }),
         __metadata("design:type", Service_1.Service)
-    ], Evaluation.prototype, "service_id", void 0);
+    ], Evaluation.prototype, "service", void 0);
     __decorate([
         typeorm_1.Column('text'),
         __metadata("design:type", String)

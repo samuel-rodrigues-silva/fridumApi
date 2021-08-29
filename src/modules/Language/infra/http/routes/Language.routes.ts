@@ -4,16 +4,11 @@ import LanguageController from '../controllers/LanguageController';
 const languageRouter = Router();
 const languageController = new LanguageController();
 
-languageRouter.get('/:id', celebrate({
-    [Segments.PARAMS]: {
-        id: Joi.string().uuid().required()
-    }
-}), languageController.fetchBy)
-
 languageRouter.post('/', celebrate({
     [Segments.BODY]: {
+        profileId: Joi.string().uuid().required(),
         title: Joi.string().required(),
-        description: Joi.string().required()
+        level: Joi.string().required()
     }
 }), languageController.create)
 

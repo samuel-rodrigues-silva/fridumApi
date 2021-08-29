@@ -1,8 +1,8 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { Profile } from '../../../../Profile/infra/typeorm/entities/Profile';
 
 @Entity('academicformation')
-export class AcademicFomation {
+export class AcademicFormation {
 
     @PrimaryGeneratedColumn('uuid')
     id: string;

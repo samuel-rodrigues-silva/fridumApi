@@ -52,20 +52,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var tsyringe_1 = require("tsyringe");
-var AccomplishmentRepository_1 = __importDefault(require("./../infra/typeorm/repositories/AccomplishmentRepository"));
+var AccomplishmentRepository_1 = __importDefault(require("../infra/typeorm/repositories/AccomplishmentRepository"));
 var CreateAccomplishmentService = /** @class */ (function () {
     function CreateAccomplishmentService(accomplishmentRepository) {
         this.accomplishmentRepository = accomplishmentRepository;
     }
     CreateAccomplishmentService.prototype.execute = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var accomplishment;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.accomplishmentRepository.create(data)];
-                    case 1:
-                        accomplishment = _a.sent();
-                        return [2 /*return*/, accomplishment];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });

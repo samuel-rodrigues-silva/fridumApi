@@ -13,13 +13,7 @@ academicFormationRouter.post('/', celebrate({
     }
 }), academicFormationController.create)
 
-academicFormationRouter.get('/:id', celebrate({
-    [Segments.PARAMS]: {
-        id: Joi.string().uuid().required()
-    }
-}), academicFormationController.fetchBy)
-
-academicFormationRouter.put('/:id', celebrate({
+academicFormationRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     }

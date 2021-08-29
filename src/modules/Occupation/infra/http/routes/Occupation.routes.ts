@@ -6,21 +6,15 @@ const occupationController = new OccupationController();
 
 occupationRouter.post('/', celebrate({
     [Segments.BODY]: {
-        profileId: Joi.string().required(),
+        profileId: Joi.string().uuid().required(),
         role: Joi.string().required(),
         company: Joi.string().required(),
-        date_in: Joi.number().required(),
-        date_out: Joi.number().required()
+        date_in: Joi.string().required(),
+        date_out: Joi.string().required()
     }
 }), occupationController.create)
 
-occupationRouter.get('/:id', celebrate({
-    [Segments.PARAMS]: {
-        id: Joi.string().uuid().required()
-    }
-}), occupationController.fetchBy)
-
-occupationRouter.put('/:id', celebrate({
+occupationRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     }

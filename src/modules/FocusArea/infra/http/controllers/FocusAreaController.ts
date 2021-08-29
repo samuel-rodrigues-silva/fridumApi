@@ -1,46 +1,40 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
-import { FocusArea } from '../../typeorm/entities/FocusArea';
+import { container } from 'tsyringe';
+import CreateFocusAreaService from './../../../services/CreateFocusAreaService';
+import { classToClass } from 'class-transformer';
+import UpdateFocusAreaService from './../../../services/UpdateFocusAreaService';
+import DeleteFocusAreaService from './../../../services/DeleteFocusAreaService';
 
 class FocusAreaController {
 
     public async create(request: Request, response: Response): Promise<Response> {
         try {
-            const repo = getRepository(FocusArea);
-            const res = await repo.save(request.body);
-            return response.status(201).send(res);
-        } catch (error) {
-            return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
+            const createFocusArea = container.resolve(CreateFocusAreaService)
+            const focusArea = await createFocusArea.execute(request.body);
+            return response.json(classToClass(focusArea))
+        } catch (err) {
+            return response.status(401).send(err.message);
         }
-    }
 
-    public async fetchBy(request: Request, response: Response): Promise<Response> {
-        try {
-            console.log(request.params)
-            const repo = getRepository(FocusArea);
-            const res = await repo.find(request.params);
-            return response.status(201).send(res);
-        } catch (error) {
-            return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
-        }
+
     }
 
     public async update(request: Request, response: Response): Promise<Response> {
         try {
+            const {id} = request.params;
+            const repo = container.resolve(UpdateFocusAreaService);
+            await repo.execute(request.body, id);
 
         } catch (error) {
             return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
         }
     }
 
     public async remove(request: Request, response: Response): Promise<Response> {
         try {
-            const repo = getRepository(FocusArea);
-            const res = await repo.delete(request.params.id)
-            return response.status(201).send(res);
+            const {id} = request.params;
+            const repo = container.resolve(DeleteFocusAreaService);
+            await repo.execute(id);
         } catch (error) {
             return response.send(error.message);
         }

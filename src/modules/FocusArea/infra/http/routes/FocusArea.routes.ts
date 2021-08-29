@@ -7,17 +7,11 @@ const focusAreaController = new FocusAreaController();
 focusAreaRouter.post('/', celebrate({
     [Segments.BODY]: {
         profileId: Joi.string().required(),
-        bussines: Joi.string().required(),
+        business: Joi.string().required(),
     }
 }), focusAreaController.create)
 
-focusAreaRouter.get('/:id', celebrate({
-    [Segments.PARAMS]: {
-        id: Joi.string().uuid().required()
-    }
-}), focusAreaController.fetchBy)
-
-focusAreaRouter.put('/:id', celebrate({
+focusAreaRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     }

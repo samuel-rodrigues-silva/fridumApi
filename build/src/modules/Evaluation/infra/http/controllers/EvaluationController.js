@@ -35,24 +35,51 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var typeorm_1 = require("typeorm");
-var Evaluation_1 = require("../../typeorm/entities/Evaluation");
+var tsyringe_1 = require("tsyringe");
+var CreateEvaluationService_1 = __importDefault(require("./../../../services/CreateEvaluationService"));
+var class_transformer_1 = require("class-transformer");
+var UpdateEvaluationService_1 = __importDefault(require("./../../../services/UpdateEvaluationService"));
+var DeleteEvaluationService_1 = __importDefault(require("./../../../services/DeleteEvaluationService"));
 var EvaluationController = /** @class */ (function () {
     function EvaluationController() {
     }
     EvaluationController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_1;
+            var createEvaluation, evaluation, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        repo = typeorm_1.getRepository(Evaluation_1.Evaluation);
-                        return [4 /*yield*/, repo.save(request.body)];
+                        createEvaluation = tsyringe_1.container.resolve(CreateEvaluationService_1.default);
+                        return [4 /*yield*/, createEvaluation.execute(request.body)];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        evaluation = _a.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(evaluation))];
+                    case 2:
+                        err_1 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_1.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    EvaluationController.prototype.update = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, repo, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        id = request.params.id;
+                        repo = tsyringe_1.container.resolve(UpdateEvaluationService_1.default);
+                        return [4 /*yield*/, repo.execute(request.body, id)];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
                     case 2:
                         error_1 = _a.sent();
                         return [2 /*return*/, response.send(error_1.message)];
@@ -61,55 +88,22 @@ var EvaluationController = /** @class */ (function () {
             });
         });
     };
-    EvaluationController.prototype.fetchBy = function (request, response) {
+    EvaluationController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_2;
+            var id, repo, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        console.log(request.params);
-                        repo = typeorm_1.getRepository(Evaluation_1.Evaluation);
-                        return [4 /*yield*/, repo.find(request.params)];
+                        id = request.params.id;
+                        repo = tsyringe_1.container.resolve(DeleteEvaluationService_1.default);
+                        return [4 /*yield*/, repo.execute(id)];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        _a.sent();
+                        return [3 /*break*/, 3];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, response.send(error_2.message)];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    EvaluationController.prototype.update = function (request, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                try {
-                }
-                catch (error) {
-                    return [2 /*return*/, response.send(error.message)];
-                    //console.log("errorMessage =>", error.message);
-                }
-                return [2 /*return*/];
-            });
-        });
-    };
-    EvaluationController.prototype.remove = function (request, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_3;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        repo = typeorm_1.getRepository(Evaluation_1.Evaluation);
-                        return [4 /*yield*/, repo.delete(request.params.id)];
-                    case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
-                    case 2:
-                        error_3 = _a.sent();
-                        return [2 /*return*/, response.send(error_3.message)];
                     case 3: return [2 /*return*/];
                 }
             });

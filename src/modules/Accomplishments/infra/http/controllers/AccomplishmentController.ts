@@ -1,7 +1,6 @@
+import "reflect-metadata"
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
 import { container } from 'tsyringe';
-import { Accomplishment } from '../../typeorm/entities/Accomplishment';
 import CreateAccomplishmentService from './../../../services/CreateAccomplishmentService';
 import { classToClass } from 'class-transformer';
 import UpdateAccomplishmentService from './../../../services/UpdateAccomplishmentService';
@@ -17,8 +16,6 @@ class AccomplishmentController {
         } catch (err) {
             return response.status(401).send(err.message);
         }
-
-
     }
 
     public async update(request: Request, response: Response): Promise<Response> {

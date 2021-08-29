@@ -36,7 +36,15 @@ class SessionController {
         try {
             const { email, password } = request.body
             const repo = getRepository(Session);
-            const session = await repo.findOne({ where: { email }, relations: ['user', 'user.profile'] })
+            const session = await repo.findOne({ where: { email }, relations: [
+                'user',
+                'user.profile',
+                'user.profile.academicFormation',
+                'user.profile.accomplishment',
+                'user.profile.occupation',
+                'user.profile.language',
+                'user.profile.focusArea',
+            ] })
             if (!session) {
                 return response.status(409).send('Email not found')
             }

@@ -1,3 +1,3 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=ILanguageRepository.js.map
+//# sourceMappingURL=ICreateLanguageDTO.js.map

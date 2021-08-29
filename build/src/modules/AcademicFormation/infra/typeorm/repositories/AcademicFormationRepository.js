@@ -37,60 +37,53 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
-var AcademicFormation_1 = require("../entities/AcademicFormation");
-var Profile_1 = require("../../../../Profile/infra/typeorm/entities/Profile");
+var AcademicFormation_1 = require("./../entities/AcademicFormation");
+var Profile_1 = require("./../../../../Profile/infra/typeorm/entities/Profile");
 var AcademicFormationRepository = /** @class */ (function () {
     function AcademicFormationRepository() {
-        this.ormRepository = typeorm_1.getRepository(AcademicFormation_1.AcademicFomation);
+        this.ormRepository = typeorm_1.getRepository(AcademicFormation_1.AcademicFormation);
         this.profileRepository = typeorm_1.getRepository(Profile_1.Profile);
     }
-    AcademicFormationRepository.prototype.findById = function (userId) {
-        return __awaiter(this, void 0, void 0, function () {
-            var accomplishment;
-            return __generator(this, function (_a) {
-                accomplishment = this.ormRepository.find(userId);
-                return [2 /*return*/, accomplishment];
-            });
-        });
-    };
     AcademicFormationRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var profile, accomplishment;
+            var profile, academicFormation;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.profileRepository.findOne({ where: { id: data.profileId } })];
                     case 1:
                         profile = _a.sent();
-                        accomplishment = this.ormRepository.create(data);
-                        accomplishment.profile = profile;
-                        return [4 /*yield*/, this.ormRepository.save(accomplishment)];
+                        academicFormation = this.ormRepository.create(data);
+                        academicFormation.profile = profile;
+                        return [4 /*yield*/, this.ormRepository.save(academicFormation)];
                     case 2:
                         _a.sent();
-                        return [2 /*return*/, accomplishment];
+                        return [2 /*return*/, academicFormation];
                 }
             });
         });
     };
-    AcademicFormationRepository.prototype.update = function (data, accomplishmentId) {
+    AcademicFormationRepository.prototype.update = function (data, academicFormationId) {
         return __awaiter(this, void 0, void 0, function () {
-            var accomplishment;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        accomplishment = this.ormRepository.create(data);
-                        return [4 /*yield*/, this.ormRepository.update(accomplishmentId, accomplishment)];
+                    case 0: return [4 /*yield*/, typeorm_1.getConnection()
+                            .createQueryBuilder()
+                            .update(AcademicFormation_1.AcademicFormation)
+                            .set(data)
+                            .where("id = :id", { id: academicFormationId })
+                            .execute()];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, accomplishment];
+                        return [2 /*return*/];
                 }
             });
         });
     };
-    AcademicFormationRepository.prototype.delete = function (accomplishmentId) {
+    AcademicFormationRepository.prototype.delete = function (AcademicFormationId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.delete(accomplishmentId)];
+                    case 0: return [4 /*yield*/, this.ormRepository.delete(AcademicFormationId)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];

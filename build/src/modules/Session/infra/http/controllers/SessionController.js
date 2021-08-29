@@ -89,7 +89,15 @@ var SessionController = /** @class */ (function () {
                         _b.trys.push([0, 3, , 4]);
                         _a = request.body, email = _a.email, password = _a.password;
                         repo = typeorm_1.getRepository(Session_1.Session);
-                        return [4 /*yield*/, repo.findOne({ where: { email: email }, relations: ['user', 'user.profile'] })];
+                        return [4 /*yield*/, repo.findOne({ where: { email: email }, relations: [
+                                    'user',
+                                    'user.profile',
+                                    'user.profile.academicFormation',
+                                    'user.profile.accomplishment',
+                                    'user.profile.occupation',
+                                    'user.profile.language',
+                                    'user.profile.focusArea',
+                                ] })];
                     case 1:
                         session = _b.sent();
                         if (!session) {

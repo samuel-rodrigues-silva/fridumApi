@@ -2,6 +2,8 @@ import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Ti
 import { FocusArea } from './../../../../FocusArea/infra/typeorm/entities/FocusArea';
 import { Occupation } from './../../../../Occupation/infra/typeorm/entities/Occupation';
 import { Accomplishment } from './../../../../Accomplishments/infra/typeorm/entities/Accomplishment';
+import { Language } from './../../../../Language/infra/typeorm/entities/Language';
+import { AcademicFormation } from './../../../../AcademicFormation/infra/typeorm/entities/AcademicFormation';
 
 @Entity('profile')
 
@@ -36,4 +38,10 @@ export class Profile {
 
     @OneToMany(() => Accomplishment, (accomplishment) => accomplishment.profile)
     accomplishment?: Accomplishment[]
+
+    @OneToMany(() => Language, (Language) => Language.profile)
+    language?: Language[]
+
+    @OneToMany(() => AcademicFormation, (academicFormation) => academicFormation.profile)
+    academicFormation?: AcademicFormation[]
 }

@@ -1,5 +1,5 @@
 import { injectable, inject, delay } from 'tsyringe';
-import { AcademicFomation } from '../infra/typeorm/entities/AcademicFormation';
+import { AcademicFormation } from '../infra/typeorm/entities/AcademicFormation';
 import IAcademicFomationRepository from '../repositories/IAcademicFormationRepository';
 import ICreateAcademicFormationDTO from '../dtos/ICreateAcademicFormationDTO';
 import AcademicFormationRepository from '../infra/typeorm/repositories/AcademicFormationRepository';
@@ -13,7 +13,7 @@ class CreateAcademicFormationService {
 
     public async execute(
         data: ICreateAcademicFormationDTO
-    ): Promise<AcademicFomation> {
+    ): Promise<AcademicFormation> {
        return await this.academicFormationRepository.create(data);
     }
 }

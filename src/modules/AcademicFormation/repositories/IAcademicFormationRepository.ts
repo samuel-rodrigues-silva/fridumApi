@@ -1,11 +1,9 @@
 
 import ICreateAcademicFomationDTO from '../dtos/ICreateAcademicFormationDTO';
-import { User } from '../../User/infra/typeorm/entities/User';
-import { AcademicFomation } from '../infra/typeorm/entities/AcademicFormation';
+import { AcademicFormation } from '../infra/typeorm/entities/AcademicFormation';
 
 export default interface IAccomplishmentRepository {
-    findById(userId: User): Promise<AcademicFomation[]>;
-    create(data: ICreateAcademicFomationDTO): Promise<AcademicFomation>;
-    update(data: AcademicFomation, academicFomationId: string): Promise<AcademicFomation>;
+    create(data: ICreateAcademicFomationDTO): Promise<AcademicFormation>;
+    update(data: ICreateAcademicFomationDTO, academicFomationId: string): Promise<void>;
     delete(academicFomationId: string): Promise<void>;
 }

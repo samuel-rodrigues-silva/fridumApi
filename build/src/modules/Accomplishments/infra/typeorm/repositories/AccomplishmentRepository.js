@@ -44,15 +44,6 @@ var AccomplishmentRepository = /** @class */ (function () {
         this.ormRepository = typeorm_1.getRepository(Accomplishment_1.Accomplishment);
         this.profileRepository = typeorm_1.getRepository(Profile_1.Profile);
     }
-    AccomplishmentRepository.prototype.findById = function (userId) {
-        return __awaiter(this, void 0, void 0, function () {
-            var accomplishment;
-            return __generator(this, function (_a) {
-                accomplishment = this.ormRepository.find(userId);
-                return [2 /*return*/, accomplishment];
-            });
-        });
-    };
     AccomplishmentRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
             var profile, accomplishment;
@@ -73,15 +64,17 @@ var AccomplishmentRepository = /** @class */ (function () {
     };
     AccomplishmentRepository.prototype.update = function (data, accomplishmentId) {
         return __awaiter(this, void 0, void 0, function () {
-            var accomplishment;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        accomplishment = this.ormRepository.create(data);
-                        return [4 /*yield*/, this.ormRepository.update(accomplishmentId, accomplishment)];
+                    case 0: return [4 /*yield*/, typeorm_1.getConnection()
+                            .createQueryBuilder()
+                            .update(Accomplishment_1.Accomplishment)
+                            .set(data)
+                            .where("id = :id", { id: accomplishmentId })
+                            .execute()];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, accomplishment];
+                        return [2 /*return*/];
                 }
             });
         });

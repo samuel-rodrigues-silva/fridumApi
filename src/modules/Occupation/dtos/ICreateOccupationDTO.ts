@@ -1,5 +1,5 @@
 export default interface ICreateOccupationDTO {
-    user_id: string;
+    profileId: string;
     role: string;
     company: string;
     date_in: string;

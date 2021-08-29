@@ -14,6 +14,8 @@ var typeorm_1 = require("typeorm");
 var FocusArea_1 = require("./../../../../FocusArea/infra/typeorm/entities/FocusArea");
 var Occupation_1 = require("./../../../../Occupation/infra/typeorm/entities/Occupation");
 var Accomplishment_1 = require("./../../../../Accomplishments/infra/typeorm/entities/Accomplishment");
+var Language_1 = require("./../../../../Language/infra/typeorm/entities/Language");
+var AcademicFormation_1 = require("./../../../../AcademicFormation/infra/typeorm/entities/AcademicFormation");
 var Profile = /** @class */ (function () {
     function Profile() {
     }
@@ -57,6 +59,14 @@ var Profile = /** @class */ (function () {
         typeorm_1.OneToMany(function () { return Accomplishment_1.Accomplishment; }, function (accomplishment) { return accomplishment.profile; }),
         __metadata("design:type", Array)
     ], Profile.prototype, "accomplishment", void 0);
+    __decorate([
+        typeorm_1.OneToMany(function () { return Language_1.Language; }, function (Language) { return Language.profile; }),
+        __metadata("design:type", Array)
+    ], Profile.prototype, "language", void 0);
+    __decorate([
+        typeorm_1.OneToMany(function () { return AcademicFormation_1.AcademicFormation; }, function (academicFormation) { return academicFormation.profile; }),
+        __metadata("design:type", Array)
+    ], Profile.prototype, "academicFormation", void 0);
     Profile = __decorate([
         typeorm_1.Entity('profile')
     ], Profile);

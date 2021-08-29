@@ -15,9 +15,11 @@ import sessionRouter from '../../../../modules/Session/infra/http/routes/session
 import starredRouter from '../../../../modules/Starred/infra/http/routes/Starred.routes';
 import userRouter from '../../../../modules/User/infra/http/routes/User.routes';
 import languageRouter from './../../../../modules/Language/infra/http/routes/Language.routes';
+import academicFormationRouter from './../../../../modules/AcademicFormation/infra/http/routes/academicFormation.routes';
 
 const routes = express.Router();
 
+routes.use('/academicformation', academicFormationRouter)
 routes.use('/accomplishment', accomplishmentRouter)
 routes.use('/chat', chatRouter)
 routes.use('/chatmessage', chatMessageRouter)

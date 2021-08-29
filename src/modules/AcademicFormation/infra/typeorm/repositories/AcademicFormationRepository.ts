@@ -1,45 +1,39 @@
-import { getRepository, Repository } from "typeorm";
+import { getConnection, getRepository, Repository } from "typeorm";
 import IAcademicFormationRepository from "../../../repositories/IAcademicFormationRepository";
-import { AcademicFomation } from '../entities/AcademicFormation';
-import ICreateAcademicFormationDTO from '../../../dtos/ICreateAcademicFormationDTO';
-import { User } from "../../../../User/infra/typeorm/entities/User";
-import { Profile } from '../../../../Profile/infra/typeorm/entities/Profile';
+import { AcademicFormation } from './../entities/AcademicFormation';
+import ICreateAcademicFormationDTO from './../../../dtos/ICreateAcademicFormationDTO';
+import { Profile } from './../../../../Profile/infra/typeorm/entities/Profile';
 
 
 class AcademicFormationRepository implements IAcademicFormationRepository {
-    private ormRepository: Repository<AcademicFomation>;
+    private ormRepository: Repository<AcademicFormation>;
     private profileRepository: Repository<Profile>;
 
     constructor() {
-        this.ormRepository = getRepository(AcademicFomation);
+        this.ormRepository = getRepository(AcademicFormation);
         this.profileRepository = getRepository(Profile);
     }
 
-    public async findById(userId: User): Promise<AcademicFomation[]> {
-        const accomplishment = this.ormRepository.find(userId);
+    public async create(data: ICreateAcademicFormationDTO): Promise<AcademicFormation> {
+        const profile = await this.profileRepository.findOne({where :{ id : data.profileId } })
+        const academicFormation = this.ormRepository.create(data);
+        academicFormation.profile = profile;
+        await this.ormRepository.save(academicFormation);
 
-        return accomplishment;
+        return academicFormation;
     }
 
-    public async create(data: ICreateAcademicFormationDTO): Promise<AcademicFomation> {
-        const profile = await this.profileRepository.findOne({where :{ id :data.profileId } })
-        const accomplishment = this.ormRepository.create(data);
-        accomplishment.profile = profile;
-        await this.ormRepository.save(accomplishment);
-
-        return accomplishment;
+    public async update(data: ICreateAcademicFormationDTO, academicFormationId: string): Promise<void> {
+        await getConnection()
+            .createQueryBuilder()
+            .update(AcademicFormation)
+            .set(data)
+            .where("id = :id", { id: academicFormationId })
+            .execute();
     }
 
-    public async update(data: AcademicFomation, accomplishmentId: string): Promise<AcademicFomation> {
-        const accomplishment = this.ormRepository.create(data);
-        await this.ormRepository.update(accomplishmentId, accomplishment);
-
-        return accomplishment;
-    }
-
-    public async delete(accomplishmentId: string): Promise<void> {
-        await this.ormRepository.delete(accomplishmentId);
-
+    public async delete(AcademicFormationId: string): Promise<void> {
+        await this.ormRepository.delete(AcademicFormationId);
     }
 }
 

@@ -54,13 +54,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tsyringe_1 = require("tsyringe");
 var UserRepository_1 = __importDefault(require("./../infra/typeorm/repositories/UserRepository"));
 var DeleteUserService = /** @class */ (function () {
-    function DeleteUserService(sessionRepository) {
-        this.sessionRepository = sessionRepository;
+    function DeleteUserService(userRepository) {
+        this.userRepository = userRepository;
     }
     DeleteUserService.prototype.execute = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                this.sessionRepository.remove(id);
+                this.userRepository.remove(id);
                 return [2 /*return*/];
             });
         });

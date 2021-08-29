@@ -9,48 +9,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AcademicFomation = void 0;
+exports.AcademicFormation = void 0;
 var typeorm_1 = require("typeorm");
 var Profile_1 = require("../../../../Profile/infra/typeorm/entities/Profile");
-var AcademicFomation = /** @class */ (function () {
-    function AcademicFomation() {
+var AcademicFormation = /** @class */ (function () {
+    function AcademicFormation() {
     }
     __decorate([
         typeorm_1.PrimaryGeneratedColumn('uuid'),
         __metadata("design:type", String)
-    ], AcademicFomation.prototype, "id", void 0);
+    ], AcademicFormation.prototype, "id", void 0);
     __decorate([
         typeorm_1.Column('varchar'),
         __metadata("design:type", String)
-    ], AcademicFomation.prototype, "title", void 0);
+    ], AcademicFormation.prototype, "title", void 0);
     __decorate([
         typeorm_1.Column('text'),
         __metadata("design:type", String)
-    ], AcademicFomation.prototype, "institution", void 0);
+    ], AcademicFormation.prototype, "institution", void 0);
     __decorate([
         typeorm_1.Column('varchar'),
         __metadata("design:type", String)
-    ], AcademicFomation.prototype, "description", void 0);
+    ], AcademicFormation.prototype, "description", void 0);
     __decorate([
         typeorm_1.CreateDateColumn({ type: 'timestamp' }),
         __metadata("design:type", String)
-    ], AcademicFomation.prototype, "conclusion_date", void 0);
+    ], AcademicFormation.prototype, "conclusion_date", void 0);
     __decorate([
         typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
-    ], AcademicFomation.prototype, "createdAt", void 0);
+    ], AcademicFormation.prototype, "createdAt", void 0);
     __decorate([
         typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
-    ], AcademicFomation.prototype, "updatedAt", void 0);
+    ], AcademicFormation.prototype, "updatedAt", void 0);
     __decorate([
         typeorm_1.ManyToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.accomplishment; }),
         __metadata("design:type", Profile_1.Profile)
-    ], AcademicFomation.prototype, "profile", void 0);
-    AcademicFomation = __decorate([
+    ], AcademicFormation.prototype, "profile", void 0);
+    AcademicFormation = __decorate([
         typeorm_1.Entity('academicformation')
-    ], AcademicFomation);
-    return AcademicFomation;
+    ], AcademicFormation);
+    return AcademicFormation;
 }());
-exports.AcademicFomation = AcademicFomation;
+exports.AcademicFormation = AcademicFormation;
 //# sourceMappingURL=AcademicFormation.js.map

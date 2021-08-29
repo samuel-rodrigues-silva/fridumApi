@@ -6,19 +6,13 @@ const evaluationController = new EvaluationController();
 
 evaluationRouter.post('/', celebrate({
     [Segments.BODY]: {
-        service_id: Joi.string().required(),
+        serviceId: Joi.string().required(),
         description: Joi.string().required(),
         rating: Joi.number().required()
     }
 }), evaluationController.create)
 
-evaluationRouter.get('/:id', celebrate({
-    [Segments.PARAMS]: {
-        id: Joi.string().uuid().required()
-    }
-}), evaluationController.fetchBy)
-
-evaluationRouter.put('/:id', celebrate({
+evaluationRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     }
