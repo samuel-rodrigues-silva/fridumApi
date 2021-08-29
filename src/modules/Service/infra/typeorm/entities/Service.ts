@@ -12,15 +12,15 @@ export class Service {
 
     @OneToOne(() => User, (user) => user.id)
     @JoinColumn()
-    user_id: User;
+    user: User;
 
     @OneToOne(() => Post, (post) => post.id)
     @JoinColumn()
-    post_id: Post;
+    post: Post;
 
     @OneToOne(() => Follow, (follow) => follow.id)
     @JoinColumn()
-    follow_id: Follow;
+    follow: Follow;
 
     @Column({ type: 'enum', enum: ['done', 'doing', 'pending', 'refused'] })
     status: 'done' | 'doing' | 'pending' | 'refused';

@@ -1,5 +1,7 @@
 export default interface ICreatePostDTO {
-    user_id: string,
+    userId: string,
+    city: string,
+    state: string,
     description: string;
     title: string;
     image?: string;

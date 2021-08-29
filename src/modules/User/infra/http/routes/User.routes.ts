@@ -19,6 +19,7 @@ userRoutes.post('/', celebrate({
         birthDate: Joi.string().required(),
         document: Joi.string().required(),
         city: Joi.string().required(),
+        state: Joi.string().required(),
         district: Joi.string().required(),
         street: Joi.string().required(),
         phNumber: Joi.string().required(),

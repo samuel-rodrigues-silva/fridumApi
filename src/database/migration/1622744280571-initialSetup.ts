@@ -32,6 +32,10 @@ export class InitialSetup1622744280571 implements MigrationInterface {
                             type: 'varchar',
                         },
                         {
+                            name: 'state',
+                            type: 'varchar',
+                        },
+                        {
                             name: 'district',
                             type: 'varchar',
                         },

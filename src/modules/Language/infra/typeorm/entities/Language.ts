@@ -8,7 +8,6 @@ export class Language {
     id: string;
 
     @ManyToOne(() => Profile)
-    @JoinColumn({ name: 'id' })
     profile: Profile
 
     @Column('varchar')

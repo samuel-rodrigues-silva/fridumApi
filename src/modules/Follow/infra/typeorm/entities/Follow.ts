@@ -1,5 +1,4 @@
-import { CreateDateColumn, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
-import { Profile } from "../../../../Profile/infra/typeorm/entities/Profile";
+import { CreateDateColumn, Entity, JoinTable, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { User } from "../../../../User/infra/typeorm/entities/User";
 
 @Entity('follow')
@@ -8,11 +7,13 @@ export class Follow {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToMany(() => User, (user) => user.id)
-    user_id: User;
+    @ManyToOne(() => User, (user) => user.id)
+    @JoinTable()
+    user: User;
 
-    @ManyToMany(() => Follow, (follow) => follow.id)
-    follow_id: Follow;
+    @ManyToOne(() => User, (follow) => follow.id)
+    @JoinTable()
+    follow: User;
 
     @CreateDateColumn({ type: 'timestamp', name: 'created_At' })
     createdAt: Timestamp;

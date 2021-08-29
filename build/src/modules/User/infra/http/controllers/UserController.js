@@ -112,11 +112,11 @@ var UserController = /** @class */ (function () {
     };
     UserController.prototype.update = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, _a, name, birthDate, document, city, district, street, phNumber, repo, user;
+            var id, _a, name, birthDate, document, city, district, street, state, phNumber, repo, user;
             return __generator(this, function (_b) {
                 try {
                     id = request.params.id;
-                    _a = request.body, name = _a.name, birthDate = _a.birthDate, document = _a.document, city = _a.city, district = _a.district, street = _a.street, phNumber = _a.phNumber;
+                    _a = request.body, name = _a.name, birthDate = _a.birthDate, document = _a.document, city = _a.city, district = _a.district, street = _a.street, state = _a.state, phNumber = _a.phNumber;
                     repo = tsyringe_1.container.resolve(UpdateUserService_1.default);
                     user = repo.execute({
                         name: name,
@@ -125,6 +125,7 @@ var UserController = /** @class */ (function () {
                         city: city,
                         district: district,
                         street: street,
+                        state: state,
                         phNumber: phNumber
                     }, id);
                     return [2 /*return*/, response.json(user)];

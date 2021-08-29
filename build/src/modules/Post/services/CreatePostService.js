@@ -52,25 +52,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var tsyringe_1 = require("tsyringe");
-var PostRepository_1 = __importDefault(require("../infra/typeorm/repositories/PostRepository"));
+var PostRepository_1 = __importDefault(require("./../infra/typeorm/repositories/PostRepository"));
 var CreatePostService = /** @class */ (function () {
     function CreatePostService(PostRepository) {
         this.PostRepository = PostRepository;
     }
-    CreatePostService.prototype.execute = function (_a) {
-        var user_id = _a.user_id, description = _a.description, title = _a.title, image = _a.image, price = _a.price, expected_date_of_delivery = _a.expected_date_of_delivery;
+    CreatePostService.prototype.execute = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4 /*yield*/, this.PostRepository.create({
-                            user_id: user_id,
-                            description: description,
-                            title: title,
-                            image: image,
-                            price: price,
-                            expected_date_of_delivery: expected_date_of_delivery
-                        })];
-                    case 1: return [2 /*return*/, _b.sent()];
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.PostRepository.create(data)];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });

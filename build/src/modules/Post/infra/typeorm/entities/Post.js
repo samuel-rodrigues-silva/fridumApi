@@ -20,10 +20,6 @@ var Post = /** @class */ (function () {
         __metadata("design:type", String)
     ], Post.prototype, "id", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return User_1.User; }, function (user) { return user.id; }, { cascade: true, onDelete: 'CASCADE' }),
-        __metadata("design:type", String)
-    ], Post.prototype, "user_id", void 0);
-    __decorate([
         typeorm_1.Column('text'),
         __metadata("design:type", String)
     ], Post.prototype, "description", void 0);
@@ -31,6 +27,14 @@ var Post = /** @class */ (function () {
         typeorm_1.Column('varchar'),
         __metadata("design:type", String)
     ], Post.prototype, "title", void 0);
+    __decorate([
+        typeorm_1.Column('varchar'),
+        __metadata("design:type", String)
+    ], Post.prototype, "city", void 0);
+    __decorate([
+        typeorm_1.Column('varchar'),
+        __metadata("design:type", String)
+    ], Post.prototype, "state", void 0);
     __decorate([
         typeorm_1.Column('varchar'),
         __metadata("design:type", String)
@@ -51,6 +55,10 @@ var Post = /** @class */ (function () {
         typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Post.prototype, "updatedAt", void 0);
+    __decorate([
+        typeorm_1.ManyToOne(function () { return User_1.User; }),
+        __metadata("design:type", User_1.User)
+    ], Post.prototype, "user", void 0);
     Post = __decorate([
         typeorm_1.Entity('post')
     ], Post);

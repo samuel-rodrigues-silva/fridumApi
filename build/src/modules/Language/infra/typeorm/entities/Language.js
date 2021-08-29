@@ -21,7 +21,6 @@ var Language = /** @class */ (function () {
     ], Language.prototype, "id", void 0);
     __decorate([
         typeorm_1.ManyToOne(function () { return Profile_1.Profile; }),
-        typeorm_1.JoinColumn({ name: 'id' }),
         __metadata("design:type", Profile_1.Profile)
     ], Language.prototype, "profile", void 0);
     __decorate([

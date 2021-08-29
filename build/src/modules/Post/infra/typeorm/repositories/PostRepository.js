@@ -37,18 +37,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
-var typeorm_2 = require("typeorm");
-var Post_1 = require("../entities/Post");
+var Post_1 = require("./../entities/Post");
+var User_1 = require("./../../../../User/infra/typeorm/entities/User");
 var PostRepository = /** @class */ (function () {
     function PostRepository() {
-        this.PostRepository = typeorm_1.getRepository(Post_1.Post);
+        this.ormRepository = typeorm_1.getRepository(Post_1.Post);
+        this.userRepository = typeorm_1.getRepository(User_1.User);
     }
-    PostRepository.prototype.listByCity = function () {
+    PostRepository.prototype.listByCity = function (city) {
         return __awaiter(this, void 0, void 0, function () {
+            var splitCity, searchCity, list;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.PostRepository.find({ relations: ['user'] })];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        splitCity = city.split('_');
+                        searchCity = splitCity[0] + ' ' + splitCity[1];
+                        return [4 /*yield*/, this.ormRepository.find({ where: { city: searchCity }, relations: ['user'] })];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, list];
                 }
             });
         });
@@ -57,7 +64,7 @@ var PostRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.PostRepository.findOne({ where: { id: id }, relations: ['user'] })];
+                    case 0: return [4 /*yield*/, this.ormRepository.findOne({ where: { id: id } })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -65,28 +72,29 @@ var PostRepository = /** @class */ (function () {
     };
     PostRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, resp;
+            var user, post;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        repo = this.PostRepository.create(data);
-                        return [4 /*yield*/, this.PostRepository.save(repo)];
+                    case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: data.userId } })];
                     case 1:
-                        resp = _a.sent();
-                        return [2 /*return*/, resp];
+                        user = _a.sent();
+                        post = this.ormRepository.create(data);
+                        post.user = user;
+                        return [4 /*yield*/, this.ormRepository.save(post)];
+                    case 2: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    PostRepository.prototype.update = function (data, id) {
+    PostRepository.prototype.update = function (data, postId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_2.getConnection()
+                    case 0: return [4 /*yield*/, typeorm_1.getConnection()
                             .createQueryBuilder()
                             .update(Post_1.Post)
                             .set(data)
-                            .where("id = :id", { id: id })
+                            .where("id = :id", { id: postId })
                             .execute()];
                     case 1:
                         _a.sent();
@@ -95,11 +103,11 @@ var PostRepository = /** @class */ (function () {
             });
         });
     };
-    PostRepository.prototype.remove = function (id) {
+    PostRepository.prototype.delete = function (postId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.PostRepository.delete(id)];
+                    case 0: return [4 /*yield*/, this.ormRepository.delete(postId)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];

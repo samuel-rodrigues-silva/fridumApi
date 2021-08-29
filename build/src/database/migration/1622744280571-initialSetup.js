@@ -71,6 +71,10 @@ var InitialSetup1622744280571 = /** @class */ (function () {
                                     type: 'varchar',
                                 },
                                 {
+                                    name: 'state',
+                                    type: 'varchar',
+                                },
+                                {
                                     name: 'district',
                                     type: 'varchar',
                                 },

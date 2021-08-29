@@ -53,14 +53,6 @@ var CreateFollow1622843717911 = /** @class */ (function () {
                             isPrimary: true,
                         },
                         {
-                            name: 'user_id',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'profile_id',
-                            type: 'varchar',
-                        },
-                        {
                             name: 'createdAt',
                             type: 'timestamp',
                             default: 'now()'

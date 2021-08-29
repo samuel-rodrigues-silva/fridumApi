@@ -9,13 +9,13 @@ class EvaluationController {
 
     public async create(request: Request, response: Response): Promise<Response> {
         try {
+            const {id} = request.params
             const createEvaluation = container.resolve(CreateEvaluationService)
-            const evaluation = await createEvaluation.execute(request.body);
+            const evaluation = await createEvaluation.execute(request.body, id);
             return response.json(classToClass(evaluation))
         } catch (err) {
             return response.status(401).send(err.message);
         }
-
 
     }
 

@@ -4,7 +4,7 @@ import PostController from '../controllers/PostController';
 const postRouter = Router();
 const postController = new PostController();
 
-postRouter.get('/:area', celebrate({
+postRouter.get('/city/:area', celebrate({
     [Segments.PARAMS]: {
         area: Joi.string().min(10).required()
     }
@@ -18,7 +18,9 @@ postRouter.get('/:id', celebrate({
 
 postRouter.post('/', celebrate({
     [Segments.BODY]: {
-        user_id: Joi.string().uuid().required(),
+        userId: Joi.string().uuid().required(),
+        city: Joi.string().required(),
+        state: Joi.string().required(),
         description: Joi.string().required(),
         title: Joi.string().required(),
         image: Joi.string(),
@@ -27,7 +29,7 @@ postRouter.post('/', celebrate({
     }
 }), postController.create)
 
-postRouter.put('/:id', celebrate({
+postRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     }

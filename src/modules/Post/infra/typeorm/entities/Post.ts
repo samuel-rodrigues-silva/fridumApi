@@ -7,14 +7,17 @@ export class Post {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(() => User, (user) => user.id, { cascade: true, onDelete: 'CASCADE' })
-    user_id: string;
-
     @Column('text')
     description: string;
 
     @Column('varchar')
     title: string;
+
+    @Column('varchar')
+    city: string;
+
+    @Column('varchar')
+    state: string;
 
     @Column('varchar')
     image: string;
@@ -31,7 +34,8 @@ export class Post {
     @CreateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
 
-
+    @ManyToOne(() => User)
+    user: User
 
 
 }

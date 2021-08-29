@@ -6,22 +6,10 @@ const followController = new FollowController();
 
 followRouter.post('/', celebrate({
     [Segments.BODY]: {
-        user_id: Joi.string().required(),
-        follow_id: Joi.string().required(),
+        userId: Joi.string().required(),
+        followId: Joi.string().required(),
     }
 }), followController.create)
-
-followRouter.get('/:id', celebrate({
-    [Segments.PARAMS]: {
-        id: Joi.string().uuid().required()
-    }
-}), followController.fetchBy)
-
-followRouter.put('/:id', celebrate({
-    [Segments.PARAMS]: {
-        id: Joi.string().uuid().required()
-    }
-}), followController.update)
 
 followRouter.delete('/:id', celebrate({
     [Segments.PARAMS]: {

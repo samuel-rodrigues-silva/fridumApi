@@ -8,19 +8,19 @@ serviceRouter.get('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     }
-}), serviceController.fetchBy)
+}), serviceController.fetchById)
 
 serviceRouter.post('/', celebrate({
     [Segments.BODY]: {
-        user_id: Joi.string().uuid().required(),
-        post_id: Joi.string().uuid().required(),
-        follow_id: Joi.string().uuid().required(),
+        userId: Joi.string().uuid().required(),
+        postId: Joi.string().uuid().allow(null),
+        followId: Joi.string().uuid().allow(null),
         status: Joi.string().required(),
-        finished_at: Joi.number()
+        finished_at: Joi.string().allow(null)
     }
 }), serviceController.create)
 
-serviceRouter.put('/:id', celebrate({
+serviceRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     }

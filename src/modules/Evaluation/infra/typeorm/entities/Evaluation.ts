@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { Service } from "../../../../Service/infra/typeorm/entities/Service";
+import { User } from './../../../../User/infra/typeorm/entities/User';
 
 @Entity('evaluation')
 export class Evaluation {
@@ -7,12 +8,15 @@ export class Evaluation {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @OneToOne(() => Service, {
+    @OneToOne(() => Service, (service) => service.id, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
     })
-    @JoinColumn({ name: 'id' })
+    @JoinColumn()
     service: Service;
+
+    @OneToOne(() => User, (user) => user.id)
+    user: User;
 
     @Column('text')
     description: string;

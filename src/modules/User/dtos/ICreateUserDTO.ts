@@ -3,6 +3,7 @@ export default interface ICreateUserDTO {
     birthDate: string;
     document: string;
     city: string;
+    state: string;
     district: string;
     street: string;
     phNumber?: string;

@@ -42,57 +42,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tsyringe_1 = require("tsyringe");
 var CreatePostService_1 = __importDefault(require("./../../../services/CreatePostService"));
 var class_transformer_1 = require("class-transformer");
-var ShowPostService_1 = __importDefault(require("./../../../services/ShowPostService"));
-var ListPostService_1 = __importDefault(require("./../../../services/ListPostService"));
 var UpdatePostService_1 = __importDefault(require("./../../../services/UpdatePostService"));
 var DeletePostService_1 = __importDefault(require("./../../../services/DeletePostService"));
+var ListPostService_1 = __importDefault(require("./../../../services/ListPostService"));
+var ShowPostService_1 = __importDefault(require("./../../../services/ShowPostService"));
 var PostController = /** @class */ (function () {
     function PostController() {
     }
-    PostController.prototype.create = function (request, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, user_id, description, title, image, price, expected_date_of_delivery, repo, post, error_1;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _b.trys.push([0, 2, , 3]);
-                        _a = request.body, user_id = _a.user_id, description = _a.description, title = _a.title, image = _a.image, price = _a.price, expected_date_of_delivery = _a.expected_date_of_delivery;
-                        repo = tsyringe_1.container.resolve(CreatePostService_1.default);
-                        return [4 /*yield*/, repo.execute({
-                                user_id: user_id,
-                                description: description,
-                                title: title,
-                                image: image,
-                                price: price,
-                                expected_date_of_delivery: expected_date_of_delivery
-                            })];
-                    case 1:
-                        post = _b.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(post))];
-                    case 2:
-                        error_1 = _b.sent();
-                        return [2 /*return*/, response.send(error_1.message)];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
     PostController.prototype.listByCity = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var area, repo, list, error_2;
+            var area, post, postList, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        area = request.body.area;
-                        repo = tsyringe_1.container.resolve(ListPostService_1.default);
-                        return [4 /*yield*/, repo.execute()];
+                        area = request.params.area;
+                        post = tsyringe_1.container.resolve(ListPostService_1.default);
+                        return [4 /*yield*/, post.execute(area)];
                     case 1:
-                        list = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(list))];
+                        postList = _a.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(postList))];
                     case 2:
-                        error_2 = _a.sent();
-                        return [2 /*return*/, response.send(error_2.message)];
+                        err_1 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_1.message)];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -100,45 +72,60 @@ var PostController = /** @class */ (function () {
     };
     PostController.prototype.fetchBy = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, post;
+            var post, res, err_2;
             return __generator(this, function (_a) {
-                try {
-                    id = request.params.id;
-                    repo = tsyringe_1.container.resolve(ShowPostService_1.default);
-                    post = repo.execute(id);
-                    return [2 /*return*/, response.json(class_transformer_1.classToClass(post))];
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        post = tsyringe_1.container.resolve(ShowPostService_1.default);
+                        return [4 /*yield*/, post.execute(request.body)];
+                    case 1:
+                        res = _a.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(res))];
+                    case 2:
+                        err_2 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_2.message)];
+                    case 3: return [2 /*return*/];
                 }
-                catch (error) {
-                    return [2 /*return*/, response.send(error.message)];
+            });
+        });
+    };
+    PostController.prototype.create = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var createPost, Post, err_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        createPost = tsyringe_1.container.resolve(CreatePostService_1.default);
+                        return [4 /*yield*/, createPost.execute(request.body)];
+                    case 1:
+                        Post = _a.sent();
+                        return [2 /*return*/, response.json(class_transformer_1.classToClass(Post))];
+                    case 2:
+                        err_3 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_3.message)];
+                    case 3: return [2 /*return*/];
                 }
-                return [2 /*return*/];
             });
         });
     };
     PostController.prototype.update = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, _a, user_id, description, title, image, price, expected_date_of_delivery, repo, post, error_3;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var id, repo, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
-                        _b.trys.push([0, 2, , 3]);
+                        _a.trys.push([0, 2, , 3]);
                         id = request.params.id;
-                        _a = request.body, user_id = _a.user_id, description = _a.description, title = _a.title, image = _a.image, price = _a.price, expected_date_of_delivery = _a.expected_date_of_delivery;
                         repo = tsyringe_1.container.resolve(UpdatePostService_1.default);
-                        return [4 /*yield*/, repo.execute({
-                                user_id: user_id,
-                                description: description,
-                                title: title,
-                                image: image,
-                                price: price,
-                                expected_date_of_delivery: expected_date_of_delivery
-                            }, id)];
+                        return [4 /*yield*/, repo.execute(request.body, id)];
                     case 1:
-                        post = _b.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(post))];
+                        _a.sent();
+                        return [3 /*break*/, 3];
                     case 2:
-                        error_3 = _b.sent();
-                        return [2 /*return*/, response.send(error_3.message)];
+                        error_1 = _a.sent();
+                        return [2 /*return*/, response.send(error_1.message)];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -146,7 +133,7 @@ var PostController = /** @class */ (function () {
     };
     PostController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, error_4;
+            var id, repo, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -158,8 +145,8 @@ var PostController = /** @class */ (function () {
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        error_4 = _a.sent();
-                        return [2 /*return*/, response.send(error_4.message)];
+                        error_2 = _a.sent();
+                        return [2 /*return*/, response.send(error_2.message)];
                     case 3: return [2 /*return*/];
                 }
             });

@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, Timestamp, CreateDateColumn, UpdateDateColumn, OneToMany, JoinColumn, OneToOne } from "typeorm";
 import { Profile } from "../../../../Profile/infra/typeorm/entities/Profile";
+import { Post } from './../../../../Post/infra/typeorm/entities/Post';
 
 @Entity('user')
 export class User {
@@ -20,6 +21,9 @@ export class User {
     city: string;
 
     @Column('varchar')
+    state: string;
+
+    @Column('varchar')
     district: string;
 
     @Column('varchar')
@@ -37,5 +41,9 @@ export class User {
     @OneToOne(() => Profile, (profile) => profile.id, { cascade: true, onDelete: 'CASCADE' })
     @JoinColumn()
     profile: Profile;
+
+    
+    @OneToMany(() => Post, (Post) => Post.user)
+    post?: Post[]
 
 }

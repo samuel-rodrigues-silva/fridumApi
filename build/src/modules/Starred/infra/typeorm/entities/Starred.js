@@ -21,13 +21,15 @@ var Starred = /** @class */ (function () {
         __metadata("design:type", String)
     ], Starred.prototype, "id", void 0);
     __decorate([
-        typeorm_1.ManyToMany(function () { return User_1.User; }, function (user) { return user.id; }),
+        typeorm_1.ManyToOne(function () { return User_1.User; }, function (user) { return user.id; }),
+        typeorm_1.JoinTable(),
         __metadata("design:type", User_1.User)
-    ], Starred.prototype, "user_id", void 0);
+    ], Starred.prototype, "user", void 0);
     __decorate([
-        typeorm_1.ManyToMany(function () { return Post_1.Post; }, function (post) { return post.id; }),
+        typeorm_1.ManyToOne(function () { return Post_1.Post; }, function (post) { return post.id; }),
+        typeorm_1.JoinTable(),
         __metadata("design:type", Post_1.Post)
-    ], Starred.prototype, "post_id", void 0);
+    ], Starred.prototype, "post", void 0);
     __decorate([
         typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)

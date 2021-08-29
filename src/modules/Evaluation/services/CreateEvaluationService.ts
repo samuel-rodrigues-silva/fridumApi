@@ -11,8 +11,8 @@ class CreateEvaluationService {
         private evaluationRepository: IEvaluationRepository,
     ) { }
 
-    public async execute(data: ICreateEvaluationDTO): Promise<Evaluation> {
-        return await this.evaluationRepository.create(data);
+    public async execute(data: ICreateEvaluationDTO, id: string): Promise<Evaluation> {
+        return await this.evaluationRepository.create(data, id);
     }
 }
 

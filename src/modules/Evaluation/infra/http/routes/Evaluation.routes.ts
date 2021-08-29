@@ -4,7 +4,10 @@ import EvaluationController from '../controllers/EvaluationController';
 const evaluationRouter = Router();
 const evaluationController = new EvaluationController();
 
-evaluationRouter.post('/', celebrate({
+evaluationRouter.post('/:id', celebrate({
+    [Segments.PARAMS] : {
+        id: Joi.string().uuid().required()
+    },
     [Segments.BODY]: {
         serviceId: Joi.string().required(),
         description: Joi.string().required(),

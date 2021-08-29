@@ -30,18 +30,21 @@ export class Profile {
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
 
+    @OneToMany(() => Accomplishment, (accomplishment) => accomplishment.profile)
+    accomplishment?: Accomplishment[]
+
+    @OneToMany(() => AcademicFormation, (academicFormation) => academicFormation.profile)
+    academicFormation?: AcademicFormation[]
+
     @OneToMany(() => FocusArea, (focusProfile) => focusProfile.profile)
     focusArea?: FocusArea[]
 
     @OneToMany(() => Occupation, (occupation) => occupation.profile)
     occupation?: Occupation[]
 
-    @OneToMany(() => Accomplishment, (accomplishment) => accomplishment.profile)
-    accomplishment?: Accomplishment[]
-
     @OneToMany(() => Language, (Language) => Language.profile)
     language?: Language[]
 
-    @OneToMany(() => AcademicFormation, (academicFormation) => academicFormation.profile)
-    academicFormation?: AcademicFormation[]
+
+    
 }

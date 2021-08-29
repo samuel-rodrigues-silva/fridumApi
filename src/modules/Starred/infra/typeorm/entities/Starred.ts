@@ -1,4 +1,4 @@
-import { CreateDateColumn, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { CreateDateColumn, Entity, JoinTable, ManyToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 import { Post } from "../../../../Post/infra/typeorm/entities/Post";
 import { User } from "../../../../User/infra/typeorm/entities/User";
 
@@ -8,11 +8,13 @@ export class Starred {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToMany(() => User, (user) => user.id)
-    user_id: User;
+    @ManyToOne(() => User, (user) => user.id)
+    @JoinTable()
+    user: User;
 
-    @ManyToMany(() => Post, (post) => post.id)
-    post_id: Post;
+    @ManyToOne(() => Post, (post) => post.id)
+    @JoinTable()
+    post: Post;
 
     @CreateDateColumn({ type: 'timestamp', name: 'created_At' },)
     createdAt: Timestamp;

@@ -39,25 +39,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var Evaluation_1 = require("./../entities/Evaluation");
 var Service_1 = require("./../../../../Service/infra/typeorm/entities/Service");
+var User_1 = require("./../../../../User/infra/typeorm/entities/User");
 var EvaluationRepository = /** @class */ (function () {
     function EvaluationRepository() {
         this.ormRepository = typeorm_1.getRepository(Evaluation_1.Evaluation);
         this.serviceRepository = typeorm_1.getRepository(Service_1.Service);
+        this.userRepository = typeorm_1.getRepository(User_1.User);
     }
-    EvaluationRepository.prototype.create = function (data) {
+    EvaluationRepository.prototype.create = function (data, id) {
         return __awaiter(this, void 0, void 0, function () {
-            var service, Evaluation;
+            var user, service, evaluation;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.serviceRepository.findOne({ where: { id: data.serviceId } })];
+                    case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id } })];
                     case 1:
-                        service = _a.sent();
-                        Evaluation = this.ormRepository.create(data);
-                        Evaluation.service = service;
-                        return [4 /*yield*/, this.ormRepository.save(Evaluation)];
+                        user = _a.sent();
+                        return [4 /*yield*/, this.serviceRepository.findOne({ where: { id: data.serviceId } })];
                     case 2:
+                        service = _a.sent();
+                        evaluation = this.ormRepository.create(data);
+                        evaluation.service = service;
+                        evaluation.user = user;
+                        return [4 /*yield*/, this.ormRepository.save(evaluation)];
+                    case 3:
                         _a.sent();
-                        return [2 /*return*/, Evaluation];
+                        return [2 /*return*/, evaluation];
                 }
             });
         });

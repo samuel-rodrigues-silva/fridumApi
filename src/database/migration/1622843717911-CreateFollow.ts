@@ -13,14 +13,6 @@ export class CreateFollow1622843717911 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: 'user_id',
-                        type: 'varchar'
-                    },
-                    {
-                        name: 'profile_id',
-                        type: 'varchar',
-                    },
-                    {
                         name: 'createdAt',
                         type: 'timestamp',
                         default: 'now()'

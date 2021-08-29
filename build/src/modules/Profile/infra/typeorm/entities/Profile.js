@@ -48,6 +48,14 @@ var Profile = /** @class */ (function () {
         __metadata("design:type", typeorm_1.Timestamp)
     ], Profile.prototype, "updatedAt", void 0);
     __decorate([
+        typeorm_1.OneToMany(function () { return Accomplishment_1.Accomplishment; }, function (accomplishment) { return accomplishment.profile; }),
+        __metadata("design:type", Array)
+    ], Profile.prototype, "accomplishment", void 0);
+    __decorate([
+        typeorm_1.OneToMany(function () { return AcademicFormation_1.AcademicFormation; }, function (academicFormation) { return academicFormation.profile; }),
+        __metadata("design:type", Array)
+    ], Profile.prototype, "academicFormation", void 0);
+    __decorate([
         typeorm_1.OneToMany(function () { return FocusArea_1.FocusArea; }, function (focusProfile) { return focusProfile.profile; }),
         __metadata("design:type", Array)
     ], Profile.prototype, "focusArea", void 0);
@@ -56,17 +64,9 @@ var Profile = /** @class */ (function () {
         __metadata("design:type", Array)
     ], Profile.prototype, "occupation", void 0);
     __decorate([
-        typeorm_1.OneToMany(function () { return Accomplishment_1.Accomplishment; }, function (accomplishment) { return accomplishment.profile; }),
-        __metadata("design:type", Array)
-    ], Profile.prototype, "accomplishment", void 0);
-    __decorate([
         typeorm_1.OneToMany(function () { return Language_1.Language; }, function (Language) { return Language.profile; }),
         __metadata("design:type", Array)
     ], Profile.prototype, "language", void 0);
-    __decorate([
-        typeorm_1.OneToMany(function () { return AcademicFormation_1.AcademicFormation; }, function (academicFormation) { return academicFormation.profile; }),
-        __metadata("design:type", Array)
-    ], Profile.prototype, "academicFormation", void 0);
     Profile = __decorate([
         typeorm_1.Entity('profile')
     ], Profile);

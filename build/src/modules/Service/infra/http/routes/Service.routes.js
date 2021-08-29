@@ -13,17 +13,17 @@ serviceRouter.get('/:id', celebrate_1.celebrate((_a = {},
     _a[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
-    _a)), serviceController.fetchBy);
+    _a)), serviceController.fetchById);
 serviceRouter.post('/', celebrate_1.celebrate((_b = {},
     _b[celebrate_1.Segments.BODY] = {
-        user_id: celebrate_1.Joi.string().uuid().required(),
-        post_id: celebrate_1.Joi.string().uuid().required(),
-        follow_id: celebrate_1.Joi.string().uuid().required(),
+        userId: celebrate_1.Joi.string().uuid().required(),
+        postId: celebrate_1.Joi.string().uuid().allow(null),
+        followId: celebrate_1.Joi.string().uuid().allow(null),
         status: celebrate_1.Joi.string().required(),
-        finished_at: celebrate_1.Joi.number()
+        finished_at: celebrate_1.Joi.string().allow(null)
     },
     _b)), serviceController.create);
-serviceRouter.put('/:id', celebrate_1.celebrate((_c = {},
+serviceRouter.patch('/:id', celebrate_1.celebrate((_c = {},
     _c[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },

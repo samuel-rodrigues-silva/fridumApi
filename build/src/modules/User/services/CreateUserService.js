@@ -57,24 +57,12 @@ var CreateUserService = /** @class */ (function () {
     function CreateUserService(userRepository) {
         this.userRepository = userRepository;
     }
-    CreateUserService.prototype.execute = function (_a) {
-        var name = _a.name, birthDate = _a.birthDate, document = _a.document, city = _a.city, district = _a.district, street = _a.street, phNumber = _a.phNumber;
+    CreateUserService.prototype.execute = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var user;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4 /*yield*/, this.userRepository.create({
-                            name: name,
-                            birthDate: birthDate,
-                            document: document,
-                            city: city,
-                            district: district,
-                            street: street,
-                            phNumber: phNumber,
-                        })];
-                    case 1:
-                        user = _b.sent();
-                        return [2 /*return*/, user];
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.userRepository.create(data)];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });

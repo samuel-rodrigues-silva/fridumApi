@@ -11,24 +11,8 @@ class CreateUserService {
         private userRepository: IUserRepository,
     ) { }
 
-    public async execute({ name,
-        birthDate,
-        document,
-        city,
-        district,
-        street,
-        phNumber, }: ICreateUserDTO): Promise<User> {
-        const user = await this.userRepository.create({
-            name,
-            birthDate,
-            document,
-            city,
-            district,
-            street,
-            phNumber,
-        });
-        return user;
-
+    public async execute( data: ICreateUserDTO): Promise<User> {
+        return await this.userRepository.create(data);
     }
 }
 

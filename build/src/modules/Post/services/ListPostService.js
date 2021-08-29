@@ -54,14 +54,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tsyringe_1 = require("tsyringe");
 var PostRepository_1 = __importDefault(require("./../infra/typeorm/repositories/PostRepository"));
 var ListPostService = /** @class */ (function () {
-    function ListPostService(PostRepository) {
-        this.PostRepository = PostRepository;
+    function ListPostService(postRepository) {
+        this.postRepository = postRepository;
     }
-    ListPostService.prototype.execute = function () {
+    ListPostService.prototype.execute = function (city) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.PostRepository.listByCity()];
+                    case 0: return [4 /*yield*/, this.postRepository.listByCity(city)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

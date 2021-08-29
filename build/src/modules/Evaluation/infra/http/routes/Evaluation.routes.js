@@ -9,7 +9,10 @@ var express_1 = require("express");
 var EvaluationController_1 = __importDefault(require("../controllers/EvaluationController"));
 var evaluationRouter = express_1.Router();
 var evaluationController = new EvaluationController_1.default();
-evaluationRouter.post('/', celebrate_1.celebrate((_a = {},
+evaluationRouter.post('/:id', celebrate_1.celebrate((_a = {},
+    _a[celebrate_1.Segments.PARAMS] = {
+        id: celebrate_1.Joi.string().uuid().required()
+    },
     _a[celebrate_1.Segments.BODY] = {
         serviceId: celebrate_1.Joi.string().required(),
         description: celebrate_1.Joi.string().required(),

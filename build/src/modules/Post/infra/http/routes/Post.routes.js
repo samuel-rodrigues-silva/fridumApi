@@ -9,7 +9,7 @@ var express_1 = require("express");
 var PostController_1 = __importDefault(require("../controllers/PostController"));
 var postRouter = express_1.Router();
 var postController = new PostController_1.default();
-postRouter.get('/:area', celebrate_1.celebrate((_a = {},
+postRouter.get('/city/:area', celebrate_1.celebrate((_a = {},
     _a[celebrate_1.Segments.PARAMS] = {
         area: celebrate_1.Joi.string().min(10).required()
     },
@@ -21,7 +21,9 @@ postRouter.get('/:id', celebrate_1.celebrate((_b = {},
     _b)), postController.fetchBy);
 postRouter.post('/', celebrate_1.celebrate((_c = {},
     _c[celebrate_1.Segments.BODY] = {
-        user_id: celebrate_1.Joi.string().uuid().required(),
+        userId: celebrate_1.Joi.string().uuid().required(),
+        city: celebrate_1.Joi.string().required(),
+        state: celebrate_1.Joi.string().required(),
         description: celebrate_1.Joi.string().required(),
         title: celebrate_1.Joi.string().required(),
         image: celebrate_1.Joi.string(),
@@ -29,7 +31,7 @@ postRouter.post('/', celebrate_1.celebrate((_c = {},
         expected_date_of_delivery: celebrate_1.Joi.date()
     },
     _c)), postController.create);
-postRouter.put('/:id', celebrate_1.celebrate((_d = {},
+postRouter.patch('/:id', celebrate_1.celebrate((_d = {},
     _d[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },

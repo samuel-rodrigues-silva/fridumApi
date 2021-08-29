@@ -49,6 +49,7 @@ class UserController {
                 city,
                 district,
                 street,
+                state,
                 phNumber
             } = request.body
             const repo = container.resolve(UpdateUserService);
@@ -59,6 +60,7 @@ class UserController {
                 city,
                 district,
                 street,
+                state,
                 phNumber
             }, id);
             return response.json(user);

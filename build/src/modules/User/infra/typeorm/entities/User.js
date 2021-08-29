@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 var typeorm_1 = require("typeorm");
 var Profile_1 = require("../../../../Profile/infra/typeorm/entities/Profile");
+var Post_1 = require("./../../../../Post/infra/typeorm/entities/Post");
 var User = /** @class */ (function () {
     function User() {
     }
@@ -38,6 +39,10 @@ var User = /** @class */ (function () {
     __decorate([
         typeorm_1.Column('varchar'),
         __metadata("design:type", String)
+    ], User.prototype, "state", void 0);
+    __decorate([
+        typeorm_1.Column('varchar'),
+        __metadata("design:type", String)
     ], User.prototype, "district", void 0);
     __decorate([
         typeorm_1.Column('varchar'),
@@ -60,6 +65,10 @@ var User = /** @class */ (function () {
         typeorm_1.JoinColumn(),
         __metadata("design:type", Profile_1.Profile)
     ], User.prototype, "profile", void 0);
+    __decorate([
+        typeorm_1.OneToMany(function () { return Post_1.Post; }, function (Post) { return Post.user; }),
+        __metadata("design:type", Array)
+    ], User.prototype, "post", void 0);
     User = __decorate([
         typeorm_1.Entity('user')
     ], User);

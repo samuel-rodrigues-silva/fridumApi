@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Evaluation = void 0;
 var typeorm_1 = require("typeorm");
 var Service_1 = require("../../../../Service/infra/typeorm/entities/Service");
+var User_1 = require("./../../../../User/infra/typeorm/entities/User");
 var Evaluation = /** @class */ (function () {
     function Evaluation() {
     }
@@ -20,13 +21,17 @@ var Evaluation = /** @class */ (function () {
         __metadata("design:type", String)
     ], Evaluation.prototype, "id", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return Service_1.Service; }, {
+        typeorm_1.OneToOne(function () { return Service_1.Service; }, function (service) { return service.id; }, {
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
         }),
-        typeorm_1.JoinColumn({ name: 'id' }),
+        typeorm_1.JoinColumn(),
         __metadata("design:type", Service_1.Service)
     ], Evaluation.prototype, "service", void 0);
+    __decorate([
+        typeorm_1.OneToOne(function () { return User_1.User; }, function (user) { return user.id; }),
+        __metadata("design:type", User_1.User)
+    ], Evaluation.prototype, "user", void 0);
     __decorate([
         typeorm_1.Column('text'),
         __metadata("design:type", String)

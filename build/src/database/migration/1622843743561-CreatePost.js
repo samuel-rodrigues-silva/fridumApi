@@ -65,6 +65,14 @@ var CreatePost1622843743561 = /** @class */ (function () {
                             type: 'varchar'
                         },
                         {
+                            name: 'city',
+                            type: 'varchar'
+                        },
+                        {
+                            name: 'state',
+                            type: 'varchar'
+                        },
+                        {
                             name: 'image',
                             type: 'varchar'
                         },
