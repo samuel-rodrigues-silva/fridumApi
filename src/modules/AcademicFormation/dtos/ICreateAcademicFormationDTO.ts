@@ -3,4 +3,5 @@ export default interface ICreateAcademicFormationDTO {
     title: string;
     description?: string;
     image?: string;
+    conclusion_date: string;
 }

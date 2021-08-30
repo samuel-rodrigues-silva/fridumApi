@@ -23,11 +23,11 @@ var ChatMessage = /** @class */ (function () {
     __decorate([
         typeorm_1.ManyToOne(function () { return Chat_1.Chat; }, function (chat) { return chat.id; }),
         __metadata("design:type", Chat_1.Chat)
-    ], ChatMessage.prototype, "chat_id", void 0);
+    ], ChatMessage.prototype, "chatId", void 0);
     __decorate([
         typeorm_1.ManyToMany(function () { return User_1.User; }, function (user) { return user.id; }),
         __metadata("design:type", User_1.User)
-    ], ChatMessage.prototype, "user_id", void 0);
+    ], ChatMessage.prototype, "userId", void 0);
     __decorate([
         typeorm_1.Column('text'),
         __metadata("design:type", String)

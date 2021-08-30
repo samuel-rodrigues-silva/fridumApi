@@ -52,7 +52,7 @@ var PostRepository = /** @class */ (function () {
                     case 0:
                         splitCity = city.split('_');
                         searchCity = splitCity[0] + ' ' + splitCity[1];
-                        return [4 /*yield*/, this.ormRepository.find({ where: { city: searchCity }, relations: ['user'] })];
+                        return [4 /*yield*/, this.ormRepository.find({ where: { city: searchCity }, relations: ['user', 'user.profile'] })];
                     case 1:
                         list = _a.sent();
                         return [2 /*return*/, list];

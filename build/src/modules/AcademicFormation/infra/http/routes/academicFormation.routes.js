@@ -14,7 +14,8 @@ academicFormationRouter.post('/', celebrate_1.celebrate((_a = {},
         profileId: celebrate_1.Joi.string().uuid().required(),
         title: celebrate_1.Joi.string().min(3).required(),
         description: celebrate_1.Joi.string().required(),
-        image: celebrate_1.Joi.string()
+        image: celebrate_1.Joi.string(),
+        conclusion_date: celebrate_1.Joi.string()
     },
     _a)), academicFormationController.create);
 academicFormationRouter.patch('/:id', celebrate_1.celebrate((_b = {},
