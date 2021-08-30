@@ -10,7 +10,8 @@ academicFormationRouter.post('/', celebrate({
         title: Joi.string().min(3).required(),
         description: Joi.string().required(),
         image: Joi.string(),
-        conclusion_date: Joi.string()
+        conclusion_date: Joi.string(),
+        institution: Joi.string(),
     }
 }), academicFormationController.create)
 
