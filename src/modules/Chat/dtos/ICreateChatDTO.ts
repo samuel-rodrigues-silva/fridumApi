@@ -1,4 +1,4 @@
 export default interface ICreateChatDTO {
-    user_id: string;
-    follow_id: string;
+    userId: string;
+    followId: string;
 }

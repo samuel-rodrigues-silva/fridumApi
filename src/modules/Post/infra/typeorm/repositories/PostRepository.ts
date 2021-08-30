@@ -17,7 +17,7 @@ class PostRepository implements IPostRepository {
     public async listByCity(city: string ): Promise<Post[]> {
         const splitCity = city.split('_')
         const searchCity = splitCity[0]+ ' ' + splitCity[1];
-        const list = await this.ormRepository.find({where : {city : searchCity }, relations : ['user']})
+        const list = await this.ormRepository.find({where : {city : searchCity }, relations : ['user', 'user.profile']})
         return list;
     }
 

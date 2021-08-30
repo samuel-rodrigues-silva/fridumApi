@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Chat = void 0;
 var typeorm_1 = require("typeorm");
-var Follow_1 = require("../../../../Follow/infra/typeorm/entities/Follow");
 var User_1 = require("../../../../User/infra/typeorm/entities/User");
 var Chat = /** @class */ (function () {
     function Chat() {
@@ -21,15 +20,13 @@ var Chat = /** @class */ (function () {
         __metadata("design:type", String)
     ], Chat.prototype, "id", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return User_1.User; }, function (user) { return user.id; }),
-        typeorm_1.JoinColumn(),
-        __metadata("design:type", String)
-    ], Chat.prototype, "user_id", void 0);
+        typeorm_1.ManyToOne(function () { return User_1.User; }, function (user) { return user.id; }),
+        __metadata("design:type", User_1.User)
+    ], Chat.prototype, "user", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return Follow_1.Follow; }, function (follow) { return follow.id; }),
-        typeorm_1.JoinColumn(),
-        __metadata("design:type", Follow_1.Follow)
-    ], Chat.prototype, "follow_id", void 0);
+        typeorm_1.ManyToOne(function () { return User_1.User; }, function (follow) { return follow.id; }),
+        __metadata("design:type", User_1.User)
+    ], Chat.prototype, "follow", void 0);
     __decorate([
         typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
