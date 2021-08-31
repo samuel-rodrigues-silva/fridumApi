@@ -15,7 +15,7 @@ class AcademicFormationRepository implements IAcademicFormationRepository {
     }
 
     public async create(data: ICreateAcademicFormationDTO): Promise<AcademicFormation> {
-        const profile = await this.profileRepository.findOne({where :{ id : data.profileId } })
+        const profile = await this.profileRepository.findOne({ where: { id: data.profileId } })
         const academicFormation = this.ormRepository.create(data);
         academicFormation.profile = profile;
         await this.ormRepository.save(academicFormation);
@@ -32,8 +32,13 @@ class AcademicFormationRepository implements IAcademicFormationRepository {
             .execute();
     }
 
-    public async delete(AcademicFormationId: string): Promise<DeleteResult> {
-        return await this.ormRepository.delete(AcademicFormationId);
+    public async delete(academicFormationId: string): Promise<DeleteResult> {
+        return await getConnection()
+            .createQueryBuilder()
+            .delete()
+            .from(AcademicFormation)
+            .where("id = :id", { id: academicFormationId })
+            .execute();
     }
 }
 
