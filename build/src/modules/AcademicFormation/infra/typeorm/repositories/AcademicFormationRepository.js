@@ -79,11 +79,16 @@ var AcademicFormationRepository = /** @class */ (function () {
             });
         });
     };
-    AcademicFormationRepository.prototype.delete = function (AcademicFormationId) {
+    AcademicFormationRepository.prototype.delete = function (academicFormationId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.delete(AcademicFormationId)];
+                    case 0: return [4 /*yield*/, typeorm_1.getConnection()
+                            .createQueryBuilder()
+                            .delete()
+                            .from(AcademicFormation_1.AcademicFormation)
+                            .where("id = :id", { id: academicFormationId })
+                            .execute()];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
