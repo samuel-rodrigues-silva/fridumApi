@@ -1,4 +1,5 @@
 import { injectable, inject, delay } from 'tsyringe';
+import { DeleteResult } from 'typeorm';
 import AcademicFormationRepository from './../infra/typeorm/repositories/AcademicFormationRepository';
 import IAcademicFormationRepository from './../repositories/IAcademicFormationRepository';
 
@@ -8,7 +9,7 @@ export default class DeleteAcademicFormationService {
         @inject(delay(() => AcademicFormationRepository))
         private academicFormationRepository: IAcademicFormationRepository) { }
 
-    public async execute(id: string) {
-        this.academicFormationRepository.delete(id);
+    public async execute(id: string):Promise<DeleteResult> {
+        return this.academicFormationRepository.delete(id);
     }
 }

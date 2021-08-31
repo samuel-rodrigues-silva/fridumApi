@@ -60,8 +60,7 @@ var DeleteAcademicFormationService = /** @class */ (function () {
     DeleteAcademicFormationService.prototype.execute = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                this.academicFormationRepository.delete(id);
-                return [2 /*return*/];
+                return [2 /*return*/, this.academicFormationRepository.delete(id)];
             });
         });
     };

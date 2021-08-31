@@ -1,4 +1,4 @@
-import { getConnection, getRepository, Repository } from "typeorm";
+import { DeleteResult, getConnection, getRepository, Repository } from "typeorm";
 import IAcademicFormationRepository from "../../../repositories/IAcademicFormationRepository";
 import { AcademicFormation } from './../entities/AcademicFormation';
 import ICreateAcademicFormationDTO from './../../../dtos/ICreateAcademicFormationDTO';
@@ -32,8 +32,8 @@ class AcademicFormationRepository implements IAcademicFormationRepository {
             .execute();
     }
 
-    public async delete(AcademicFormationId: string): Promise<void> {
-        await this.ormRepository.delete(AcademicFormationId);
+    public async delete(AcademicFormationId: string): Promise<DeleteResult> {
+        return await this.ormRepository.delete(AcademicFormationId);
     }
 }
 
