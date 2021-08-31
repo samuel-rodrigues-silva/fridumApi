@@ -10,6 +10,6 @@ export default class DeleteAccomplishmentService {
         private AccomplishmentRepository: IAccomplishmentRepository) { }
 
     public async execute(id: string): Promise<DeleteResult> {
-        this.AccomplishmentRepository.delete(id);
+        return await this.AccomplishmentRepository.delete(id);
     }
 }

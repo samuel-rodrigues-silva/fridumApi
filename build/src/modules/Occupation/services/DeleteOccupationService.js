@@ -60,8 +60,10 @@ var DeleteOccupationService = /** @class */ (function () {
     DeleteOccupationService.prototype.execute = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                this.OccupationRepository.delete(id);
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.OccupationRepository.delete(id)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
