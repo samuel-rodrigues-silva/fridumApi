@@ -1,4 +1,5 @@
 import { injectable, inject, delay } from 'tsyringe';
+import { DeleteResult } from 'typeorm';
 import FocusAreaRepository from './../infra/typeorm/repositories/FocusAreaRepository';
 import IFocusAreaRepository from './../repositories/IFocusAreaRepository';
 
@@ -8,7 +9,7 @@ export default class DeleteFocusAreaService {
         @inject(delay(() => FocusAreaRepository))
         private focusAreaRepository: IFocusAreaRepository) { }
 
-    public async execute(id: string) {
-        this.focusAreaRepository.delete(id);
+    public async execute(id: string): Promise<DeleteResult> {
+        return await this.focusAreaRepository.delete(id);
     }
 }

@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { DeleteResult, getRepository, Repository } from "typeorm";
 import IStarredRepository from "../../../repositories/IStarredRepository";
 import { Starred } from './../entities/Starred';
 import ICreateStarredDTO from './../../../dtos/ICreateStarredDTO';
@@ -18,11 +18,11 @@ class StarredRepository implements IStarredRepository {
     }
 
     public async create(data: ICreateStarredDTO): Promise<Starred | null> {
-        const user = await this.userRepository.findOne({where : {id : data.userId}})
-        const post = await this.postRepository.findOne({where : {id : data.postId}})
-        const starred = await this.ormRepository.findOne({where : {user: user, post: post}})
+        const user = await this.userRepository.findOne({ where: { id: data.userId } })
+        const post = await this.postRepository.findOne({ where: { id: data.postId } })
+        const starred = await this.ormRepository.findOne({ where: { user: user, post: post } })
 
-        if(!starred){
+        if (!starred) {
             const StarredReg = this.ormRepository.create();
             StarredReg.user = user;
             StarredReg.post = post;
@@ -32,8 +32,8 @@ class StarredRepository implements IStarredRepository {
         return null
     }
 
-    public async delete(StarredId: string): Promise<void> {
-        await this.ormRepository.delete(StarredId);
+    public async delete(StarredId: string): Promise<DeleteResult> {
+        return await this.ormRepository.delete(StarredId);
     }
 }
 

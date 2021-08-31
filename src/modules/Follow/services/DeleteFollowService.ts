@@ -1,4 +1,5 @@
 import { injectable, inject, delay } from 'tsyringe';
+import { DeleteResult } from 'typeorm';
 import FollowRepository from './../infra/typeorm/repositories/FollowRepository';
 import IFollowRepository from './../repositories/IFollowRepository';
 
@@ -8,7 +9,7 @@ export default class DeleteFollowService {
         @inject(delay(() => FollowRepository))
         private followRepository: IFollowRepository) { }
 
-    public async execute(id: string) {
-        this.followRepository.delete(id);
+    public async execute(id: string): Promise<DeleteResult> {
+        return await this.followRepository.delete(id);
     }
 }

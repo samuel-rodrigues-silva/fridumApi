@@ -1,4 +1,5 @@
 import { injectable, inject, delay } from 'tsyringe';
+import { DeleteResult } from 'typeorm';
 import PostRepository from './../infra/typeorm/repositories/PostRepository';
 import IPostRepository from './../repositories/IPostRepository';
 
@@ -8,8 +9,8 @@ class DeletePostService {
         @inject(delay(() => PostRepository))
         private postRepository: IPostRepository
     ) { }
-    public async execute(id: string): Promise<void> {
-        await this.postRepository.delete(id);
+    public async execute(id: string): Promise<DeleteResult> {
+        return await this.postRepository.delete(id);
     }
 }
 

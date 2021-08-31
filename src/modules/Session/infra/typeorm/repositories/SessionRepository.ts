@@ -1,4 +1,4 @@
-import { getConnection, getRepository, Repository } from 'typeorm';
+import { DeleteResult, getConnection, getRepository, Repository } from 'typeorm';
 import ISessionRepository from './../../../repositories/ISessionRepository';
 import { Session } from './../entities/Session';
 import ICreateSessionDTO from './../../../dtos/ICreateSessionDTO';
@@ -38,8 +38,8 @@ class SessionRepository implements ISessionRepository {
 
     }
 
-    public async remove(sessionId: string): Promise<void> {
-        await this.ormRepository.delete(sessionId);
+    public async remove(sessionId: string): Promise<DeleteResult> {
+        return await this.ormRepository.delete(sessionId);
     }
 
 }

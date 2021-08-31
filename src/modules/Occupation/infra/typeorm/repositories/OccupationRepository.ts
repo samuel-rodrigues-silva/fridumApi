@@ -1,4 +1,4 @@
-import { getConnection, getRepository, Repository } from "typeorm";
+import { DeleteResult, getConnection, getRepository, Repository } from "typeorm";
 import IOccupationRepository from "../../../repositories/IOccupationRepository";
 import { Occupation } from './../entities/Occupation';
 import ICreateOccupationDTO from './../../../dtos/ICreateOccupationDTO';
@@ -15,7 +15,7 @@ class OccupationRepository implements IOccupationRepository {
     }
 
     public async create(data: ICreateOccupationDTO): Promise<Occupation> {
-        const profile = await this.profileRepository.findOne({where :{ id : data.profileId } })
+        const profile = await this.profileRepository.findOne({ where: { id: data.profileId } })
         const Occupation = this.ormRepository.create(data);
         Occupation.profile = profile;
         await this.ormRepository.save(Occupation);
@@ -32,8 +32,8 @@ class OccupationRepository implements IOccupationRepository {
             .execute();
     }
 
-    public async delete(OccupationId: string): Promise<void> {
-        await this.ormRepository.delete(OccupationId);
+    public async delete(OccupationId: string): Promise<DeleteResult> {
+        return await this.ormRepository.delete(OccupationId);
     }
 }
 

@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { DeleteResult, getRepository, Repository } from "typeorm";
 import IFollowRepository from "../../../repositories/IFollowRepository";
 import { Follow } from './../entities/Follow';
 import ICreateFollowDTO from './../../../dtos/ICreateFollowDTO';
@@ -17,11 +17,11 @@ class FollowRepository implements IFollowRepository {
     }
 
     public async create(data: ICreateFollowDTO): Promise<Follow | null> {
-        const user = await this.userRepository.findOne({where : {id : data.userId}})
-        const userFollowed = await this.userFollowedRepository.findOne({where : {id : data.followId}})
-        const follow = await this.ormRepository.findOne({where : {user: user, follow: userFollowed}})
+        const user = await this.userRepository.findOne({ where: { id: data.userId } })
+        const userFollowed = await this.userFollowedRepository.findOne({ where: { id: data.followId } })
+        const follow = await this.ormRepository.findOne({ where: { user: user, follow: userFollowed } })
 
-        if(!follow){
+        if (!follow) {
             const followReg = this.ormRepository.create();
             followReg.user = user;
             followReg.follow = userFollowed;
@@ -30,8 +30,8 @@ class FollowRepository implements IFollowRepository {
         return null
     }
 
-    public async delete(FollowId: string): Promise<void> {
-        await this.ormRepository.delete(FollowId);
+    public async delete(FollowId: string): Promise<DeleteResult> {
+        return await this.ormRepository.delete(FollowId);
     }
 }
 

@@ -1,4 +1,5 @@
 import { injectable, inject, delay } from 'tsyringe';
+import { DeleteResult } from 'typeorm';
 import UserRepository from './../infra/typeorm/repositories/UserRepository';
 import IUserRepository from './../repositories/IUserRepository';
 
@@ -8,7 +9,7 @@ export default class DeleteUserService {
         @inject(delay(() => UserRepository))
         private userRepository: IUserRepository) { }
 
-    public async execute(id: string) {
-        this.userRepository.remove(id);
+    public async execute(id: string): Promise<DeleteResult> {
+        return await this.userRepository.remove(id);
     }
 }

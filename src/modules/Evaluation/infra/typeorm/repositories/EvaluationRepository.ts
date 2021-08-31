@@ -1,4 +1,4 @@
-import { getConnection, getRepository, Repository } from "typeorm";
+import { DeleteResult, getConnection, getRepository, Repository } from "typeorm";
 import IEvaluationRepository from "../../../repositories/IEvaluationRepository";
 import { Evaluation } from './../entities/Evaluation';
 import ICreateEvaluationDTO from './../../../dtos/ICreateEvaluationDTO';
@@ -18,8 +18,8 @@ class EvaluationRepository implements IEvaluationRepository {
     }
 
     public async create(data: ICreateEvaluationDTO, id: string): Promise<Evaluation> {
-        const user = await this.userRepository.findOne({where :{ id : id } })
-        const service = await this.serviceRepository.findOne({where :{ id : data.serviceId } })
+        const user = await this.userRepository.findOne({ where: { id: id } })
+        const service = await this.serviceRepository.findOne({ where: { id: data.serviceId } })
         const evaluation = this.ormRepository.create(data);
         evaluation.service = service;
         evaluation.user = user;
@@ -37,8 +37,8 @@ class EvaluationRepository implements IEvaluationRepository {
             .execute();
     }
 
-    public async delete(evaluationId: string): Promise<void> {
-        await this.ormRepository.delete(evaluationId);
+    public async delete(evaluationId: string): Promise<DeleteResult> {
+        return await this.ormRepository.delete(evaluationId);
     }
 }
 

@@ -1,4 +1,5 @@
 import { injectable, inject, delay } from 'tsyringe';
+import { DeleteResult } from 'typeorm';
 import OccupationRepository from './../infra/typeorm/repositories/OccupationRepository';
 import IOccupationRepository from './../repositories/IOccupationRepository';
 
@@ -8,7 +9,7 @@ export default class DeleteOccupationService {
         @inject(delay(() => OccupationRepository))
         private OccupationRepository: IOccupationRepository) { }
 
-    public async execute(id: string) {
-        this.OccupationRepository.delete(id);
+    public async execute(id: string): Promise<DeleteResult> {
+        return await this.OccupationRepository.delete(id);
     }
 }

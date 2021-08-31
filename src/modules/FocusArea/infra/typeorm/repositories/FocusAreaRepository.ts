@@ -1,4 +1,4 @@
-import { getConnection, getRepository, Repository } from "typeorm";
+import { DeleteResult, getConnection, getRepository, Repository } from "typeorm";
 import IFocusAreaRepository from "../../../repositories/IFocusAreaRepository";
 import { FocusArea } from './../entities/FocusArea';
 import ICreateFocusAreaDTO from './../../../dtos/ICreateFocusAreaDTO';
@@ -15,7 +15,7 @@ class FocusAreaRepository implements IFocusAreaRepository {
     }
 
     public async create(data: ICreateFocusAreaDTO): Promise<FocusArea> {
-        const profile = await this.profileRepository.findOne({where :{ id :data.profileId } })
+        const profile = await this.profileRepository.findOne({ where: { id: data.profileId } })
         const focusArea = this.ormRepository.create(data);
         focusArea.profile = profile;
         await this.ormRepository.save(focusArea);
@@ -32,8 +32,8 @@ class FocusAreaRepository implements IFocusAreaRepository {
             .execute();
     }
 
-    public async delete(focusAreaId: string): Promise<void> {
-        await this.ormRepository.delete(focusAreaId);
+    public async delete(focusAreaId: string): Promise<DeleteResult> {
+        return await this.ormRepository.delete(focusAreaId);
     }
 }
 

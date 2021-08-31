@@ -1,4 +1,4 @@
-import { getConnection, getRepository, Repository } from "typeorm";
+import { DeleteResult, getConnection, getRepository, Repository } from "typeorm";
 import IServiceRepository from "../../../repositories/IServiceRepository";
 import { Service } from './../entities/Service';
 import ICreateServiceDTO from './../../../dtos/ICreateServiceDTO';
@@ -22,12 +22,12 @@ class ServiceRepository implements IServiceRepository {
     }
 
     public async findById(id: string): Promise<Service> {
-        return await this.ormRepository.findOne({where : {id : id}});
+        return await this.ormRepository.findOne({ where: { id: id } });
     }
 
     public async create(data: ICreateServiceDTO): Promise<Service> {
-        const user = await this.userRepository.findOne({where :{ id : data.userId } })
-        const post = await this.postRepository.findOne({where :{ id : data.postId } })
+        const user = await this.userRepository.findOne({ where: { id: data.userId } })
+        const post = await this.postRepository.findOne({ where: { id: data.postId } })
         const service = this.ormRepository.create(data);
         service.user = user;
         service.post = post;
@@ -43,8 +43,8 @@ class ServiceRepository implements IServiceRepository {
             .execute();
     }
 
-    public async delete(ServiceId: string): Promise<void> {
-        await this.ormRepository.delete(ServiceId);
+    public async delete(ServiceId: string): Promise<DeleteResult> {
+        return await this.ormRepository.delete(ServiceId);
     }
 }
 

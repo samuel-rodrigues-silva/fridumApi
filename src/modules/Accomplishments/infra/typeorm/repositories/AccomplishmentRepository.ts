@@ -1,4 +1,4 @@
-import { getConnection, getRepository, Repository } from "typeorm";
+import { DeleteResult, getConnection, getRepository, Repository } from "typeorm";
 import IAccomplishmentRepository from "../../../repositories/IAccomplishmentRepository";
 import { Accomplishment } from './../entities/Accomplishment';
 import ICreateAccomplishmentDTO from './../../../dtos/ICreateAccomplishmentDTO';
@@ -15,7 +15,7 @@ class AccomplishmentRepository implements IAccomplishmentRepository {
     }
 
     public async create(data: ICreateAccomplishmentDTO): Promise<Accomplishment> {
-        const profile = await this.profileRepository.findOne({where :{ id :data.profileId } })
+        const profile = await this.profileRepository.findOne({ where: { id: data.profileId } })
         const accomplishment = this.ormRepository.create(data);
         accomplishment.profile = profile;
         await this.ormRepository.save(accomplishment);
@@ -32,8 +32,8 @@ class AccomplishmentRepository implements IAccomplishmentRepository {
             .execute();
     }
 
-    public async delete(accomplishmentId: string): Promise<void> {
-        await this.ormRepository.delete(accomplishmentId);
+    public async delete(accomplishmentId: string): Promise<DeleteResult> {
+        return await this.ormRepository.delete(accomplishmentId);
     }
 }
 

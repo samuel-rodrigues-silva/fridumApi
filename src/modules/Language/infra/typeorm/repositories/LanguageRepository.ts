@@ -1,4 +1,4 @@
-import { getConnection, getRepository, Repository } from "typeorm";
+import { DeleteResult, getConnection, getRepository, Repository } from "typeorm";
 import ILanguageRepository from "../../../repositories/ILanguageRepository";
 import { Language } from './../entities/Language';
 import ICreateLanguageDTO from './../../../dtos/ICreateLanguageDTO';
@@ -14,7 +14,7 @@ class LanguageRepository implements ILanguageRepository {
     }
 
     public async create(data: ICreateLanguageDTO): Promise<Language> {
-        const profile = await this.profileRepository.findOne({where :{ id : data.profileId } })
+        const profile = await this.profileRepository.findOne({ where: { id: data.profileId } })
         const Language = this.ormRepository.create(data);
         Language.profile = profile;
         await this.ormRepository.save(Language);
@@ -31,8 +31,8 @@ class LanguageRepository implements ILanguageRepository {
             .execute();
     }
 
-    public async delete(LanguageId: string): Promise<void> {
-        await this.ormRepository.delete(LanguageId);
+    public async delete(LanguageId: string): Promise<DeleteResult> {
+        return await this.ormRepository.delete(LanguageId);
     }
 }
 
