@@ -140,7 +140,7 @@ var UserController = /** @class */ (function () {
     };
     UserController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, user, error_4;
+            var id, repo, res, error_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -149,8 +149,8 @@ var UserController = /** @class */ (function () {
                         repo = tsyringe_1.container.resolve(DeleteUserService_1.default);
                         return [4 /*yield*/, repo.execute(id)];
                     case 1:
-                        user = _a.sent();
-                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(user))];
+                        res = _a.sent();
+                        return [2 /*return*/, response.json(res)];
                     case 2:
                         error_4 = _a.sent();
                         return [2 /*return*/, response.send(error_4.message)];

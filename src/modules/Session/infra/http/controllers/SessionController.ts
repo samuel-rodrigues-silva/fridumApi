@@ -36,15 +36,17 @@ class SessionController {
         try {
             const { email, password } = request.body
             const repo = getRepository(Session);
-            const session = await repo.findOne({ where: { email }, relations: [
-                'user',
-                'user.profile',
-                'user.profile.academicFormation',
-                'user.profile.accomplishment',
-                'user.profile.occupation',
-                'user.profile.language',
-                'user.profile.focusArea',
-            ] })
+            const session = await repo.findOne({
+                where: { email }, relations: [
+                    'user',
+                    'user.profile',
+                    'user.profile.academicFormation',
+                    'user.profile.accomplishment',
+                    'user.profile.occupation',
+                    'user.profile.language',
+                    'user.profile.focusArea',
+                ]
+            })
             if (!session) {
                 return response.status(409).send('Email not found')
             }
@@ -125,7 +127,8 @@ class SessionController {
             const { id } = request.params
             const repo = container.resolve(DeleteSessionService)
             await repo.execute(id);
-            return response.status(200);
+            const res = await repo.execute(id);
+            return response.json(res)
         } catch (error) {
             return response.send(error.message);
         }

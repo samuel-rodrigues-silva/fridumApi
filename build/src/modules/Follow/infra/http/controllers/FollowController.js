@@ -68,7 +68,7 @@ var FollowController = /** @class */ (function () {
     };
     FollowController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, error_1;
+            var id, repo, res, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -77,8 +77,8 @@ var FollowController = /** @class */ (function () {
                         repo = tsyringe_1.container.resolve(DeleteFollowService_1.default);
                         return [4 /*yield*/, repo.execute(id)];
                     case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
+                        res = _a.sent();
+                        return [2 /*return*/, response.json(res)];
                     case 2:
                         error_1 = _a.sent();
                         return [2 /*return*/, response.send(error_1.message)];

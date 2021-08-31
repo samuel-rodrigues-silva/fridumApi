@@ -118,7 +118,7 @@ var ProfileController = /** @class */ (function () {
     };
     ProfileController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, error_4;
+            var id, repo, res, error_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -127,8 +127,8 @@ var ProfileController = /** @class */ (function () {
                         repo = tsyringe_1.container.resolve(DeleteProfileService_1.default);
                         return [4 /*yield*/, repo.execute(id)];
                     case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
+                        res = _a.sent();
+                        return [2 /*return*/, response.json(res)];
                     case 2:
                         error_4 = _a.sent();
                         return [2 /*return*/, response.send(error_4.message)];

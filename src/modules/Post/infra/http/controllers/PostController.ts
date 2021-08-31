@@ -11,7 +11,7 @@ class PostController {
 
     public async listByCity(request: Request, response: Response): Promise<Response> {
         try {
-            const {area} = request.params
+            const { area } = request.params
             const post = container.resolve(ListPostService)
             const postList = await post.execute(area);
             return response.json(classToClass(postList))
@@ -42,7 +42,7 @@ class PostController {
 
     public async update(request: Request, response: Response): Promise<Response> {
         try {
-            const {id} = request.params;
+            const { id } = request.params;
             const repo = container.resolve(UpdatePostService);
             await repo.execute(request.body, id);
 
@@ -53,9 +53,10 @@ class PostController {
 
     public async remove(request: Request, response: Response): Promise<Response> {
         try {
-            const {id} = request.params;
+            const { id } = request.params;
             const repo = container.resolve(DeletePostService);
-            await repo.execute(id);
+            const res = await repo.execute(id);
+            return response.json(res)
         } catch (error) {
             return response.send(error.message);
         }

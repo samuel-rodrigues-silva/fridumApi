@@ -74,8 +74,8 @@ class UserController {
         try {
             const { id } = request.params;
             const repo = container.resolve(DeleteUserService);
-            const user = await repo.execute(id);
-            return response.json(classToClass(user));
+            const res = await repo.execute(id);
+            return response.json(res);
         } catch (error) {
             return response.send(error.message);
         }

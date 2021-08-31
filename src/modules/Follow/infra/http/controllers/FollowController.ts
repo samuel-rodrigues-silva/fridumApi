@@ -18,9 +18,10 @@ class FollowController {
 
     public async remove(request: Request, response: Response): Promise<Response> {
         try {
-            const {id} = request.params;
+            const { id } = request.params;
             const repo = container.resolve(DeleteFollowService);
-            await repo.execute(id);
+            const res = await repo.execute(id);
+            return response.json(res)
         } catch (error) {
             return response.send(error.message);
         }

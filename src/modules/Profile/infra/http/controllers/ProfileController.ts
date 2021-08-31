@@ -58,7 +58,8 @@ class ProfileController {
         try {
             const { id } = request.params;
             const repo = container.resolve(DeleteProfileService);
-            await repo.execute(id);
+            const res = await repo.execute(id);
+            return response.json(res)
         } catch (error) {
             return response.send(error.message);
         }

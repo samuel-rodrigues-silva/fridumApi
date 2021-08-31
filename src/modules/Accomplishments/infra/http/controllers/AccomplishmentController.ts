@@ -20,7 +20,7 @@ class AccomplishmentController {
 
     public async update(request: Request, response: Response): Promise<Response> {
         try {
-            const {id} = request.params;
+            const { id } = request.params;
             const repo = container.resolve(UpdateAccomplishmentService);
             await repo.execute(request.body, id);
 
@@ -31,9 +31,10 @@ class AccomplishmentController {
 
     public async remove(request: Request, response: Response): Promise<Response> {
         try {
-            const {id} = request.params;
+            const { id } = request.params;
             const repo = container.resolve(DeleteAccomplishmentService);
-            await repo.execute(id);
+            const res = await repo.execute(id);
+            return response.json(res)
         } catch (error) {
             return response.send(error.message);
         }

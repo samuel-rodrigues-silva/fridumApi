@@ -9,7 +9,7 @@ class EvaluationController {
 
     public async create(request: Request, response: Response): Promise<Response> {
         try {
-            const {id} = request.params
+            const { id } = request.params
             const createEvaluation = container.resolve(CreateEvaluationService)
             const evaluation = await createEvaluation.execute(request.body, id);
             return response.json(classToClass(evaluation))
@@ -21,7 +21,7 @@ class EvaluationController {
 
     public async update(request: Request, response: Response): Promise<Response> {
         try {
-            const {id} = request.params;
+            const { id } = request.params;
             const repo = container.resolve(UpdateEvaluationService);
             await repo.execute(request.body, id);
 
@@ -32,9 +32,10 @@ class EvaluationController {
 
     public async remove(request: Request, response: Response): Promise<Response> {
         try {
-            const {id} = request.params;
+            const { id } = request.params;
             const repo = container.resolve(DeleteEvaluationService);
-            await repo.execute(id);
+            const res = await repo.execute(id);
+            return response.json(res)
         } catch (error) {
             return response.send(error.message);
         }

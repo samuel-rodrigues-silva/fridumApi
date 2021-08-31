@@ -89,7 +89,8 @@ var SessionController = /** @class */ (function () {
                         _b.trys.push([0, 3, , 4]);
                         _a = request.body, email = _a.email, password = _a.password;
                         repo = (0, typeorm_1.getRepository)(Session_1.Session);
-                        return [4 /*yield*/, repo.findOne({ where: { email: email }, relations: [
+                        return [4 /*yield*/, repo.findOne({
+                                where: { email: email }, relations: [
                                     'user',
                                     'user.profile',
                                     'user.profile.academicFormation',
@@ -97,7 +98,8 @@ var SessionController = /** @class */ (function () {
                                     'user.profile.occupation',
                                     'user.profile.language',
                                     'user.profile.focusArea',
-                                ] })];
+                                ]
+                            })];
                     case 1:
                         session = _b.sent();
                         if (!session) {
@@ -206,21 +208,24 @@ var SessionController = /** @class */ (function () {
     };
     SessionController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, error_6;
+            var id, repo, res, error_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
+                        _a.trys.push([0, 3, , 4]);
                         id = request.params.id;
                         repo = tsyringe_1.container.resolve(DeleteSessionService_1.default);
                         return [4 /*yield*/, repo.execute(id)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, response.status(200)];
+                        return [4 /*yield*/, repo.execute(id)];
                     case 2:
+                        res = _a.sent();
+                        return [2 /*return*/, response.json(res)];
+                    case 3:
                         error_6 = _a.sent();
                         return [2 /*return*/, response.send(error_6.message)];
-                    case 3: return [2 /*return*/];
+                    case 4: return [2 /*return*/];
                 }
             });
         });

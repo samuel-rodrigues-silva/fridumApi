@@ -91,7 +91,7 @@ var AccomplishmentController = /** @class */ (function () {
     };
     AccomplishmentController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, error_2;
+            var id, repo, res, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -100,8 +100,8 @@ var AccomplishmentController = /** @class */ (function () {
                         repo = tsyringe_1.container.resolve(DeleteAccomplishmentService_1.default);
                         return [4 /*yield*/, repo.execute(id)];
                     case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
+                        res = _a.sent();
+                        return [2 /*return*/, response.json(res)];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, response.send(error_2.message)];
