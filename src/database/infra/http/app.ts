@@ -7,7 +7,7 @@ const corsOptions = {
     origin: '*',
 }
 
-app.use(cors(corsOptions))
+app.options('*', cors(corsOptions))
 
 app.use((request, response, next) => {
     response.header("Access-Control-Allow-Origin", "*");
