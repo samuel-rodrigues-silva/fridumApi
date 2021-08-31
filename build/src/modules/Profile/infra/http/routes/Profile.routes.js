@@ -7,15 +7,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var celebrate_1 = require("celebrate");
 var express_1 = require("express");
 var ProfileController_1 = __importDefault(require("../controllers/ProfileController"));
-var profileRoutes = express_1.Router();
+var profileRoutes = (0, express_1.Router)();
 var profileController = new ProfileController_1.default();
 profileRoutes.get('/', profileController.listAll);
-profileRoutes.get('/:id', celebrate_1.celebrate((_a = {},
+profileRoutes.get('/:id', (0, celebrate_1.celebrate)((_a = {},
     _a[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
     _a)), profileController.fetchBy);
-profileRoutes.patch('/:id', celebrate_1.celebrate((_b = {},
+profileRoutes.patch('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid(),
     },

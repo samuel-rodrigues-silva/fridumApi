@@ -42,9 +42,9 @@ var User_1 = require("./../../../../User/infra/typeorm/entities/User");
 var Post_1 = require("./../../../../Post/infra/typeorm/entities/Post");
 var StarredRepository = /** @class */ (function () {
     function StarredRepository() {
-        this.ormRepository = typeorm_1.getRepository(Starred_1.Starred);
-        this.userRepository = typeorm_1.getRepository(User_1.User);
-        this.postRepository = typeorm_1.getRepository(Post_1.Post);
+        this.ormRepository = (0, typeorm_1.getRepository)(Starred_1.Starred);
+        this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
+        this.postRepository = (0, typeorm_1.getRepository)(Post_1.Post);
     }
     StarredRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {

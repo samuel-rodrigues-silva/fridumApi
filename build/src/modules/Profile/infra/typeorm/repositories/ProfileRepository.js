@@ -41,7 +41,7 @@ var typeorm_1 = require("typeorm");
 var typeorm_2 = require("typeorm");
 var ProfileRepository = /** @class */ (function () {
     function ProfileRepository() {
-        this.ormRepository = typeorm_1.getRepository(Profile_1.Profile);
+        this.ormRepository = (0, typeorm_1.getRepository)(Profile_1.Profile);
     }
     ProfileRepository.prototype.fetchBy = function (id) {
         return __awaiter(this, void 0, void 0, function () {
@@ -82,7 +82,7 @@ var ProfileRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_2.getConnection()
+                    case 0: return [4 /*yield*/, (0, typeorm_2.getConnection)()
                             .createQueryBuilder()
                             .update(Profile_1.Profile)
                             .set(data)

@@ -15,27 +15,27 @@ var Location = /** @class */ (function () {
     function Location() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], Location.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column('int'),
+        (0, typeorm_1.Column)('int'),
         __metadata("design:type", Number)
     ], Location.prototype, "longitude", void 0);
     __decorate([
-        typeorm_1.Column('int'),
+        (0, typeorm_1.Column)('int'),
         __metadata("design:type", Number)
     ], Location.prototype, "latitude", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Location.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Location.prototype, "updatedAt", void 0);
     Location = __decorate([
-        typeorm_1.Entity('location')
+        (0, typeorm_1.Entity)('location')
     ], Location);
     return Location;
 }());

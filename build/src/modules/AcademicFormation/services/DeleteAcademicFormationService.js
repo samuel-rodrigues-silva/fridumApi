@@ -60,13 +60,16 @@ var DeleteAcademicFormationService = /** @class */ (function () {
     DeleteAcademicFormationService.prototype.execute = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.academicFormationRepository.delete(id)];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.academicFormationRepository.delete(id)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
     DeleteAcademicFormationService = __decorate([
-        tsyringe_1.injectable(),
-        __param(0, tsyringe_1.inject(tsyringe_1.delay(function () { return AcademicFormationRepository_1.default; }))),
+        (0, tsyringe_1.injectable)(),
+        __param(0, (0, tsyringe_1.inject)((0, tsyringe_1.delay)(function () { return AcademicFormationRepository_1.default; }))),
         __metadata("design:paramtypes", [Object])
     ], DeleteAcademicFormationService);
     return DeleteAcademicFormationService;

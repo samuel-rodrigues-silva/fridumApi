@@ -43,10 +43,10 @@ var Follow_1 = require("./../../../../Follow/infra/typeorm/entities/Follow");
 var Post_1 = require("./../../../../Post/infra/typeorm/entities/Post");
 var ServiceRepository = /** @class */ (function () {
     function ServiceRepository() {
-        this.ormRepository = typeorm_1.getRepository(Service_1.Service);
-        this.userRepository = typeorm_1.getRepository(User_1.User);
-        this.postRepository = typeorm_1.getRepository(Post_1.Post);
-        this.followRepository = typeorm_1.getRepository(Follow_1.Follow);
+        this.ormRepository = (0, typeorm_1.getRepository)(Service_1.Service);
+        this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
+        this.postRepository = (0, typeorm_1.getRepository)(Post_1.Post);
+        this.followRepository = (0, typeorm_1.getRepository)(Follow_1.Follow);
     }
     ServiceRepository.prototype.findById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
@@ -82,7 +82,7 @@ var ServiceRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_1.getConnection()
+                    case 0: return [4 /*yield*/, (0, typeorm_1.getConnection)()
                             .createQueryBuilder()
                             .update(Service_1.Service)
                             .set(data)

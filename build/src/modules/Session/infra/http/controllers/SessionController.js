@@ -59,7 +59,7 @@ var SessionController = /** @class */ (function () {
                     case 0:
                         _b.trys.push([0, 5, , 6]);
                         _a = request.body, email = _a.email, password = _a.password, userId = _a.userId;
-                        repo = typeorm_1.getRepository(Session_1.Session);
+                        repo = (0, typeorm_1.getRepository)(Session_1.Session);
                         return [4 /*yield*/, repo.findOne({ where: { email: email } })];
                     case 1:
                         userExists = _b.sent();
@@ -88,7 +88,7 @@ var SessionController = /** @class */ (function () {
                     case 0:
                         _b.trys.push([0, 3, , 4]);
                         _a = request.body, email = _a.email, password = _a.password;
-                        repo = typeorm_1.getRepository(Session_1.Session);
+                        repo = (0, typeorm_1.getRepository)(Session_1.Session);
                         return [4 /*yield*/, repo.findOne({ where: { email: email }, relations: [
                                     'user',
                                     'user.profile',
@@ -139,7 +139,7 @@ var SessionController = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         id = request.params.id;
-                        repo = typeorm_1.getRepository(Session_1.Session);
+                        repo = (0, typeorm_1.getRepository)(Session_1.Session);
                         return [4 /*yield*/, repo.findOne({ where: { id: id }, relations: ['user'] })];
                     case 1:
                         res = _a.sent();
@@ -162,11 +162,11 @@ var SessionController = /** @class */ (function () {
                         _a.trys.push([0, 2, , 3]);
                         email = request.body.email;
                         console.log(email);
-                        repo = typeorm_1.getRepository(Session_1.Session);
+                        repo = (0, typeorm_1.getRepository)(Session_1.Session);
                         return [4 /*yield*/, repo.findOne({ where: { email: email } })];
                     case 1:
                         res = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(res))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(res))];
                     case 2:
                         error_4 = _a.sent();
                         console.log("errorMessage =>", error_4.message);
@@ -185,7 +185,7 @@ var SessionController = /** @class */ (function () {
                         _b.trys.push([0, 4, , 5]);
                         id = request.params.id;
                         _a = request.body, email = _a.email, password = _a.password;
-                        repo = typeorm_1.getRepository(Session_1.Session);
+                        repo = (0, typeorm_1.getRepository)(Session_1.Session);
                         return [4 /*yield*/, repo.findOne(id)];
                     case 1:
                         findSession = _b.sent();

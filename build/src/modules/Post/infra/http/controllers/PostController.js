@@ -61,7 +61,7 @@ var PostController = /** @class */ (function () {
                         return [4 /*yield*/, post.execute(area)];
                     case 1:
                         postList = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(postList))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(postList))];
                     case 2:
                         err_1 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_1.message)];
@@ -81,7 +81,7 @@ var PostController = /** @class */ (function () {
                         return [4 /*yield*/, post.execute(request.body)];
                     case 1:
                         res = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(res))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(res))];
                     case 2:
                         err_2 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_2.message)];
@@ -101,7 +101,7 @@ var PostController = /** @class */ (function () {
                         return [4 /*yield*/, createPost.execute(request.body)];
                     case 1:
                         Post = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(Post))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(Post))];
                     case 2:
                         err_3 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_3.message)];

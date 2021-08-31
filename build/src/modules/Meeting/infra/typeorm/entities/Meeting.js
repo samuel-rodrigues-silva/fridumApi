@@ -18,35 +18,35 @@ var Meeting = /** @class */ (function () {
     function Meeting() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], Meeting.prototype, "id", void 0);
     __decorate([
-        typeorm_1.ManyToMany(function () { return User_1.User; }, function (user) { return user.id; }),
+        (0, typeorm_1.ManyToMany)(function () { return User_1.User; }, function (user) { return user.id; }),
         __metadata("design:type", User_1.User)
     ], Meeting.prototype, "user_id", void 0);
     __decorate([
-        typeorm_1.ManyToMany(function () { return Follow_1.Follow; }, function (follow) { return follow.id; }),
+        (0, typeorm_1.ManyToMany)(function () { return Follow_1.Follow; }, function (follow) { return follow.id; }),
         __metadata("design:type", Follow_1.Follow)
     ], Meeting.prototype, "follow_id", void 0);
     __decorate([
-        typeorm_1.ManyToMany(function () { return Location_1.Location; }, function (location) { return location.id; }),
+        (0, typeorm_1.ManyToMany)(function () { return Location_1.Location; }, function (location) { return location.id; }),
         __metadata("design:type", Location_1.Location)
     ], Meeting.prototype, "location_id", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Meeting.prototype, "meeting_time", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Meeting.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Meeting.prototype, "updatedAt", void 0);
     Meeting = __decorate([
-        typeorm_1.Entity('meeting')
+        (0, typeorm_1.Entity)('meeting')
     ], Meeting);
     return Meeting;
 }());

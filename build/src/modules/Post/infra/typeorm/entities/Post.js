@@ -16,51 +16,51 @@ var Post = /** @class */ (function () {
     function Post() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], Post.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column('text'),
+        (0, typeorm_1.Column)('text'),
         __metadata("design:type", String)
     ], Post.prototype, "description", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], Post.prototype, "title", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], Post.prototype, "city", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], Post.prototype, "state", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], Post.prototype, "image", void 0);
     __decorate([
-        typeorm_1.Column('double'),
+        (0, typeorm_1.Column)('double'),
         __metadata("design:type", typeorm_1.Double)
     ], Post.prototype, "price", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Post.prototype, "expected_date_of_delivery", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Post.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Post.prototype, "updatedAt", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return User_1.User; }),
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }),
         __metadata("design:type", User_1.User)
     ], Post.prototype, "user", void 0);
     Post = __decorate([
-        typeorm_1.Entity('post')
+        (0, typeorm_1.Entity)('post')
     ], Post);
     return Post;
 }());

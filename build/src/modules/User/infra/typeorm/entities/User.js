@@ -17,60 +17,60 @@ var User = /** @class */ (function () {
     function User() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], User.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], User.prototype, "name", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], User.prototype, "birthDate", void 0);
     __decorate([
-        typeorm_1.Column({ type: 'varchar', unique: true }),
+        (0, typeorm_1.Column)({ type: 'varchar', unique: true }),
         __metadata("design:type", String)
     ], User.prototype, "document", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], User.prototype, "city", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], User.prototype, "state", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], User.prototype, "district", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], User.prototype, "street", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], User.prototype, "phNumber", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], User.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], User.prototype, "updatedAt", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.id; }, { cascade: true, onDelete: 'CASCADE' }),
-        typeorm_1.JoinColumn(),
+        (0, typeorm_1.OneToOne)(function () { return Profile_1.Profile; }, function (profile) { return profile.id; }, { cascade: true, onDelete: 'CASCADE' }),
+        (0, typeorm_1.JoinColumn)(),
         __metadata("design:type", Profile_1.Profile)
     ], User.prototype, "profile", void 0);
     __decorate([
-        typeorm_1.OneToMany(function () { return Post_1.Post; }, function (Post) { return Post.user; }),
+        (0, typeorm_1.OneToMany)(function () { return Post_1.Post; }, function (Post) { return Post.user; }),
         __metadata("design:type", Array)
     ], User.prototype, "post", void 0);
     User = __decorate([
-        typeorm_1.Entity('user')
+        (0, typeorm_1.Entity)('user')
     ], User);
     return User;
 }());

@@ -33,12 +33,7 @@ class AcademicFormationRepository implements IAcademicFormationRepository {
     }
 
     public async delete(academicFormationId: string): Promise<DeleteResult> {
-        return await getConnection()
-            .createQueryBuilder()
-            .delete()
-            .from(AcademicFormation)
-            .where("id = :id", { id: academicFormationId })
-            .execute();
+        return await this.ormRepository.delete(academicFormationId)
     }
 }
 

@@ -42,9 +42,9 @@ var Service_1 = require("./../../../../Service/infra/typeorm/entities/Service");
 var User_1 = require("./../../../../User/infra/typeorm/entities/User");
 var EvaluationRepository = /** @class */ (function () {
     function EvaluationRepository() {
-        this.ormRepository = typeorm_1.getRepository(Evaluation_1.Evaluation);
-        this.serviceRepository = typeorm_1.getRepository(Service_1.Service);
-        this.userRepository = typeorm_1.getRepository(User_1.User);
+        this.ormRepository = (0, typeorm_1.getRepository)(Evaluation_1.Evaluation);
+        this.serviceRepository = (0, typeorm_1.getRepository)(Service_1.Service);
+        this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
     }
     EvaluationRepository.prototype.create = function (data, id) {
         return __awaiter(this, void 0, void 0, function () {
@@ -72,7 +72,7 @@ var EvaluationRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_1.getConnection()
+                    case 0: return [4 /*yield*/, (0, typeorm_1.getConnection)()
                             .createQueryBuilder()
                             .update(Evaluation_1.Evaluation)
                             .set(data)

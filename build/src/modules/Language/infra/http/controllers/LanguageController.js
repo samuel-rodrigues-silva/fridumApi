@@ -58,7 +58,7 @@ var LanguageController = /** @class */ (function () {
                         return [4 /*yield*/, createLanguage.execute(request.body)];
                     case 1:
                         Language = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(Language))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(Language))];
                     case 2:
                         err_1 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_1.message)];

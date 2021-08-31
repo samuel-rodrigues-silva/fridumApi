@@ -17,39 +17,39 @@ var Evaluation = /** @class */ (function () {
     function Evaluation() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], Evaluation.prototype, "id", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return Service_1.Service; }, function (service) { return service.id; }, {
+        (0, typeorm_1.OneToOne)(function () { return Service_1.Service; }, function (service) { return service.id; }, {
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
         }),
-        typeorm_1.JoinColumn(),
+        (0, typeorm_1.JoinColumn)(),
         __metadata("design:type", Service_1.Service)
     ], Evaluation.prototype, "service", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return User_1.User; }, function (user) { return user.id; }),
+        (0, typeorm_1.OneToOne)(function () { return User_1.User; }, function (user) { return user.id; }),
         __metadata("design:type", User_1.User)
     ], Evaluation.prototype, "user", void 0);
     __decorate([
-        typeorm_1.Column('text'),
+        (0, typeorm_1.Column)('text'),
         __metadata("design:type", String)
     ], Evaluation.prototype, "description", void 0);
     __decorate([
-        typeorm_1.Column('int'),
+        (0, typeorm_1.Column)('int'),
         __metadata("design:type", Number)
     ], Evaluation.prototype, "rating", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Evaluation.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Evaluation.prototype, "updatedAt", void 0);
     Evaluation = __decorate([
-        typeorm_1.Entity('evaluation')
+        (0, typeorm_1.Entity)('evaluation')
     ], Evaluation);
     return Evaluation;
 }());

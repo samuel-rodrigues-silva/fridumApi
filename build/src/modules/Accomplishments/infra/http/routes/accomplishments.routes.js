@@ -7,9 +7,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var celebrate_1 = require("celebrate");
 var express_1 = require("express");
 var AccomplishmentController_1 = __importDefault(require("../controllers/AccomplishmentController"));
-var accomplishmentRouter = express_1.Router();
+var accomplishmentRouter = (0, express_1.Router)();
 var accomplishmentController = new AccomplishmentController_1.default();
-accomplishmentRouter.post('/', celebrate_1.celebrate((_a = {},
+accomplishmentRouter.post('/', (0, celebrate_1.celebrate)((_a = {},
     _a[celebrate_1.Segments.BODY] = {
         profileId: celebrate_1.Joi.string().uuid().required(),
         title: celebrate_1.Joi.string().min(3).required(),
@@ -17,12 +17,12 @@ accomplishmentRouter.post('/', celebrate_1.celebrate((_a = {},
         image: celebrate_1.Joi.string()
     },
     _a)), accomplishmentController.create);
-accomplishmentRouter.patch('/:id', celebrate_1.celebrate((_b = {},
+accomplishmentRouter.patch('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
     _b)), accomplishmentController.update);
-accomplishmentRouter.delete('/:id', celebrate_1.celebrate((_c = {},
+accomplishmentRouter.delete('/:id', (0, celebrate_1.celebrate)((_c = {},
     _c[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },

@@ -42,8 +42,8 @@ var User_1 = require("../entities/User");
 var Profile_1 = require("./../../../../Profile/infra/typeorm/entities/Profile");
 var UserRepository = /** @class */ (function () {
     function UserRepository() {
-        this.userRepository = typeorm_1.getRepository(User_1.User);
-        this.profileRepository = typeorm_1.getRepository(Profile_1.Profile);
+        this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
+        this.profileRepository = (0, typeorm_1.getRepository)(Profile_1.Profile);
     }
     UserRepository.prototype.listAll = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -104,7 +104,7 @@ var UserRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_2.getConnection()
+                    case 0: return [4 /*yield*/, (0, typeorm_2.getConnection)()
                             .createQueryBuilder()
                             .update(User_1.User)
                             .set(data)

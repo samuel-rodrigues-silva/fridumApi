@@ -57,7 +57,7 @@ var FollowController = /** @class */ (function () {
                         return [4 /*yield*/, createFollow.execute(request.body)];
                     case 1:
                         follow = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(follow))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(follow))];
                     case 2:
                         err_1 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_1.message)];

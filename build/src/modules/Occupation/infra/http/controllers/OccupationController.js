@@ -58,7 +58,7 @@ var OccupationController = /** @class */ (function () {
                         return [4 /*yield*/, createOccupation.execute(request.body)];
                     case 1:
                         Occupation = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(Occupation))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(Occupation))];
                     case 2:
                         err_1 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_1.message)];

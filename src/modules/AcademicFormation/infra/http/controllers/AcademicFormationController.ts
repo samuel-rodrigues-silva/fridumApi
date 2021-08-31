@@ -21,7 +21,7 @@ class AcademicFormationController {
 
     public async update(request: Request, response: Response): Promise<Response> {
         try {
-            const {id} = request.params;
+            const { id } = request.params;
             const repo = container.resolve(UpdateAcademicFormationService);
             await repo.execute(request.body, id);
 
@@ -32,9 +32,10 @@ class AcademicFormationController {
 
     public async remove(request: Request, response: Response): Promise<Response> {
         try {
-            const {id} = request.params;
+            const { id } = request.params;
             const repo = container.resolve(DeleteAcademicFormationService);
-            await repo.execute(id);
+            const res = await repo.execute(id);
+            return response.json(res)
         } catch (error) {
             return response.send(error.message);
         }

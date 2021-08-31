@@ -41,8 +41,8 @@ var Language_1 = require("./../entities/Language");
 var Profile_1 = require("./../../../../Profile/infra/typeorm/entities/Profile");
 var LanguageRepository = /** @class */ (function () {
     function LanguageRepository() {
-        this.ormRepository = typeorm_1.getRepository(Language_1.Language);
-        this.profileRepository = typeorm_1.getRepository(Profile_1.Profile);
+        this.ormRepository = (0, typeorm_1.getRepository)(Language_1.Language);
+        this.profileRepository = (0, typeorm_1.getRepository)(Profile_1.Profile);
     }
     LanguageRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
@@ -66,7 +66,7 @@ var LanguageRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_1.getConnection()
+                    case 0: return [4 /*yield*/, (0, typeorm_1.getConnection)()
                             .createQueryBuilder()
                             .update(Language_1.Language)
                             .set(data)

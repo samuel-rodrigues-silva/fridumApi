@@ -41,9 +41,9 @@ var Chat_1 = require("./../entities/Chat");
 var User_1 = require("./../../../../User/infra/typeorm/entities/User");
 var ChatRepository = /** @class */ (function () {
     function ChatRepository() {
-        this.ormRepository = typeorm_1.getRepository(Chat_1.Chat);
-        this.userRepository = typeorm_1.getRepository(User_1.User);
-        this.followRepository = typeorm_1.getRepository(User_1.User);
+        this.ormRepository = (0, typeorm_1.getRepository)(Chat_1.Chat);
+        this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
+        this.followRepository = (0, typeorm_1.getRepository)(User_1.User);
     }
     ChatRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {

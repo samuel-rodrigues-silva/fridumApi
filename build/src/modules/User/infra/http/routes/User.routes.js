@@ -7,15 +7,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var celebrate_1 = require("celebrate");
 var express_1 = require("express");
 var UserController_1 = __importDefault(require("../controllers/UserController"));
-var userRoutes = express_1.Router();
+var userRoutes = (0, express_1.Router)();
 var userController = new UserController_1.default();
 userRoutes.get('/', userController.listAll);
-userRoutes.get('/:id', celebrate_1.celebrate((_a = {},
+userRoutes.get('/:id', (0, celebrate_1.celebrate)((_a = {},
     _a[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
     _a)), userController.fetchBy);
-userRoutes.post('/', celebrate_1.celebrate((_b = {},
+userRoutes.post('/', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.BODY] = {
         name: celebrate_1.Joi.string().min(3).required(),
         birthDate: celebrate_1.Joi.string().required(),
@@ -27,7 +27,7 @@ userRoutes.post('/', celebrate_1.celebrate((_b = {},
         phNumber: celebrate_1.Joi.string().required(),
     },
     _b)), userController.create);
-userRoutes.patch('/:id', celebrate_1.celebrate((_c = {},
+userRoutes.patch('/:id', (0, celebrate_1.celebrate)((_c = {},
     _c[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid(),
     },
@@ -41,7 +41,7 @@ userRoutes.patch('/:id', celebrate_1.celebrate((_c = {},
         phNumber: celebrate_1.Joi.string().required(),
     },
     _c)), userController.update);
-userRoutes.delete('/:id', celebrate_1.celebrate((_d = {},
+userRoutes.delete('/:id', (0, celebrate_1.celebrate)((_d = {},
     _d[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },

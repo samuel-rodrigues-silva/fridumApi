@@ -48,7 +48,7 @@ var LocationController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        repo = typeorm_1.getRepository(Location_1.Location);
+                        repo = (0, typeorm_1.getRepository)(Location_1.Location);
                         return [4 /*yield*/, repo.save(request.body)];
                     case 1:
                         res = _a.sent();
@@ -69,7 +69,7 @@ var LocationController = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         console.log(request.params);
-                        repo = typeorm_1.getRepository(Location_1.Location);
+                        repo = (0, typeorm_1.getRepository)(Location_1.Location);
                         return [4 /*yield*/, repo.find(request.params)];
                     case 1:
                         res = _a.sent();
@@ -102,7 +102,7 @@ var LocationController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        repo = typeorm_1.getRepository(Location_1.Location);
+                        repo = (0, typeorm_1.getRepository)(Location_1.Location);
                         return [4 /*yield*/, repo.delete(request.params.id)];
                     case 1:
                         res = _a.sent();

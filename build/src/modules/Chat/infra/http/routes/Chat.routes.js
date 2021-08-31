@@ -7,9 +7,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var celebrate_1 = require("celebrate");
 var express_1 = require("express");
 var ChatController_1 = __importDefault(require("../controllers/ChatController"));
-var chatRouter = express_1.Router();
+var chatRouter = (0, express_1.Router)();
 var chatController = new ChatController_1.default();
-chatRouter.post('/', celebrate_1.celebrate((_a = {},
+chatRouter.post('/', (0, celebrate_1.celebrate)((_a = {},
     _a[celebrate_1.Segments.BODY] = {
         userId: celebrate_1.Joi.string().required(),
         followId: celebrate_1.Joi.string().required(),
@@ -20,7 +20,7 @@ chatRouter.post('/', celebrate_1.celebrate((_a = {},
 //         id: Joi.string().uuid().required()
 //     }
 // }), chatController.fetchById)
-chatRouter.delete('/:id', celebrate_1.celebrate((_b = {},
+chatRouter.delete('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },

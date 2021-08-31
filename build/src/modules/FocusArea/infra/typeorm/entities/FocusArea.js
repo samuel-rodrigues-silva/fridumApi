@@ -16,27 +16,27 @@ var FocusArea = /** @class */ (function () {
     function FocusArea() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], FocusArea.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], FocusArea.prototype, "business", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], FocusArea.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], FocusArea.prototype, "updatedAt", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.focusArea; }, { cascade: true, onDelete: 'CASCADE' }),
+        (0, typeorm_1.ManyToOne)(function () { return Profile_1.Profile; }, function (profile) { return profile.focusArea; }, { cascade: true, onDelete: 'CASCADE' }),
         __metadata("design:type", Profile_1.Profile)
     ], FocusArea.prototype, "profile", void 0);
     FocusArea = __decorate([
-        typeorm_1.Entity('focusarea')
+        (0, typeorm_1.Entity)('focusarea')
     ], FocusArea);
     return FocusArea;
 }());

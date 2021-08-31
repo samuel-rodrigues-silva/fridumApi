@@ -58,7 +58,7 @@ var AcademicFormationController = /** @class */ (function () {
                         return [4 /*yield*/, createAcademicFormation.execute(request.body)];
                     case 1:
                         academicFormation = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(academicFormation))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(academicFormation))];
                     case 2:
                         err_1 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_1.message)];
@@ -90,7 +90,7 @@ var AcademicFormationController = /** @class */ (function () {
     };
     AcademicFormationController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, error_2;
+            var id, repo, res, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -99,8 +99,8 @@ var AcademicFormationController = /** @class */ (function () {
                         repo = tsyringe_1.container.resolve(DeleteAcademicFormationService_1.default);
                         return [4 /*yield*/, repo.execute(id)];
                     case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
+                        res = _a.sent();
+                        return [2 /*return*/, response.json(res)];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, response.send(error_2.message)];

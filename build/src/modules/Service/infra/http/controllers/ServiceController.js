@@ -59,7 +59,7 @@ var ServiceController = /** @class */ (function () {
                         return [4 /*yield*/, Service.execute(request.body)];
                     case 1:
                         res = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(res))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(res))];
                     case 2:
                         err_1 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_1.message)];
@@ -79,7 +79,7 @@ var ServiceController = /** @class */ (function () {
                         return [4 /*yield*/, createService.execute(request.body)];
                     case 1:
                         Service = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(Service))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(Service))];
                     case 2:
                         err_2 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_2.message)];

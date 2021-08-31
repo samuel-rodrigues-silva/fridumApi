@@ -41,9 +41,9 @@ var Follow_1 = require("./../entities/Follow");
 var User_1 = require("./../../../../User/infra/typeorm/entities/User");
 var FollowRepository = /** @class */ (function () {
     function FollowRepository() {
-        this.ormRepository = typeorm_1.getRepository(Follow_1.Follow);
-        this.userFollowedRepository = typeorm_1.getRepository(User_1.User);
-        this.userRepository = typeorm_1.getRepository(User_1.User);
+        this.ormRepository = (0, typeorm_1.getRepository)(Follow_1.Follow);
+        this.userFollowedRepository = (0, typeorm_1.getRepository)(User_1.User);
+        this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
     }
     FollowRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {

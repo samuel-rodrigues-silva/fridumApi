@@ -59,7 +59,7 @@ var ProfileController = /** @class */ (function () {
                         return [4 /*yield*/, repo.execute()];
                     case 1:
                         profileList = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(profileList))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(profileList))];
                     case 2:
                         error_1 = _a.sent();
                         return [2 /*return*/, response.send(error_1.message)];
@@ -80,7 +80,7 @@ var ProfileController = /** @class */ (function () {
                         return [4 /*yield*/, repo.execute(id)];
                     case 1:
                         profile = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(profile))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(profile))];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, response.send(error_2.message)];

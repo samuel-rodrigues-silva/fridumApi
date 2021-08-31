@@ -16,39 +16,39 @@ var Occupation = /** @class */ (function () {
     function Occupation() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], Occupation.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], Occupation.prototype, "role", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], Occupation.prototype, "company", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
         __metadata("design:type", Date)
     ], Occupation.prototype, "date_in", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
         __metadata("design:type", Date)
     ], Occupation.prototype, "date_out", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Occupation.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Occupation.prototype, "updatedAt", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.occupation; }, { cascade: true, onDelete: 'CASCADE' }),
+        (0, typeorm_1.ManyToOne)(function () { return Profile_1.Profile; }, function (profile) { return profile.occupation; }, { cascade: true, onDelete: 'CASCADE' }),
         __metadata("design:type", Profile_1.Profile)
     ], Occupation.prototype, "profile", void 0);
     Occupation = __decorate([
-        typeorm_1.Entity('occupation')
+        (0, typeorm_1.Entity)('occupation')
     ], Occupation);
     return Occupation;
 }());

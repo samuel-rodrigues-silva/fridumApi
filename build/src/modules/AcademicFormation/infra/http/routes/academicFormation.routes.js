@@ -7,9 +7,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var celebrate_1 = require("celebrate");
 var express_1 = require("express");
 var AcademicFormationController_1 = __importDefault(require("../controllers/AcademicFormationController"));
-var academicFormationRouter = express_1.Router();
+var academicFormationRouter = (0, express_1.Router)();
 var academicFormationController = new AcademicFormationController_1.default();
-academicFormationRouter.post('/', celebrate_1.celebrate((_a = {},
+academicFormationRouter.post('/', (0, celebrate_1.celebrate)((_a = {},
     _a[celebrate_1.Segments.BODY] = {
         profileId: celebrate_1.Joi.string().uuid().required(),
         title: celebrate_1.Joi.string().min(3).required(),
@@ -19,12 +19,12 @@ academicFormationRouter.post('/', celebrate_1.celebrate((_a = {},
         institution: celebrate_1.Joi.string(),
     },
     _a)), academicFormationController.create);
-academicFormationRouter.patch('/:id', celebrate_1.celebrate((_b = {},
+academicFormationRouter.patch('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
     _b)), academicFormationController.update);
-academicFormationRouter.delete('/:id', celebrate_1.celebrate((_c = {},
+academicFormationRouter.delete('/:id', (0, celebrate_1.celebrate)((_c = {},
     _c[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },

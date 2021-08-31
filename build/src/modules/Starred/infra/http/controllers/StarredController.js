@@ -57,7 +57,7 @@ var StarredController = /** @class */ (function () {
                         return [4 /*yield*/, createStarred.execute(request.body)];
                     case 1:
                         starred = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(starred))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(starred))];
                     case 2:
                         err_1 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_1.message)];

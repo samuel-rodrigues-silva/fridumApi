@@ -60,7 +60,7 @@ var UserController = /** @class */ (function () {
                         return [4 /*yield*/, repo.execute(request.body)];
                     case 1:
                         user = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(user))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(user))];
                     case 2:
                         error_1 = _a.sent();
                         return [2 /*return*/, response.send(error_1.message)];
@@ -80,7 +80,7 @@ var UserController = /** @class */ (function () {
                         return [4 /*yield*/, repo.execute()];
                     case 1:
                         user = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(user))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(user))];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, response.send(error_2.message)];
@@ -101,7 +101,7 @@ var UserController = /** @class */ (function () {
                         return [4 /*yield*/, repo.execute(id)];
                     case 1:
                         user = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(user))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(user))];
                     case 2:
                         error_3 = _a.sent();
                         return [2 /*return*/, response.send(error_3.message)];
@@ -150,7 +150,7 @@ var UserController = /** @class */ (function () {
                         return [4 /*yield*/, repo.execute(id)];
                     case 1:
                         user = _a.sent();
-                        return [2 /*return*/, response.json(class_transformer_1.classToClass(user))];
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(user))];
                     case 2:
                         error_4 = _a.sent();
                         return [2 /*return*/, response.send(error_4.message)];

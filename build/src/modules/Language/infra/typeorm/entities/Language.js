@@ -16,31 +16,31 @@ var Language = /** @class */ (function () {
     function Language() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], Language.prototype, "id", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return Profile_1.Profile; }),
+        (0, typeorm_1.ManyToOne)(function () { return Profile_1.Profile; }),
         __metadata("design:type", Profile_1.Profile)
     ], Language.prototype, "profile", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], Language.prototype, "title", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], Language.prototype, "level", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Language.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Language.prototype, "updatedAt", void 0);
     Language = __decorate([
-        typeorm_1.Entity('language')
+        (0, typeorm_1.Entity)('language')
     ], Language);
     return Language;
 }());

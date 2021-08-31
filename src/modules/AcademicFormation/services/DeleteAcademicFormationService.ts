@@ -9,7 +9,7 @@ export default class DeleteAcademicFormationService {
         @inject(delay(() => AcademicFormationRepository))
         private academicFormationRepository: IAcademicFormationRepository) { }
 
-    public async execute(id: string):Promise<DeleteResult> {
-        return this.academicFormationRepository.delete(id);
+    public async execute(id: string): Promise<DeleteResult> {
+        return await this.academicFormationRepository.delete(id);
     }
 }

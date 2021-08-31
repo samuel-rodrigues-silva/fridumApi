@@ -17,31 +17,31 @@ var ChatMessage = /** @class */ (function () {
     function ChatMessage() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], ChatMessage.prototype, "id", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return Chat_1.Chat; }, function (chat) { return chat.id; }),
+        (0, typeorm_1.ManyToOne)(function () { return Chat_1.Chat; }, function (chat) { return chat.id; }),
         __metadata("design:type", Chat_1.Chat)
     ], ChatMessage.prototype, "chatId", void 0);
     __decorate([
-        typeorm_1.ManyToMany(function () { return User_1.User; }, function (user) { return user.id; }),
+        (0, typeorm_1.ManyToMany)(function () { return User_1.User; }, function (user) { return user.id; }),
         __metadata("design:type", User_1.User)
     ], ChatMessage.prototype, "userId", void 0);
     __decorate([
-        typeorm_1.Column('text'),
+        (0, typeorm_1.Column)('text'),
         __metadata("design:type", String)
     ], ChatMessage.prototype, "message", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], ChatMessage.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], ChatMessage.prototype, "updatedAt", void 0);
     ChatMessage = __decorate([
-        typeorm_1.Entity('chatmessage')
+        (0, typeorm_1.Entity)('chatmessage')
     ], ChatMessage);
     return ChatMessage;
 }());

@@ -68,8 +68,8 @@ var CreateLanguageService = /** @class */ (function () {
         });
     };
     CreateLanguageService = __decorate([
-        tsyringe_1.injectable(),
-        __param(0, tsyringe_1.inject(tsyringe_1.delay(function () { return LanguageRepository_1.default; }))),
+        (0, tsyringe_1.injectable)(),
+        __param(0, (0, tsyringe_1.inject)((0, tsyringe_1.delay)(function () { return LanguageRepository_1.default; }))),
         __metadata("design:paramtypes", [Object])
     ], CreateLanguageService);
     return CreateLanguageService;

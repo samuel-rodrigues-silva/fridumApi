@@ -18,42 +18,42 @@ var Service = /** @class */ (function () {
     function Service() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], Service.prototype, "id", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return User_1.User; }, function (user) { return user.id; }),
-        typeorm_1.JoinColumn(),
+        (0, typeorm_1.OneToOne)(function () { return User_1.User; }, function (user) { return user.id; }),
+        (0, typeorm_1.JoinColumn)(),
         __metadata("design:type", User_1.User)
     ], Service.prototype, "user", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return Post_1.Post; }, function (post) { return post.id; }),
-        typeorm_1.JoinColumn(),
+        (0, typeorm_1.OneToOne)(function () { return Post_1.Post; }, function (post) { return post.id; }),
+        (0, typeorm_1.JoinColumn)(),
         __metadata("design:type", Post_1.Post)
     ], Service.prototype, "post", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return Follow_1.Follow; }, function (follow) { return follow.id; }),
-        typeorm_1.JoinColumn(),
+        (0, typeorm_1.OneToOne)(function () { return Follow_1.Follow; }, function (follow) { return follow.id; }),
+        (0, typeorm_1.JoinColumn)(),
         __metadata("design:type", Follow_1.Follow)
     ], Service.prototype, "follow", void 0);
     __decorate([
-        typeorm_1.Column({ type: 'enum', enum: ['done', 'doing', 'pending', 'refused'] }),
+        (0, typeorm_1.Column)({ type: 'enum', enum: ['done', 'doing', 'pending', 'refused'] }),
         __metadata("design:type", String)
     ], Service.prototype, "status", void 0);
     __decorate([
-        typeorm_1.Column({ type: 'timestamp' }),
+        (0, typeorm_1.Column)({ type: 'timestamp' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Service.prototype, "finishedAt", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Service.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Service.prototype, "updatedAt", void 0);
     Service = __decorate([
-        typeorm_1.Entity('service')
+        (0, typeorm_1.Entity)('service')
     ], Service);
     return Service;
 }());

@@ -16,39 +16,39 @@ var AcademicFormation = /** @class */ (function () {
     function AcademicFormation() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], AcademicFormation.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], AcademicFormation.prototype, "title", void 0);
     __decorate([
-        typeorm_1.Column('text'),
+        (0, typeorm_1.Column)('text'),
         __metadata("design:type", String)
     ], AcademicFormation.prototype, "institution", void 0);
     __decorate([
-        typeorm_1.Column('varchar'),
+        (0, typeorm_1.Column)('varchar'),
         __metadata("design:type", String)
     ], AcademicFormation.prototype, "description", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
         __metadata("design:type", String)
     ], AcademicFormation.prototype, "conclusion_date", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], AcademicFormation.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], AcademicFormation.prototype, "updatedAt", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return Profile_1.Profile; }, function (profile) { return profile.accomplishment; }),
+        (0, typeorm_1.ManyToOne)(function () { return Profile_1.Profile; }, function (profile) { return profile.accomplishment; }),
         __metadata("design:type", Profile_1.Profile)
     ], AcademicFormation.prototype, "profile", void 0);
     AcademicFormation = __decorate([
-        typeorm_1.Entity('academicformation')
+        (0, typeorm_1.Entity)('academicformation')
     ], AcademicFormation);
     return AcademicFormation;
 }());

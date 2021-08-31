@@ -41,7 +41,7 @@ var Session_1 = require("./../entities/Session");
 var User_1 = require("../../../../User/infra/typeorm/entities/User");
 var SessionRepository = /** @class */ (function () {
     function SessionRepository() {
-        this.ormRepository = typeorm_1.getRepository(Session_1.Session);
+        this.ormRepository = (0, typeorm_1.getRepository)(Session_1.Session);
     }
     SessionRepository.prototype.fetchBy = function (sessionId) {
         return __awaiter(this, void 0, void 0, function () {
@@ -66,7 +66,7 @@ var SessionRepository = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        userRepo = typeorm_1.getRepository(User_1.User);
+                        userRepo = (0, typeorm_1.getRepository)(User_1.User);
                         return [4 /*yield*/, userRepo.findOne({ where: { id: session.userId } })];
                     case 1:
                         user = _a.sent();
@@ -84,7 +84,7 @@ var SessionRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_1.getConnection()
+                    case 0: return [4 /*yield*/, (0, typeorm_1.getConnection)()
                             .createQueryBuilder()
                             .update(Session_1.Session)
                             .set(session)

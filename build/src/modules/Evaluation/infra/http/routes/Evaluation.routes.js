@@ -7,9 +7,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var celebrate_1 = require("celebrate");
 var express_1 = require("express");
 var EvaluationController_1 = __importDefault(require("../controllers/EvaluationController"));
-var evaluationRouter = express_1.Router();
+var evaluationRouter = (0, express_1.Router)();
 var evaluationController = new EvaluationController_1.default();
-evaluationRouter.post('/:id', celebrate_1.celebrate((_a = {},
+evaluationRouter.post('/:id', (0, celebrate_1.celebrate)((_a = {},
     _a[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
@@ -19,12 +19,12 @@ evaluationRouter.post('/:id', celebrate_1.celebrate((_a = {},
         rating: celebrate_1.Joi.number().required()
     },
     _a)), evaluationController.create);
-evaluationRouter.patch('/:id', celebrate_1.celebrate((_b = {},
+evaluationRouter.patch('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
     _b)), evaluationController.update);
-evaluationRouter.delete('/:id', celebrate_1.celebrate((_c = {},
+evaluationRouter.delete('/:id', (0, celebrate_1.celebrate)((_c = {},
     _c[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },

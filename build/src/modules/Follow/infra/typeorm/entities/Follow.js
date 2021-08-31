@@ -16,29 +16,29 @@ var Follow = /** @class */ (function () {
     function Follow() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], Follow.prototype, "id", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return User_1.User; }, function (user) { return user.id; }),
-        typeorm_1.JoinTable(),
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.id; }),
+        (0, typeorm_1.JoinTable)(),
         __metadata("design:type", User_1.User)
     ], Follow.prototype, "user", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return User_1.User; }, function (follow) { return follow.id; }),
-        typeorm_1.JoinTable(),
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (follow) { return follow.id; }),
+        (0, typeorm_1.JoinTable)(),
         __metadata("design:type", User_1.User)
     ], Follow.prototype, "follow", void 0);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Follow.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Follow.prototype, "updatedAt", void 0);
     Follow = __decorate([
-        typeorm_1.Entity('follow')
+        (0, typeorm_1.Entity)('follow')
     ], Follow);
     return Follow;
 }());

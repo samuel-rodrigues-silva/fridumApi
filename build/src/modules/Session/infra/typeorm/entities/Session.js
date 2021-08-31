@@ -24,40 +24,40 @@ var Session = /** @class */ (function () {
         this.password = bcryptjs_1.default.hashSync(this.password, 8);
     };
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn('uuid'),
+        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], Session.prototype, "id", void 0);
     __decorate([
-        typeorm_1.OneToOne(function () { return User_1.User; }, function (user) { return user.id; }, { cascade: true, onDelete: 'CASCADE' }),
-        typeorm_1.JoinColumn({ name: 'userId' }),
+        (0, typeorm_1.OneToOne)(function () { return User_1.User; }, function (user) { return user.id; }, { cascade: true, onDelete: 'CASCADE' }),
+        (0, typeorm_1.JoinColumn)({ name: 'userId' }),
         __metadata("design:type", User_1.User)
     ], Session.prototype, "user", void 0);
     __decorate([
-        typeorm_1.Column({ type: 'varchar', unique: true }),
+        (0, typeorm_1.Column)({ type: 'varchar', unique: true }),
         __metadata("design:type", String)
     ], Session.prototype, "email", void 0);
     __decorate([
-        typeorm_1.Column("varchar"),
-        class_transformer_1.Exclude(),
+        (0, typeorm_1.Column)("varchar"),
+        (0, class_transformer_1.Exclude)(),
         __metadata("design:type", String)
     ], Session.prototype, "password", void 0);
     __decorate([
-        typeorm_1.BeforeInsert(),
-        typeorm_1.BeforeUpdate(),
+        (0, typeorm_1.BeforeInsert)(),
+        (0, typeorm_1.BeforeUpdate)(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", void 0)
     ], Session.prototype, "hashPassword", null);
     __decorate([
-        typeorm_1.CreateDateColumn({ type: 'timestamp', name: 'created_At' }),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Session.prototype, "createdAt", void 0);
     __decorate([
-        typeorm_1.UpdateDateColumn({ type: 'timestamp', name: 'updated_At' }),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Session.prototype, "updatedAt", void 0);
     Session = __decorate([
-        typeorm_1.Entity('session')
+        (0, typeorm_1.Entity)('session')
     ], Session);
     return Session;
 }());

@@ -41,8 +41,8 @@ var Post_1 = require("./../entities/Post");
 var User_1 = require("./../../../../User/infra/typeorm/entities/User");
 var PostRepository = /** @class */ (function () {
     function PostRepository() {
-        this.ormRepository = typeorm_1.getRepository(Post_1.Post);
-        this.userRepository = typeorm_1.getRepository(User_1.User);
+        this.ormRepository = (0, typeorm_1.getRepository)(Post_1.Post);
+        this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
     }
     PostRepository.prototype.listByCity = function (city) {
         return __awaiter(this, void 0, void 0, function () {
@@ -90,7 +90,7 @@ var PostRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_1.getConnection()
+                    case 0: return [4 /*yield*/, (0, typeorm_1.getConnection)()
                             .createQueryBuilder()
                             .update(Post_1.Post)
                             .set(data)
