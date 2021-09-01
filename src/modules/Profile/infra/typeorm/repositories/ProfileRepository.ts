@@ -1,5 +1,5 @@
 
-import { DeleteResult, Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import ICreateProfileDTO from '../../../dtos/ICreateProfileDTO';
 import { Profile } from '../entities/Profile';
 import IProfileRepository from './../../../repositories/IProfileRepository';
@@ -23,13 +23,14 @@ class ProfileRepository implements IProfileRepository {
         const profile = await this.ormRepository.save(repo);
         return profile
     }
-    public async update(data: ICreateProfileDTO, id: string): Promise<void> {
-        await getConnection()
+    public async update(data: ICreateProfileDTO, id: string): Promise<UpdateResult> {
+        const updt = await getConnection()
             .createQueryBuilder()
             .update(Profile)
             .set(data)
             .where("id = :id", { id: id })
             .execute();
+        return updt;
     }
     public async remove(id: string): Promise<DeleteResult> {
         return await this.ormRepository.delete(id)

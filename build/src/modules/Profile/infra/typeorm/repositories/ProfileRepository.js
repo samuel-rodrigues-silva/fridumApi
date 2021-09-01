@@ -80,6 +80,7 @@ var ProfileRepository = /** @class */ (function () {
     };
     ProfileRepository.prototype.update = function (data, id) {
         return __awaiter(this, void 0, void 0, function () {
+            var updt;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, (0, typeorm_2.getConnection)()
@@ -89,8 +90,8 @@ var ProfileRepository = /** @class */ (function () {
                             .where("id = :id", { id: id })
                             .execute()];
                     case 1:
-                        _a.sent();
-                        return [2 /*return*/];
+                        updt = _a.sent();
+                        return [2 /*return*/, updt];
                 }
             });
         });

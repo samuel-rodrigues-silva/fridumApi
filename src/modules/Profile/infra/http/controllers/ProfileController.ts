@@ -47,7 +47,7 @@ class ProfileController {
                 image,
                 description,
             }, id);
-            return response.json(profile);
+            return response.json(classToClass(profile));
 
         } catch (error) {
             return response.send(error.message);
