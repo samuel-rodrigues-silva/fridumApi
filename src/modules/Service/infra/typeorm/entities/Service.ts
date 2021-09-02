@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { Follow } from "../../../../Follow/infra/typeorm/entities/Follow";
 import { Post } from "../../../../Post/infra/typeorm/entities/Post";
 import { User } from "../../../../User/infra/typeorm/entities/User";
@@ -9,13 +9,13 @@ export class Service {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(() => User, (user) => user.id)
+    @OneToMany(() => User, (user) => user.id)
     user: User;
 
-    @ManyToOne(() => Post, (post) => post.id)
+    @OneToMany(() => Post, (post) => post.id)
     post: Post;
 
-    @ManyToOne(() => Follow, (follow) => follow.id)
+    @OneToMany(() => Follow, (follow) => follow.id)
     follow: Follow;
 
     @Column({ type: 'enum', enum: ['done', 'doing', 'pending', 'refused'] })
