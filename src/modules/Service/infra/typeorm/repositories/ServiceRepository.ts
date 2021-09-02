@@ -21,8 +21,8 @@ class ServiceRepository implements IServiceRepository {
         this.followRepository = getRepository(Follow);
     }
 
-    public async findById(id: string): Promise<Service> {
-        return await this.ormRepository.findOne({ where: { id: id } });
+    public async findById(id: string): Promise<Service[]> {
+        return await this.ormRepository.find({ where: { userId: id }, });
     }
 
     public async create(data: ICreateServiceDTO): Promise<Service> {

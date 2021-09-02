@@ -9,7 +9,7 @@ class ShowServiceService {
         @inject(delay(() => ServiceRepository))
         private ServiceRepository: IServiceRepository
     ) { }
-    public async execute(id: string): Promise<Service> {
+    public async execute(id: string): Promise<Service[]> {
         return await this.ServiceRepository.findById(id);
     }
 }

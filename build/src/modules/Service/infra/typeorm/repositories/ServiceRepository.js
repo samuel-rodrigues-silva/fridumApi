@@ -52,7 +52,7 @@ var ServiceRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.findOne({ where: { id: id } })];
+                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { userId: id }, })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
