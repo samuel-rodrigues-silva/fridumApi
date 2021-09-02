@@ -23,14 +23,12 @@ class ProfileRepository implements IProfileRepository {
         const profile = await this.ormRepository.save(repo);
         return profile
     }
-    public async update(data: ICreateProfileDTO, id: string): Promise<UpdateResult> {
-        const updt = await getConnection()
+    public async update(data: ICreateProfileDTO, id: string): Promise<void> {
+        await getConnection()
             .createQueryBuilder()
             .update(Profile)
             .set(data)
             .where("id = :id", { id: id })
-            .execute();
-        return updt;
     }
     public async remove(id: string): Promise<DeleteResult> {
         return await this.ormRepository.delete(id)

@@ -18,7 +18,17 @@ class UserRepository implements IUserRepository {
     }
 
     public async listAll(): Promise<User[]> {
-        const user = await this.userRepository.find({ relations: ['profile'] });
+        const user = await this.userRepository.find({
+            relations:
+                [
+                    'profile',
+                    'profile.academicFormation',
+                    'profile.accomplishment',
+                    'profile.focusArea',
+                    'profile.language',
+                    'profile.occupation',
+                ]
+        });
         return user
     }
 
