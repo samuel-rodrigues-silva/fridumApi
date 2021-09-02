@@ -38,6 +38,7 @@ userRoutes.patch('/:id', (0, celebrate_1.celebrate)((_c = {},
         city: celebrate_1.Joi.string().required(),
         district: celebrate_1.Joi.string().required(),
         street: celebrate_1.Joi.string().required(),
+        state: celebrate_1.Joi.string().required(),
         phNumber: celebrate_1.Joi.string().required(),
     },
     _c)), userController.update);

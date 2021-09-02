@@ -50,7 +50,16 @@ var UserRepository = /** @class */ (function () {
             var user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.userRepository.find({ relations: ['profile'] })];
+                    case 0: return [4 /*yield*/, this.userRepository.find({
+                            relations: [
+                                'profile',
+                                'profile.academicFormation',
+                                'profile.accomplishment',
+                                'profile.focusArea',
+                                'profile.language',
+                                'profile.occupation',
+                            ]
+                        })];
                     case 1:
                         user = _a.sent();
                         return [2 /*return*/, user];
@@ -63,7 +72,16 @@ var UserRepository = /** @class */ (function () {
             var user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id }, relations: ['profile'] })];
+                    case 0: return [4 /*yield*/, this.userRepository.findOne({
+                            where: { id: id }, relations: [
+                                'profile',
+                                'profile.academicFormation',
+                                'profile.accomplishment',
+                                'profile.focusArea',
+                                'profile.language',
+                                'profile.occupation',
+                            ]
+                        })];
                     case 1:
                         user = _a.sent();
                         return [2 /*return*/, user];
