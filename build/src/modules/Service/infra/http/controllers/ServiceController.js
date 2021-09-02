@@ -50,13 +50,14 @@ var ServiceController = /** @class */ (function () {
     }
     ServiceController.prototype.fetchById = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var Service, res, err_1;
+            var id, Service, res, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
+                        id = request.params.id;
                         Service = tsyringe_1.container.resolve(ShowServiceService_1.default);
-                        return [4 /*yield*/, Service.execute(request.body)];
+                        return [4 /*yield*/, Service.execute(id)];
                     case 1:
                         res = _a.sent();
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(res))];

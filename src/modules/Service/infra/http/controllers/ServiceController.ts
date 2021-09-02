@@ -10,8 +10,9 @@ class ServiceController {
 
     public async fetchById(request: Request, response: Response): Promise<Response> {
         try {
+            const { id } = request.params
             const Service = container.resolve(ShowServiceService)
-            const res = await Service.execute(request.body);
+            const res = await Service.execute(id);
             return response.json(classToClass(res))
         } catch (err) {
             return response.status(401).send(err.message);
