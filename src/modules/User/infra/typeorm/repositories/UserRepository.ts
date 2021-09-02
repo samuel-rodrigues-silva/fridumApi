@@ -34,7 +34,16 @@ class UserRepository implements IUserRepository {
 
     public async findById(id: string): Promise<User> {
 
-        const user = await this.userRepository.findOne({ where: { id: id }, relations: ['profile'] })
+        const user = await this.userRepository.findOne({
+            where: { id: id }, relations: [
+                'profile',
+                'profile.academicFormation',
+                'profile.accomplishment',
+                'profile.focusArea',
+                'profile.language',
+                'profile.occupation',
+            ]
+        })
         return user
     }
 
