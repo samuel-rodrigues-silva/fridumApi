@@ -22,15 +22,15 @@ var Service = /** @class */ (function () {
         __metadata("design:type", String)
     ], Service.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return User_1.User; }, function (user) { return user.id; }),
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.id; }),
         __metadata("design:type", User_1.User)
     ], Service.prototype, "user", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return Post_1.Post; }, function (post) { return post.id; }),
+        (0, typeorm_1.ManyToOne)(function () { return Post_1.Post; }, function (post) { return post.id; }),
         __metadata("design:type", Post_1.Post)
     ], Service.prototype, "post", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return Follow_1.Follow; }, function (follow) { return follow.id; }),
+        (0, typeorm_1.ManyToOne)(function () { return Follow_1.Follow; }, function (follow) { return follow.id; }),
         __metadata("design:type", Follow_1.Follow)
     ], Service.prototype, "follow", void 0);
     __decorate([
