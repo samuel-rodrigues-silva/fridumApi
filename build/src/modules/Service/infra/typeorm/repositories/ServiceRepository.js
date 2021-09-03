@@ -52,7 +52,7 @@ var ServiceRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { user: id }, relations: ['follow', 'post',], })];
+                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { user: id }, })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -60,7 +60,7 @@ var ServiceRepository = /** @class */ (function () {
     };
     ServiceRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, post, service;
+            var user, post, follow, service;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: data.userId } })];
@@ -69,11 +69,15 @@ var ServiceRepository = /** @class */ (function () {
                         return [4 /*yield*/, this.postRepository.findOne({ where: { id: data.postId } })];
                     case 2:
                         post = _a.sent();
+                        return [4 /*yield*/, this.followRepository.findOne({ where: { id: data.followId } })];
+                    case 3:
+                        follow = _a.sent();
                         service = this.ormRepository.create(data);
                         service.user = user;
                         service.post = post;
+                        service.follow = follow;
                         return [4 /*yield*/, this.ormRepository.save(service)];
-                    case 3: return [2 /*return*/, _a.sent()];
+                    case 4: return [2 /*return*/, _a.sent()];
                 }
             });
         });
