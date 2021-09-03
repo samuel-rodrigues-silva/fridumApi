@@ -39,14 +39,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var Service_1 = require("./../entities/Service");
 var User_1 = require("./../../../../User/infra/typeorm/entities/User");
-var Follow_1 = require("./../../../../Follow/infra/typeorm/entities/Follow");
 var Post_1 = require("./../../../../Post/infra/typeorm/entities/Post");
 var ServiceRepository = /** @class */ (function () {
     function ServiceRepository() {
         this.ormRepository = (0, typeorm_1.getRepository)(Service_1.Service);
         this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
         this.postRepository = (0, typeorm_1.getRepository)(Post_1.Post);
-        this.followRepository = (0, typeorm_1.getRepository)(Follow_1.Follow);
+        this.followRepository = (0, typeorm_1.getRepository)(User_1.User);
     }
     ServiceRepository.prototype.findById = function (id) {
         return __awaiter(this, void 0, void 0, function () {

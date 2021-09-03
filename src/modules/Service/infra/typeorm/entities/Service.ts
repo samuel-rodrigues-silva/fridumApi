@@ -15,8 +15,8 @@ export class Service {
     @ManyToOne(() => Post, (post) => post.service)
     post: Post;
 
-    @ManyToOne(() => Follow, (follow) => follow.service)
-    follow: Follow;
+    @ManyToOne(() => User, (follow) => follow.service)
+    follow: User;
 
     @Column({ type: 'enum', enum: ['done', 'doing', 'pending', 'refused'] })
     status: 'done' | 'doing' | 'pending' | 'refused';

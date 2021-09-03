@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Service = void 0;
 var typeorm_1 = require("typeorm");
-var Follow_1 = require("../../../../Follow/infra/typeorm/entities/Follow");
 var Post_1 = require("../../../../Post/infra/typeorm/entities/Post");
 var User_1 = require("../../../../User/infra/typeorm/entities/User");
 var Service = /** @class */ (function () {
@@ -30,8 +29,8 @@ var Service = /** @class */ (function () {
         __metadata("design:type", Post_1.Post)
     ], Service.prototype, "post", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return Follow_1.Follow; }, function (follow) { return follow.service; }),
-        __metadata("design:type", Follow_1.Follow)
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (follow) { return follow.service; }),
+        __metadata("design:type", User_1.User)
     ], Service.prototype, "follow", void 0);
     __decorate([
         (0, typeorm_1.Column)({ type: 'enum', enum: ['done', 'doing', 'pending', 'refused'] }),

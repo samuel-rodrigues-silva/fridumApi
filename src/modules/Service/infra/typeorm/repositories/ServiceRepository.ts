@@ -12,13 +12,13 @@ class ServiceRepository implements IServiceRepository {
     private ormRepository: Repository<Service>;
     private userRepository: Repository<User>;
     private postRepository: Repository<Post>;
-    private followRepository: Repository<Follow>;
+    private followRepository: Repository<User>;
 
     constructor() {
         this.ormRepository = getRepository(Service);
         this.userRepository = getRepository(User);
         this.postRepository = getRepository(Post);
-        this.followRepository = getRepository(Follow);
+        this.followRepository = getRepository(User);
     }
 
     public async findById(id: string): Promise<Service[]> {
