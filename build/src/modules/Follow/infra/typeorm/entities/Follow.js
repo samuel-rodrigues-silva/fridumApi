@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Follow = void 0;
 var typeorm_1 = require("typeorm");
 var User_1 = require("../../../../User/infra/typeorm/entities/User");
+var Service_1 = require("./../../../../Service/infra/typeorm/entities/Service");
 var Follow = /** @class */ (function () {
     function Follow() {
     }
@@ -37,6 +38,10 @@ var Follow = /** @class */ (function () {
         (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Follow.prototype, "updatedAt", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return Service_1.Service; }),
+        __metadata("design:type", Service_1.Service)
+    ], Follow.prototype, "service", void 0);
     Follow = __decorate([
         (0, typeorm_1.Entity)('follow')
     ], Follow);

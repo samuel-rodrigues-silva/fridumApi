@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Post = void 0;
 var typeorm_1 = require("typeorm");
 var User_1 = require("../../../../User/infra/typeorm/entities/User");
+var Service_1 = require("./../../../../Service/infra/typeorm/entities/Service");
 var Post = /** @class */ (function () {
     function Post() {
     }
@@ -59,6 +60,10 @@ var Post = /** @class */ (function () {
         (0, typeorm_1.ManyToOne)(function () { return User_1.User; }),
         __metadata("design:type", User_1.User)
     ], Post.prototype, "user", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return Service_1.Service; }),
+        __metadata("design:type", Service_1.Service)
+    ], Post.prototype, "service", void 0);
     Post = __decorate([
         (0, typeorm_1.Entity)('post')
     ], Post);

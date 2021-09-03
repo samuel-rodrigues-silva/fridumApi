@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Double, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 import { User } from '../../../../User/infra/typeorm/entities/User';
+import { Service } from './../../../../Service/infra/typeorm/entities/Service';
 
 @Entity('post')
 export class Post {
@@ -37,5 +38,7 @@ export class Post {
     @ManyToOne(() => User)
     user: User
 
+    @ManyToOne(() => Service)
+    service: Service;
 
 }

@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, Timestamp, CreateDateColumn, UpdateDateColumn, OneToMany, JoinColumn, OneToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, Timestamp, CreateDateColumn, UpdateDateColumn, OneToMany, JoinColumn, OneToOne, ManyToOne } from "typeorm";
 import { Profile } from "../../../../Profile/infra/typeorm/entities/Profile";
 import { Post } from './../../../../Post/infra/typeorm/entities/Post';
+import { Service } from './../../../../Service/infra/typeorm/entities/Service';
 
 @Entity('user')
 export class User {
@@ -42,8 +43,13 @@ export class User {
     @JoinColumn()
     profile: Profile;
 
-    
+
     @OneToMany(() => Post, (Post) => Post.user)
     post?: Post[]
+
+
+    @ManyToOne(() => Service)
+    service: Service;
+
 
 }

@@ -9,13 +9,13 @@ export class Service {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @OneToMany(() => User, (user) => user.id)
+    @ManyToOne(() => User, (user) => user.service)
     user: User;
 
-    @OneToMany(() => Post, (post) => post.id)
+    @ManyToOne(() => Post, (post) => post.service)
     post: Post;
 
-    @OneToMany(() => Follow, (follow) => follow.id)
+    @ManyToOne(() => Follow, (follow) => follow.service)
     follow: Follow;
 
     @Column({ type: 'enum', enum: ['done', 'doing', 'pending', 'refused'] })

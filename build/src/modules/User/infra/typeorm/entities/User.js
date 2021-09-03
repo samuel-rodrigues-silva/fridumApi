@@ -13,6 +13,7 @@ exports.User = void 0;
 var typeorm_1 = require("typeorm");
 var Profile_1 = require("../../../../Profile/infra/typeorm/entities/Profile");
 var Post_1 = require("./../../../../Post/infra/typeorm/entities/Post");
+var Service_1 = require("./../../../../Service/infra/typeorm/entities/Service");
 var User = /** @class */ (function () {
     function User() {
     }
@@ -69,6 +70,10 @@ var User = /** @class */ (function () {
         (0, typeorm_1.OneToMany)(function () { return Post_1.Post; }, function (Post) { return Post.user; }),
         __metadata("design:type", Array)
     ], User.prototype, "post", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return Service_1.Service; }),
+        __metadata("design:type", Service_1.Service)
+    ], User.prototype, "service", void 0);
     User = __decorate([
         (0, typeorm_1.Entity)('user')
     ], User);

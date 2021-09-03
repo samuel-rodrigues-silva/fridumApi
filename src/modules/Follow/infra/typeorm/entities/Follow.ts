@@ -1,5 +1,6 @@
 import { CreateDateColumn, Entity, JoinTable, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { User } from "../../../../User/infra/typeorm/entities/User";
+import { Service } from './../../../../Service/infra/typeorm/entities/Service';
 
 @Entity('follow')
 export class Follow {
@@ -20,4 +21,8 @@ export class Follow {
 
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
+
+    @ManyToOne(() => Service)
+    service: Service;
+
 }
