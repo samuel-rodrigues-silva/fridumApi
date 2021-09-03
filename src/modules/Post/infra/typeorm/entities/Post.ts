@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Double, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, CreateDateColumn, Double, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 import { User } from '../../../../User/infra/typeorm/entities/User';
 import { Service } from './../../../../Service/infra/typeorm/entities/Service';
 
@@ -38,7 +38,7 @@ export class Post {
     @ManyToOne(() => User)
     user: User
 
-    @ManyToOne(() => Service)
+    @OneToMany(() => Service, (service) => service.user)
     service: Service;
 
 }

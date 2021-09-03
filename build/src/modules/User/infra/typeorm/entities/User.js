@@ -71,7 +71,7 @@ var User = /** @class */ (function () {
         __metadata("design:type", Array)
     ], User.prototype, "post", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return Service_1.Service; }),
+        (0, typeorm_1.OneToMany)(function () { return Service_1.Service; }, function (service) { return service.user; }),
         __metadata("design:type", Service_1.Service)
     ], User.prototype, "service", void 0);
     User = __decorate([

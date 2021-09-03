@@ -48,7 +48,7 @@ export class User {
     post?: Post[]
 
 
-    @ManyToOne(() => Service)
+    @OneToMany(() => Service, (service) => service.user)
     service: Service;
 
 
