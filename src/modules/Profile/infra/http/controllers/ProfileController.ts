@@ -41,7 +41,7 @@ class ProfileController {
             } = request.body
 
             const image = request.file.filename;
-
+            console.log(image)
             const repo = container.resolve(UpdateProfileService);
             const profile = await repo.execute({
                 role,

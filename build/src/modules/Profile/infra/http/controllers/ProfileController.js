@@ -99,6 +99,7 @@ var ProfileController = /** @class */ (function () {
                         id = request.params.id;
                         _a = request.body, role = _a.role, work_resume = _a.work_resume, description = _a.description;
                         image = request.file.filename;
+                        console.log(image);
                         repo = tsyringe_1.container.resolve(UpdateProfileService_1.default);
                         return [4 /*yield*/, repo.execute({
                                 role: role,
