@@ -15,7 +15,7 @@ profileRoutes.get('/:id', celebrate({
     }
 }), profileController.fetchBy)
 
-profileRoutes.patch('/:id', upload.single('image'), celebrate({
+profileRoutes.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid(),
     },
@@ -24,6 +24,6 @@ profileRoutes.patch('/:id', upload.single('image'), celebrate({
         work_resume: Joi.string(),
         description: Joi.string(),
     },
-}), profileController.update);
+}), upload.single('image'), profileController.update);
 
 export default profileRoutes;
