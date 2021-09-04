@@ -40,7 +40,7 @@ class ProfileController {
                 description,
             } = request.body
 
-            const image = request.file.originalname;
+            const image = request.file.filename;
 
             const repo = container.resolve(UpdateProfileService);
             const profile = await repo.execute({
