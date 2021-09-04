@@ -18,7 +18,7 @@ profileRoutes.get('/:id', (0, celebrate_1.celebrate)((_a = {},
         id: celebrate_1.Joi.string().uuid().required()
     },
     _a)), profileController.fetchBy);
-profileRoutes.patch('/:id', file.single('image'), (0, celebrate_1.celebrate)((_b = {},
+profileRoutes.patch('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid(),
     },
@@ -27,6 +27,6 @@ profileRoutes.patch('/:id', file.single('image'), (0, celebrate_1.celebrate)((_b
         work_resume: celebrate_1.Joi.string(),
         description: celebrate_1.Joi.string(),
     },
-    _b)), profileController.update);
+    _b)), file.single('image'), profileController.update);
 exports.default = profileRoutes;
 //# sourceMappingURL=Profile.routes.js.map
