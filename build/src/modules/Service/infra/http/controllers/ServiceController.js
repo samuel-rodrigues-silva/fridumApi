@@ -51,14 +51,14 @@ var ServiceController = /** @class */ (function () {
     }
     ServiceController.prototype.fetchById = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, Service, res, err_1;
+            var id, service, res, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         id = request.params.id;
-                        Service = tsyringe_1.container.resolve(ShowServiceService_1.default);
-                        return [4 /*yield*/, Service.execute(id)];
+                        service = tsyringe_1.container.resolve(ShowServiceService_1.default);
+                        return [4 /*yield*/, service.execute(id)];
                     case 1:
                         res = _a.sent();
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(res))];
@@ -72,14 +72,14 @@ var ServiceController = /** @class */ (function () {
     };
     ServiceController.prototype.fetchByFollowId = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, Service, res, err_2;
+            var id, service, res, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         id = request.params.id;
-                        Service = tsyringe_1.container.resolve(ShowFollowServiceService_1.default);
-                        return [4 /*yield*/, Service.execute(id)];
+                        service = tsyringe_1.container.resolve(ShowFollowServiceService_1.default);
+                        return [4 /*yield*/, service.execute(id)];
                     case 1:
                         res = _a.sent();
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(res))];
@@ -93,7 +93,7 @@ var ServiceController = /** @class */ (function () {
     };
     ServiceController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var createService, Service, err_3;
+            var createService, service, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -101,8 +101,8 @@ var ServiceController = /** @class */ (function () {
                         createService = tsyringe_1.container.resolve(CreateServiceService_1.default);
                         return [4 /*yield*/, createService.execute(request.body)];
                     case 1:
-                        Service = _a.sent();
-                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(Service))];
+                        service = _a.sent();
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(service))];
                     case 2:
                         err_3 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_3.message)];

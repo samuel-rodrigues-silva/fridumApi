@@ -12,8 +12,8 @@ class ServiceController {
     public async fetchById(request: Request, response: Response): Promise<Response> {
         try {
             const { id } = request.params
-            const Service = container.resolve(ShowServiceService)
-            const res = await Service.execute(id);
+            const service = container.resolve(ShowServiceService)
+            const res = await service.execute(id);
             return response.json(classToClass(res))
         } catch (err) {
             return response.status(401).send(err.message);
@@ -23,8 +23,8 @@ class ServiceController {
     public async fetchByFollowId(request: Request, response: Response): Promise<Response> {
         try {
             const { id } = request.params
-            const Service = container.resolve(ShowFollowServiceService)
-            const res = await Service.execute(id);
+            const service = container.resolve(ShowFollowServiceService)
+            const res = await service.execute(id);
             return response.json(classToClass(res))
         } catch (err) {
             return response.status(401).send(err.message);
@@ -34,8 +34,8 @@ class ServiceController {
     public async create(request: Request, response: Response): Promise<Response> {
         try {
             const createService = container.resolve(CreateServiceService)
-            const Service = await createService.execute(request.body);
-            return response.json(classToClass(Service))
+            const service = await createService.execute(request.body);
+            return response.json(classToClass(service))
         } catch (err) {
             return response.status(401).send(err.message);
         }

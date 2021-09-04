@@ -6,7 +6,6 @@ const userController = new UserController();
 
 userRoutes.get('/', userController.listAll)
 
-
 userRoutes.get('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
