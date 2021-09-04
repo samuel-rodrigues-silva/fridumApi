@@ -39,7 +39,8 @@ class ProfileController {
                 work_resume,
                 description,
             } = request.body
-            const image = request.file.filename;
+
+            const image = request.file.originalname;
 
             const repo = container.resolve(UpdateProfileService);
             const profile = await repo.execute({
