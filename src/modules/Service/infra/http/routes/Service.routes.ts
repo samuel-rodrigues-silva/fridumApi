@@ -10,6 +10,13 @@ serviceRouter.get('/:id', celebrate({
     }
 }), serviceController.fetchById)
 
+serviceRouter.get('/:id/follow', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), serviceController.fetchByFollowId)
+
+
 serviceRouter.post('/', celebrate({
     [Segments.BODY]: {
         userId: Joi.string().uuid().required(),

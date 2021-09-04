@@ -5,6 +5,7 @@ import { classToClass } from 'class-transformer';
 import UpdateServiceService from './../../../services/UpdateServiceService';
 import DeleteServiceService from './../../../services/DeleteServiceService';
 import ShowServiceService from './../../../services/ShowServiceService';
+import ShowFollowServiceService from '../../../services/ShowFollowServiceService';
 
 class ServiceController {
 
@@ -12,6 +13,17 @@ class ServiceController {
         try {
             const { id } = request.params
             const Service = container.resolve(ShowServiceService)
+            const res = await Service.execute(id);
+            return response.json(classToClass(res))
+        } catch (err) {
+            return response.status(401).send(err.message);
+        }
+    }
+
+    public async fetchByFollowId(request: Request, response: Response): Promise<Response> {
+        try {
+            const { id } = request.params
+            const Service = container.resolve(ShowFollowServiceService)
             const res = await Service.execute(id);
             return response.json(classToClass(res))
         } catch (err) {

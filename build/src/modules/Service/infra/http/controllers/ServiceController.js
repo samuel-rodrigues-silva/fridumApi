@@ -45,6 +45,7 @@ var class_transformer_1 = require("class-transformer");
 var UpdateServiceService_1 = __importDefault(require("./../../../services/UpdateServiceService"));
 var DeleteServiceService_1 = __importDefault(require("./../../../services/DeleteServiceService"));
 var ShowServiceService_1 = __importDefault(require("./../../../services/ShowServiceService"));
+var ShowFollowServiceService_1 = __importDefault(require("../../../services/ShowFollowServiceService"));
 var ServiceController = /** @class */ (function () {
     function ServiceController() {
     }
@@ -69,9 +70,30 @@ var ServiceController = /** @class */ (function () {
             });
         });
     };
+    ServiceController.prototype.fetchByFollowId = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, Service, res, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        id = request.params.id;
+                        Service = tsyringe_1.container.resolve(ShowFollowServiceService_1.default);
+                        return [4 /*yield*/, Service.execute(id)];
+                    case 1:
+                        res = _a.sent();
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(res))];
+                    case 2:
+                        err_2 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_2.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     ServiceController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var createService, Service, err_2;
+            var createService, Service, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -82,8 +104,8 @@ var ServiceController = /** @class */ (function () {
                         Service = _a.sent();
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(Service))];
                     case 2:
-                        err_2 = _a.sent();
-                        return [2 /*return*/, response.status(401).send(err_2.message)];
+                        err_3 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_3.message)];
                     case 3: return [2 /*return*/];
                 }
             });
