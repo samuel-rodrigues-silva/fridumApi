@@ -25,6 +25,6 @@ profileRoutes.patch('/:id', celebrate({
         image: Joi.string(),
         description: Joi.string(),
     },
-}), upload.single('image'), profileController.update);
+}), profileController.update);
 
 export default profileRoutes;
