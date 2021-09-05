@@ -58,7 +58,7 @@ class SessionController {
             if (!isPasswordValid) {
                 return response.status(409).send('Invalid password')
             }
-            const image = path.resolve(__dirname, '..', '..', '..', '..', `uploads/${session.user.profile.image}`)
+            const image = path.resolve(`C:/Users/Pichau/Documents/Projects/api/fridumtypeorm/build/uploads/${session.user.profile.image}`,)
             session.user.profile.image = image;
             console.log({
                 id: session.id,
