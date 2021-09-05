@@ -113,7 +113,7 @@ var SessionController = /** @class */ (function () {
                         if (!isPasswordValid) {
                             return [2 /*return*/, response.status(409).send('Invalid password')];
                         }
-                        image = path_1.default.resolve(__dirname, '..', '..', '..', '..', '..', "uploads/" + session.user.profile.image);
+                        image = path_1.default.resolve(__dirname, '..', '..', '..', '..', '..', '..', "uploads/" + session.user.profile.image);
                         session.user.profile.image = image;
                         console.log({
                             id: session.id,
