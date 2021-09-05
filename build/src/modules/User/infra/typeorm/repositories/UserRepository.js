@@ -35,11 +35,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var typeorm_2 = require("typeorm");
 var User_1 = require("../entities/User");
 var Profile_1 = require("./../../../../Profile/infra/typeorm/entities/Profile");
+var path_1 = __importDefault(require("path"));
 var UserRepository = /** @class */ (function () {
     function UserRepository() {
         this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
@@ -69,7 +73,7 @@ var UserRepository = /** @class */ (function () {
     };
     UserRepository.prototype.findById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var user;
+            var user, image;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({
@@ -84,6 +88,9 @@ var UserRepository = /** @class */ (function () {
                         })];
                     case 1:
                         user = _a.sent();
+                        image = path_1.default.resolve(__dirname, '..', '..', '..', '..', '..', "uploads/" + user.profile.image);
+                        console.log(image);
+                        user.profile.image = image;
                         return [2 /*return*/, user];
                 }
             });

@@ -5,9 +5,7 @@ import { getConnection } from "typeorm";
 import { User } from '../entities/User';
 import IUserRepository from './../../../repositories/IUserRepository';
 import { Profile } from './../../../../Profile/infra/typeorm/entities/Profile';
-import { Accomplishment } from './../../../../Accomplishments/infra/typeorm/entities/Accomplishment';
-import { FocusArea } from './../../../../FocusArea/infra/typeorm/entities/FocusArea';
-import { Occupation } from './../../../../Occupation/infra/typeorm/entities/Occupation';
+import path from 'path'
 
 class UserRepository implements IUserRepository {
     private userRepository: Repository<User>
@@ -44,6 +42,9 @@ class UserRepository implements IUserRepository {
                 'profile.occupation',
             ]
         })
+        const image = path.resolve(__dirname, '..', '..', '..', '..', '..', `uploads/${user.profile.image}`)
+        console.log(image);
+        user.profile.image = image;
         return user
     }
 
