@@ -22,6 +22,7 @@ profileRoutes.patch('/:id', celebrate({
     [Segments.BODY]: {
         role: Joi.string(),
         work_resume: Joi.string(),
+        image: Joi.string(),
         description: Joi.string(),
     },
 }), upload.single('image'), profileController.update);
