@@ -8,6 +8,7 @@ import CreateSessionService from '../../../services/CreateSessionService';
 import DeleteSessionService from './../../../services/DeleteSessionService';
 import UpdateSessionService from './../../../services/UpdateSessionService';
 import { classToClass } from 'class-transformer';
+import path from 'path';
 
 class SessionController {
 
@@ -57,7 +58,8 @@ class SessionController {
             if (!isPasswordValid) {
                 return response.status(409).send('Invalid password')
             }
-
+            const image = path.resolve(__dirname, '..', '..', '..', '..', '..', `uploads/${session.user.profile.image}`)
+            session.user.profile.image = image;
             console.log({
                 id: session.id,
                 email: session.email,
