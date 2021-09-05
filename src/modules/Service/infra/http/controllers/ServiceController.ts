@@ -35,6 +35,10 @@ class ServiceController {
         try {
             const createService = container.resolve(CreateServiceService)
             const service = await createService.execute(request.body);
+            if (service == null) {
+                console.log('Service already exists')
+                return response.send('Service already exists')
+            }
             return response.json(classToClass(service))
         } catch (err) {
             return response.status(401).send(err.message);

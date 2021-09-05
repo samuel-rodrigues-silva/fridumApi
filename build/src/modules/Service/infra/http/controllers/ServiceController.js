@@ -102,6 +102,10 @@ var ServiceController = /** @class */ (function () {
                         return [4 /*yield*/, createService.execute(request.body)];
                     case 1:
                         service = _a.sent();
+                        if (service == null) {
+                            console.log('Service already exists');
+                            return [2 /*return*/, response.send('Service already exists')];
+                        }
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(service))];
                     case 2:
                         err_3 = _a.sent();

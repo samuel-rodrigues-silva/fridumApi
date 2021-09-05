@@ -69,7 +69,7 @@ var ServiceRepository = /** @class */ (function () {
     };
     ServiceRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, post, follow, service;
+            var user, post, follow, services, service;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: data.userId } })];
@@ -81,12 +81,18 @@ var ServiceRepository = /** @class */ (function () {
                         return [4 /*yield*/, this.followRepository.findOne({ where: { id: data.followId } })];
                     case 3:
                         follow = _a.sent();
+                        return [4 /*yield*/, this.ormRepository.findOne({ where: { post: post, follow: follow } })];
+                    case 4:
+                        services = _a.sent();
+                        if (services) {
+                            return [2 /*return*/, null];
+                        }
                         service = this.ormRepository.create(data);
                         service.user = user;
                         service.post = post;
                         service.follow = follow;
                         return [4 /*yield*/, this.ormRepository.save(service)];
-                    case 4: return [2 /*return*/, _a.sent()];
+                    case 5: return [2 /*return*/, _a.sent()];
                 }
             });
         });
