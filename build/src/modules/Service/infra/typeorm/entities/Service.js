@@ -33,7 +33,7 @@ var Service = /** @class */ (function () {
         __metadata("design:type", User_1.User)
     ], Service.prototype, "follow", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ type: 'enum', enum: ['done', 'doing', 'pending', 'refused'] }),
+        (0, typeorm_1.Column)({ type: 'enum', enum: ['contact', 'done', 'doing', 'pending', 'refused'] }),
         __metadata("design:type", String)
     ], Service.prototype, "status", void 0);
     __decorate([

@@ -18,8 +18,8 @@ export class Service {
     @ManyToOne(() => User, (follow) => follow.service)
     follow: User;
 
-    @Column({ type: 'enum', enum: ['done', 'doing', 'pending', 'refused'] })
-    status: 'done' | 'doing' | 'pending' | 'refused';
+    @Column({ type: 'enum', enum: ['contact', 'done', 'doing', 'pending', 'refused'] })
+    status: 'contact' | 'done' | 'doing' | 'pending' | 'refused';
 
     @Column({ type: 'timestamp' })
     finishedAt: Timestamp;
