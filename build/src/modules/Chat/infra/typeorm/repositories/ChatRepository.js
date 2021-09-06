@@ -79,7 +79,6 @@ var ChatRepository = /** @class */ (function () {
                                 where: {
                                     user: user,
                                     follow: follow,
-                                    service: service
                                 }
                             })];
                     case 4:

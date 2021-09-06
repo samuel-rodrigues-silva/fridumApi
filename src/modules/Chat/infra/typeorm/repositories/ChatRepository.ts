@@ -32,7 +32,6 @@ class ChatRepository implements IChatRepository {
             where: {
                 user: user,
                 follow: follow,
-                service: service
             }
         })
 
