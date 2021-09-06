@@ -49,14 +49,19 @@ var ChatRepository = /** @class */ (function () {
     }
     ChatRepository.prototype.list = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var user;
+            var user, chatByUserList, chatByFollowList;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id } })];
                     case 1:
                         user = _a.sent();
                         return [4 /*yield*/, this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow', 'service'] })];
-                    case 2: return [2 /*return*/, _a.sent()];
+                    case 2:
+                        chatByUserList = _a.sent();
+                        return [4 /*yield*/, this.ormRepository.find({ where: { follow: user }, relations: ['user', 'follow', 'service'] })];
+                    case 3:
+                        chatByFollowList = _a.sent();
+                        return [2 /*return*/, chatByUserList.concat(chatByFollowList)];
                 }
             });
         });

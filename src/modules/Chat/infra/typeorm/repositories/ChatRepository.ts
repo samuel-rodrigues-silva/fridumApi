@@ -21,7 +21,9 @@ class ChatRepository implements IChatRepository {
 
     public async list(id: string): Promise<Chat[]> {
         const user = await this.userRepository.findOne({ where: { id: id } })
-        return await this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow', 'service'] })
+        const chatByUserList = await this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow', 'service'] })
+        const chatByFollowList = await this.ormRepository.find({ where: { follow: user }, relations: ['user', 'follow', 'service'] })
+        return chatByUserList.concat(chatByFollowList)
     }
 
     public async create(data: ICreateChatDTO): Promise<Chat | null> {
