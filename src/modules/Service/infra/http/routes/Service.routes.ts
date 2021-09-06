@@ -30,6 +30,10 @@ serviceRouter.post('/', celebrate({
 serviceRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
+    },
+    [Segments.BODY]: {
+        status: Joi.string(),
+        finished_at: Joi.string().allow(null)
     }
 }), serviceController.update)
 

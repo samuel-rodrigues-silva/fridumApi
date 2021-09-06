@@ -97,7 +97,7 @@ var ServiceRepository = /** @class */ (function () {
             });
         });
     };
-    ServiceRepository.prototype.update = function (data, ServiceId) {
+    ServiceRepository.prototype.update = function (data, id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -105,7 +105,7 @@ var ServiceRepository = /** @class */ (function () {
                             .createQueryBuilder()
                             .update(Service_1.Service)
                             .set(data)
-                            .where("id = :id", { id: ServiceId })
+                            .where("id = :id", { id: id })
                             .execute()];
                     case 1:
                         _a.sent();

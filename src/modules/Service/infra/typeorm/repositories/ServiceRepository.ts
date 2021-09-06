@@ -46,12 +46,12 @@ class ServiceRepository implements IServiceRepository {
         return await this.ormRepository.save(service);
     }
 
-    public async update(data: ICreateServiceDTO, ServiceId: string): Promise<void> {
+    public async update(data: ICreateServiceDTO, id: string): Promise<void> {
         await getConnection()
             .createQueryBuilder()
             .update(Service)
             .set(data)
-            .where("id = :id", { id: ServiceId })
+            .where("id = :id", { id: id })
             .execute();
     }
 
