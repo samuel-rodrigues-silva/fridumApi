@@ -3,31 +3,46 @@ import { Chat } from './../entities/Chat';
 import ICreateChatDTO from './../../../dtos/ICreateChatDTO';
 import { User } from './../../../../User/infra/typeorm/entities/User';
 import IChatRepository from "../../../repositories/IChatRepository";
+import { Service } from './../../../../Service/infra/typeorm/entities/Service';
 
 
 class ChatRepository implements IChatRepository {
     private ormRepository: Repository<Chat>;
     private userRepository: Repository<User>;
     private followRepository: Repository<User>;
+    private serviceRepository: Repository<Service>;
 
     constructor() {
         this.ormRepository = getRepository(Chat);
         this.userRepository = getRepository(User);
         this.followRepository = getRepository(User);
+        this.serviceRepository = getRepository(Service);
+    }
+
+    public async list(id: string): Promise<Chat[]> {
+        const user = await this.userRepository.findOne({ where: { id: id } })
+        return await this.ormRepository.find({ where: { user: user } })
     }
 
     public async create(data: ICreateChatDTO): Promise<Chat | null> {
-        const user = await this.userRepository.findOne({where : {id : data.userId}})
-        const follow = await this.followRepository.findOne({where : {id : data.followId}})
-        const chat = await this.ormRepository.findOne({where : {user: user, follow: follow}})
+        const user = await this.userRepository.findOne({ where: { id: data.userId } })
+        const follow = await this.followRepository.findOne({ where: { id: data.followId } })
+        const service = await this.serviceRepository.findOne({ where: { id: data.serviceId } })
+        const chat = await this.ormRepository.findOne({
+            where: {
+                user: user,
+                follow: follow,
+                service: service
+            }
+        })
 
-        if(!chat){
+        if (!chat) {
             const chatReg = this.ormRepository.create();
             chatReg.user = user;
             chatReg.follow = follow;
+            chatReg.service = service;
             return await this.ormRepository.save(chatReg);
         }
-        console.log('already register')
         return null
     }
 

@@ -6,16 +6,17 @@ const chatController = new ChatController();
 
 chatRouter.post('/', celebrate({
     [Segments.BODY]: {
-        userId: Joi.string().required(),
-        followId: Joi.string().required(),
+        userId: Joi.string().uuid().required(),
+        followId: Joi.string().uuid().required(),
+        serviceId: Joi.string().uuid().required()
     }
 }), chatController.create)
 
-// chatRouter.get('/:id', celebrate({
-//     [Segments.PARAMS]: {
-//         id: Joi.string().uuid().required()
-//     }
-// }), chatController.fetchById)
+chatRouter.get('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), chatController.fetchById)
 
 chatRouter.delete('/:id', celebrate({
     [Segments.PARAMS]: {

@@ -39,15 +39,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var Chat_1 = require("./../entities/Chat");
 var User_1 = require("./../../../../User/infra/typeorm/entities/User");
+var Service_1 = require("./../../../../Service/infra/typeorm/entities/Service");
 var ChatRepository = /** @class */ (function () {
     function ChatRepository() {
         this.ormRepository = (0, typeorm_1.getRepository)(Chat_1.Chat);
         this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
         this.followRepository = (0, typeorm_1.getRepository)(User_1.User);
+        this.serviceRepository = (0, typeorm_1.getRepository)(Service_1.Service);
     }
+    ChatRepository.prototype.list = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id } })];
+                    case 1:
+                        user = _a.sent();
+                        return [4 /*yield*/, this.ormRepository.find({ where: { user: user } })];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     ChatRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, follow, chat, chatReg;
+            var user, follow, service, chat, chatReg;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: data.userId } })];
@@ -56,18 +72,26 @@ var ChatRepository = /** @class */ (function () {
                         return [4 /*yield*/, this.followRepository.findOne({ where: { id: data.followId } })];
                     case 2:
                         follow = _a.sent();
-                        return [4 /*yield*/, this.ormRepository.findOne({ where: { user: user, follow: follow } })];
+                        return [4 /*yield*/, this.serviceRepository.findOne({ where: { id: data.serviceId } })];
                     case 3:
+                        service = _a.sent();
+                        return [4 /*yield*/, this.ormRepository.findOne({
+                                where: {
+                                    user: user,
+                                    follow: follow,
+                                    service: service
+                                }
+                            })];
+                    case 4:
                         chat = _a.sent();
-                        if (!!chat) return [3 /*break*/, 5];
+                        if (!!chat) return [3 /*break*/, 6];
                         chatReg = this.ormRepository.create();
                         chatReg.user = user;
                         chatReg.follow = follow;
+                        chatReg.service = service;
                         return [4 /*yield*/, this.ormRepository.save(chatReg)];
-                    case 4: return [2 /*return*/, _a.sent()];
-                    case 5:
-                        console.log('already register');
-                        return [2 /*return*/, null];
+                    case 5: return [2 /*return*/, _a.sent()];
+                    case 6: return [2 /*return*/, null];
                 }
             });
         });

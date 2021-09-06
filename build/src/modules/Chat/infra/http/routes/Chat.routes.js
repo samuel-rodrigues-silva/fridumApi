@@ -2,7 +2,7 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a, _b;
+var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 var celebrate_1 = require("celebrate");
 var express_1 = require("express");
@@ -11,19 +11,20 @@ var chatRouter = (0, express_1.Router)();
 var chatController = new ChatController_1.default();
 chatRouter.post('/', (0, celebrate_1.celebrate)((_a = {},
     _a[celebrate_1.Segments.BODY] = {
-        userId: celebrate_1.Joi.string().required(),
-        followId: celebrate_1.Joi.string().required(),
+        userId: celebrate_1.Joi.string().uuid().required(),
+        followId: celebrate_1.Joi.string().uuid().required(),
+        serviceId: celebrate_1.Joi.string().uuid().required()
     },
     _a)), chatController.create);
-// chatRouter.get('/:id', celebrate({
-//     [Segments.PARAMS]: {
-//         id: Joi.string().uuid().required()
-//     }
-// }), chatController.fetchById)
-chatRouter.delete('/:id', (0, celebrate_1.celebrate)((_b = {},
+chatRouter.get('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
-    _b)), chatController.remove);
+    _b)), chatController.fetchById);
+chatRouter.delete('/:id', (0, celebrate_1.celebrate)((_c = {},
+    _c[celebrate_1.Segments.PARAMS] = {
+        id: celebrate_1.Joi.string().uuid().required()
+    },
+    _c)), chatController.remove);
 exports.default = chatRouter;
 //# sourceMappingURL=Chat.routes.js.map
