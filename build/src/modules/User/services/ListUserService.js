@@ -57,15 +57,12 @@ var ListUserService = /** @class */ (function () {
     function ListUserService(userRepository) {
         this.userRepository = userRepository;
     }
-    ListUserService.prototype.execute = function () {
+    ListUserService.prototype.execute = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.userRepository.listAll()];
-                    case 1:
-                        user = _a.sent();
-                        return [2 /*return*/, user];
+                    case 0: return [4 /*yield*/, this.userRepository.listAll(data)];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });

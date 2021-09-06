@@ -6,6 +6,7 @@ import { User } from '../entities/User';
 import IUserRepository from './../../../repositories/IUserRepository';
 import { Profile } from './../../../../Profile/infra/typeorm/entities/Profile';
 import path from 'path'
+import ISearchUserFiltered from './../../../repositories/ISearchUserFiltered';
 
 class UserRepository implements IUserRepository {
     private userRepository: Repository<User>
@@ -15,19 +16,39 @@ class UserRepository implements IUserRepository {
         this.profileRepository = getRepository(Profile);
     }
 
-    public async listAll(): Promise<User[]> {
-        const user = await this.userRepository.find({
-            relations:
-                [
-                    'profile',
-                    'profile.academicFormation',
-                    'profile.accomplishment',
-                    'profile.focusArea',
-                    'profile.language',
-                    'profile.occupation',
-                ]
-        });
-        return user
+    public async listAll(data: ISearchUserFiltered): Promise<User[]> {
+        const user = await this.userRepository.find(
+            {
+                relations:
+                    [
+                        'profile',
+                        'profile.academicFormation',
+                        'profile.accomplishment',
+                        'profile.focusArea',
+                        'profile.language',
+                        'profile.occupation',
+                    ]
+            });
+        if (data.city) {
+            var parsedCity = data.city.replace('_', ' ')
+        }
+
+        if (data.role) {
+            var parsedRole = String(data.role).replace('_', ' ')
+            parsedRole = parsedRole.replace('_', ' ')
+        }
+
+        if (data.city && data.role) {
+            console.log(`both: ${parsedCity} and ${parsedRole}`);
+            return user.filter((user) => (user.city == parsedCity && user.profile.role == parsedRole))
+        } else if (data.city) {
+            console.log('city');
+            return user.filter((user) => (user.city == parsedCity))
+        } else {
+            console.log(`role: ${parsedRole}`);
+            return user.filter((user) => (user.profile.role == parsedRole))
+        }
+
     }
 
     public async findById(id: string): Promise<User> {

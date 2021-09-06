@@ -4,7 +4,12 @@ import UserController from '../controllers/UserController';
 const userRoutes = Router();
 const userController = new UserController();
 
-userRoutes.get('/', userController.listAll)
+userRoutes.get('/', celebrate({
+    [Segments.QUERY]: {
+        city: Joi.string(),
+        role: Joi.string()
+    }
+}), userController.listAll)
 
 userRoutes.get('/:id', celebrate({
     [Segments.PARAMS]: {

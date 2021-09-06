@@ -71,18 +71,19 @@ var UserController = /** @class */ (function () {
     };
     UserController.prototype.listAll = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, user, error_2;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var _a, city, role, repo, user, error_2;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
+                        _b.trys.push([0, 2, , 3]);
+                        _a = request.query, city = _a.city, role = _a.role;
                         repo = tsyringe_1.container.resolve(ListUserService_1.default);
-                        return [4 /*yield*/, repo.execute()];
+                        return [4 /*yield*/, repo.execute({ city: city, role: role })];
                     case 1:
-                        user = _a.sent();
+                        user = _b.sent();
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(user))];
                     case 2:
-                        error_2 = _a.sent();
+                        error_2 = _b.sent();
                         return [2 /*return*/, response.send(error_2.message)];
                     case 3: return [2 /*return*/];
                 }

@@ -2,6 +2,7 @@ import { injectable, inject, delay } from 'tsyringe';
 import IUserRepository from './../repositories/IUserRepository';
 import { User } from './../infra/typeorm/entities/User';
 import UserRepository from '../infra/typeorm/repositories/UserRepository';
+import ISearchUserFiltered from './../repositories/ISearchUserFiltered';
 
 @injectable()
 class ListUserService {
@@ -10,9 +11,8 @@ class ListUserService {
         private userRepository: IUserRepository,
     ) { }
 
-    public async execute(): Promise<User[]> {
-        const user = await this.userRepository.listAll();
-        return user;
+    public async execute(data: ISearchUserFiltered): Promise<User[]> {
+        return await this.userRepository.listAll(data);
     }
 }
 

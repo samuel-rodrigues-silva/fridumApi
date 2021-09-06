@@ -49,9 +49,9 @@ var UserRepository = /** @class */ (function () {
         this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
         this.profileRepository = (0, typeorm_1.getRepository)(Profile_1.Profile);
     }
-    UserRepository.prototype.listAll = function () {
+    UserRepository.prototype.listAll = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var user;
+            var user, parsedCity, parsedRole;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.find({
@@ -66,7 +66,26 @@ var UserRepository = /** @class */ (function () {
                         })];
                     case 1:
                         user = _a.sent();
-                        return [2 /*return*/, user];
+                        if (data.city) {
+                            parsedCity = data.city.replace('_', ' ');
+                        }
+                        if (data.role) {
+                            parsedRole = String(data.role).replace('_', ' ');
+                            parsedRole = parsedRole.replace('_', ' ');
+                        }
+                        if (data.city && data.role) {
+                            console.log("both: " + parsedCity + " and " + parsedRole);
+                            return [2 /*return*/, user.filter(function (user) { return (user.city == parsedCity && user.profile.role == parsedRole); })];
+                        }
+                        else if (data.city) {
+                            console.log('city');
+                            return [2 /*return*/, user.filter(function (user) { return (user.city == parsedCity); })];
+                        }
+                        else {
+                            console.log("role: " + parsedRole);
+                            return [2 /*return*/, user.filter(function (user) { return (user.profile.role == parsedRole); })];
+                        }
+                        return [2 /*return*/];
                 }
             });
         });

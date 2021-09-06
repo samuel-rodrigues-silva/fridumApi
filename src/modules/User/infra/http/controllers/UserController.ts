@@ -21,8 +21,9 @@ class UserController {
 
     public async listAll(request: Request, response: Response): Promise<Response> {
         try {
+            const { city, role } = request.query;
             const repo = container.resolve(ListUserService);
-            const user = await repo.execute();
+            const user = await repo.execute({ city, role });
             return response.json(classToClass(user));
         } catch (error) {
             return response.send(error.message);
