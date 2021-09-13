@@ -8,7 +8,7 @@ export class ChatMessage {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @ManyToOne(() => Chat)
+    @ManyToOne(() => Chat, (chat) => chat.chatMessage)
     chat: Chat
 
     @ManyToOne(() => User, (user) => user.id)
