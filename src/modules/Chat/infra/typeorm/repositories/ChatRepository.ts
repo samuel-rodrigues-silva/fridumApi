@@ -46,6 +46,7 @@ class ChatRepository implements IChatRepository {
             chatReg.user = user;
             chatReg.follow = follow;
             chatReg.service = service;
+            chatReg.chatMessage = []
             return await this.ormRepository.save(chatReg);
         }
         return null
