@@ -16,7 +16,6 @@ export class Chat {
     follow: User
 
     @OneToMany(() => ChatMessage, (chatMessage) => chatMessage.id, { cascade: true, onDelete: 'CASCADE' })
-    @JoinTable()
     chatMessage?: ChatMessage[]
 
     @OneToOne(() => Service, (service) => service.id)
