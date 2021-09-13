@@ -53,14 +53,6 @@ var CreateChatMessage1622843694135 = /** @class */ (function () {
                             isPrimary: true,
                         },
                         {
-                            name: 'chat_id',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'user_id',
-                            type: 'varchar',
-                        },
-                        {
                             name: 'message',
                             type: 'text'
                         },
