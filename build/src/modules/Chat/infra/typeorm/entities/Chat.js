@@ -31,6 +31,7 @@ var Chat = /** @class */ (function () {
     ], Chat.prototype, "follow", void 0);
     __decorate([
         (0, typeorm_1.OneToMany)(function () { return ChatMessage_1.ChatMessage; }, function (chatMessage) { return chatMessage.id; }, { cascade: true, onDelete: 'CASCADE' }),
+        (0, typeorm_1.JoinTable)(),
         __metadata("design:type", Array)
     ], Chat.prototype, "chatMessage", void 0);
     __decorate([

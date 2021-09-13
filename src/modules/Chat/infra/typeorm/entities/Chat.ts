@@ -1,4 +1,4 @@
-import { CreateDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { User } from "../../../../User/infra/typeorm/entities/User";
 import { Service } from './../../../../Service/infra/typeorm/entities/Service';
 import { ChatMessage } from './../../../../ChatMessage/infra/typeorm/entities/ChatMessage';
@@ -16,6 +16,7 @@ export class Chat {
     follow: User
 
     @OneToMany(() => ChatMessage, (chatMessage) => chatMessage.id, { cascade: true, onDelete: 'CASCADE' })
+    @JoinTable()
     chatMessage?: ChatMessage[]
 
     @OneToOne(() => Service, (service) => service.id)
