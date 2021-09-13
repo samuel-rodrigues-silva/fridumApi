@@ -65,10 +65,10 @@ var ChatRepository = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id } })];
                     case 1:
                         user = _a.sent();
-                        return [4 /*yield*/, this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow', 'service', 'chatMessage'] })];
+                        return [4 /*yield*/, this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow', 'service'] })];
                     case 2:
                         chatByUserList = _a.sent();
-                        return [4 /*yield*/, this.ormRepository.find({ where: { follow: user }, relations: ['user', 'follow', 'service', 'chatMessage'] })];
+                        return [4 /*yield*/, this.ormRepository.find({ where: { follow: user }, relations: ['user', 'follow', 'service'] })];
                     case 3:
                         chatByFollowList = _a.sent();
                         return [2 /*return*/, chatByUserList.concat(chatByFollowList)];
