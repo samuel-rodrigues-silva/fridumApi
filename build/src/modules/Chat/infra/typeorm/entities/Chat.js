@@ -30,7 +30,7 @@ var Chat = /** @class */ (function () {
         __metadata("design:type", User_1.User)
     ], Chat.prototype, "follow", void 0);
     __decorate([
-        (0, typeorm_1.ManyToMany)(function () { return ChatMessage_1.ChatMessage; }, function (chatMessage) { return chatMessage.id; }),
+        (0, typeorm_1.OneToMany)(function () { return ChatMessage_1.ChatMessage; }, function (chatMessage) { return chatMessage.id; }),
         __metadata("design:type", ChatMessage_1.ChatMessage)
     ], Chat.prototype, "chatMessage", void 0);
     __decorate([

@@ -15,7 +15,7 @@ export class Chat {
     @ManyToOne(() => User, (follow) => follow.id)
     follow: User
 
-    @ManyToMany(() => ChatMessage, (chatMessage) => chatMessage.id)
+    @OneToMany(() => ChatMessage, (chatMessage) => chatMessage.id)
     chatMessage: ChatMessage
 
     @OneToOne(() => Service, (service) => service.id)
