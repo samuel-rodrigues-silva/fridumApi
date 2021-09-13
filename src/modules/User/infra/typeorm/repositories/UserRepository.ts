@@ -39,13 +39,10 @@ class UserRepository implements IUserRepository {
         }
 
         if (data.city && data.role) {
-            console.log(`both: ${parsedCity} and ${parsedRole}`);
             return user.filter((user) => (user.city == parsedCity && user.profile.role == parsedRole))
         } else if (data.city) {
-            console.log('city');
             return user.filter((user) => (user.city == parsedCity))
         } else {
-            console.log(`role: ${parsedRole}`);
             return user.filter((user) => (user.profile.role == parsedRole))
         }
 

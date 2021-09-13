@@ -43,10 +43,8 @@ export class User {
     @JoinColumn()
     profile: Profile;
 
-
     @OneToMany(() => Post, (Post) => Post.user)
     post?: Post[]
-
 
     @OneToMany(() => Service, (service) => service.user)
     service: Service;

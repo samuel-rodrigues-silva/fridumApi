@@ -11,7 +11,7 @@ export class ChatMessage {
     @ManyToOne(() => Chat, (chat) => chat.id)
     chat: Chat
 
-    @ManyToMany(() => User, (user) => user.id)
+    @ManyToOne(() => User, (user) => user.id)
     user: User
 
     @Column('text')

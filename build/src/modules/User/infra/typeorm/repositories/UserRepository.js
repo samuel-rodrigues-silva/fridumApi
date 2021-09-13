@@ -74,15 +74,12 @@ var UserRepository = /** @class */ (function () {
                             parsedRole = parsedRole.replace('_', ' ');
                         }
                         if (data.city && data.role) {
-                            console.log("both: " + parsedCity + " and " + parsedRole);
                             return [2 /*return*/, user.filter(function (user) { return (user.city == parsedCity && user.profile.role == parsedRole); })];
                         }
                         else if (data.city) {
-                            console.log('city');
                             return [2 /*return*/, user.filter(function (user) { return (user.city == parsedCity); })];
                         }
                         else {
-                            console.log("role: " + parsedRole);
                             return [2 /*return*/, user.filter(function (user) { return (user.profile.role == parsedRole); })];
                         }
                         return [2 /*return*/];

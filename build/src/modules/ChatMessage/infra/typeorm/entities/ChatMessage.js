@@ -25,7 +25,7 @@ var ChatMessage = /** @class */ (function () {
         __metadata("design:type", Chat_1.Chat)
     ], ChatMessage.prototype, "chat", void 0);
     __decorate([
-        (0, typeorm_1.ManyToMany)(function () { return User_1.User; }, function (user) { return user.id; }),
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.id; }),
         __metadata("design:type", User_1.User)
     ], ChatMessage.prototype, "user", void 0);
     __decorate([

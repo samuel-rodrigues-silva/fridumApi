@@ -30,9 +30,9 @@ var Chat = /** @class */ (function () {
         __metadata("design:type", User_1.User)
     ], Chat.prototype, "follow", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return ChatMessage_1.ChatMessage; }, function (chatmessage) { return chatmessage.id; }),
+        (0, typeorm_1.OneToMany)(function () { return ChatMessage_1.ChatMessage; }, function (chatMessage) { return chatMessage.id; }),
         __metadata("design:type", Array)
-    ], Chat.prototype, "chatmessage", void 0);
+    ], Chat.prototype, "chatMessage", void 0);
     __decorate([
         (0, typeorm_1.OneToOne)(function () { return Service_1.Service; }, function (service) { return service.id; }),
         (0, typeorm_1.JoinColumn)(),
