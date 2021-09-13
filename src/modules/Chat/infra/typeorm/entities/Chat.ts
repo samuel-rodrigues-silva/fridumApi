@@ -15,8 +15,8 @@ export class Chat {
     @ManyToOne(() => User, (follow) => follow.id)
     follow: User
 
-    @OneToMany(() => ChatMessage, (chatMessage) => chatMessage.id)
-    chatMessage: ChatMessage
+    @OneToMany(() => ChatMessage, (chatmessage) => chatmessage.id)
+    chatmessage: ChatMessage
 
     @OneToOne(() => Service, (service) => service.id)
     @JoinColumn()
