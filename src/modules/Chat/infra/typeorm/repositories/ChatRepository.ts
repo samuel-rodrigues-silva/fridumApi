@@ -19,6 +19,10 @@ class ChatRepository implements IChatRepository {
         this.serviceRepository = getRepository(Service);
     }
 
+    public async show(id: string): Promise<Chat[]> {
+        return await this.ormRepository.find({ where: { id: id }, relations: ['chatMessage'] });
+    }
+
     public async list(id: string): Promise<Chat[]> {
         const user = await this.userRepository.findOne({ where: { id: id } })
         const chatByUserList = await this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow', 'service'] })

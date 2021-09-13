@@ -9,10 +9,10 @@ export class ChatMessage {
     id: string
 
     @ManyToOne(() => Chat, (chat) => chat.id)
-    chatId: Chat
+    chat: Chat
 
     @ManyToMany(() => User, (user) => user.id)
-    userId: User
+    user: User
 
     @Column('text')
     message: string

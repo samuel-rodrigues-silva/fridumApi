@@ -4,8 +4,20 @@ import CreateChatService from './../../../services/CreateChatService';
 import { classToClass } from 'class-transformer';
 import DeleteChatService from './../../../services/DeleteChatService';
 import ListChatService from '../../../services/ListChatService';
+import ShowChatService from '../../../services/ShowChatService';
 
 class ChatController {
+
+    public async show(request: Request, response: Response): Promise<Response> {
+        try {
+            const { id } = request.params
+            const showChat = container.resolve(ShowChatService)
+            const chat = await showChat.execute(id);
+            return response.json(classToClass(chat))
+        } catch (err) {
+            return response.status(401).send(err.message);
+        }
+    }
 
     public async fetchById(request: Request, response: Response): Promise<Response> {
         try {

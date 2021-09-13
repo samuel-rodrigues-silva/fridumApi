@@ -1,6 +1,7 @@
-import { CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { CreateDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { User } from "../../../../User/infra/typeorm/entities/User";
 import { Service } from './../../../../Service/infra/typeorm/entities/Service';
+import { ChatMessage } from './../../../../ChatMessage/infra/typeorm/entities/ChatMessage';
 
 @Entity('chat')
 export class Chat {
@@ -13,6 +14,9 @@ export class Chat {
 
     @ManyToOne(() => User, (follow) => follow.id)
     follow: User
+
+    @ManyToMany(() => ChatMessage, (chatMessage) => chatMessage.id)
+    chatMessage: ChatMessage
 
     @OneToOne(() => Service, (service) => service.id)
     @JoinColumn()

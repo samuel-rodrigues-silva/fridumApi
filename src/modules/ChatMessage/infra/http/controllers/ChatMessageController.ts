@@ -1,46 +1,29 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
-import { ChatMessage } from '../../typeorm/entities/ChatMessage';
+import { container } from 'tsyringe';
+import CreateChatMessageService from './../../../services/CreateChatMessageService';
+import { classToClass } from 'class-transformer';
+import DeleteChatMessageService from './../../../services/DeleteChatMessageService';
 
 class ChatMessageController {
 
     public async create(request: Request, response: Response): Promise<Response> {
         try {
-            const repo = getRepository(ChatMessage);
-            const res = await repo.save(request.body);
-            return response.status(201).send(res);
-        } catch (error) {
-            return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
+            const { id } = request.params
+            const createChatMessage = container.resolve(CreateChatMessageService)
+            const chatMessage = await createChatMessage.execute(request.body, id);
+            return response.json(classToClass(chatMessage))
+        } catch (err) {
+            return response.status(401).send(err.message);
         }
-    }
 
-    public async fetchBy(request: Request, response: Response): Promise<Response> {
-        try {
-            console.log(request.params)
-            const repo = getRepository(ChatMessage);
-            const res = await repo.find(request.params);
-            return response.status(201).send(res);
-        } catch (error) {
-            return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
-        }
-    }
-
-    public async update(request: Request, response: Response): Promise<Response> {
-        try {
-
-        } catch (error) {
-            return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
-        }
     }
 
     public async remove(request: Request, response: Response): Promise<Response> {
         try {
-            const repo = getRepository(ChatMessage);
-            const res = await repo.delete(request.params.id)
-            return response.status(201).send(res);
+            const { id } = request.params;
+            const repo = container.resolve(DeleteChatMessageService);
+            const res = await repo.execute(id);
+            return response.json(res)
         } catch (error) {
             return response.send(error.message);
         }

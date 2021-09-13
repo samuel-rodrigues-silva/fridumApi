@@ -44,19 +44,20 @@ var CreateChatService_1 = __importDefault(require("./../../../services/CreateCha
 var class_transformer_1 = require("class-transformer");
 var DeleteChatService_1 = __importDefault(require("./../../../services/DeleteChatService"));
 var ListChatService_1 = __importDefault(require("../../../services/ListChatService"));
+var ShowChatService_1 = __importDefault(require("../../../services/ShowChatService"));
 var ChatController = /** @class */ (function () {
     function ChatController() {
     }
-    ChatController.prototype.fetchById = function (request, response) {
+    ChatController.prototype.show = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, createChat, chat, err_1;
+            var id, showChat, chat, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         id = request.params.id;
-                        createChat = tsyringe_1.container.resolve(ListChatService_1.default);
-                        return [4 /*yield*/, createChat.execute(id)];
+                        showChat = tsyringe_1.container.resolve(ShowChatService_1.default);
+                        return [4 /*yield*/, showChat.execute(id)];
                     case 1:
                         chat = _a.sent();
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(chat))];
@@ -68,9 +69,30 @@ var ChatController = /** @class */ (function () {
             });
         });
     };
+    ChatController.prototype.fetchById = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, createChat, chat, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        id = request.params.id;
+                        createChat = tsyringe_1.container.resolve(ListChatService_1.default);
+                        return [4 /*yield*/, createChat.execute(id)];
+                    case 1:
+                        chat = _a.sent();
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(chat))];
+                    case 2:
+                        err_2 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_2.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     ChatController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var createChat, chat, err_2;
+            var createChat, chat, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -84,8 +106,8 @@ var ChatController = /** @class */ (function () {
                         }
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(chat))];
                     case 2:
-                        err_2 = _a.sent();
-                        return [2 /*return*/, response.status(401).send(err_2.message)];
+                        err_3 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_3.message)];
                     case 3: return [2 /*return*/];
                 }
             });

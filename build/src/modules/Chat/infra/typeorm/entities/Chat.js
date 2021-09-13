@@ -13,6 +13,7 @@ exports.Chat = void 0;
 var typeorm_1 = require("typeorm");
 var User_1 = require("../../../../User/infra/typeorm/entities/User");
 var Service_1 = require("./../../../../Service/infra/typeorm/entities/Service");
+var ChatMessage_1 = require("./../../../../ChatMessage/infra/typeorm/entities/ChatMessage");
 var Chat = /** @class */ (function () {
     function Chat() {
     }
@@ -28,6 +29,10 @@ var Chat = /** @class */ (function () {
         (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (follow) { return follow.id; }),
         __metadata("design:type", User_1.User)
     ], Chat.prototype, "follow", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToMany)(function () { return ChatMessage_1.ChatMessage; }, function (chatMessage) { return chatMessage.id; }),
+        __metadata("design:type", ChatMessage_1.ChatMessage)
+    ], Chat.prototype, "chatMessage", void 0);
     __decorate([
         (0, typeorm_1.OneToOne)(function () { return Service_1.Service; }, function (service) { return service.id; }),
         (0, typeorm_1.JoinColumn)(),

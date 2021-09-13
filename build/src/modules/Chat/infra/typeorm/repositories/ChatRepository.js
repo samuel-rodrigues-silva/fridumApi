@@ -47,6 +47,16 @@ var ChatRepository = /** @class */ (function () {
         this.followRepository = (0, typeorm_1.getRepository)(User_1.User);
         this.serviceRepository = (0, typeorm_1.getRepository)(Service_1.Service);
     }
+    ChatRepository.prototype.show = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { id: id }, relations: ['chatMessage'] })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     ChatRepository.prototype.list = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var user, chatByUserList, chatByFollowList;

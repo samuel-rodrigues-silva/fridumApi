@@ -1,7 +1,6 @@
 import { injectable, inject, delay } from 'tsyringe';
 import IChatRepository from './../repositories/IChatRepository';
 import { Chat } from './../infra/typeorm/entities/Chat';
-import ICreateChatDTO from './../dtos/ICreateChatDTO';
 import ChatRepository from '../infra/typeorm/repositories/ChatRepository';
 
 @injectable()

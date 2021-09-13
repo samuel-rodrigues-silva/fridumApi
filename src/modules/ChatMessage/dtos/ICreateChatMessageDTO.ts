@@ -1,5 +1,5 @@
 export default interface ICreateChatMessageDTO {
-    chat_id: string;
-    user_id: string;
+    chatId: string;
+    userId: string;
     message: string;
 }
