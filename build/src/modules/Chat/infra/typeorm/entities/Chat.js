@@ -34,9 +34,8 @@ var Chat = /** @class */ (function () {
         __metadata("design:type", Array)
     ], Chat.prototype, "chatMessage", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return Service_1.Service; }, function (service) { return service.id; }),
-        (0, typeorm_1.JoinColumn)(),
-        __metadata("design:type", Service_1.Service)
+        (0, typeorm_1.OneToMany)(function () { return Service_1.Service; }, function (service) { return service.chat; }),
+        __metadata("design:type", Array)
     ], Chat.prototype, "service", void 0);
     __decorate([
         (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),

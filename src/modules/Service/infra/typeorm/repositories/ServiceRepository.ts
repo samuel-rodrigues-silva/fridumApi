@@ -7,6 +7,7 @@ import UserRepository from './../../../../User/infra/typeorm/repositories/UserRe
 import { Profile } from './../../../../Profile/infra/typeorm/entities/Profile';
 import { Follow } from './../../../../Follow/infra/typeorm/entities/Follow';
 import { Post } from './../../../../Post/infra/typeorm/entities/Post';
+import { Chat } from "../../../../Chat/infra/typeorm/entities/Chat";
 
 class ServiceRepository implements IServiceRepository {
     private ormRepository: Repository<Service>;
@@ -31,15 +32,26 @@ class ServiceRepository implements IServiceRepository {
 
     public async create(data: ICreateServiceDTO): Promise<Service> {
 
-
         const user = await this.userRepository.findOne({ where: { id: data.userId } })
         const post = await this.postRepository.findOne({ where: { id: data.postId } })
         const follow = await this.followRepository.findOne({ where: { id: data.followId } })
         const services = await this.ormRepository.findOne({ where: { post: post, follow: follow } })
+        const chat = await getConnection()
+            .createQueryBuilder()
+            .select("chat")
+            .from(Chat, "user")
+            .where("chat.user = :user", { user })
+            .andWhere("chat.follow = :follow", { follow })
+            .orWhere("chat.user = :follow", { follow })
+            .andWhere("chat.follow = :user", { user })
+            .getOne();
         if (services) {
             return null
         }
         const service = this.ormRepository.create(data);
+        if (chat) {
+            service.chat = chat
+        }
         service.user = user;
         service.post = post;
         service.follow = follow
