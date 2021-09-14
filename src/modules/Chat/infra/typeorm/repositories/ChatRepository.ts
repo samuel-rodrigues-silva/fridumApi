@@ -19,7 +19,7 @@ class ChatRepository implements IChatRepository {
     }
 
     public async show(id: string): Promise<Chat[]> {
-        return await this.ormRepository.find({ where: { id: id }, relations: ['user', 'chatMessage', 'chatMessage.user'] });
+        return await this.ormRepository.find({ where: { id: id }, relations: ['user', 'follow', 'chatMessage', 'chatMessage.user'] });
     }
 
     public async list(id: string): Promise<Chat[]> {
