@@ -30,8 +30,6 @@ class ServiceRepository implements IServiceRepository {
     }
 
     public async create(data: ICreateServiceDTO): Promise<Service> {
-
-
         const user = await this.userRepository.findOne({ where: { id: data.userId } })
         const post = await this.postRepository.findOne({ where: { id: data.postId } })
         const follow = await this.followRepository.findOne({ where: { id: data.followId } })

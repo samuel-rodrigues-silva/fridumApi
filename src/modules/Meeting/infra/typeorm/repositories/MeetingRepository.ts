@@ -17,7 +17,7 @@ class MeetingRepository implements IMeetingRepository {
     }
 
     public async list(id: string): Promise<Meeting[]> {
-        return await this.ormRepository.find({ where: { id }, relations: ['user', 'follow'] })
+        return await this.ormRepository.find({ where: { user: id }, relations: ['user', 'follow'] })
     }
 
     public async create(data: ICreateMeetingDTO, id: string): Promise<Meeting> {

@@ -40,7 +40,6 @@ class ServiceController {
             }
             return response.json(classToClass(service))
         } catch (err) {
-            console.log(err.message)
             return response.status(401).send(err.message);
         }
     }
