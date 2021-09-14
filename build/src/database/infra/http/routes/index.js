@@ -10,7 +10,6 @@ var ChatMessage_routes_1 = __importDefault(require("../../../../modules/ChatMess
 var Evaluation_routes_1 = __importDefault(require("../../../../modules/Evaluation/infra/http/routes/Evaluation.routes"));
 var FocusArea_routes_1 = __importDefault(require("../../../../modules/FocusArea/infra/http/routes/FocusArea.routes"));
 var Follow_routes_1 = __importDefault(require("../../../../modules/Follow/infra/http/routes/Follow.routes"));
-var Location_routes_1 = __importDefault(require("../../../../modules/Location/infra/http/routes/Location.routes"));
 var Meeting_routes_1 = __importDefault(require("../../../../modules/Meeting/infra/http/routes/Meeting.routes"));
 var Occupation_routes_1 = __importDefault(require("../../../../modules/Occupation/infra/http/routes/Occupation.routes"));
 var Post_routes_1 = __importDefault(require("../../../../modules/Post/infra/http/routes/Post.routes"));
@@ -29,7 +28,6 @@ routes.use('/chatmessage', ChatMessage_routes_1.default);
 routes.use('/evaluation', Evaluation_routes_1.default);
 routes.use('/focusarea', FocusArea_routes_1.default);
 routes.use('/follow', Follow_routes_1.default);
-routes.use('/location', Location_routes_1.default);
 routes.use('/meeting', Meeting_routes_1.default);
 routes.use('/occupation', Occupation_routes_1.default);
 routes.use('/post', Post_routes_1.default);

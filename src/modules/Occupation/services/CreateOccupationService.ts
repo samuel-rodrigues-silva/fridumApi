@@ -1,6 +1,6 @@
 import { injectable, inject, delay } from 'tsyringe';
 import { Occupation } from '../infra/typeorm/entities/Occupation';
-import IAcademicFomationRepository from '../repositories/IOccupationRepository';
+import IOccupationRepository from '../repositories/IOccupationRepository';
 import ICreateOccupationDTO from '../dtos/ICreateOccupationDTO';
 import OccupationRepository from '../infra/typeorm/repositories/OccupationRepository';
 
@@ -8,13 +8,13 @@ import OccupationRepository from '../infra/typeorm/repositories/OccupationReposi
 class CreateOccupationService {
 
     constructor(
-        @inject(delay(()=> OccupationRepository))
-        private OccupationRepository: IAcademicFomationRepository) { }
+        @inject(delay(() => OccupationRepository))
+        private OccupationRepository: IOccupationRepository) { }
 
     public async execute(
         data: ICreateOccupationDTO
     ): Promise<Occupation> {
-       return await this.OccupationRepository.create(data);
+        return await this.OccupationRepository.create(data);
     }
 }
 

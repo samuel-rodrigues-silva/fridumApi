@@ -10,18 +10,23 @@ var MeetingController_1 = __importDefault(require("../controllers/MeetingControl
 var meetingRouter = (0, express_1.Router)();
 var meetingController = new MeetingController_1.default();
 meetingRouter.post('/', (0, celebrate_1.celebrate)((_a = {},
+    _a[celebrate_1.Segments.PARAMS] = {
+        id: celebrate_1.Joi.string().uuid().required()
+    },
     _a[celebrate_1.Segments.BODY] = {
-        user_id: celebrate_1.Joi.string().required(),
-        follow_id: celebrate_1.Joi.string().required(),
-        location_id: celebrate_1.Joi.string(),
-        meeting_time: celebrate_1.Joi.number()
+        followId: celebrate_1.Joi.string().required(),
+        meeting_time: celebrate_1.Joi.number(),
+        street: celebrate_1.Joi.string().required(),
+        district: celebrate_1.Joi.string().required(),
+        city: celebrate_1.Joi.string().required(),
+        state: celebrate_1.Joi.string().required(),
     },
     _a)), meetingController.create);
 meetingRouter.get('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
-    _b)), meetingController.fetchBy);
+    _b)), meetingController.list);
 meetingRouter.put('/:id', (0, celebrate_1.celebrate)((_c = {},
     _c[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()

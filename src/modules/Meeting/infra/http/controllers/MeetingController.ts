@@ -1,45 +1,50 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
-import { Meeting } from '../../typeorm/entities/Meeting';
+import { container } from 'tsyringe';
+import CreateMeetingService from './../../../services/CreateMeetingService';
+import { classToClass } from 'class-transformer';
+import UpdateMeetingService from './../../../services/UpdateMeetingService';
+import DeleteMeetingService from './../../../services/DeleteMeetingService';
+import ListMeetingService from '../../../services/ListMeetingService';
 
 class MeetingController {
-    public async create(request: Request, response: Response): Promise<Response> {
+
+    public async list(request: Request, response: Response): Promise<Response> {
         try {
-            const repo = getRepository(Meeting);
-            const res = await repo.save(request.body);
-            return response.status(201).send(res);
-        } catch (error) {
-            return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
+            const createMeeting = container.resolve(ListMeetingService)
+            const Meeting = await createMeeting.execute(request.body);
+            return response.json(classToClass(Meeting))
+        } catch (err) {
+            return response.status(401).send(err.message);
         }
     }
 
-    public async fetchBy(request: Request, response: Response): Promise<Response> {
+    public async create(request: Request, response: Response): Promise<Response> {
         try {
-            console.log(request.params)
-            const repo = getRepository(Meeting);
-            const res = await repo.find(request.params);
-            return response.status(201).send(res);
-        } catch (error) {
-            return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
+            const { id } = request.params
+            const createMeeting = container.resolve(CreateMeetingService)
+            const Meeting = await createMeeting.execute(request.body, id);
+            return response.json(classToClass(Meeting))
+        } catch (err) {
+            return response.status(401).send(err.message);
         }
     }
 
     public async update(request: Request, response: Response): Promise<Response> {
         try {
-
+            const { id } = request.params;
+            const repo = container.resolve(UpdateMeetingService);
+            await repo.execute(request.body, id);
         } catch (error) {
             return response.send(error.message);
-            //console.log("errorMessage =>", error.message);
         }
     }
 
     public async remove(request: Request, response: Response): Promise<Response> {
         try {
-            const repo = getRepository(Meeting);
-            const res = await repo.delete(request.params.id)
-            return response.status(201).send(res);
+            const { id } = request.params;
+            const repo = container.resolve(DeleteMeetingService);
+            const res = await repo.execute(id);
+            return response.json(res)
         } catch (error) {
             return response.send(error.message);
         }

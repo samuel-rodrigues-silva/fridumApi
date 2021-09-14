@@ -35,24 +35,73 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var typeorm_1 = require("typeorm");
-var Meeting_1 = require("../../typeorm/entities/Meeting");
+var tsyringe_1 = require("tsyringe");
+var CreateMeetingService_1 = __importDefault(require("./../../../services/CreateMeetingService"));
+var class_transformer_1 = require("class-transformer");
+var UpdateMeetingService_1 = __importDefault(require("./../../../services/UpdateMeetingService"));
+var DeleteMeetingService_1 = __importDefault(require("./../../../services/DeleteMeetingService"));
+var ListMeetingService_1 = __importDefault(require("../../../services/ListMeetingService"));
 var MeetingController = /** @class */ (function () {
     function MeetingController() {
     }
-    MeetingController.prototype.create = function (request, response) {
+    MeetingController.prototype.list = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_1;
+            var createMeeting, Meeting, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        repo = (0, typeorm_1.getRepository)(Meeting_1.Meeting);
-                        return [4 /*yield*/, repo.save(request.body)];
+                        createMeeting = tsyringe_1.container.resolve(ListMeetingService_1.default);
+                        return [4 /*yield*/, createMeeting.execute(request.body)];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        Meeting = _a.sent();
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(Meeting))];
+                    case 2:
+                        err_1 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_1.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MeetingController.prototype.create = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, createMeeting, Meeting, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        id = request.params.id;
+                        createMeeting = tsyringe_1.container.resolve(CreateMeetingService_1.default);
+                        return [4 /*yield*/, createMeeting.execute(request.body, id)];
+                    case 1:
+                        Meeting = _a.sent();
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(Meeting))];
+                    case 2:
+                        err_2 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_2.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MeetingController.prototype.update = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, repo, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        id = request.params.id;
+                        repo = tsyringe_1.container.resolve(UpdateMeetingService_1.default);
+                        return [4 /*yield*/, repo.execute(request.body, id)];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
                     case 2:
                         error_1 = _a.sent();
                         return [2 /*return*/, response.send(error_1.message)];
@@ -61,55 +110,22 @@ var MeetingController = /** @class */ (function () {
             });
         });
     };
-    MeetingController.prototype.fetchBy = function (request, response) {
+    MeetingController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_2;
+            var id, repo, res, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        console.log(request.params);
-                        repo = (0, typeorm_1.getRepository)(Meeting_1.Meeting);
-                        return [4 /*yield*/, repo.find(request.params)];
+                        id = request.params.id;
+                        repo = tsyringe_1.container.resolve(DeleteMeetingService_1.default);
+                        return [4 /*yield*/, repo.execute(id)];
                     case 1:
                         res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
+                        return [2 /*return*/, response.json(res)];
                     case 2:
                         error_2 = _a.sent();
                         return [2 /*return*/, response.send(error_2.message)];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MeetingController.prototype.update = function (request, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                try {
-                }
-                catch (error) {
-                    return [2 /*return*/, response.send(error.message)];
-                    //console.log("errorMessage =>", error.message);
-                }
-                return [2 /*return*/];
-            });
-        });
-    };
-    MeetingController.prototype.remove = function (request, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            var repo, res, error_3;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        repo = (0, typeorm_1.getRepository)(Meeting_1.Meeting);
-                        return [4 /*yield*/, repo.delete(request.params.id)];
-                    case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, response.status(201).send(res)];
-                    case 2:
-                        error_3 = _a.sent();
-                        return [2 /*return*/, response.send(error_3.message)];
                     case 3: return [2 /*return*/];
                 }
             });

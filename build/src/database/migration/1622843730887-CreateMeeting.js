@@ -53,15 +53,19 @@ var CreateMeeting1622843730887 = /** @class */ (function () {
                             isPrimary: true,
                         },
                         {
-                            name: 'user_id',
+                            name: 'street',
                             type: 'varchar'
                         },
                         {
-                            name: 'profile_id',
-                            type: 'varchar',
+                            name: 'district',
+                            type: 'varchar'
                         },
                         {
-                            name: 'location_id',
+                            name: 'city',
+                            type: 'varchar'
+                        },
+                        {
+                            name: 'state',
                             type: 'varchar'
                         },
                         {

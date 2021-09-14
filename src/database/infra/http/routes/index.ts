@@ -5,7 +5,6 @@ import chatMessageRouter from '../../../../modules/ChatMessage/infra/http/routes
 import evaluationRouter from '../../../../modules/Evaluation/infra/http/routes/Evaluation.routes';
 import focusAreaRouter from '../../../../modules/FocusArea/infra/http/routes/FocusArea.routes';
 import followRouter from '../../../../modules/Follow/infra/http/routes/Follow.routes';
-import locationRouter from '../../../../modules/Location/infra/http/routes/Location.routes';
 import meetingRouter from '../../../../modules/Meeting/infra/http/routes/Meeting.routes';
 import occupationRouter from '../../../../modules/Occupation/infra/http/routes/Occupation.routes';
 import postRouter from '../../../../modules/Post/infra/http/routes/Post.routes';
@@ -26,7 +25,6 @@ routes.use('/chatmessage', chatMessageRouter)
 routes.use('/evaluation', evaluationRouter)
 routes.use('/focusarea', focusAreaRouter)
 routes.use('/follow', followRouter)
-routes.use('/location', locationRouter)
 routes.use('/meeting', meetingRouter)
 routes.use('/occupation', occupationRouter)
 routes.use('/post', postRouter)

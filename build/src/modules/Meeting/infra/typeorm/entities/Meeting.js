@@ -11,8 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Meeting = void 0;
 var typeorm_1 = require("typeorm");
-var Follow_1 = require("../../../../Follow/infra/typeorm/entities/Follow");
-var Location_1 = require("../../../../Location/infra/typeorm/entities/Location");
 var User_1 = require("../../../../User/infra/typeorm/entities/User");
 var Meeting = /** @class */ (function () {
     function Meeting() {
@@ -22,17 +20,29 @@ var Meeting = /** @class */ (function () {
         __metadata("design:type", String)
     ], Meeting.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.ManyToMany)(function () { return User_1.User; }, function (user) { return user.id; }),
+        (0, typeorm_1.Column)({ type: 'varchar' }),
+        __metadata("design:type", String)
+    ], Meeting.prototype, "street", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ type: 'varchar' }),
+        __metadata("design:type", String)
+    ], Meeting.prototype, "district", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ type: 'varchar' }),
+        __metadata("design:type", String)
+    ], Meeting.prototype, "city", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ type: 'varchar' }),
+        __metadata("design:type", String)
+    ], Meeting.prototype, "state", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.meeting; }),
         __metadata("design:type", User_1.User)
-    ], Meeting.prototype, "user_id", void 0);
+    ], Meeting.prototype, "user", void 0);
     __decorate([
-        (0, typeorm_1.ManyToMany)(function () { return Follow_1.Follow; }, function (follow) { return follow.id; }),
-        __metadata("design:type", Follow_1.Follow)
-    ], Meeting.prototype, "follow_id", void 0);
-    __decorate([
-        (0, typeorm_1.ManyToMany)(function () { return Location_1.Location; }, function (location) { return location.id; }),
-        __metadata("design:type", Location_1.Location)
-    ], Meeting.prototype, "location_id", void 0);
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (follow) { return follow.meeting; }),
+        __metadata("design:type", User_1.User)
+    ], Meeting.prototype, "follow", void 0);
     __decorate([
         (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
         __metadata("design:type", typeorm_1.Timestamp)

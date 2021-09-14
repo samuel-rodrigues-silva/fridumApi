@@ -14,6 +14,7 @@ var typeorm_1 = require("typeorm");
 var Profile_1 = require("../../../../Profile/infra/typeorm/entities/Profile");
 var Post_1 = require("./../../../../Post/infra/typeorm/entities/Post");
 var Service_1 = require("./../../../../Service/infra/typeorm/entities/Service");
+var Meeting_1 = require("./../../../../Meeting/infra/typeorm/entities/Meeting");
 var User = /** @class */ (function () {
     function User() {
     }
@@ -72,8 +73,12 @@ var User = /** @class */ (function () {
     ], User.prototype, "post", void 0);
     __decorate([
         (0, typeorm_1.OneToMany)(function () { return Service_1.Service; }, function (service) { return service.user; }),
-        __metadata("design:type", Service_1.Service)
+        __metadata("design:type", Array)
     ], User.prototype, "service", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return Meeting_1.Meeting; }, function (metting) { return metting.user; }),
+        __metadata("design:type", Array)
+    ], User.prototype, "meeting", void 0);
     User = __decorate([
         (0, typeorm_1.Entity)('user')
     ], User);

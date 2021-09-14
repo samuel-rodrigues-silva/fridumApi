@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, Timestamp, CreateDateColumn, Up
 import { Profile } from "../../../../Profile/infra/typeorm/entities/Profile";
 import { Post } from './../../../../Post/infra/typeorm/entities/Post';
 import { Service } from './../../../../Service/infra/typeorm/entities/Service';
+import { Meeting } from './../../../../Meeting/infra/typeorm/entities/Meeting';
 
 @Entity('user')
 export class User {
@@ -47,7 +48,10 @@ export class User {
     post?: Post[]
 
     @OneToMany(() => Service, (service) => service.user)
-    service: Service;
+    service: Service[];
+
+    @OneToMany(() => Meeting, (metting) => metting.user)
+    meeting: Meeting[]
 
 
 }

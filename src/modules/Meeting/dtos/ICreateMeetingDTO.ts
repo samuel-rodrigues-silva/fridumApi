@@ -1,6 +1,9 @@
 export default interface ICreateMeetingDTO {
-    user_id: string;
-    follow_id: string;
-    location_id: string;
+    userId: string;
+    followId: string;
+    street: string;
+    district: string;
+    city: string;
+    state: string;
     meeting_time: number
 }

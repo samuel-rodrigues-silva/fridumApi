@@ -5,11 +5,16 @@ const meetingRouter = Router();
 const meetingController = new MeetingController();
 
 meetingRouter.post('/', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    },
     [Segments.BODY]: {
-        user_id: Joi.string().required(),
-        follow_id: Joi.string().required(),
-        location_id: Joi.string(),
-        meeting_time: Joi.number()
+        followId: Joi.string().required(),
+        meeting_time: Joi.number(),
+        street: Joi.string().required(),
+        district: Joi.string().required(),
+        city: Joi.string().required(),
+        state: Joi.string().required(),
     }
 }), meetingController.create)
 
@@ -17,7 +22,7 @@ meetingRouter.get('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     }
-}), meetingController.fetchBy)
+}), meetingController.list)
 
 meetingRouter.put('/:id', celebrate({
     [Segments.PARAMS]: {

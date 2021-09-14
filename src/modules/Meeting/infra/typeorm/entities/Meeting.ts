@@ -1,6 +1,5 @@
-import { CreateDateColumn, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { Follow } from "../../../../Follow/infra/typeorm/entities/Follow";
-import { Location } from "../../../../Location/infra/typeorm/entities/Location";
 import { User } from "../../../../User/infra/typeorm/entities/User";
 
 @Entity('meeting')
@@ -9,14 +8,23 @@ export class Meeting {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @ManyToMany(() => User, (user) => user.id)
-    user_id: User;
+    @Column({ type: 'varchar' })
+    street: string
 
-    @ManyToMany(() => Follow, (follow) => follow.id)
-    follow_id: Follow;
+    @Column({ type: 'varchar' })
+    district: string
 
-    @ManyToMany(() => Location, (location) => location.id)
-    location_id: Location;
+    @Column({ type: 'varchar' })
+    city: string
+
+    @Column({ type: 'varchar' })
+    state: string
+
+    @ManyToOne(() => User, (user) => user.meeting)
+    user: User;
+
+    @ManyToOne(() => User, (follow) => follow.meeting)
+    follow: User;
 
     @CreateDateColumn({ type: 'timestamp' })
     meeting_time: Timestamp

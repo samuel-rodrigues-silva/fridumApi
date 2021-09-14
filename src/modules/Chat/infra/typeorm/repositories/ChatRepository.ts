@@ -5,7 +5,6 @@ import { User } from './../../../../User/infra/typeorm/entities/User';
 import IChatRepository from "../../../repositories/IChatRepository";
 import { Service } from './../../../../Service/infra/typeorm/entities/Service';
 
-
 class ChatRepository implements IChatRepository {
     private ormRepository: Repository<Chat>;
     private userRepository: Repository<User>;
