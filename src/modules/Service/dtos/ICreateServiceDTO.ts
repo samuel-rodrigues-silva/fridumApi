@@ -3,5 +3,5 @@ export default interface ICreateServiceDTO {
     postId?: string;
     followId: string;
     status: 'done' | 'doing' | 'pending' | 'refused';
-    finished_at?: Date;
+    finishedAt?: Date;
 }
