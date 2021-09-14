@@ -47,9 +47,12 @@ var MeetingRepository = /** @class */ (function () {
     }
     MeetingRepository.prototype.list = function (id) {
         return __awaiter(this, void 0, void 0, function () {
+            var user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { user: id }, relations: ['user', 'follow'] })];
+                    case 0:
+                        user = this.userRepository.findOne({ where: { id: id } });
+                        return [4 /*yield*/, this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow'] })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

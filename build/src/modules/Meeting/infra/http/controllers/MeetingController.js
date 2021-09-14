@@ -50,7 +50,7 @@ var MeetingController = /** @class */ (function () {
     }
     MeetingController.prototype.list = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var createMeeting, Meeting, err_1;
+            var createMeeting, meeting, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -58,8 +58,8 @@ var MeetingController = /** @class */ (function () {
                         createMeeting = tsyringe_1.container.resolve(ListMeetingService_1.default);
                         return [4 /*yield*/, createMeeting.execute(request.body)];
                     case 1:
-                        Meeting = _a.sent();
-                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(Meeting))];
+                        meeting = _a.sent();
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(meeting))];
                     case 2:
                         err_1 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_1.message)];
