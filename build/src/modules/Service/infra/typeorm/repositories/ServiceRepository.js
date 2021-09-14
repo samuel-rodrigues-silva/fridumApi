@@ -90,15 +90,14 @@ var ServiceRepository = /** @class */ (function () {
                                 .select("chat")
                                 .from(Chat_1.Chat, "chat")
                                 .where("chat.user = :user", { user: user })
-                                .andWhere("chat.follow = :follow", { follow: follow })
                                 .orWhere("chat.user = :follow", { follow: follow })
-                                .andWhere("chat.follow = :user", { user: user })
                                 .getOne()];
                     case 5:
                         chat = _a.sent();
                         if (services) {
                             return [2 /*return*/, null];
                         }
+                        console.log(chat);
                         service = this.ormRepository.create(data);
                         if (chat) {
                             service.chat = chat;

@@ -41,13 +41,12 @@ class ServiceRepository implements IServiceRepository {
             .select("chat")
             .from(Chat, "chat")
             .where("chat.user = :user", { user })
-            .andWhere("chat.follow = :follow", { follow })
             .orWhere("chat.user = :follow", { follow })
-            .andWhere("chat.follow = :user", { user })
             .getOne();
         if (services) {
             return null
         }
+        console.log(chat)
         const service = this.ormRepository.create(data);
         if (chat) {
             service.chat = chat
