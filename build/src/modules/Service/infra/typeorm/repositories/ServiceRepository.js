@@ -88,7 +88,7 @@ var ServiceRepository = /** @class */ (function () {
                         return [4 /*yield*/, (0, typeorm_1.getConnection)()
                                 .createQueryBuilder()
                                 .select("chat")
-                                .from(Chat_1.Chat, "user")
+                                .from(Chat_1.Chat, "chat")
                                 .where("chat.user = :user", { user: user })
                                 .andWhere("chat.follow = :follow", { follow: follow })
                                 .orWhere("chat.user = :follow", { follow: follow })

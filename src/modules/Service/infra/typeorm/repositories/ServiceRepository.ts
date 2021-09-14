@@ -39,7 +39,7 @@ class ServiceRepository implements IServiceRepository {
         const chat = await getConnection()
             .createQueryBuilder()
             .select("chat")
-            .from(Chat, "user")
+            .from(Chat, "chat")
             .where("chat.user = :user", { user })
             .andWhere("chat.follow = :follow", { follow })
             .orWhere("chat.user = :follow", { follow })
