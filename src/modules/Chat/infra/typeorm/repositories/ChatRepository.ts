@@ -48,7 +48,7 @@ class ChatRepository implements IChatRepository {
             const chatReg = this.ormRepository.create();
             chatReg.user = user;
             chatReg.follow = follow;
-            chatReg.service.push(service);
+            chatReg.service = service;
             chatReg.chatMessage = []
             return await this.ormRepository.save(chatReg);
         }

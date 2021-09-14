@@ -18,8 +18,9 @@ export class Chat {
     @OneToMany(() => ChatMessage, (chatMessage) => chatMessage.chat, { cascade: true, onDelete: 'CASCADE' })
     chatMessage?: ChatMessage[]
 
-    @OneToMany(() => Service, (service) => service.id)
-    service: Service[]
+    @OneToOne(() => Service, (service) => service.id)
+    @JoinColumn()
+    service: Service
 
     @CreateDateColumn({ type: 'timestamp', name: 'created_At' })
     createdAt: Timestamp;
