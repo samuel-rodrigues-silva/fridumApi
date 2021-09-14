@@ -103,12 +103,12 @@ var ServiceController = /** @class */ (function () {
                     case 1:
                         service = _a.sent();
                         if (service == null) {
-                            console.log('Service already exists');
                             return [2 /*return*/, response.send('Service already exists')];
                         }
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(service))];
                     case 2:
                         err_3 = _a.sent();
+                        console.log(err_3.message);
                         return [2 /*return*/, response.status(401).send(err_3.message)];
                     case 3: return [2 /*return*/];
                 }

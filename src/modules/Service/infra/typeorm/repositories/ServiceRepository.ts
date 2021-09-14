@@ -36,17 +36,14 @@ class ServiceRepository implements IServiceRepository {
         const post = await this.postRepository.findOne({ where: { id: data.postId } })
         const follow = await this.followRepository.findOne({ where: { id: data.followId } })
         const services = await this.ormRepository.findOne({ where: { post: post, follow: follow } })
-        const chat = await getConnection()
-            .createQueryBuilder()
-            .select("chat")
-            .from(Chat, "chat")
-            .where("chat.user = :user", { user })
-            .orWhere("chat.user = :follow", { follow })
+        const chat = await getRepository(Chat)
+            .createQueryBuilder("chat")
+            .where("chat.user = :user OR chat.user = :follow", { user, follow })
             .getOne();
+        console.log(chat)
         if (services) {
             return null
         }
-        console.log(chat)
         const service = this.ormRepository.create(data);
         if (chat) {
             service.chat = chat

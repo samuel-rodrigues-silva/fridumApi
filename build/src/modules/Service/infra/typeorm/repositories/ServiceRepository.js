@@ -85,19 +85,16 @@ var ServiceRepository = /** @class */ (function () {
                         return [4 /*yield*/, this.ormRepository.findOne({ where: { post: post, follow: follow } })];
                     case 4:
                         services = _a.sent();
-                        return [4 /*yield*/, (0, typeorm_1.getConnection)()
-                                .createQueryBuilder()
-                                .select("chat")
-                                .from(Chat_1.Chat, "chat")
-                                .where("chat.user = :user", { user: user })
-                                .orWhere("chat.user = :follow", { follow: follow })
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(Chat_1.Chat)
+                                .createQueryBuilder("chat")
+                                .where("chat.user = :user OR chat.user = :follow", { user: user, follow: follow })
                                 .getOne()];
                     case 5:
                         chat = _a.sent();
+                        console.log(chat);
                         if (services) {
                             return [2 /*return*/, null];
                         }
-                        console.log(chat);
                         service = this.ormRepository.create(data);
                         if (chat) {
                             service.chat = chat;

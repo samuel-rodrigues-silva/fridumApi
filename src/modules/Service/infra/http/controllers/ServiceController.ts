@@ -36,11 +36,11 @@ class ServiceController {
             const createService = container.resolve(CreateServiceService)
             const service = await createService.execute(request.body);
             if (service == null) {
-                console.log('Service already exists')
                 return response.send('Service already exists')
             }
             return response.json(classToClass(service))
         } catch (err) {
+            console.log(err.message)
             return response.status(401).send(err.message);
         }
     }
