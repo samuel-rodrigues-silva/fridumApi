@@ -52,7 +52,14 @@ var MeetingRepository = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         user = this.userRepository.findOne({ where: { id: id } });
-                        return [4 /*yield*/, this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow'] })];
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(Meeting_1.Meeting)
+                                .createQueryBuilder('meeting')
+                                .leftJoinAndSelect('meeting.user', 'user')
+                                .leftJoinAndSelect('meeting.follow', 'follow')
+                                .leftJoinAndSelect('meeting.service', 'service')
+                                .where('meeting.user = :user', { user: user })
+                                .andWhere('meeting.follow = :user', { user: user })
+                                .getMany()];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

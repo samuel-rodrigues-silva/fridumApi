@@ -18,7 +18,14 @@ class MeetingRepository implements IMeetingRepository {
 
     public async list(id: string): Promise<Meeting[]> {
         const user = this.userRepository.findOne({ where: { id } })
-        return await this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow'] })
+        return await getRepository(Meeting)
+            .createQueryBuilder('meeting')
+            .leftJoinAndSelect('meeting.user', 'user')
+            .leftJoinAndSelect('meeting.follow', 'follow')
+            .leftJoinAndSelect('meeting.service', 'service')
+            .where('meeting.user = :user', { user })
+            .andWhere('meeting.follow = :user', { user })
+            .getMany();
     }
 
     public async create(data: ICreateMeetingDTO, id: string): Promise<Meeting> {
