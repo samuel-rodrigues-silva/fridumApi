@@ -15,7 +15,7 @@ meetingRouter.post('/:id', (0, celebrate_1.celebrate)((_a = {},
     },
     _a[celebrate_1.Segments.BODY] = {
         followId: celebrate_1.Joi.string().required(),
-        meeting_time: celebrate_1.Joi.number(),
+        meeting_time: celebrate_1.Joi.date(),
         street: celebrate_1.Joi.string().required(),
         district: celebrate_1.Joi.string().required(),
         city: celebrate_1.Joi.string().required(),

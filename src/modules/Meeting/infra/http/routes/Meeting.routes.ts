@@ -10,7 +10,7 @@ meetingRouter.post('/:id', celebrate({
     },
     [Segments.BODY]: {
         followId: Joi.string().required(),
-        meeting_time: Joi.number(),
+        meeting_time: Joi.date(),
         street: Joi.string().required(),
         district: Joi.string().required(),
         city: Joi.string().required(),
