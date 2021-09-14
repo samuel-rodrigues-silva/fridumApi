@@ -55,7 +55,7 @@ var CreateService1622843760743 = /** @class */ (function () {
                         {
                             name: 'status',
                             type: 'enum',
-                            enum: ['done', 'doing', 'penging', 'refused']
+                            enum: ['done', 'doing', 'penging', 'refused', 'contact', 'waitingDeal']
                         },
                         {
                             name: 'finishedAt',

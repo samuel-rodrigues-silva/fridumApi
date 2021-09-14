@@ -15,7 +15,7 @@ export class CreateService1622843760743 implements MigrationInterface {
                 {
                     name: 'status',
                     type: 'enum',
-                    enum: ['done', 'doing', 'penging', 'refused']
+                    enum: ['done', 'doing', 'penging', 'refused', 'contact', 'waitingDeal']
                 },
                 {
                     name: 'finishedAt',
