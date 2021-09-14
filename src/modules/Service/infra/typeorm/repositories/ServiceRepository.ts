@@ -49,7 +49,7 @@ class ServiceRepository implements IServiceRepository {
             .createQueryBuilder()
             .update(Service)
             .set(data)
-            .where("id = :id", { id: id })
+            .where("id = :id", { id })
             .execute();
     }
 
