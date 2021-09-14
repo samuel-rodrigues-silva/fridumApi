@@ -40,7 +40,6 @@ var typeorm_1 = require("typeorm");
 var Service_1 = require("./../entities/Service");
 var User_1 = require("./../../../../User/infra/typeorm/entities/User");
 var Post_1 = require("./../../../../Post/infra/typeorm/entities/Post");
-var Chat_1 = require("../../../../Chat/infra/typeorm/entities/Chat");
 var ServiceRepository = /** @class */ (function () {
     function ServiceRepository() {
         this.ormRepository = (0, typeorm_1.getRepository)(Service_1.Service);
@@ -70,7 +69,7 @@ var ServiceRepository = /** @class */ (function () {
     };
     ServiceRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, post, follow, services, chat, service;
+            var user, post, follow, services, service;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: data.userId } })];
@@ -85,25 +84,15 @@ var ServiceRepository = /** @class */ (function () {
                         return [4 /*yield*/, this.ormRepository.findOne({ where: { post: post, follow: follow } })];
                     case 4:
                         services = _a.sent();
-                        return [4 /*yield*/, (0, typeorm_1.getRepository)(Chat_1.Chat)
-                                .createQueryBuilder("chat")
-                                .where("chat.user = :user OR chat.user = :follow", { user: user, follow: follow })
-                                .getOne()];
-                    case 5:
-                        chat = _a.sent();
-                        console.log(chat);
                         if (services) {
                             return [2 /*return*/, null];
                         }
                         service = this.ormRepository.create(data);
-                        if (chat) {
-                            service.chat = chat;
-                        }
                         service.user = user;
                         service.post = post;
                         service.follow = follow;
                         return [4 /*yield*/, this.ormRepository.save(service)];
-                    case 6: return [2 /*return*/, _a.sent()];
+                    case 5: return [2 /*return*/, _a.sent()];
                 }
             });
         });

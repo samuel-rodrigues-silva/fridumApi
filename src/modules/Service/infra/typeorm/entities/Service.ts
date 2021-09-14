@@ -1,5 +1,4 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
-import { Chat } from "../../../../Chat/infra/typeorm/entities/Chat";
 import { Follow } from "../../../../Follow/infra/typeorm/entities/Follow";
 import { Post } from "../../../../Post/infra/typeorm/entities/Post";
 import { User } from "../../../../User/infra/typeorm/entities/User";
@@ -30,7 +29,4 @@ export class Service {
 
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
-
-    @ManyToOne(() => Chat, (chat) => chat.service)
-    chat: Chat
 }
