@@ -4,7 +4,7 @@ import MeetingController from '../controllers/MeetingController';
 const meetingRouter = Router();
 const meetingController = new MeetingController();
 
-meetingRouter.post('/', celebrate({
+meetingRouter.post('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     },

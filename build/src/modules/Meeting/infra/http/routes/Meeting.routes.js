@@ -9,7 +9,7 @@ var express_1 = require("express");
 var MeetingController_1 = __importDefault(require("../controllers/MeetingController"));
 var meetingRouter = (0, express_1.Router)();
 var meetingController = new MeetingController_1.default();
-meetingRouter.post('/', (0, celebrate_1.celebrate)((_a = {},
+meetingRouter.post('/:id', (0, celebrate_1.celebrate)((_a = {},
     _a[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
