@@ -52,16 +52,17 @@ class ChatRepository implements IChatRepository {
             chatReg.service.push(service);
             chatReg.chatMessage = []
             return await this.ormRepository.save(chatReg);
+        } else {
+            chat.service.concat(service)
+            const id = chat.id
+            await getConnection()
+                .createQueryBuilder()
+                .update(Chat)
+                .set(chat)
+                .where("id = :id", { id })
+                .execute()
+            return null
         }
-        chat.service = [...chat.service, service]
-        const id = chat.id
-        await getConnection()
-            .createQueryBuilder()
-            .update(Chat)
-            .set(chat)
-            .where("id = :id", { id })
-            .execute()
-        return null
     }
 
     public async delete(ChatId: string): Promise<void> {
