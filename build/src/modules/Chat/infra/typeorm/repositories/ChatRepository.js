@@ -105,6 +105,7 @@ var ChatRepository = /** @class */ (function () {
                         chatReg = this.ormRepository.create();
                         chatReg.user = user;
                         chatReg.follow = follow;
+                        chatReg.service = [];
                         chatReg.service.push(service);
                         chatReg.chatMessage = [];
                         return [4 /*yield*/, this.ormRepository.save(chatReg)];
