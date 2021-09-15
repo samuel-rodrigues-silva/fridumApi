@@ -22,7 +22,15 @@ class ChatRepository implements IChatRepository {
         return await this.ormRepository.find(
             {
                 where: { id: id },
-                relations: ['user', 'follow', 'chatMessage', 'chatMessage.user', 'service']
+                relations: [
+                    'user',
+                    'follow',
+                    'chatMessage',
+                    'chatMessage.user',
+                    'service',
+                    'service.user',
+                    'service.follow'
+                ]
             });
     }
 
@@ -41,7 +49,8 @@ class ChatRepository implements IChatRepository {
             where: {
                 user: user,
                 follow: follow,
-            }
+            },
+            relations: ['service']
         })
 
         if (!chat) {

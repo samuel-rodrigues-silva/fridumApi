@@ -53,7 +53,15 @@ var ChatRepository = /** @class */ (function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.ormRepository.find({
                             where: { id: id },
-                            relations: ['user', 'follow', 'chatMessage', 'chatMessage.user', 'service']
+                            relations: [
+                                'user',
+                                'follow',
+                                'chatMessage',
+                                'chatMessage.user',
+                                'service',
+                                'service.user',
+                                'service.follow'
+                            ]
                         })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -97,7 +105,8 @@ var ChatRepository = /** @class */ (function () {
                                 where: {
                                     user: user,
                                     follow: follow,
-                                }
+                                },
+                                relations: ['service']
                             })];
                     case 4:
                         chat = _a.sent();
