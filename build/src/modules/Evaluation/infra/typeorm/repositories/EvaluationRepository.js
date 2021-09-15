@@ -45,6 +45,7 @@ var EvaluationRepository = /** @class */ (function () {
         this.ormRepository = (0, typeorm_1.getRepository)(Evaluation_1.Evaluation);
         this.serviceRepository = (0, typeorm_1.getRepository)(Service_1.Service);
         this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
+        this.followRepository = (0, typeorm_1.getRepository)(User_1.User);
     }
     EvaluationRepository.prototype.list = function (id) {
         return __awaiter(this, void 0, void 0, function () {
@@ -58,20 +59,24 @@ var EvaluationRepository = /** @class */ (function () {
     };
     EvaluationRepository.prototype.create = function (data, id) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, service, evaluation;
+            var user, follow, service, evaluation;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id } })];
                     case 1:
                         user = _a.sent();
-                        return [4 /*yield*/, this.serviceRepository.findOne({ where: { id: data.serviceId } })];
+                        return [4 /*yield*/, this.userRepository.findOne({ where: { id: data.followId } })];
                     case 2:
+                        follow = _a.sent();
+                        return [4 /*yield*/, this.serviceRepository.findOne({ where: { id: data.serviceId } })];
+                    case 3:
                         service = _a.sent();
                         evaluation = this.ormRepository.create(data);
                         evaluation.service = service;
                         evaluation.user = user;
+                        evaluation.follow = follow;
                         return [4 /*yield*/, this.ormRepository.save(evaluation)];
-                    case 3:
+                    case 4:
                         _a.sent();
                         return [2 /*return*/, evaluation];
                 }

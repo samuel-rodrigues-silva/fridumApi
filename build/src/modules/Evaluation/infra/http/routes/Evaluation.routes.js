@@ -19,7 +19,8 @@ evaluationRouter.post('/:id', (0, celebrate_1.celebrate)((_b = {},
         id: celebrate_1.Joi.string().uuid().required()
     },
     _b[celebrate_1.Segments.BODY] = {
-        serviceId: celebrate_1.Joi.string().required(),
+        serviceId: celebrate_1.Joi.string().uuid().required(),
+        followId: celebrate_1.Joi.string().uuid().required(),
         description: celebrate_1.Joi.string().required(),
         rating: celebrate_1.Joi.number().required()
     },

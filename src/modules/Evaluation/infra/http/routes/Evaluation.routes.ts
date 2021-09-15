@@ -16,7 +16,8 @@ evaluationRouter.post('/:id', celebrate({
         id: Joi.string().uuid().required()
     },
     [Segments.BODY]: {
-        serviceId: Joi.string().required(),
+        serviceId: Joi.string().uuid().required(),
+        followId: Joi.string().uuid().required(),
         description: Joi.string().required(),
         rating: Joi.number().required()
     }
