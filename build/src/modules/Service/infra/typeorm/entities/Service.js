@@ -30,6 +30,10 @@ var Service = /** @class */ (function () {
         __metadata("design:type", typeorm_1.Timestamp)
     ], Service.prototype, "finishedAt", void 0);
     __decorate([
+        (0, typeorm_1.Column)({ type: 'varchar' }),
+        __metadata("design:type", String)
+    ], Service.prototype, "price", void 0);
+    __decorate([
         (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Service.prototype, "createdAt", void 0);

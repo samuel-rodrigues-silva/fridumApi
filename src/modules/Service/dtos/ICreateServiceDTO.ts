@@ -4,4 +4,5 @@ export default interface ICreateServiceDTO {
     followId?: string;
     status: 'done' | 'doing' | 'pending' | 'refused';
     finishedAt?: Date;
+    price?: string;
 }

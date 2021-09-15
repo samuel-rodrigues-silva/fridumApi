@@ -33,7 +33,8 @@ serviceRouter.patch('/:id', celebrate({
     },
     [Segments.BODY]: {
         status: Joi.string(),
-        finishedAt: Joi.string().allow(null)
+        finishedAt: Joi.string().allow(null),
+        price: Joi.string().allow(null)
     }
 }), serviceController.update)
 

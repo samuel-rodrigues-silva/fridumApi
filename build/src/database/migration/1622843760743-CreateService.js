@@ -62,6 +62,10 @@ var CreateService1622843760743 = /** @class */ (function () {
                             type: 'timestamp',
                         },
                         {
+                            name: 'price',
+                            type: 'varchar',
+                        },
+                        {
                             name: 'createdAt',
                             type: 'timestamp',
                             default: 'now()'

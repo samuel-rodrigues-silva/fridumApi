@@ -16,6 +16,9 @@ export class Service {
     @Column({ type: 'timestamp' })
     finishedAt: Timestamp;
 
+    @Column({ type: 'varchar' })
+    price: string;
+
     @CreateDateColumn({ type: 'timestamp', name: 'created_At' })
     createdAt: Timestamp;
 

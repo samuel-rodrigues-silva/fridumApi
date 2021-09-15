@@ -22,6 +22,10 @@ export class CreateService1622843760743 implements MigrationInterface {
                     type: 'timestamp',
                 },
                 {
+                    name: 'price',
+                    type: 'varchar',
+                },
+                {
                     name: 'createdAt',
                     type: 'timestamp',
                     default: 'now()'
