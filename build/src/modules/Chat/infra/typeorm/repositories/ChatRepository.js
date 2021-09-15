@@ -106,7 +106,6 @@ var ChatRepository = /** @class */ (function () {
                                     user: user,
                                     follow: follow,
                                 },
-                                relations: ['service']
                             })];
                     case 4:
                         chat = _a.sent();
@@ -120,12 +119,12 @@ var ChatRepository = /** @class */ (function () {
                         return [4 /*yield*/, this.ormRepository.save(chatReg)];
                     case 5: return [2 /*return*/, _a.sent()];
                     case 6:
-                        chat.service.concat(service);
-                        id = chat.id;
+                        service.chat = chat;
+                        id = service.id;
                         return [4 /*yield*/, (0, typeorm_1.getConnection)()
                                 .createQueryBuilder()
-                                .update(Chat_1.Chat)
-                                .set(chat)
+                                .update(Service_1.Service)
+                                .set(service)
                                 .where("id = :id", { id: id })
                                 .execute()];
                     case 7:

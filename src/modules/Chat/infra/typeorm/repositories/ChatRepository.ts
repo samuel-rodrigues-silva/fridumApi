@@ -50,7 +50,6 @@ class ChatRepository implements IChatRepository {
                 user: user,
                 follow: follow,
             },
-            relations: ['service']
         })
 
         if (!chat) {
@@ -62,12 +61,12 @@ class ChatRepository implements IChatRepository {
             chatReg.chatMessage = []
             return await this.ormRepository.save(chatReg);
         } else {
-            chat.service.concat(service)
-            const id = chat.id
+            service.chat = chat
+            const id = service.id
             await getConnection()
                 .createQueryBuilder()
-                .update(Chat)
-                .set(chat)
+                .update(Service)
+                .set(service)
                 .where("id = :id", { id })
                 .execute()
             return null
