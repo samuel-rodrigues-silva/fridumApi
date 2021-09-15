@@ -24,7 +24,7 @@ class MeetingRepository implements IMeetingRepository {
             .leftJoinAndSelect('meeting.follow', 'follow')
             .leftJoinAndSelect('meeting.service', 'service')
             .where('meeting.user = :user', { user })
-            .andWhere('meeting.follow = :user', { user })
+            .orWhere('meeting.follow = :user', { user })
             .getMany();
     }
 

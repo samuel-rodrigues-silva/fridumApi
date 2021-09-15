@@ -58,7 +58,7 @@ var MeetingRepository = /** @class */ (function () {
                                 .leftJoinAndSelect('meeting.follow', 'follow')
                                 .leftJoinAndSelect('meeting.service', 'service')
                                 .where('meeting.user = :user', { user: user })
-                                .andWhere('meeting.follow = :user', { user: user })
+                                .orWhere('meeting.follow = :user', { user: user })
                                 .getMany()];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
