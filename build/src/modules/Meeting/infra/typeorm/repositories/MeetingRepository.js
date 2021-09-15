@@ -50,13 +50,14 @@ var MeetingRepository = /** @class */ (function () {
             var user, userMeetingList, followMeetingList;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        user = this.userRepository.findOne({ where: { id: id } });
-                        return [4 /*yield*/, this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow'] })];
+                    case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id } })];
                     case 1:
+                        user = _a.sent();
+                        return [4 /*yield*/, this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow'] })];
+                    case 2:
                         userMeetingList = _a.sent();
                         return [4 /*yield*/, this.ormRepository.find({ where: { follow: user }, relations: ['user', 'follow'] })];
-                    case 2:
+                    case 3:
                         followMeetingList = _a.sent();
                         return [2 /*return*/, userMeetingList.concat(followMeetingList)];
                 }
