@@ -29,7 +29,8 @@ class ChatRepository implements IChatRepository {
                     'chatMessage.user',
                     'service',
                     'service.user',
-                    'service.follow'
+                    'service.follow',
+                    'service.post'
                 ]
             });
     }

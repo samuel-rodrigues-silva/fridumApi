@@ -60,7 +60,8 @@ var ChatRepository = /** @class */ (function () {
                                 'chatMessage.user',
                                 'service',
                                 'service.user',
-                                'service.follow'
+                                'service.follow',
+                                'service.post'
                             ]
                         })];
                     case 1: return [2 /*return*/, _a.sent()];
