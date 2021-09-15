@@ -34,9 +34,7 @@ class MeetingRepository implements IMeetingRepository {
         const meeting = this.ormRepository.create(data);
         meeting.user = user;
         meeting.follow = follow;
-        await this.ormRepository.save(meeting);
-
-        return meeting;
+        return await this.ormRepository.save(meeting);
     }
 
     public async update(data: ICreateMeetingDTO, id: string): Promise<void> {

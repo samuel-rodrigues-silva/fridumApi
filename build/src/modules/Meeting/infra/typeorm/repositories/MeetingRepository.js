@@ -80,9 +80,7 @@ var MeetingRepository = /** @class */ (function () {
                         meeting.user = user;
                         meeting.follow = follow;
                         return [4 /*yield*/, this.ormRepository.save(meeting)];
-                    case 3:
-                        _a.sent();
-                        return [2 /*return*/, meeting];
+                    case 3: return [2 /*return*/, _a.sent()];
                 }
             });
         });
