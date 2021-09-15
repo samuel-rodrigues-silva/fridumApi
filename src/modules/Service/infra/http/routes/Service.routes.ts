@@ -23,7 +23,8 @@ serviceRouter.post('/', celebrate({
         postId: Joi.string().uuid().allow(null),
         followId: Joi.string().uuid().allow(null),
         status: Joi.string().required(),
-        finished_at: Joi.string().allow(null)
+        finished_at: Joi.string().allow(null),
+        price: Joi.string().allow(null)
     }
 }), serviceController.create)
 

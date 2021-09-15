@@ -25,7 +25,8 @@ serviceRouter.post('/', (0, celebrate_1.celebrate)((_c = {},
         postId: celebrate_1.Joi.string().uuid().allow(null),
         followId: celebrate_1.Joi.string().uuid().allow(null),
         status: celebrate_1.Joi.string().required(),
-        finished_at: celebrate_1.Joi.string().allow(null)
+        finished_at: celebrate_1.Joi.string().allow(null),
+        price: celebrate_1.Joi.string().allow(null)
     },
     _c)), serviceController.create);
 serviceRouter.patch('/:id', (0, celebrate_1.celebrate)((_d = {},
