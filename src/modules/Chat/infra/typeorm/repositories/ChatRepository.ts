@@ -53,7 +53,7 @@ class ChatRepository implements IChatRepository {
             chatReg.chatMessage = []
             return await this.ormRepository.save(chatReg);
         }
-        chat.service.push(service)
+        chat.service = [...chat.service, service]
         const id = chat.id
         await getConnection()
             .createQueryBuilder()

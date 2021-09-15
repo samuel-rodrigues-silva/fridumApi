@@ -35,6 +35,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var Chat_1 = require("./../entities/Chat");
@@ -111,7 +120,7 @@ var ChatRepository = /** @class */ (function () {
                         return [4 /*yield*/, this.ormRepository.save(chatReg)];
                     case 5: return [2 /*return*/, _a.sent()];
                     case 6:
-                        chat.service.push(service);
+                        chat.service = __spreadArray(__spreadArray([], chat.service, true), [service], false);
                         id = chat.id;
                         return [4 /*yield*/, (0, typeorm_1.getConnection)()
                                 .createQueryBuilder()
