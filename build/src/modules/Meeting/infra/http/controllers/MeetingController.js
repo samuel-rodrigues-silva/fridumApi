@@ -50,13 +50,14 @@ var MeetingController = /** @class */ (function () {
     }
     MeetingController.prototype.list = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var createMeeting, meeting, err_1;
+            var id, createMeeting, meeting, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
+                        id = request.params.id;
                         createMeeting = tsyringe_1.container.resolve(ListMeetingService_1.default);
-                        return [4 /*yield*/, createMeeting.execute(request.body)];
+                        return [4 /*yield*/, createMeeting.execute(id)];
                     case 1:
                         meeting = _a.sent();
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(meeting))];

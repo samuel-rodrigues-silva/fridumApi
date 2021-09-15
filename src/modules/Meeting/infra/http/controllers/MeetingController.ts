@@ -10,8 +10,9 @@ class MeetingController {
 
     public async list(request: Request, response: Response): Promise<Response> {
         try {
+            const { id } = request.params
             const createMeeting = container.resolve(ListMeetingService)
-            const meeting = await createMeeting.execute(request.body);
+            const meeting = await createMeeting.execute(id);
             return response.json(classToClass(meeting))
         } catch (err) {
             return response.status(401).send(err.message);
