@@ -44,12 +44,34 @@ var CreateEvaluationService_1 = __importDefault(require("./../../../services/Cre
 var class_transformer_1 = require("class-transformer");
 var UpdateEvaluationService_1 = __importDefault(require("./../../../services/UpdateEvaluationService"));
 var DeleteEvaluationService_1 = __importDefault(require("./../../../services/DeleteEvaluationService"));
+var ListEvaluationService_1 = __importDefault(require("../../../services/ListEvaluationService"));
 var EvaluationController = /** @class */ (function () {
     function EvaluationController() {
     }
-    EvaluationController.prototype.create = function (request, response) {
+    EvaluationController.prototype.list = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             var id, createEvaluation, evaluation, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        id = request.params.id;
+                        createEvaluation = tsyringe_1.container.resolve(ListEvaluationService_1.default);
+                        return [4 /*yield*/, createEvaluation.execute(id)];
+                    case 1:
+                        evaluation = _a.sent();
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(evaluation))];
+                    case 2:
+                        err_1 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_1.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    EvaluationController.prototype.create = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, createEvaluation, evaluation, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -61,8 +83,8 @@ var EvaluationController = /** @class */ (function () {
                         evaluation = _a.sent();
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(evaluation))];
                     case 2:
-                        err_1 = _a.sent();
-                        return [2 /*return*/, response.status(401).send(err_1.message)];
+                        err_2 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_2.message)];
                     case 3: return [2 /*return*/];
                 }
             });

@@ -46,6 +46,16 @@ var EvaluationRepository = /** @class */ (function () {
         this.serviceRepository = (0, typeorm_1.getRepository)(Service_1.Service);
         this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
     }
+    EvaluationRepository.prototype.list = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     EvaluationRepository.prototype.create = function (data, id) {
         return __awaiter(this, void 0, void 0, function () {
             var user, service, evaluation;

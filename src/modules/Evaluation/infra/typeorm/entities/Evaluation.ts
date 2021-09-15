@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { Service } from "../../../../Service/infra/typeorm/entities/Service";
 import { User } from './../../../../User/infra/typeorm/entities/User';
 
@@ -15,8 +15,11 @@ export class Evaluation {
     @JoinColumn()
     service: Service;
 
-    @OneToOne(() => User, (user) => user.id)
+    @ManyToOne(() => User, (user) => user.evaluation)
     user: User;
+
+    @ManyToOne(() => User, (user) => user.evaluation)
+    follow: User;
 
     @Column('text')
     description: string;

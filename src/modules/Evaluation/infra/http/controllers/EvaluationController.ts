@@ -4,8 +4,21 @@ import CreateEvaluationService from './../../../services/CreateEvaluationService
 import { classToClass } from 'class-transformer';
 import UpdateEvaluationService from './../../../services/UpdateEvaluationService';
 import DeleteEvaluationService from './../../../services/DeleteEvaluationService';
+import ListEvaluationService from '../../../services/ListEvaluationService';
 
 class EvaluationController {
+
+    public async list(request: Request, response: Response): Promise<Response> {
+        try {
+            const { id } = request.params
+            const createEvaluation = container.resolve(ListEvaluationService)
+            const evaluation = await createEvaluation.execute(id);
+            return response.json(classToClass(evaluation))
+        } catch (err) {
+            return response.status(401).send(err.message);
+        }
+
+    }
 
     public async create(request: Request, response: Response): Promise<Response> {
         try {

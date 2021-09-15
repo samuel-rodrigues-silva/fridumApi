@@ -29,9 +29,13 @@ var Evaluation = /** @class */ (function () {
         __metadata("design:type", Service_1.Service)
     ], Evaluation.prototype, "service", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return User_1.User; }, function (user) { return user.id; }),
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.evaluation; }),
         __metadata("design:type", User_1.User)
     ], Evaluation.prototype, "user", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.evaluation; }),
+        __metadata("design:type", User_1.User)
+    ], Evaluation.prototype, "follow", void 0);
     __decorate([
         (0, typeorm_1.Column)('text'),
         __metadata("design:type", String)

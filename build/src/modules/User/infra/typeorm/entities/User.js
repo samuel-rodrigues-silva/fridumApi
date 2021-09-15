@@ -15,6 +15,7 @@ var Profile_1 = require("../../../../Profile/infra/typeorm/entities/Profile");
 var Post_1 = require("./../../../../Post/infra/typeorm/entities/Post");
 var Service_1 = require("./../../../../Service/infra/typeorm/entities/Service");
 var Meeting_1 = require("./../../../../Meeting/infra/typeorm/entities/Meeting");
+var Evaluation_1 = require("./../../../../Evaluation/infra/typeorm/entities/Evaluation");
 var User = /** @class */ (function () {
     function User() {
     }
@@ -79,6 +80,10 @@ var User = /** @class */ (function () {
         (0, typeorm_1.OneToMany)(function () { return Meeting_1.Meeting; }, function (metting) { return metting.user; }),
         __metadata("design:type", Array)
     ], User.prototype, "meeting", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return Evaluation_1.Evaluation; }, function (evaluation) { return evaluation.user; }),
+        __metadata("design:type", Array)
+    ], User.prototype, "evaluation", void 0);
     User = __decorate([
         (0, typeorm_1.Entity)('user')
     ], User);
