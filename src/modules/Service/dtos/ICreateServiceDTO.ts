@@ -5,4 +5,5 @@ export default interface ICreateServiceDTO {
     status: 'done' | 'doing' | 'pending' | 'refused';
     finishedAt?: Date;
     price?: string;
+    title?: string
 }

@@ -24,7 +24,8 @@ serviceRouter.post('/', celebrate({
         followId: Joi.string().uuid().allow(null),
         status: Joi.string().required(),
         finished_at: Joi.string().allow(null),
-        price: Joi.string().allow(null)
+        price: Joi.string().allow(null),
+        title: Joi.string().allow(null)
     }
 }), serviceController.create)
 
@@ -35,7 +36,8 @@ serviceRouter.patch('/:id', celebrate({
     [Segments.BODY]: {
         status: Joi.string(),
         finishedAt: Joi.string().allow(null),
-        price: Joi.string().allow(null)
+        price: Joi.string().allow(null),
+        title: Joi.string().allow(null)
     }
 }), serviceController.update)
 

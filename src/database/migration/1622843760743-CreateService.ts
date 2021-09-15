@@ -13,6 +13,10 @@ export class CreateService1622843760743 implements MigrationInterface {
                     isPrimary: true,
                 },
                 {
+                    name: 'title',
+                    type: 'varchar'
+                },
+                {
                     name: 'status',
                     type: 'enum',
                     enum: ['done', 'doing', 'penging', 'refused', 'contact', 'waitingDeal']
