@@ -81,7 +81,7 @@ var ChatRepository = /** @class */ (function () {
     };
     ChatRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, follow, service, chat, chatReg;
+            var user, follow, service, chat, chatReg, id;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: data.userId } })];
@@ -105,11 +105,22 @@ var ChatRepository = /** @class */ (function () {
                         chatReg = this.ormRepository.create();
                         chatReg.user = user;
                         chatReg.follow = follow;
-                        chatReg.service = service;
+                        chatReg.service.push(service);
                         chatReg.chatMessage = [];
                         return [4 /*yield*/, this.ormRepository.save(chatReg)];
                     case 5: return [2 /*return*/, _a.sent()];
-                    case 6: return [2 /*return*/, null];
+                    case 6:
+                        chat.service.push(service);
+                        id = chat.id;
+                        return [4 /*yield*/, (0, typeorm_1.getConnection)()
+                                .createQueryBuilder()
+                                .update(Chat_1.Chat)
+                                .set(chat)
+                                .where("id = :id", { id: id })
+                                .execute()];
+                    case 7:
+                        _a.sent();
+                        return [2 /*return*/, null];
                 }
             });
         });

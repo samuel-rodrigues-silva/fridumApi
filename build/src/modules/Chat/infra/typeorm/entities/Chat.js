@@ -22,6 +22,14 @@ var Chat = /** @class */ (function () {
         __metadata("design:type", String)
     ], Chat.prototype, "id", void 0);
     __decorate([
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
+        __metadata("design:type", typeorm_1.Timestamp)
+    ], Chat.prototype, "createdAt", void 0);
+    __decorate([
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
+        __metadata("design:type", typeorm_1.Timestamp)
+    ], Chat.prototype, "updatedAt", void 0);
+    __decorate([
         (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.id; }),
         __metadata("design:type", User_1.User)
     ], Chat.prototype, "user", void 0);
@@ -34,18 +42,9 @@ var Chat = /** @class */ (function () {
         __metadata("design:type", Array)
     ], Chat.prototype, "chatMessage", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return Service_1.Service; }, function (service) { return service.id; }),
-        (0, typeorm_1.JoinColumn)(),
-        __metadata("design:type", Service_1.Service)
+        (0, typeorm_1.OneToMany)(function () { return Service_1.Service; }, function (service) { return service.chat; }),
+        __metadata("design:type", Array)
     ], Chat.prototype, "service", void 0);
-    __decorate([
-        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
-        __metadata("design:type", typeorm_1.Timestamp)
-    ], Chat.prototype, "createdAt", void 0);
-    __decorate([
-        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
-        __metadata("design:type", typeorm_1.Timestamp)
-    ], Chat.prototype, "updatedAt", void 0);
     Chat = __decorate([
         (0, typeorm_1.Entity)('chat')
     ], Chat);

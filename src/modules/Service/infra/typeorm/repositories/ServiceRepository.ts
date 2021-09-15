@@ -1,4 +1,4 @@
-import { DeleteResult, getConnection, getRepository, Repository } from "typeorm";
+import { DeleteResult, getConnection, getRepository, Repository, UpdateResult } from "typeorm";
 import IServiceRepository from "../../../repositories/IServiceRepository";
 import { Service } from './../entities/Service';
 import ICreateServiceDTO from './../../../dtos/ICreateServiceDTO';
@@ -44,13 +44,13 @@ class ServiceRepository implements IServiceRepository {
         return await this.ormRepository.save(service);
     }
 
-    public async update(data: ICreateServiceDTO, id: string): Promise<void> {
-        await getConnection()
+    public async update(data: ICreateServiceDTO, id: string): Promise<UpdateResult> {
+        return await getConnection()
             .createQueryBuilder()
             .update(Service)
             .set(data)
             .where("id = :id", { id })
-            .execute();
+            .execute()
     }
 
     public async delete(ServiceId: string): Promise<DeleteResult> {

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Service = void 0;
 var typeorm_1 = require("typeorm");
+var Chat_1 = require("../../../../Chat/infra/typeorm/entities/Chat");
 var Post_1 = require("../../../../Post/infra/typeorm/entities/Post");
 var User_1 = require("../../../../User/infra/typeorm/entities/User");
 var Service = /** @class */ (function () {
@@ -20,18 +21,6 @@ var Service = /** @class */ (function () {
         (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], Service.prototype, "id", void 0);
-    __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.service; }),
-        __metadata("design:type", User_1.User)
-    ], Service.prototype, "user", void 0);
-    __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return Post_1.Post; }, function (post) { return post.service; }),
-        __metadata("design:type", Post_1.Post)
-    ], Service.prototype, "post", void 0);
-    __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (follow) { return follow.service; }),
-        __metadata("design:type", User_1.User)
-    ], Service.prototype, "follow", void 0);
     __decorate([
         (0, typeorm_1.Column)({ type: 'enum', enum: ['contact', 'done', 'doing', 'pending', 'waitingDeal', 'refused'] }),
         __metadata("design:type", String)
@@ -48,6 +37,22 @@ var Service = /** @class */ (function () {
         (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', name: 'updated_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Service.prototype, "updatedAt", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.service; }),
+        __metadata("design:type", User_1.User)
+    ], Service.prototype, "user", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return Post_1.Post; }, function (post) { return post.service; }),
+        __metadata("design:type", Post_1.Post)
+    ], Service.prototype, "post", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (follow) { return follow.service; }),
+        __metadata("design:type", User_1.User)
+    ], Service.prototype, "follow", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return Chat_1.Chat; }, function (chat) { return chat.service; }),
+        __metadata("design:type", Chat_1.Chat)
+    ], Service.prototype, "chat", void 0);
     Service = __decorate([
         (0, typeorm_1.Entity)('service')
     ], Service);

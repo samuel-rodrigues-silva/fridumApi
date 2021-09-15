@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { getConnection, getRepository, Repository } from "typeorm";
 import { Chat } from './../entities/Chat';
 import ICreateChatDTO from './../../../dtos/ICreateChatDTO';
 import { User } from './../../../../User/infra/typeorm/entities/User';
@@ -48,10 +48,18 @@ class ChatRepository implements IChatRepository {
             const chatReg = this.ormRepository.create();
             chatReg.user = user;
             chatReg.follow = follow;
-            chatReg.service = service;
+            chatReg.service.push(service);
             chatReg.chatMessage = []
             return await this.ormRepository.save(chatReg);
         }
+        chat.service.push(service)
+        const id = chat.id
+        await getConnection()
+            .createQueryBuilder()
+            .update(Chat)
+            .set(chat)
+            .where("id = :id", { id })
+            .execute()
         return null
     }
 

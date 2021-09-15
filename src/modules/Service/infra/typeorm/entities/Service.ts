@@ -1,4 +1,5 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Chat } from "../../../../Chat/infra/typeorm/entities/Chat";
 import { Follow } from "../../../../Follow/infra/typeorm/entities/Follow";
 import { Post } from "../../../../Post/infra/typeorm/entities/Post";
 import { User } from "../../../../User/infra/typeorm/entities/User";
@@ -8,15 +9,6 @@ export class Service {
 
     @PrimaryGeneratedColumn('uuid')
     id: string;
-
-    @ManyToOne(() => User, (user) => user.service)
-    user: User;
-
-    @ManyToOne(() => Post, (post) => post.service)
-    post: Post;
-
-    @ManyToOne(() => User, (follow) => follow.service)
-    follow: User;
 
     @Column({ type: 'enum', enum: ['contact', 'done', 'doing', 'pending', 'waitingDeal', 'refused'] })
     status: 'contact' | 'done' | 'doing' | 'pending' | 'refused' | 'waitingDeal';
@@ -29,4 +21,16 @@ export class Service {
 
     @UpdateDateColumn({ type: 'timestamp', name: 'updated_At' })
     updatedAt: Timestamp;
+
+    @ManyToOne(() => User, (user) => user.service)
+    user: User;
+
+    @ManyToOne(() => Post, (post) => post.service)
+    post: Post;
+
+    @ManyToOne(() => User, (follow) => follow.service)
+    follow: User;
+
+    @ManyToOne(() => Chat, (chat) => chat.service)
+    chat: Chat;
 }
