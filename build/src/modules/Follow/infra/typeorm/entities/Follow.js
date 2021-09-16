@@ -22,12 +22,10 @@ var Follow = /** @class */ (function () {
     ], Follow.prototype, "id", void 0);
     __decorate([
         (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.id; }),
-        (0, typeorm_1.JoinTable)(),
         __metadata("design:type", User_1.User)
     ], Follow.prototype, "user", void 0);
     __decorate([
         (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (follow) { return follow.id; }),
-        (0, typeorm_1.JoinTable)(),
         __metadata("design:type", User_1.User)
     ], Follow.prototype, "follow", void 0);
     __decorate([

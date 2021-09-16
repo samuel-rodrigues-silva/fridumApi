@@ -4,10 +4,16 @@ import FollowController from '../controllers/FollowController';
 const followRouter = Router();
 const followController = new FollowController();
 
+followRouter.get('/:id', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required(),
+    }
+}), followController.list)
+
 followRouter.post('/', celebrate({
     [Segments.BODY]: {
-        userId: Joi.string().required(),
-        followId: Joi.string().required(),
+        userId: Joi.string().uuid().required(),
+        followId: Joi.string().uuid().required(),
     }
 }), followController.create)
 

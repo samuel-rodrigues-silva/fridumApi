@@ -23,7 +23,7 @@ class EvaluationRepository implements IEvaluationRepository {
         const { rating } = await getManager().query(`
         SELECT SUM(rating) AS rating FROM evaluation where followId = "${id}";
       `);
-        console.log(rating)
+        console.log(rating['rating'])
         const evaluation = await this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] },)
         return { evaluation, rating }
     }

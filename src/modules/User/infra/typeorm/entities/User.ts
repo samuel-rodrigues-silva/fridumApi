@@ -4,6 +4,7 @@ import { Post } from './../../../../Post/infra/typeorm/entities/Post';
 import { Service } from './../../../../Service/infra/typeorm/entities/Service';
 import { Meeting } from './../../../../Meeting/infra/typeorm/entities/Meeting';
 import { Evaluation } from './../../../../Evaluation/infra/typeorm/entities/Evaluation';
+import { Follow } from './../../../../Follow/infra/typeorm/entities/Follow';
 
 @Entity('user')
 export class User {

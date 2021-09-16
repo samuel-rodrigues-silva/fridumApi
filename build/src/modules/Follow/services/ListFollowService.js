@@ -1,4 +1,16 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,62 +47,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var typeorm_1 = require("typeorm");
-var Follow_1 = require("./../entities/Follow");
-var User_1 = require("./../../../../User/infra/typeorm/entities/User");
-var FollowRepository = /** @class */ (function () {
-    function FollowRepository() {
-        this.ormRepository = (0, typeorm_1.getRepository)(Follow_1.Follow);
-        this.userFollowedRepository = (0, typeorm_1.getRepository)(User_1.User);
-        this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
+var tsyringe_1 = require("tsyringe");
+var FollowRepository_1 = __importDefault(require("../infra/typeorm/repositories/FollowRepository"));
+var ListFollowService = /** @class */ (function () {
+    function ListFollowService(followRepository) {
+        this.followRepository = followRepository;
     }
-    FollowRepository.prototype.list = function (id) {
+    ListFollowService.prototype.execute = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { follow: id }, relations: ['user'] })];
+                    case 0: return [4 /*yield*/, this.followRepository.list(id)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    FollowRepository.prototype.create = function (data) {
-        return __awaiter(this, void 0, void 0, function () {
-            var user, userFollowed, follow, followReg;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: data.userId } })];
-                    case 1:
-                        user = _a.sent();
-                        return [4 /*yield*/, this.userFollowedRepository.findOne({ where: { id: data.followId } })];
-                    case 2:
-                        userFollowed = _a.sent();
-                        return [4 /*yield*/, this.ormRepository.findOne({ where: { user: user, follow: userFollowed } })];
-                    case 3:
-                        follow = _a.sent();
-                        if (!!follow) return [3 /*break*/, 5];
-                        followReg = this.ormRepository.create();
-                        followReg.user = user;
-                        followReg.follow = userFollowed;
-                        return [4 /*yield*/, this.ormRepository.save(followReg)];
-                    case 4: return [2 /*return*/, _a.sent()];
-                    case 5: return [2 /*return*/, null];
-                }
-            });
-        });
-    };
-    FollowRepository.prototype.delete = function (FollowId) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.delete(FollowId)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    return FollowRepository;
+    ListFollowService = __decorate([
+        (0, tsyringe_1.injectable)(),
+        __param(0, (0, tsyringe_1.inject)((0, tsyringe_1.delay)(function () { return FollowRepository_1.default; }))),
+        __metadata("design:paramtypes", [Object])
+    ], ListFollowService);
+    return ListFollowService;
 }());
-exports.default = FollowRepository;
-//# sourceMappingURL=FollowRepository.js.map
+exports.default = ListFollowService;
+//# sourceMappingURL=ListFollowService.js.map

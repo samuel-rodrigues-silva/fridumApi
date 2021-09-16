@@ -55,7 +55,7 @@ var EvaluationRepository = /** @class */ (function () {
                     case 0: return [4 /*yield*/, (0, typeorm_1.getManager)().query("\n        SELECT SUM(rating) AS rating FROM evaluation where followId = \"" + id + "\";\n      ")];
                     case 1:
                         rating = (_a.sent()).rating;
-                        console.log(rating);
+                        console.log(rating['rating']);
                         return [4 /*yield*/, this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] })];
                     case 2:
                         evaluation = _a.sent();

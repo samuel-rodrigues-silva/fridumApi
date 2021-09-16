@@ -9,11 +9,9 @@ export class Follow {
     id: string;
 
     @ManyToOne(() => User, (user) => user.id)
-    @JoinTable()
     user: User;
 
     @ManyToOne(() => User, (follow) => follow.id)
-    @JoinTable()
     follow: User;
 
     @CreateDateColumn({ type: 'timestamp', name: 'created_At' })

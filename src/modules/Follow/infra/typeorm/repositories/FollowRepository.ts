@@ -16,6 +16,10 @@ class FollowRepository implements IFollowRepository {
         this.userRepository = getRepository(User);
     }
 
+    public async list(id: string): Promise<Follow[]> {
+        return await this.ormRepository.find({ where: { follow: id }, relations: ['user'] })
+    }
+
     public async create(data: ICreateFollowDTO): Promise<Follow | null> {
         const user = await this.userRepository.findOne({ where: { id: data.userId } })
         const userFollowed = await this.userFollowedRepository.findOne({ where: { id: data.followId } })
