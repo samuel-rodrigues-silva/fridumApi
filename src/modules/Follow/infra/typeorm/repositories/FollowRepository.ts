@@ -45,7 +45,7 @@ class FollowRepository implements IFollowRepository {
             const followReg = this.ormRepository.create();
             followReg.user = user;
             followReg.follow = userFollowed;
-            follow.status = 'pending';
+            followReg.status = 'pending';
             return await this.ormRepository.save(followReg);
         }
         return null

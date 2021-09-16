@@ -104,7 +104,7 @@ var FollowRepository = /** @class */ (function () {
                         followReg = this.ormRepository.create();
                         followReg.user = user;
                         followReg.follow = userFollowed;
-                        follow.status = 'pending';
+                        followReg.status = 'pending';
                         return [4 /*yield*/, this.ormRepository.save(followReg)];
                     case 4: return [2 /*return*/, _a.sent()];
                     case 5: return [2 /*return*/, null];
