@@ -22,7 +22,7 @@ class EvaluationRepository implements IEvaluationRepository {
     public async list(id: string): Promise<Object> {
         const rating = await this.ormRepository
             .createQueryBuilder()
-            .select("SUM(evaluation.rating)", "sum")
+            .select("SUM(rating)", "sum")
             .from(Evaluation, 'rating')
             .where("follow = :id", { id })
             .getRawOne();
