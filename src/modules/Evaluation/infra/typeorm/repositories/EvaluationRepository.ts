@@ -20,7 +20,10 @@ class EvaluationRepository implements IEvaluationRepository {
     }
 
     public async list(id: string): Promise<Object> {
-        const rating = await this.ormRepository.count({ where: { follow: id } });
+        const rating = await this.ormRepository
+            .createQueryBuilder("evaluation")
+            .select("SUM(evaluation.rating)", "sum")
+            .getRawOne();
         const evaluation = await this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] },)
         return { evaluation, rating }
     }

@@ -52,7 +52,10 @@ var EvaluationRepository = /** @class */ (function () {
             var rating, evaluation;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.count({ where: { follow: id } })];
+                    case 0: return [4 /*yield*/, this.ormRepository
+                            .createQueryBuilder("evaluation")
+                            .select("SUM(evaluation.rating)", "sum")
+                            .getRawOne()];
                     case 1:
                         rating = _a.sent();
                         return [4 /*yield*/, this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] })];
