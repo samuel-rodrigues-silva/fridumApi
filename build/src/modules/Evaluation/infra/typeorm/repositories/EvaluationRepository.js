@@ -52,12 +52,7 @@ var EvaluationRepository = /** @class */ (function () {
             var rating, evaluation;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository
-                            .createQueryBuilder()
-                            .select("SUM(rating)", "sum")
-                            .from(Evaluation_1.Evaluation, 'rating')
-                            .where("follow = :id", { id: id })
-                            .getRawOne()];
+                    case 0: return [4 /*yield*/, (0, typeorm_1.getManager)().query("\n        SELECT SUM(rating) FROM evaluation where follow = " + id + ";\n      ")];
                     case 1:
                         rating = _a.sent();
                         console.log(rating);

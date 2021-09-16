@@ -1,4 +1,4 @@
-import { DeleteResult, getConnection, getRepository, Repository } from "typeorm";
+import { DeleteResult, getConnection, getManager, getRepository, Repository } from "typeorm";
 import IEvaluationRepository from "../../../repositories/IEvaluationRepository";
 import { Evaluation } from './../entities/Evaluation';
 import ICreateEvaluationDTO from './../../../dtos/ICreateEvaluationDTO';
@@ -20,12 +20,9 @@ class EvaluationRepository implements IEvaluationRepository {
     }
 
     public async list(id: string): Promise<Object> {
-        const rating = await this.ormRepository
-            .createQueryBuilder()
-            .select("SUM(rating)", "sum")
-            .from(Evaluation, 'rating')
-            .where("follow = :id", { id })
-            .getRawOne();
+        const rating = await getManager().query(`
+        SELECT SUM(rating) FROM evaluation where follow = ${id};
+      `);
         console.log(rating)
         const evaluation = await this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] },)
         return { evaluation, rating }
