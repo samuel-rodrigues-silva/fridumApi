@@ -19,8 +19,10 @@ class EvaluationRepository implements IEvaluationRepository {
         this.followRepository = getRepository(User);
     }
 
-    public async list(id: string): Promise<Evaluation[]> {
-        return await this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] },)
+    public async list(id: string): Promise<Object> {
+        const rating = await this.ormRepository.count({ where: { follow: id } });
+        const evaluation = await this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] },)
+        return { evaluation, rating }
     }
 
     public async create(data: ICreateEvaluationDTO, id: string): Promise<Evaluation> {

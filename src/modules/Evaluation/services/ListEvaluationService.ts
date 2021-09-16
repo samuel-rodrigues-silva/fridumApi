@@ -11,7 +11,7 @@ class ListEvaluationService {
         private evaluationRepository: IEvaluationRepository,
     ) { }
 
-    public async execute(id: string): Promise<Evaluation[]> {
+    public async execute(id: string): Promise<Object> {
         return await this.evaluationRepository.list(id);
     }
 }

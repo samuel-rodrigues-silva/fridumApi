@@ -49,10 +49,16 @@ var EvaluationRepository = /** @class */ (function () {
     }
     EvaluationRepository.prototype.list = function (id) {
         return __awaiter(this, void 0, void 0, function () {
+            var rating, evaluation;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] })];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0: return [4 /*yield*/, this.ormRepository.count({ where: { follow: id } })];
+                    case 1:
+                        rating = _a.sent();
+                        return [4 /*yield*/, this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] })];
+                    case 2:
+                        evaluation = _a.sent();
+                        return [2 /*return*/, { evaluation: evaluation, rating: rating }];
                 }
             });
         });
