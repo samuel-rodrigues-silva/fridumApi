@@ -1,4 +1,4 @@
-import { CreateDateColumn, Entity, JoinTable, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { User } from "../../../../User/infra/typeorm/entities/User";
 import { Service } from './../../../../Service/infra/typeorm/entities/Service';
 
@@ -8,11 +8,8 @@ export class Follow {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(() => User, (user) => user.id)
-    user: User;
-
-    @ManyToOne(() => User, (follow) => follow.id)
-    follow: User;
+    @Column({ type: 'enum', enum: ['accepted', 'pending', 'refused'] })
+    status: 'accepted' | 'pending' | 'refused'
 
     @CreateDateColumn({ type: 'timestamp', name: 'created_At' })
     createdAt: Timestamp;
@@ -22,5 +19,11 @@ export class Follow {
 
     @OneToMany(() => Service, (service) => service.user)
     service: Service;
+
+    @ManyToOne(() => User, (user) => user.id)
+    user: User;
+
+    @ManyToOne(() => User, (follow) => follow.id)
+    follow: User;
 
 }

@@ -1,4 +1,4 @@
-import { DeleteResult, getRepository, Repository } from "typeorm";
+import { DeleteResult, getConnection, getRepository, Repository, UpdateResult } from "typeorm";
 import IFollowRepository from "../../../repositories/IFollowRepository";
 import { Follow } from './../entities/Follow';
 import ICreateFollowDTO from './../../../dtos/ICreateFollowDTO';
@@ -16,8 +16,24 @@ class FollowRepository implements IFollowRepository {
         this.userRepository = getRepository(User);
     }
 
+    public async listByPending(id: string): Promise<Follow[]> {
+        return await this.ormRepository.find({ where: { follow: id, status: 'pending' }, relations: ['user'] })
+
+    }
+
     public async list(id: string): Promise<Follow[]> {
-        return await this.ormRepository.find({ where: { follow: id }, relations: ['user'] })
+        const following = await this.ormRepository.find({ where: { follow: id, status: 'accepted' }, relations: ['user'] })
+        const followed = await this.ormRepository.find({ where: { user: id, status: 'accepted' }, relations: ['user'] })
+        return following.concat(followed)
+    }
+
+    public async update(data: ICreateFollowDTO, id: string): Promise<UpdateResult> {
+        return await getConnection()
+            .createQueryBuilder()
+            .update(Follow)
+            .set(data)
+            .where("id = :id", { id: id })
+            .execute();
     }
 
     public async create(data: ICreateFollowDTO): Promise<Follow | null> {
@@ -29,6 +45,7 @@ class FollowRepository implements IFollowRepository {
             const followReg = this.ormRepository.create();
             followReg.user = user;
             followReg.follow = userFollowed;
+            follow.status = 'pending';
             return await this.ormRepository.save(followReg);
         }
         return null

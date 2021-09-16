@@ -44,10 +44,12 @@ var CreateFollowService_1 = __importDefault(require("./../../../services/CreateF
 var class_transformer_1 = require("class-transformer");
 var DeleteFollowService_1 = __importDefault(require("./../../../services/DeleteFollowService"));
 var ListFollowService_1 = __importDefault(require("../../../services/ListFollowService"));
+var ListByPendingFollowService_1 = __importDefault(require("../../../services/ListByPendingFollowService"));
+var UpdateFollowService_1 = __importDefault(require("../../../services/UpdateFollowService"));
 var FollowController = /** @class */ (function () {
     function FollowController() {
     }
-    FollowController.prototype.list = function (request, response) {
+    FollowController.prototype.listByPending = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             var id, createFollow, follow, err_1;
             return __generator(this, function (_a) {
@@ -55,7 +57,7 @@ var FollowController = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         id = request.params.id;
-                        createFollow = tsyringe_1.container.resolve(ListFollowService_1.default);
+                        createFollow = tsyringe_1.container.resolve(ListByPendingFollowService_1.default);
                         return [4 /*yield*/, createFollow.execute(id)];
                     case 1:
                         follow = _a.sent();
@@ -68,9 +70,30 @@ var FollowController = /** @class */ (function () {
             });
         });
     };
+    FollowController.prototype.list = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, createFollow, follow, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        id = request.params.id;
+                        createFollow = tsyringe_1.container.resolve(ListFollowService_1.default);
+                        return [4 /*yield*/, createFollow.execute(id)];
+                    case 1:
+                        follow = _a.sent();
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(follow))];
+                    case 2:
+                        err_2 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_2.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     FollowController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var createFollow, follow, err_2;
+            var createFollow, follow, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -81,8 +104,29 @@ var FollowController = /** @class */ (function () {
                         follow = _a.sent();
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(follow))];
                     case 2:
-                        err_2 = _a.sent();
-                        return [2 /*return*/, response.status(401).send(err_2.message)];
+                        err_3 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_3.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    FollowController.prototype.update = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, createFollow, follow, err_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        id = request.params.id;
+                        createFollow = tsyringe_1.container.resolve(UpdateFollowService_1.default);
+                        return [4 /*yield*/, createFollow.execute(request.body, id)];
+                    case 1:
+                        follow = _a.sent();
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(follow))];
+                    case 2:
+                        err_4 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_4.message)];
                     case 3: return [2 /*return*/];
                 }
             });

@@ -13,6 +13,11 @@ export class CreateFollow1622843717911 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
+                        name: 'status',
+                        type: 'enum',
+                        enum: ['accepted', 'pending', 'refused']
+                    },
+                    {
                         name: 'createdAt',
                         type: 'timestamp',
                         default: 'now()'

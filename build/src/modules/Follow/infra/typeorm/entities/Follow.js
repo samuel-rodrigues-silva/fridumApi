@@ -21,13 +21,9 @@ var Follow = /** @class */ (function () {
         __metadata("design:type", String)
     ], Follow.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.id; }),
-        __metadata("design:type", User_1.User)
-    ], Follow.prototype, "user", void 0);
-    __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (follow) { return follow.id; }),
-        __metadata("design:type", User_1.User)
-    ], Follow.prototype, "follow", void 0);
+        (0, typeorm_1.Column)({ type: 'enum', enum: ['accepted', 'pending', 'refused'] }),
+        __metadata("design:type", String)
+    ], Follow.prototype, "status", void 0);
     __decorate([
         (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
@@ -40,6 +36,14 @@ var Follow = /** @class */ (function () {
         (0, typeorm_1.OneToMany)(function () { return Service_1.Service; }, function (service) { return service.user; }),
         __metadata("design:type", Service_1.Service)
     ], Follow.prototype, "service", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.id; }),
+        __metadata("design:type", User_1.User)
+    ], Follow.prototype, "user", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (follow) { return follow.id; }),
+        __metadata("design:type", User_1.User)
+    ], Follow.prototype, "follow", void 0);
     Follow = __decorate([
         (0, typeorm_1.Entity)('follow')
     ], Follow);

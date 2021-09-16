@@ -4,8 +4,21 @@ import CreateFollowService from './../../../services/CreateFollowService';
 import { classToClass } from 'class-transformer';
 import DeleteFollowService from './../../../services/DeleteFollowService';
 import ListFollowService from '../../../services/ListFollowService';
+import ListByPendingFollowService from '../../../services/ListByPendingFollowService';
+import UpdateFollowService from '../../../services/UpdateFollowService';
 
 class FollowController {
+
+    public async listByPending(request: Request, response: Response): Promise<Response> {
+        try {
+            const { id } = request.params
+            const createFollow = container.resolve(ListByPendingFollowService)
+            const follow = await createFollow.execute(id);
+            return response.json(classToClass(follow))
+        } catch (err) {
+            return response.status(401).send(err.message);
+        }
+    }
 
     public async list(request: Request, response: Response): Promise<Response> {
         try {
@@ -22,6 +35,17 @@ class FollowController {
         try {
             const createFollow = container.resolve(CreateFollowService)
             const follow = await createFollow.execute(request.body);
+            return response.json(classToClass(follow))
+        } catch (err) {
+            return response.status(401).send(err.message);
+        }
+    }
+
+    public async update(request: Request, response: Response): Promise<Response> {
+        try {
+            const { id } = request.params
+            const createFollow = container.resolve(UpdateFollowService)
+            const follow = await createFollow.execute(request.body, id);
             return response.json(classToClass(follow))
         } catch (err) {
             return response.status(401).send(err.message);
