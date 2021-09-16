@@ -17,7 +17,7 @@ class FollowRepository implements IFollowRepository {
     }
 
     public async list(id: string): Promise<Follow[]> {
-        return await this.ormRepository.find({ where: { user: id }, relations: ['follow'] })
+        return await this.ormRepository.find({ where: { user: id }, relations: ['follow', 'follow.profile'] })
 
     }
 
