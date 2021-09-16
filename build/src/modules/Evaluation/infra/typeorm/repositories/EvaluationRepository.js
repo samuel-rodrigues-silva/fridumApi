@@ -55,8 +55,8 @@ var EvaluationRepository = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.ormRepository
                             .createQueryBuilder()
                             .select("SUM(evaluation.rating)", "sum")
-                            .from(Evaluation_1.Evaluation, 'evaluation')
-                            .where({ where: { follow: id }, })
+                            .from(Evaluation_1.Evaluation, 'rating')
+                            .where("follow = :id", { id: id })
                             .getRawOne()];
                     case 1:
                         rating = _a.sent();

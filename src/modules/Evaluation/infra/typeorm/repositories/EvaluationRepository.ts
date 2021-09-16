@@ -23,8 +23,8 @@ class EvaluationRepository implements IEvaluationRepository {
         const rating = await this.ormRepository
             .createQueryBuilder()
             .select("SUM(evaluation.rating)", "sum")
-            .from(Evaluation, 'evaluation')
-            .where({ where: { follow: id }, })
+            .from(Evaluation, 'rating')
+            .where("follow = :id", { id })
             .getRawOne();
         console.log(rating)
         const evaluation = await this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] },)
