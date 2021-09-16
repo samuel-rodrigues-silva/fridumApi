@@ -21,10 +21,6 @@ var Follow = /** @class */ (function () {
         __metadata("design:type", String)
     ], Follow.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ type: 'enum', enum: ['accepted', 'pending', 'refused'] }),
-        __metadata("design:type", String)
-    ], Follow.prototype, "status", void 0);
-    __decorate([
         (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], Follow.prototype, "createdAt", void 0);

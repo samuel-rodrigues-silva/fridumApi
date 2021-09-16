@@ -53,11 +53,6 @@ var CreateFollow1622843717911 = /** @class */ (function () {
                             isPrimary: true,
                         },
                         {
-                            name: 'status',
-                            type: 'enum',
-                            enum: ['accepted', 'pending', 'refused']
-                        },
-                        {
                             name: 'createdAt',
                             type: 'timestamp',
                             default: 'now()'

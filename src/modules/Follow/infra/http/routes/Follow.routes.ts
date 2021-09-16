@@ -4,12 +4,6 @@ import FollowController from '../controllers/FollowController';
 const followRouter = Router();
 const followController = new FollowController();
 
-followRouter.get('/:id/pending', celebrate({
-    [Segments.PARAMS]: {
-        id: Joi.string().uuid().required(),
-    }
-}), followController.listByPending)
-
 followRouter.get('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required(),
@@ -23,14 +17,6 @@ followRouter.post('/', celebrate({
     }
 }), followController.create)
 
-followRouter.patch('/:id', celebrate({
-    [Segments.PARAMS]: {
-        id: Joi.string().uuid().required(),
-    },
-    [Segments.BODY]: {
-        status: Joi.string().required()
-    }
-}), followController.update)
 
 followRouter.delete('/:id', celebrate({
     [Segments.PARAMS]: {

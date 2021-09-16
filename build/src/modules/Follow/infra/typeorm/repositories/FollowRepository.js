@@ -45,42 +45,11 @@ var FollowRepository = /** @class */ (function () {
         this.userFollowedRepository = (0, typeorm_1.getRepository)(User_1.User);
         this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
     }
-    FollowRepository.prototype.listByPending = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { follow: id, status: 'pending' }, relations: ['user'] })];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
     FollowRepository.prototype.list = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var following, followed;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { follow: id, status: 'accepted' }, relations: ['user'] })];
-                    case 1:
-                        following = _a.sent();
-                        return [4 /*yield*/, this.ormRepository.find({ where: { user: id, status: 'accepted' }, relations: ['user'] })];
-                    case 2:
-                        followed = _a.sent();
-                        return [2 /*return*/, following.concat(followed)];
-                }
-            });
-        });
-    };
-    FollowRepository.prototype.update = function (data, id) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, typeorm_1.getConnection)()
-                            .createQueryBuilder()
-                            .update(Follow_1.Follow)
-                            .set(data)
-                            .where("id = :id", { id: id })
-                            .execute()];
+                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { user: id }, relations: ['follow'] })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -104,7 +73,6 @@ var FollowRepository = /** @class */ (function () {
                         followReg = this.ormRepository.create();
                         followReg.user = user;
                         followReg.follow = userFollowed;
-                        followReg.status = 'pending';
                         return [4 /*yield*/, this.ormRepository.save(followReg)];
                     case 4: return [2 /*return*/, _a.sent()];
                     case 5: return [2 /*return*/, null];
