@@ -36,7 +36,7 @@ class FollowRepository implements IFollowRepository {
     }
 
     public async delete(FollowId: string): Promise<DeleteResult> {
-        return await this.ormRepository.delete(FollowId);
+        return await this.ormRepository.delete(FollowId)
     }
 }
 
