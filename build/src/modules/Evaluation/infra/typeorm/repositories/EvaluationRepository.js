@@ -49,17 +49,10 @@ var EvaluationRepository = /** @class */ (function () {
     }
     EvaluationRepository.prototype.list = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var rating, evaluation;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, typeorm_1.getManager)().query("\n        SELECT SUM(rating) AS rating FROM evaluation where followId = \"" + id + "\";\n      ")];
-                    case 1:
-                        rating = (_a.sent()).rating;
-                        console.log(rating['rating']);
-                        return [4 /*yield*/, this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] })];
-                    case 2:
-                        evaluation = _a.sent();
-                        return [2 /*return*/, { evaluation: evaluation, rating: rating }];
+                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] })];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });

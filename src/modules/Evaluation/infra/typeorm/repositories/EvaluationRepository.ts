@@ -20,12 +20,7 @@ class EvaluationRepository implements IEvaluationRepository {
     }
 
     public async list(id: string): Promise<Object> {
-        const { rating } = await getManager().query(`
-        SELECT SUM(rating) AS rating FROM evaluation where followId = "${id}";
-      `);
-        console.log(rating['rating'])
-        const evaluation = await this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] },)
-        return { evaluation, rating }
+        return await this.ormRepository.find({ where: { follow: id }, relations: ['user', 'service'] },)
     }
 
     public async create(data: ICreateEvaluationDTO, id: string): Promise<Evaluation> {
