@@ -8,11 +8,10 @@ export class Evaluation {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @OneToOne(() => Service, (service) => service.id, {
+    @ManyToOne(() => Service, (service) => service.id, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
     })
-    @JoinColumn()
     service: Service;
 
     @ManyToOne(() => User, (user) => user.evaluation)

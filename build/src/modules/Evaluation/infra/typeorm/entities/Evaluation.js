@@ -21,11 +21,10 @@ var Evaluation = /** @class */ (function () {
         __metadata("design:type", String)
     ], Evaluation.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return Service_1.Service; }, function (service) { return service.id; }, {
+        (0, typeorm_1.ManyToOne)(function () { return Service_1.Service; }, function (service) { return service.id; }, {
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
         }),
-        (0, typeorm_1.JoinColumn)(),
         __metadata("design:type", Service_1.Service)
     ], Evaluation.prototype, "service", void 0);
     __decorate([
