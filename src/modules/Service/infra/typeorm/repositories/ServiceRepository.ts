@@ -44,8 +44,8 @@ class ServiceRepository implements IServiceRepository {
         return await this.ormRepository.save(service);
     }
 
-    public async update(data: ICreateServiceDTO, id: string): Promise<UpdateResult> {
-        return await getConnection()
+    public async update(data: ICreateServiceDTO, id: string): Promise<void> {
+        await getConnection()
             .createQueryBuilder()
             .update(Service)
             .set(data)

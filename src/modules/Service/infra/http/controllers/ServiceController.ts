@@ -48,8 +48,8 @@ class ServiceController {
         try {
             const { id } = request.params;
             const repo = container.resolve(UpdateServiceService);
-            await repo.execute(request.body, id);
-
+            const service = repo.execute(request.body, id);
+            return response.json(service)
         } catch (error) {
             return response.send(error.message);
         }

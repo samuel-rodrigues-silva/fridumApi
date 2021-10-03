@@ -10,8 +10,8 @@ class UpdateServiceService {
         @inject(delay(() => ServiceRepository))
         private ServiceRepository: IServiceRepository
     ) { }
-    public async execute(data: ICreateServiceDTO, id: string): Promise<UpdateResult> {
-        return await this.ServiceRepository.update(data, id);
+    public async execute(data: ICreateServiceDTO, id: string): Promise<void> {
+        await this.ServiceRepository.update(data, id);
 
     }
 }
