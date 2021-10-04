@@ -30,7 +30,7 @@ serviceRouter.post('/', celebrate({
     }
 }), serviceController.create)
 
-serviceRouter.patch('/:id', cors(), celebrate({
+serviceRouter.patch('/:id', cors({ origin: 'http://localhost:3001' }), celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     },
