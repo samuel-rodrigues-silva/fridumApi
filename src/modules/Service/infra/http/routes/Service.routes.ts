@@ -1,7 +1,6 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import ServiceController from '../controllers/ServiceController';
-import cors from 'cors';
 const serviceRouter = Router();
 const serviceController = new ServiceController();
 
@@ -30,7 +29,7 @@ serviceRouter.post('/', celebrate({
     }
 }), serviceController.create)
 
-serviceRouter.patch('/:id', cors({ origin: 'http://localhost:3001' }), celebrate({
+serviceRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     },
