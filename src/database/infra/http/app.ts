@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors'
 import routes from './routes/index';
-const app = express();
+var app = express();
 
 app.use(cors())
 
