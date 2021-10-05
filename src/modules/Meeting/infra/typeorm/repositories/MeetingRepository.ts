@@ -17,7 +17,11 @@ class MeetingRepository implements IMeetingRepository {
     }
 
     public async list(id: string): Promise<Meeting[]> {
-        return await this.ormRepository.find();
+        const user = await this.userRepository.findOne({ where: { user: id } });
+        const follow = this.followRepository.findOne({ where: { user: id } })
+        const userMeetingsList = await this.ormRepository.find({ where: { user: user } });
+        const followMeetingsList = await this.ormRepository.find({ where: { follow: user } });
+        return userMeetingsList.concat(followMeetingsList);
         // const user = await this.userRepository.findOne({ where: { id } })
         // const userMeetingList = await this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow'] })
         // const followMeetingList = await this.ormRepository.find({ where: { follow: user }, relations: ['user', 'follow'] })
