@@ -52,8 +52,14 @@ class ChatRepository implements IChatRepository {
                 follow: follow,
             },
         })
+        const chatFollow = await this.ormRepository.findOne({
+            where: {
+                user: follow,
+                follow: user,
+            },
+        })
 
-        if (!chat) {
+        if (!chat && !chatFollow) {
             const chatReg = this.ormRepository.create();
             chatReg.user = user;
             chatReg.follow = follow;
