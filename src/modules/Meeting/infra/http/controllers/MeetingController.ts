@@ -23,8 +23,8 @@ class MeetingController {
         try {
             const { id } = request.params
             const createMeeting = container.resolve(CreateMeetingService)
-            const Meeting = await createMeeting.execute(request.body, id);
-            return response.json(classToClass(Meeting))
+            const meeting = await createMeeting.execute(request.body, id);
+            return response.json(classToClass(meeting))
         } catch (err) {
             return response.status(401).send(err.message);
         }
