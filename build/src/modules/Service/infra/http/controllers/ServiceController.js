@@ -116,28 +116,24 @@ var ServiceController = /** @class */ (function () {
     };
     ServiceController.prototype.update = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, error_1;
+            var id, repo, service;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        id = request.params.id;
-                        repo = tsyringe_1.container.resolve(UpdateServiceService_1.default);
-                        return [4 /*yield*/, repo.execute(request.body, id)];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        error_1 = _a.sent();
-                        return [2 /*return*/, response.send(error_1.message)];
-                    case 3: return [2 /*return*/];
+                try {
+                    id = request.params.id;
+                    repo = tsyringe_1.container.resolve(UpdateServiceService_1.default);
+                    service = repo.execute(request.body, id);
+                    return [2 /*return*/, response.json(service)];
                 }
+                catch (error) {
+                    return [2 /*return*/, response.send(error.message)];
+                }
+                return [2 /*return*/];
             });
         });
     };
     ServiceController.prototype.remove = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, repo, res, error_2;
+            var id, repo, res, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -149,8 +145,8 @@ var ServiceController = /** @class */ (function () {
                         res = _a.sent();
                         return [2 /*return*/, response.json(res)];
                     case 2:
-                        error_2 = _a.sent();
-                        return [2 /*return*/, response.send(error_2.message)];
+                        error_1 = _a.sent();
+                        return [2 /*return*/, response.send(error_1.message)];
                     case 3: return [2 /*return*/];
                 }
             });

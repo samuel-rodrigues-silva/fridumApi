@@ -90,7 +90,7 @@ var ChatRepository = /** @class */ (function () {
     };
     ChatRepository.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, follow, service, chat, chatReg, id;
+            var user, follow, service, chat, chatFollow, chatReg, id;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: data.userId } })];
@@ -110,7 +110,15 @@ var ChatRepository = /** @class */ (function () {
                             })];
                     case 4:
                         chat = _a.sent();
-                        if (!!chat) return [3 /*break*/, 6];
+                        return [4 /*yield*/, this.ormRepository.findOne({
+                                where: {
+                                    user: follow,
+                                    follow: user,
+                                },
+                            })];
+                    case 5:
+                        chatFollow = _a.sent();
+                        if (!(!chat && !chatFollow)) return [3 /*break*/, 7];
                         chatReg = this.ormRepository.create();
                         chatReg.user = user;
                         chatReg.follow = follow;
@@ -118,8 +126,8 @@ var ChatRepository = /** @class */ (function () {
                         chatReg.service.push(service);
                         chatReg.chatMessage = [];
                         return [4 /*yield*/, this.ormRepository.save(chatReg)];
-                    case 5: return [2 /*return*/, _a.sent()];
-                    case 6:
+                    case 6: return [2 /*return*/, _a.sent()];
+                    case 7:
                         service.chat = chat;
                         id = service.id;
                         return [4 /*yield*/, (0, typeorm_1.getConnection)()
@@ -128,7 +136,7 @@ var ChatRepository = /** @class */ (function () {
                                 .set(service)
                                 .where("id = :id", { id: id })
                                 .execute()];
-                    case 7:
+                    case 8:
                         _a.sent();
                         return [2 /*return*/, null];
                 }

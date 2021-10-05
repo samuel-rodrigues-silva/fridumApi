@@ -107,7 +107,9 @@ var ServiceRepository = /** @class */ (function () {
                             .set(data)
                             .where("id = :id", { id: id })
                             .execute()];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
                 }
             });
         });

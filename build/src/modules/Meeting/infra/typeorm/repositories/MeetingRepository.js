@@ -47,10 +47,26 @@ var MeetingRepository = /** @class */ (function () {
     }
     MeetingRepository.prototype.list = function (id) {
         return __awaiter(this, void 0, void 0, function () {
+            var user, userMeetingsList, followMeetingsList, newList;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.find()];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id } })];
+                    case 1:
+                        user = _a.sent();
+                        return [4 /*yield*/, this.ormRepository.find({ where: { user: user } })];
+                    case 2:
+                        userMeetingsList = _a.sent();
+                        return [4 /*yield*/, this.ormRepository.find({ where: { follow: user } })];
+                    case 3:
+                        followMeetingsList = _a.sent();
+                        newList = userMeetingsList.concat(followMeetingsList);
+                        console.log(newList);
+                        return [2 /*return*/, newList
+                            // const user = await this.userRepository.findOne({ where: { id } })
+                            // const userMeetingList = await this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow'] })
+                            // const followMeetingList = await this.ormRepository.find({ where: { follow: user }, relations: ['user', 'follow'] })
+                            // return userMeetingList.concat(followMeetingList)
+                        ];
                 }
             });
         });

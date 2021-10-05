@@ -36,9 +36,9 @@ serviceRouter.patch('/:id', (0, celebrate_1.celebrate)((_d = {},
     },
     _d[celebrate_1.Segments.BODY] = {
         status: celebrate_1.Joi.string(),
-        finishedAt: celebrate_1.Joi.date().allow(null),
-        price: celebrate_1.Joi.string().allow(null),
-        title: celebrate_1.Joi.string().allow(null)
+        finishedAt: celebrate_1.Joi.date(),
+        price: celebrate_1.Joi.string(),
+        title: celebrate_1.Joi.string()
     },
     _d)), serviceController.update);
 serviceRouter.delete('/:id', (0, celebrate_1.celebrate)((_e = {},

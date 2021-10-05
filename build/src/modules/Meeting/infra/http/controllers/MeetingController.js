@@ -50,14 +50,14 @@ var MeetingController = /** @class */ (function () {
     }
     MeetingController.prototype.list = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, createMeeting, meeting, err_1;
+            var id, listMeeting, meeting, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         id = request.params.id;
-                        createMeeting = tsyringe_1.container.resolve(ListMeetingService_1.default);
-                        return [4 /*yield*/, createMeeting.execute(id)];
+                        listMeeting = tsyringe_1.container.resolve(ListMeetingService_1.default);
+                        return [4 /*yield*/, listMeeting.execute(id)];
                     case 1:
                         meeting = _a.sent();
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(meeting))];
@@ -71,7 +71,7 @@ var MeetingController = /** @class */ (function () {
     };
     MeetingController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, createMeeting, Meeting, err_2;
+            var id, createMeeting, meeting, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -80,8 +80,8 @@ var MeetingController = /** @class */ (function () {
                         createMeeting = tsyringe_1.container.resolve(CreateMeetingService_1.default);
                         return [4 /*yield*/, createMeeting.execute(request.body, id)];
                     case 1:
-                        Meeting = _a.sent();
-                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(Meeting))];
+                        meeting = _a.sent();
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(meeting))];
                     case 2:
                         err_2 = _a.sent();
                         return [2 /*return*/, response.status(401).send(err_2.message)];
