@@ -22,7 +22,8 @@ class MeetingRepository implements IMeetingRepository {
         const userMeetingsList = await this.ormRepository.find({ where: { user: user } });
         const followMeetingsList = await this.ormRepository.find({ where: { follow: follow } });
         console.log(userMeetingsList.concat(followMeetingsList))
-        return userMeetingsList.concat(followMeetingsList);
+        const newList = userMeetingsList.concat(followMeetingsList);
+        return newList
         // const user = await this.userRepository.findOne({ where: { id } })
         // const userMeetingList = await this.ormRepository.find({ where: { user: user }, relations: ['user', 'follow'] })
         // const followMeetingList = await this.ormRepository.find({ where: { follow: user }, relations: ['user', 'follow'] })
