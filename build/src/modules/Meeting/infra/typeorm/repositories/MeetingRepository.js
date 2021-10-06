@@ -53,10 +53,10 @@ var MeetingRepository = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id } })];
                     case 1:
                         user = _a.sent();
-                        return [4 /*yield*/, this.ormRepository.find({ where: { user: user }, relations: ['user', 'user.profile'] })];
+                        return [4 /*yield*/, this.ormRepository.find({ where: { user: user }, relations: ['user', 'user.profile', 'follow', 'follow.profile'] })];
                     case 2:
                         userMeetingsList = _a.sent();
-                        return [4 /*yield*/, this.ormRepository.find({ where: { follow: user }, relations: ['user', 'user.profile'] })];
+                        return [4 /*yield*/, this.ormRepository.find({ where: { follow: user }, relations: ['user', 'user.profile', 'follow', 'follow.profile'] })];
                     case 3:
                         followMeetingsList = _a.sent();
                         newList = userMeetingsList.concat(followMeetingsList);
