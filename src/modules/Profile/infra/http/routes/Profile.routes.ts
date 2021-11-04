@@ -22,9 +22,9 @@ profileRoutes.patch('/:id', celebrate({
     [Segments.BODY]: {
         role: Joi.string(),
         work_resume: Joi.string(),
-        image: Joi.string(),
+        image: Joi.any().allow(null),
         description: Joi.string(),
     },
-}), profileController.update);
+}), upload.single('img'), profileController.update);
 
 export default profileRoutes;

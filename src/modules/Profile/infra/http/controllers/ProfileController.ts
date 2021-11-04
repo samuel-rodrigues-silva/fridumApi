@@ -36,12 +36,11 @@ class ProfileController {
         try {
             const { id } = request.params
             const { role,
-                image,
                 work_resume,
                 description,
             } = request.body
-
-            // const image = request.file.filename;
+            console.log(request.file)
+            const image = request.file.filename;
             const repo = container.resolve(UpdateProfileService);
             const profile = await repo.execute({
                 role,

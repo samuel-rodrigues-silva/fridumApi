@@ -25,9 +25,9 @@ profileRoutes.patch('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.BODY] = {
         role: celebrate_1.Joi.string(),
         work_resume: celebrate_1.Joi.string(),
-        image: celebrate_1.Joi.string(),
+        image: celebrate_1.Joi.any().allow(null),
         description: celebrate_1.Joi.string(),
     },
-    _b)), profileController.update);
+    _b)), upload.single('img'), profileController.update);
 exports.default = profileRoutes;
 //# sourceMappingURL=Profile.routes.js.map
