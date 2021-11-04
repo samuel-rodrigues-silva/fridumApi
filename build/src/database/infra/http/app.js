@@ -10,7 +10,7 @@ var app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.get('/image/:img', function (req, res) {
-    res.sendFile('./img');
+    console.log(req.body);
 });
 app.use(index_1.default);
 exports.default = app;

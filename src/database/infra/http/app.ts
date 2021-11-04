@@ -8,7 +8,7 @@ app.use(cors())
 app.use(express.json());
 
 app.get('/image/:img', function (req, res) {
-    res.sendFile('./img');
+    console.log(req.body)
 });
 
 app.use(routes);
