@@ -13,7 +13,7 @@ app.use(express_1.default.json());
 app.get('/image/:img', function (req, res) {
     var img = req.params.img;
     console.log(img);
-    res.send(path_1.default.resolve(__dirname, '..', "uploads/" + img));
+    res.sendFile(path_1.default.resolve(__dirname, '..', "uploads/" + img));
 });
 app.use(index_1.default);
 exports.default = app;
