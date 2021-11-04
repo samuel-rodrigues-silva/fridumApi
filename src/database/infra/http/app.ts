@@ -11,7 +11,7 @@ app.use(express.json());
 app.get('/image/:img', function (req, res) {
     const { img } = req.params
     console.log(img);
-    res.sendFile(path.resolve(__dirname, '..', `uploads/${img}`));
+    res.sendFile(img);
 });
 
 app.use(routes);
