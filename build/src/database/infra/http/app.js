@@ -6,15 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var index_1 = __importDefault(require("./routes/index"));
-var path_1 = __importDefault(require("path"));
 var app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.get('/image/:img', function (req, res) {
     var img = req.params.img;
     console.log(img);
-    console.log(path_1.default.dirname);
-    res.sendFile("/app/build/uploads/" + img);
+    res.sendFile("/api/fridumtypeorm/build/uploads/" + img);
 });
 app.use(index_1.default);
 exports.default = app;
