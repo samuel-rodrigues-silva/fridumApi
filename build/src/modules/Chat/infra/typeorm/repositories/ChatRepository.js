@@ -55,7 +55,9 @@ var ChatRepository = /** @class */ (function () {
                             where: { id: id },
                             relations: [
                                 'user',
+                                'user.profile',
                                 'follow',
+                                'follow.profile',
                                 'chatMessage',
                                 'chatMessage.user',
                                 'service',

@@ -24,7 +24,9 @@ class ChatRepository implements IChatRepository {
                 where: { id: id },
                 relations: [
                     'user',
+                    'user.profile',
                     'follow',
+                    'follow.profile',
                     'chatMessage',
                     'chatMessage.user',
                     'service',
