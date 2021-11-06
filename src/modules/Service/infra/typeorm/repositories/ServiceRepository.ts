@@ -22,11 +22,11 @@ class ServiceRepository implements IServiceRepository {
     }
 
     public async findById(id: string): Promise<Service[]> {
-        return await this.ormRepository.find({ where: { user: id }, relations: ['user', 'post', 'follow'] });
+        return await this.ormRepository.find({ where: { user: id }, relations: ['user', 'user.profile', 'post', 'follow', 'follow.profile'] });
     }
 
     public async findByFollowId(id: string): Promise<Service[]> {
-        return await this.ormRepository.find({ where: { follow: id }, relations: ['user', 'post', 'follow'] });
+        return await this.ormRepository.find({ where: { follow: id }, relations: ['user', 'user.profile', 'post', 'follow', 'follow.profile'] });
     }
 
     public async create(data: ICreateServiceDTO): Promise<Service> {

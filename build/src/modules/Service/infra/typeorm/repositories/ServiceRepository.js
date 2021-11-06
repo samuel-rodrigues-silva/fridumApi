@@ -51,7 +51,7 @@ var ServiceRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { user: id }, relations: ['user', 'post', 'follow'] })];
+                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { user: id }, relations: ['user', 'user.profile', 'post', 'follow', 'follow.profile'] })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -61,7 +61,7 @@ var ServiceRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { follow: id }, relations: ['user', 'post', 'follow'] })];
+                    case 0: return [4 /*yield*/, this.ormRepository.find({ where: { follow: id }, relations: ['user', 'user.profile', 'post', 'follow', 'follow.profile'] })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
