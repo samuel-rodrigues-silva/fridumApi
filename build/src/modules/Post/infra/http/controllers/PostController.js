@@ -92,18 +92,29 @@ var PostController = /** @class */ (function () {
     };
     PostController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var createPost, Post, err_3;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var createPost, _a, userId, city, state, description, title, price, expected_date_of_delivery, image, Post, err_3;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
+                        _b.trys.push([0, 2, , 3]);
                         createPost = tsyringe_1.container.resolve(CreatePostService_1.default);
-                        return [4 /*yield*/, createPost.execute(request.body)];
+                        _a = request.body, userId = _a.userId, city = _a.city, state = _a.state, description = _a.description, title = _a.title, price = _a.price, expected_date_of_delivery = _a.expected_date_of_delivery;
+                        image = request.file.filename;
+                        return [4 /*yield*/, createPost.execute({
+                                userId: userId,
+                                city: city,
+                                state: state,
+                                description: description,
+                                image: image,
+                                title: title,
+                                price: price,
+                                expected_date_of_delivery: expected_date_of_delivery,
+                            })];
                     case 1:
-                        Post = _a.sent();
+                        Post = _b.sent();
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(Post))];
                     case 2:
-                        err_3 = _a.sent();
+                        err_3 = _b.sent();
                         return [2 /*return*/, response.status(401).send(err_3.message)];
                     case 3: return [2 /*return*/];
                 }

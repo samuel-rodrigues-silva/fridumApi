@@ -32,8 +32,26 @@ class PostController {
 
     public async create(request: Request, response: Response): Promise<Response> {
         try {
-            const createPost = container.resolve(CreatePostService)
-            const Post = await createPost.execute(request.body);
+            const createPost = container.resolve(CreatePostService);
+            const { userId,
+                city,
+                state,
+                description,
+                title,
+                price,
+                expected_date_of_delivery,
+            } = request.body
+            const image = request.file.filename;
+            const Post = await createPost.execute({
+                userId,
+                city,
+                state,
+                description,
+                image,
+                title,
+                price,
+                expected_date_of_delivery,
+            });
             return response.json(classToClass(Post))
         } catch (err) {
             return response.status(401).send(err.message);

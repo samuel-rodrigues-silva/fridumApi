@@ -1,8 +1,11 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import PostController from '../controllers/PostController';
+import multer from 'multer';
+import multerConfig from '../../../../../../config/multer';
 const postRouter = Router();
 const postController = new PostController();
+const upload = multer(multerConfig);
 
 postRouter.get('/city/:area', celebrate({
     [Segments.PARAMS]: {
@@ -18,16 +21,16 @@ postRouter.get('/:id', celebrate({
 
 postRouter.post('/', celebrate({
     [Segments.BODY]: {
-        userId: Joi.string().uuid().required(),
-        city: Joi.string().required(),
-        state: Joi.string().required(),
-        description: Joi.string().required(),
-        title: Joi.string().required(),
-        image: Joi.string(),
-        price: Joi.number().required(),
+        userId: Joi.string().uuid(),
+        city: Joi.string(),
+        state: Joi.string(),
+        description: Joi.string(),
+        title: Joi.string(),
+        image: Joi.any().allow(null),
+        price: Joi.string(),
         expected_date_of_delivery: Joi.date()
     }
-}), postController.create)
+}), upload.single('img'), postController.create)
 
 postRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
