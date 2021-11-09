@@ -25,6 +25,10 @@ export class CreateProfile1622843748928 implements MigrationInterface {
                     type: 'varchar',
                 },
                 {
+                    name: 'video',
+                    type: 'varchar',
+                },
+                {
                     name: 'description',
                     type: 'text'
                 },

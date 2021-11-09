@@ -122,6 +122,7 @@ var UserRepository = /** @class */ (function () {
                             role: '',
                             work_resume: '',
                             image: '',
+                            video: '',
                             description: '',
                             accomplishment: [],
                             focusArea: [],

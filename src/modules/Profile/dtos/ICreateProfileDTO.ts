@@ -5,6 +5,7 @@ export default interface ICreateProfileDTO {
     role?: string;
     work_resume?: string;
     image?: string;
+    video?: string;
     description?: string;
     accomplishment?: Accomplishment[];
     focusArea?: FocusArea[];

@@ -91,20 +91,23 @@ var ProfileController = /** @class */ (function () {
     };
     ProfileController.prototype.update = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, _a, role, work_resume, description, image, repo, profile, error_3;
+            var id, _a, role, description, image, work_resume, video, repo, profile, error_3;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 2, , 3]);
                         id = request.params.id;
-                        _a = request.body, role = _a.role, work_resume = _a.work_resume, description = _a.description;
-                        console.log(request.file);
-                        image = request.file.filename;
+                        _a = request.body, role = _a.role, description = _a.description;
+                        console.log(request.files);
+                        image = request.files['img'][0].filename;
+                        work_resume = request.files['work_resume'][0].filename;
+                        video = request.files['video'][0].filename;
                         repo = tsyringe_1.container.resolve(UpdateProfileService_1.default);
                         return [4 /*yield*/, repo.execute({
                                 role: role,
                                 work_resume: work_resume,
                                 image: image,
+                                video: video,
                                 description: description,
                             }, id)];
                     case 1:

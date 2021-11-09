@@ -21,6 +21,9 @@ export class Profile {
     @Column('varchar')
     image?: string;
 
+    @Column('varchar')
+    video?: string;
+
     @Column('text')
     description?: string;
 
@@ -46,5 +49,5 @@ export class Profile {
     language?: Language[]
 
 
-    
+
 }

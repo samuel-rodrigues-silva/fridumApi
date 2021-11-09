@@ -36,6 +36,10 @@ var Profile = /** @class */ (function () {
         __metadata("design:type", String)
     ], Profile.prototype, "image", void 0);
     __decorate([
+        (0, typeorm_1.Column)('varchar'),
+        __metadata("design:type", String)
+    ], Profile.prototype, "video", void 0);
+    __decorate([
         (0, typeorm_1.Column)('text'),
         __metadata("design:type", String)
     ], Profile.prototype, "description", void 0);

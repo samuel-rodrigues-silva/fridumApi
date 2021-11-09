@@ -71,6 +71,7 @@ class UserRepository implements IUserRepository {
             role: '',
             work_resume: '',
             image: '',
+            video: '',
             description: '',
             accomplishment: [],
             focusArea: [],

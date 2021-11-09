@@ -36,16 +36,18 @@ class ProfileController {
         try {
             const { id } = request.params
             const { role,
-                work_resume,
                 description,
             } = request.body
-            console.log(request.file)
-            const image = request.file.filename;
+            console.log(request.files)
+            const image = request.files['img'][0].filename;
+            const work_resume = request.files['work_resume'][0].filename;
+            const video = request.files['video'][0].filename;
             const repo = container.resolve(UpdateProfileService);
             const profile = await repo.execute({
                 role,
                 work_resume,
                 image,
+                video,
                 description,
             }, id);
             return response.json(classToClass(profile));

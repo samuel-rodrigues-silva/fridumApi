@@ -65,6 +65,10 @@ var CreateProfile1622843748928 = /** @class */ (function () {
                             type: 'varchar',
                         },
                         {
+                            name: 'video',
+                            type: 'varchar',
+                        },
+                        {
                             name: 'description',
                             type: 'text'
                         },

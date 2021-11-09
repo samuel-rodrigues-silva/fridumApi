@@ -21,10 +21,8 @@ profileRoutes.patch('/:id', celebrate({
     },
     [Segments.BODY]: {
         role: Joi.string(),
-        work_resume: Joi.string(),
-        image: Joi.any().allow(null),
         description: Joi.string(),
     },
-}), upload.single('img'), profileController.update);
+}), upload.fields([{ name: 'work_resume', maxCount: 1 }, { name: 'img', maxCount: 1 }, { name: 'video', maxCount: 1 }]), profileController.update);
 
 export default profileRoutes;
