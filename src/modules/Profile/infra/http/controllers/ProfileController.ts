@@ -39,9 +39,18 @@ class ProfileController {
                 description,
             } = request.body
             console.log(request.files)
-            const image = request.files['img'][0].filename;
-            const work_resume = request.files['work_resume'][0].filename;
-            const video = request.files['video'][0].filename;
+            let image = ''
+            let work_resume = ''
+            let video = ''
+            if (request.files['img'][0]) {
+                image = request.files['img'][0].filename;
+            }
+            if (request.files['work_resume'][0]) {
+                work_resume = request.files['work_resume'][0].filename;
+            }
+            if (request.files['video'][0]) {
+                video = request.files['video'][0].filename;
+            }
             const repo = container.resolve(UpdateProfileService);
             const profile = await repo.execute({
                 role,

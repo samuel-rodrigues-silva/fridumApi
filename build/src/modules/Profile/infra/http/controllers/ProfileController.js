@@ -99,9 +99,18 @@ var ProfileController = /** @class */ (function () {
                         id = request.params.id;
                         _a = request.body, role = _a.role, description = _a.description;
                         console.log(request.files);
-                        image = request.files['img'][0].filename;
-                        work_resume = request.files['work_resume'][0].filename;
-                        video = request.files['video'][0].filename;
+                        image = '';
+                        work_resume = '';
+                        video = '';
+                        if (request.files['img'][0]) {
+                            image = request.files['img'][0].filename;
+                        }
+                        if (request.files['work_resume'][0]) {
+                            work_resume = request.files['work_resume'][0].filename;
+                        }
+                        if (request.files['video'][0]) {
+                            video = request.files['video'][0].filename;
+                        }
                         repo = tsyringe_1.container.resolve(UpdateProfileService_1.default);
                         return [4 /*yield*/, repo.execute({
                                 role: role,
