@@ -42,13 +42,13 @@ class ProfileController {
             let image = ''
             let work_resume = ''
             let video = ''
-            if (request.files['img'][0]) {
+            if (request.files['img']) {
                 image = request.files['img'][0].filename;
             }
-            if (request.files['work_resume'][0]) {
+            if (request.files['work_resume']) {
                 work_resume = request.files['work_resume'][0].filename;
             }
-            if (request.files['video'][0]) {
+            if (request.files['video']) {
                 video = request.files['video'][0].filename;
             }
             const repo = container.resolve(UpdateProfileService);

@@ -102,13 +102,13 @@ var ProfileController = /** @class */ (function () {
                         image = '';
                         work_resume = '';
                         video = '';
-                        if (request.files['img'][0]) {
+                        if (request.files['img']) {
                             image = request.files['img'][0].filename;
                         }
-                        if (request.files['work_resume'][0]) {
+                        if (request.files['work_resume']) {
                             work_resume = request.files['work_resume'][0].filename;
                         }
-                        if (request.files['video'][0]) {
+                        if (request.files['video']) {
                             video = request.files['video'][0].filename;
                         }
                         repo = tsyringe_1.container.resolve(UpdateProfileService_1.default);
