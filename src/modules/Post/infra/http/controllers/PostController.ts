@@ -41,7 +41,10 @@ class PostController {
                 price,
                 expected_date_of_delivery,
             } = request.body
-            const image = request.file.filename;
+            let image = ''
+            if (request.file.filename) {
+                image = request.file.filename;
+            }
             const Post = await createPost.execute({
                 userId,
                 city,

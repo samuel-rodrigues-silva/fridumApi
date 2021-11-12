@@ -99,7 +99,10 @@ var PostController = /** @class */ (function () {
                         _b.trys.push([0, 2, , 3]);
                         createPost = tsyringe_1.container.resolve(CreatePostService_1.default);
                         _a = request.body, userId = _a.userId, city = _a.city, state = _a.state, description = _a.description, title = _a.title, price = _a.price, expected_date_of_delivery = _a.expected_date_of_delivery;
-                        image = request.file.filename;
+                        image = '';
+                        if (request.file.filename) {
+                            image = request.file.filename;
+                        }
                         return [4 /*yield*/, createPost.execute({
                                 userId: userId,
                                 city: city,
