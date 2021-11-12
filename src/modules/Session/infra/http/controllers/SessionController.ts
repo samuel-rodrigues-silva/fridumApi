@@ -63,7 +63,7 @@ class SessionController {
                 id: session.id,
                 email: session.email,
                 token: token,
-                user: session.user,
+                user: session,
             })
 
         } catch (error) {
