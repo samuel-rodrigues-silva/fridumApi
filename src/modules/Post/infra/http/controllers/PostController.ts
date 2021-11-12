@@ -42,7 +42,7 @@ class PostController {
                 expected_date_of_delivery,
             } = request.body
             let image = ''
-            if (request.file.filename) {
+            if (request.file) {
                 image = request.file.filename;
             }
             const Post = await createPost.execute({
