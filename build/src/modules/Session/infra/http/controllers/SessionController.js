@@ -112,13 +112,6 @@ var SessionController = /** @class */ (function () {
                         if (!isPasswordValid) {
                             return [2 /*return*/, response.status(409).send('Invalid password')];
                         }
-                        console.log({
-                            id: session.id,
-                            email: session.email,
-                            token: token,
-                            user: session.user,
-                            profile: session.user.profile
-                        });
                         return [2 /*return*/, response.status(200).send({
                                 id: session.id,
                                 email: session.email,
