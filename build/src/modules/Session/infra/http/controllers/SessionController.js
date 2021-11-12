@@ -116,7 +116,7 @@ var SessionController = /** @class */ (function () {
                                 id: session.id,
                                 email: session.email,
                                 token: token,
-                                user: session,
+                                user: session.user,
                             })];
                     case 3:
                         error_2 = _b.sent();
