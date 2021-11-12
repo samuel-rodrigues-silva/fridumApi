@@ -48,7 +48,6 @@ var CreateSessionService_1 = __importDefault(require("../../../services/CreateSe
 var DeleteSessionService_1 = __importDefault(require("./../../../services/DeleteSessionService"));
 var UpdateSessionService_1 = __importDefault(require("./../../../services/UpdateSessionService"));
 var class_transformer_1 = require("class-transformer");
-var path_1 = __importDefault(require("path"));
 var SessionController = /** @class */ (function () {
     function SessionController() {
     }
@@ -83,7 +82,7 @@ var SessionController = /** @class */ (function () {
     };
     SessionController.prototype.auth = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, email, password, repo, session, isPasswordValid, token, image, error_2;
+            var _a, email, password, repo, session, isPasswordValid, token, error_2;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -113,8 +112,6 @@ var SessionController = /** @class */ (function () {
                         if (!isPasswordValid) {
                             return [2 /*return*/, response.status(409).send('Invalid password')];
                         }
-                        image = path_1.default.resolve("C:/Users/Pichau/Documents/Projects/api/fridumtypeorm/build/uploads/" + session.user.profile.image);
-                        session.user.profile.image = image;
                         console.log({
                             id: session.id,
                             email: session.email,
