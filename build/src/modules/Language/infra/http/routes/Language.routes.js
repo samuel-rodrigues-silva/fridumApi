@@ -20,6 +20,10 @@ languageRouter.put('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
+    _b[celebrate_1.Segments.BODY] = {
+        title: celebrate_1.Joi.string().required(),
+        level: celebrate_1.Joi.string().required()
+    },
     _b)), languageController.update);
 languageRouter.delete('/:id', (0, celebrate_1.celebrate)((_c = {},
     _c[celebrate_1.Segments.PARAMS] = {

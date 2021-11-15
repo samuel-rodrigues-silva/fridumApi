@@ -16,6 +16,11 @@ accomplishmentRouter.post('/', celebrate({
 accomplishmentRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
+    },
+    [Segments.BODY]: {
+        title: Joi.string().min(3).required(),
+        description: Joi.string().required(),
+        image: Joi.string()
     }
 }), accomplishmentController.update)
 

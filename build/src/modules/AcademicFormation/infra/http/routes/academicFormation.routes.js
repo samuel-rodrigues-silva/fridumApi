@@ -23,6 +23,13 @@ academicFormationRouter.patch('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
+    _b[celebrate_1.Segments.BODY] = {
+        title: celebrate_1.Joi.string().min(3),
+        description: celebrate_1.Joi.string(),
+        image: celebrate_1.Joi.any().allow(null),
+        conclusion_date: celebrate_1.Joi.string(),
+        institution: celebrate_1.Joi.string(),
+    },
     _b)), academicFormationController.update);
 academicFormationRouter.delete('/:id', (0, celebrate_1.celebrate)((_c = {},
     _c[celebrate_1.Segments.PARAMS] = {

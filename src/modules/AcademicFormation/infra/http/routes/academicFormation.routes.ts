@@ -18,6 +18,13 @@ academicFormationRouter.post('/', celebrate({
 academicFormationRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
+    },
+    [Segments.BODY]: {
+        title: Joi.string().min(3),
+        description: Joi.string(),
+        image: Joi.any().allow(null),
+        conclusion_date: Joi.string(),
+        institution: Joi.string(),
     }
 }), academicFormationController.update)
 

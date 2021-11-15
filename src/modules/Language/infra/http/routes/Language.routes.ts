@@ -15,6 +15,10 @@ languageRouter.post('/', celebrate({
 languageRouter.put('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
+    },
+    [Segments.BODY]: {
+        title: Joi.string().required(),
+        level: Joi.string().required()
     }
 }), languageController.update)
 

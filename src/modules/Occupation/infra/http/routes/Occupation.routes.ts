@@ -17,6 +17,12 @@ occupationRouter.post('/', celebrate({
 occupationRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
+    },
+    [Segments.BODY]: {
+        role: Joi.string().required(),
+        company: Joi.string().required(),
+        date_in: Joi.string().required(),
+        date_out: Joi.string().required()
     }
 }), occupationController.update)
 

@@ -14,6 +14,9 @@ focusAreaRouter.post('/', celebrate({
 focusAreaRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
+    },
+    [Segments.BODY]: {
+        business: Joi.string().required(),
     }
 }), focusAreaController.update)
 
