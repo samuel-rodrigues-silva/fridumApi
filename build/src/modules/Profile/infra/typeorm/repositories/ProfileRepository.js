@@ -43,6 +43,21 @@ var ProfileRepository = /** @class */ (function () {
     function ProfileRepository() {
         this.ormRepository = (0, typeorm_1.getRepository)(Profile_1.Profile);
     }
+    ProfileRepository.prototype.create = function (data) {
+        return __awaiter(this, void 0, void 0, function () {
+            var repo, profile;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        repo = this.ormRepository.create(data);
+                        return [4 /*yield*/, this.ormRepository.save(repo)];
+                    case 1:
+                        profile = _a.sent();
+                        return [2 /*return*/, profile];
+                }
+            });
+        });
+    };
     ProfileRepository.prototype.fetchBy = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -59,21 +74,6 @@ var ProfileRepository = /** @class */ (function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.ormRepository.find()];
                     case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    ProfileRepository.prototype.create = function (data) {
-        return __awaiter(this, void 0, void 0, function () {
-            var repo, profile;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        repo = this.ormRepository.create(data);
-                        return [4 /*yield*/, this.ormRepository.save(repo)];
-                    case 1:
-                        profile = _a.sent();
-                        return [2 /*return*/, profile];
                 }
             });
         });

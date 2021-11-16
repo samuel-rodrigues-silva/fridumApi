@@ -131,7 +131,6 @@ var UserRepository = /** @class */ (function () {
                         return [4 /*yield*/, this.profileRepository.save(profile)];
                     case 1:
                         pr = _a.sent();
-                        console.log(pr);
                         repo = this.userRepository.create(data);
                         repo.profile = pr;
                         return [4 /*yield*/, this.userRepository.save(repo)];

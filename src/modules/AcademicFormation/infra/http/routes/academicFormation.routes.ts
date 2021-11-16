@@ -22,7 +22,6 @@ academicFormationRouter.patch('/:id', celebrate({
     [Segments.BODY]: {
         title: Joi.string().min(3),
         description: Joi.string(),
-        image: Joi.any().allow(null),
         conclusion_date: Joi.string(),
         institution: Joi.string(),
     }

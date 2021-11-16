@@ -78,12 +78,12 @@ class UserRepository implements IUserRepository {
             occupation: []
         })
         const pr = await this.profileRepository.save(profile);
-        console.log(pr);
         const repo = this.userRepository.create(data);
         repo.profile = pr;
         const resp = await this.userRepository.save(repo);
         return resp;
     }
+
     public async update(data: ICreateUserDTO, id: string): Promise<void> {
 
         await getConnection()
