@@ -1,4 +1,4 @@
 export default interface ICreateFocusAreaDTO {
-    profileId: string;
+    profileId?: string;
     business: string;
 }
