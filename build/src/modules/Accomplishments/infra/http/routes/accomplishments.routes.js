@@ -22,7 +22,6 @@ accomplishmentRouter.put('/:id', (0, celebrate_1.celebrate)((_b = {},
         id: celebrate_1.Joi.string().uuid().required()
     },
     _b[celebrate_1.Segments.BODY] = {
-        profileId: celebrate_1.Joi.string().uuid().required(),
         title: celebrate_1.Joi.string().min(3),
         description: celebrate_1.Joi.string(),
         image: celebrate_1.Joi.string()
