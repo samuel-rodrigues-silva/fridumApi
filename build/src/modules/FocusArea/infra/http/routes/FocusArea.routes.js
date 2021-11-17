@@ -20,6 +20,7 @@ focusAreaRouter.put('/:id', (0, celebrate_1.celebrate)((_b = {},
         id: celebrate_1.Joi.string().uuid().required()
     },
     _b[celebrate_1.Segments.BODY] = {
+        profileId: celebrate_1.Joi.string().required(),
         business: celebrate_1.Joi.string(),
     },
     _b)), focusAreaController.update);
