@@ -65,6 +65,10 @@ var AcademicFormation1630024890665 = /** @class */ (function () {
                             type: 'text',
                         },
                         {
+                            name: 'image',
+                            type: 'varchar',
+                        },
+                        {
                             name: 'conclusion_date',
                             type: 'timestamp',
                         },

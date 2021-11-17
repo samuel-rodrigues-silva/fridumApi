@@ -32,6 +32,10 @@ var AcademicFormation = /** @class */ (function () {
         __metadata("design:type", String)
     ], AcademicFormation.prototype, "description", void 0);
     __decorate([
+        (0, typeorm_1.Column)('varchar'),
+        __metadata("design:type", String)
+    ], AcademicFormation.prototype, "image", void 0);
+    __decorate([
         (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
         __metadata("design:type", String)
     ], AcademicFormation.prototype, "conclusion_date", void 0);

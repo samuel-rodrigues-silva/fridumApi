@@ -16,7 +16,10 @@ export class AcademicFormation {
     @Column('varchar')
     description: string;
 
-    @CreateDateColumn({ type: 'timestamp'})
+    @Column('varchar')
+    image: string;
+
+    @CreateDateColumn({ type: 'timestamp' })
     conclusion_date: string;
 
     @CreateDateColumn({ type: 'timestamp', name: 'created_At' })
