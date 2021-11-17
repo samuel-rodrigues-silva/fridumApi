@@ -17,13 +17,14 @@ accomplishmentRouter.post('/', (0, celebrate_1.celebrate)((_a = {},
         image: celebrate_1.Joi.string()
     },
     _a)), accomplishmentController.create);
-accomplishmentRouter.patch('/:id', (0, celebrate_1.celebrate)((_b = {},
+accomplishmentRouter.put('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
     _b[celebrate_1.Segments.BODY] = {
-        title: celebrate_1.Joi.string().min(3).required(),
-        description: celebrate_1.Joi.string().required(),
+        profileId: celebrate_1.Joi.string().uuid().required(),
+        title: celebrate_1.Joi.string().min(3),
+        description: celebrate_1.Joi.string(),
         image: celebrate_1.Joi.string()
     },
     _b)), accomplishmentController.update);

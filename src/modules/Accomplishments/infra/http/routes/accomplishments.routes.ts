@@ -13,13 +13,14 @@ accomplishmentRouter.post('/', celebrate({
     }
 }), accomplishmentController.create)
 
-accomplishmentRouter.patch('/:id', celebrate({
+accomplishmentRouter.put('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     },
     [Segments.BODY]: {
-        title: Joi.string().min(3).required(),
-        description: Joi.string().required(),
+        profileId: Joi.string().uuid().required(),
+        title: Joi.string().min(3),
+        description: Joi.string(),
         image: Joi.string()
     }
 }), accomplishmentController.update)
