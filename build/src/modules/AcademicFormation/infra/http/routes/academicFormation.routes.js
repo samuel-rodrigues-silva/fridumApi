@@ -24,8 +24,9 @@ academicFormationRouter.patch('/:id', (0, celebrate_1.celebrate)((_b = {},
         id: celebrate_1.Joi.string().uuid().required()
     },
     _b[celebrate_1.Segments.BODY] = {
-        title: celebrate_1.Joi.string().min(3),
-        description: celebrate_1.Joi.string(),
+        title: celebrate_1.Joi.string().min(3).required(),
+        description: celebrate_1.Joi.string().required(),
+        image: celebrate_1.Joi.string(),
         conclusion_date: celebrate_1.Joi.string(),
         institution: celebrate_1.Joi.string(),
     },
