@@ -20,8 +20,8 @@ academicFormationRouter.patch('/:id', celebrate({
         id: Joi.string().uuid().required()
     },
     [Segments.BODY]: {
-        title: Joi.string().min(3).required(),
-        description: Joi.string().required(),
+        title: Joi.string().min(3),
+        description: Joi.string(),
         image: Joi.string(),
         conclusion_date: Joi.string(),
         institution: Joi.string(),
