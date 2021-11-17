@@ -4,9 +4,7 @@ import routes from './routes/index';
 import path from 'path'
 var app = express();
 
-app.use(cors({
-    origin: ['http://localhost:3000']
-}))
+app.use(cors())
 
 app.use(express.json());
 
