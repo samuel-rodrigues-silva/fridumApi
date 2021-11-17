@@ -15,7 +15,7 @@ academicFormationRouter.post('/', celebrate({
     }
 }), academicFormationController.create)
 
-academicFormationRouter.patch('/:id', celebrate({
+academicFormationRouter.put('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
     },

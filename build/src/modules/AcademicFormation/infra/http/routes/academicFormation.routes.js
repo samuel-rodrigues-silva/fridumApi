@@ -19,7 +19,7 @@ academicFormationRouter.post('/', (0, celebrate_1.celebrate)((_a = {},
         institution: celebrate_1.Joi.string(),
     },
     _a)), academicFormationController.create);
-academicFormationRouter.patch('/:id', (0, celebrate_1.celebrate)((_b = {},
+academicFormationRouter.put('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
