@@ -8,7 +8,6 @@ var cors_1 = __importDefault(require("cors"));
 var index_1 = __importDefault(require("./routes/index"));
 var path_1 = __importDefault(require("path"));
 var app = (0, express_1.default)();
-app.use((0, cors_1.default)());
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -22,6 +21,7 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.get('/image/:img', function (req, res) {
     var img = req.params.img;

@@ -4,8 +4,6 @@ import routes from './routes/index';
 import path from 'path'
 var app = express();
 
-app.use(cors())
-
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -24,6 +22,9 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+
+app.use(cors())
+
 
 app.use(express.json());
 
