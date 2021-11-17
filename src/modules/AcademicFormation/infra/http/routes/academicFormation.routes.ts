@@ -20,7 +20,6 @@ academicFormationRouter.put('/:id', celebrate({
         id: Joi.string().uuid().required()
     },
     [Segments.BODY]: {
-        profileId: Joi.string().uuid().required(),
         title: Joi.string().min(3),
         description: Joi.string(),
         image: Joi.string(),
