@@ -8,7 +8,15 @@ var cors_1 = __importDefault(require("cors"));
 var index_1 = __importDefault(require("./routes/index"));
 var path_1 = __importDefault(require("path"));
 var app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: [
+        '*',
+        'http://localhost:3000',
+        'http://localhost:3001',
+        'http://127.0.0.1:3000',
+        'http://127.0.0.1:3001'
+    ]
+}));
 app.use(express_1.default.json());
 app.get('/image/:img', function (req, res) {
     var img = req.params.img;
