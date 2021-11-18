@@ -15,12 +15,10 @@ import starredRouter from '../../../../modules/Starred/infra/http/routes/Starred
 import userRouter from '../../../../modules/User/infra/http/routes/User.routes';
 import languageRouter from './../../../../modules/Language/infra/http/routes/Language.routes';
 import academicFormationRouter from './../../../../modules/AcademicFormation/infra/http/routes/academicFormation.routes';
-import cors from 'cors'
 
 const routes = express.Router();
 
 routes.use('/academicformation', academicFormationRouter)
-routes.options('/academicformation', cors())
 routes.use('/accomplishment', accomplishmentRouter)
 routes.use('/chat', chatRouter)
 routes.use('/chatmessage', chatMessageRouter)

@@ -20,10 +20,8 @@ var Starred_routes_1 = __importDefault(require("../../../../modules/Starred/infr
 var User_routes_1 = __importDefault(require("../../../../modules/User/infra/http/routes/User.routes"));
 var Language_routes_1 = __importDefault(require("./../../../../modules/Language/infra/http/routes/Language.routes"));
 var academicFormation_routes_1 = __importDefault(require("./../../../../modules/AcademicFormation/infra/http/routes/academicFormation.routes"));
-var cors_1 = __importDefault(require("cors"));
 var routes = express_1.default.Router();
 routes.use('/academicformation', academicFormation_routes_1.default);
-routes.options('/academicformation', (0, cors_1.default)());
 routes.use('/accomplishment', accomplishments_routes_1.default);
 routes.use('/chat', Chat_routes_1.default);
 routes.use('/chatmessage', ChatMessage_routes_1.default);
