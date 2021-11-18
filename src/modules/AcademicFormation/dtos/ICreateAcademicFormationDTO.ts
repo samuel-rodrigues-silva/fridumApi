@@ -1,5 +1,5 @@
 export default interface ICreateAcademicFormationDTO {
-    profileId: string;
+    profileId?: string;
     title: string;
     description?: string;
     image?: string;
