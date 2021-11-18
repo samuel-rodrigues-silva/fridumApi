@@ -23,6 +23,7 @@ var app = express();
 //     next();
 // });
 
+app.use(cors())
 
 app.use(express.json());
 
@@ -30,6 +31,6 @@ app.get('/image/:img', function (req, res) {
     const { img } = req.params
     res.sendFile(path.resolve(__dirname, '../../../../', `uploads/${img}`));
 });
-app.options('*', cors());
+app.options('/academicformation', cors());
 app.use(routes);
 export default app;
