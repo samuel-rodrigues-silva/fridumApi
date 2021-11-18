@@ -14,7 +14,7 @@ app.use(function (req, res, next) {
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Headers', 'X-PINGOTHER,X-Requested-With,content-type');
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
     // res.setHeader('Access-Control-Allow-Credentials', true);
@@ -27,7 +27,6 @@ app.get('/image/:img', function (req, res) {
     var img = req.params.img;
     res.sendFile(path_1.default.resolve(__dirname, '../../../../', "uploads/" + img));
 });
-index_1.default.options('*', (0, cors_1.default)());
 app.use(index_1.default);
 exports.default = app;
 //# sourceMappingURL=app.js.map
