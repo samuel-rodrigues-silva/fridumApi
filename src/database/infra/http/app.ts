@@ -4,26 +4,21 @@ import routes from './routes/index';
 import path from 'path'
 var app = express();
 
-// app.use(function (req, res, next) {
+var originsWhitelist = [
+    'http://localhost:3000'     //this is my front-end url for development
 
-//     // Website you wish to allow to connect
-//     res.setHeader('Access-Control-Allow-Origin', '*');
+];
+var corsOptions = {
+    origin: function (origin, callback) {
+        console.log(origin);
+        var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
+        console.log(isWhitelisted);
+        callback(null, isWhitelisted);
+    },
+    credentials: true
+}
 
-//     // Request methods you wish to allow
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-//     // Request headers you wish to allow
-//     res.setHeader('Access-Control-Allow-Headers', 'X-PINGOTHER,X-Requested-With,content-type');
-
-//     // Set to true if you need the website to include cookies in the requests sent
-//     // to the API (e.g. in case you use sessions)
-//     // res.setHeader('Access-Control-Allow-Credentials', true);
-
-//     // Pass to next layer of middleware
-//     next();
-// });
-
-app.use(cors())
+app.use(cors(corsOptions))
 
 app.use(express.json());
 
@@ -31,6 +26,6 @@ app.get('/image/:img', function (req, res) {
     const { img } = req.params
     res.sendFile(path.resolve(__dirname, '../../../../', `uploads/${img}`));
 });
-app.options('/academicformation', cors());
+app.options('*', cors(corsOptions));
 app.use(routes);
 export default app;

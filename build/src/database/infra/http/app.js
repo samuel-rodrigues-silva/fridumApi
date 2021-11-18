@@ -8,26 +8,25 @@ var cors_1 = __importDefault(require("cors"));
 var index_1 = __importDefault(require("./routes/index"));
 var path_1 = __importDefault(require("path"));
 var app = (0, express_1.default)();
-// app.use(function (req, res, next) {
-//     // Website you wish to allow to connect
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     // Request methods you wish to allow
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//     // Request headers you wish to allow
-//     res.setHeader('Access-Control-Allow-Headers', 'X-PINGOTHER,X-Requested-With,content-type');
-//     // Set to true if you need the website to include cookies in the requests sent
-//     // to the API (e.g. in case you use sessions)
-//     // res.setHeader('Access-Control-Allow-Credentials', true);
-//     // Pass to next layer of middleware
-//     next();
-// });
-app.use((0, cors_1.default)());
+var originsWhitelist = [
+    'http://localhost:3000' //this is my front-end url for development
+];
+var corsOptions = {
+    origin: function (origin, callback) {
+        console.log(origin);
+        var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
+        console.log(isWhitelisted);
+        callback(null, isWhitelisted);
+    },
+    credentials: true
+};
+app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.get('/image/:img', function (req, res) {
     var img = req.params.img;
     res.sendFile(path_1.default.resolve(__dirname, '../../../../', "uploads/" + img));
 });
-app.options('/academicformation', (0, cors_1.default)());
+app.options('*', (0, cors_1.default)(corsOptions));
 app.use(index_1.default);
 exports.default = app;
 //# sourceMappingURL=app.js.map
