@@ -21,7 +21,6 @@ var app = (0, express_1.default)();
 //     // Pass to next layer of middleware
 //     next();
 // });
-app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.get('/image/:img', function (req, res) {
     var img = req.params.img;

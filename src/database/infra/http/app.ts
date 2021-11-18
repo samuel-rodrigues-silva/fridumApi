@@ -23,7 +23,6 @@ var app = express();
 //     next();
 // });
 
-app.use(cors())
 
 app.use(express.json());
 
