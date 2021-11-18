@@ -1,7 +1,6 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import AcademicFormationController from '../controllers/AcademicFormationController';
-import cors from 'cors'
 const academicFormationRouter = Router();
 const academicFormationController = new AcademicFormationController();
 
@@ -16,9 +15,6 @@ academicFormationRouter.post('/', celebrate({
         institution: Joi.string(),
     }
 }), academicFormationController.create)
-
-academicFormationRouter.options('/', cors())
-academicFormationRouter.options('/:id', cors())
 
 academicFormationRouter.put('/:id', celebrate({
     [Segments.PARAMS]: {

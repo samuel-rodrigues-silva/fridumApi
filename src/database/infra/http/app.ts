@@ -32,6 +32,6 @@ app.get('/image/:img', function (req, res) {
     const { img } = req.params
     res.sendFile(path.resolve(__dirname, '../../../../', `uploads/${img}`));
 });
-
+routes.options('*', cors());
 app.use(routes);
 export default app;
