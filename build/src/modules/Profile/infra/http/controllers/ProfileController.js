@@ -121,7 +121,7 @@ var ProfileController = /** @class */ (function () {
                             }, id)];
                     case 1:
                         profile = _b.sent();
-                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(profile))];
+                        return [2 /*return*/, response.json({ video: video, work_resume: work_resume, image: image })];
                     case 2:
                         error_3 = _b.sent();
                         return [2 /*return*/, response.send(error_3.message)];

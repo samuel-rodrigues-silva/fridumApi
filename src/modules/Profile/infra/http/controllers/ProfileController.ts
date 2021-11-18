@@ -59,7 +59,7 @@ class ProfileController {
                 video,
                 description,
             }, id);
-            return response.json(classToClass(profile));
+            return response.json({ video, work_resume, image });
 
         } catch (error) {
             return response.send(error.message);
