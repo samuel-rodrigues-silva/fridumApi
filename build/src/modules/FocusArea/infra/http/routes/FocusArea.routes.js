@@ -15,12 +15,11 @@ focusAreaRouter.post('/', (0, celebrate_1.celebrate)((_a = {},
         business: celebrate_1.Joi.string().required(),
     },
     _a)), focusAreaController.create);
-focusAreaRouter.put('/:id', (0, celebrate_1.celebrate)((_b = {},
+focusAreaRouter.patch('/:id', (0, celebrate_1.celebrate)((_b = {},
     _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
     _b[celebrate_1.Segments.BODY] = {
-        profileId: celebrate_1.Joi.string().required(),
         business: celebrate_1.Joi.string(),
     },
     _b)), focusAreaController.update);
