@@ -80,7 +80,7 @@ var AccomplishmentController = /** @class */ (function () {
                         return [4 /*yield*/, repo.execute(request.body, id)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(repo))];
+                        return [2 /*return*/, response.json({ status: 200 })];
                     case 2:
                         error_1 = _a.sent();
                         return [2 /*return*/, response.send(error_1.message)];

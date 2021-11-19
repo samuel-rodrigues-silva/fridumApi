@@ -24,6 +24,7 @@ class OccupationController {
             const { id } = request.params;
             const repo = container.resolve(UpdateOccupationService);
             await repo.execute(request.body, id);
+            return response.json({ status: 200 })
 
         } catch (error) {
             return response.send(error.message);

@@ -23,7 +23,7 @@ class AccomplishmentController {
             const { id } = request.params;
             const repo = container.resolve(UpdateAccomplishmentService);
             await repo.execute(request.body, id);
-            return response.json(classToClass(repo))
+            return response.json({ status: 200 })
         } catch (error) {
             return response.send(error.message);
         }

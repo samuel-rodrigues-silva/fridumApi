@@ -122,7 +122,7 @@ var ServiceController = /** @class */ (function () {
                     id = request.params.id;
                     repo = tsyringe_1.container.resolve(UpdateServiceService_1.default);
                     service = repo.execute(request.body, id);
-                    return [2 /*return*/, response.json(service)];
+                    return [2 /*return*/, response.json({ status: 200 })];
                 }
                 catch (error) {
                     return [2 /*return*/, response.send(error.message)];
