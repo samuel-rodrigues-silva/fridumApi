@@ -1,16 +1,39 @@
 {
    "compilerOptions": {
+      "target": "ES2020",
       "lib": [
-         "es5",
-         "es6"
+         "ES2020",
+         "dom"
       ],
-      "esModuleInterop": true,
-      "target": "es5",
       "module": "commonjs",
       "moduleResolution": "node",
-      "outDir": "./build",
-      "emitDecoratorMetadata": true,
+      "allowJs": true,
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "removeComments": true,
+      "strict": true,
+      "typeRoots": [
+         "./node_modules/@types",
+         "./src/@types"
+      ],
+      "esModuleInterop": true,
+      "resolveJsonModule": true,
       "experimentalDecorators": true,
-      "sourceMap": true
-   }
-}  
+      "emitDecoratorMetadata": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "strictPropertyInitialization": false,
+      "baseUrl": "./src",
+      "paths": {
+         "@modules/*": [
+            "modules/*"
+         ],
+         "@database/*": [
+            "database/*"
+         ],
+      }
+   },
+   "include": [
+      "src/**/*"
+   ]
+}
