@@ -13,7 +13,7 @@ module.exports = {
          : './build/src/modules/**/infra/typeorm/entities/*.js',
       process.env.NODE_ENV === 'development'
          ? './src/modules/**/infra/typeorm/entities/*.ts'
-         : './dist/modules/**/infra/typeorm/entities/*.js',
+         : './build/modules/**/infra/typeorm/entities/*.js',
    ],
    migrations: [
       process.env.NODE_ENV === 'development'
@@ -24,6 +24,6 @@ module.exports = {
       migrationsDir:
          process.env.NODE_ENV === 'development'
             ? './src/src/database/migration'
-            : '/dist/src/database/migration',
+            : '/build/src/database/migration',
    }
 }
