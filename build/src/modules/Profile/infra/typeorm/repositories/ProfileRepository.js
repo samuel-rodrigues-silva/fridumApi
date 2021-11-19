@@ -80,17 +80,28 @@ var ProfileRepository = /** @class */ (function () {
     };
     ProfileRepository.prototype.update = function (data, id) {
         return __awaiter(this, void 0, void 0, function () {
+            var profile, parsedProfile;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, typeorm_2.getConnection)()
-                            .createQueryBuilder()
-                            .update(Profile_1.Profile)
-                            .set(data)
-                            .where("id = :id", { id: id })
-                            .execute()];
+                    case 0: return [4 /*yield*/, this.ormRepository.findOne({ where: { id: id } })];
                     case 1:
+                        profile = _a.sent();
+                        parsedProfile = {
+                            role: data.role ? data.role : profile.role,
+                            description: data.description ? data.description : profile.description,
+                            image: data.image ? data.image : profile.image,
+                            work_resume: data.work_resume ? data.work_resume : profile.work_resume,
+                            video: data.video ? data.video : profile.video,
+                        };
+                        return [4 /*yield*/, (0, typeorm_2.getConnection)()
+                                .createQueryBuilder()
+                                .update(Profile_1.Profile)
+                                .set(parsedProfile)
+                                .where("id = :id", { id: id })
+                                .execute()];
+                    case 2:
                         _a.sent();
-                        return [2 /*return*/];
+                        return [2 /*return*/, parsedProfile];
                 }
             });
         });
