@@ -16,7 +16,6 @@ class AcademicFormationController {
             return response.status(401).send(err.message);
         }
 
-
     }
 
     public async update(request: Request, response: Response): Promise<Response> {
@@ -24,7 +23,7 @@ class AcademicFormationController {
             const { id } = request.params;
             const repo = container.resolve(UpdateAcademicFormationService);
             await repo.execute(request.body, id);
-
+            return response.json({ status: 200 })
         } catch (error) {
             return response.send(error.message);
         }
