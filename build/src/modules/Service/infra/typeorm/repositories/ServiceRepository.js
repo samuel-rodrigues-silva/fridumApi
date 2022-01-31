@@ -47,6 +47,23 @@ var ServiceRepository = /** @class */ (function () {
         this.postRepository = (0, typeorm_1.getRepository)(Post_1.Post);
         this.followRepository = (0, typeorm_1.getRepository)(User_1.User);
     }
+    ServiceRepository.prototype.fetchUnreadServices = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user, counting;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id } })];
+                    case 1:
+                        user = _a.sent();
+                        return [4 /*yield*/, this.ormRepository.findAndCount({ where: { user: user } })];
+                    case 2:
+                        counting = _a.sent();
+                        console.log(counting.toString());
+                        return [2 /*return*/, counting.toString()];
+                }
+            });
+        });
+    };
     ServiceRepository.prototype.findById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {

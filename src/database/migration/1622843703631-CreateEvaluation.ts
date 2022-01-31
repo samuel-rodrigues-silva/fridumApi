@@ -4,7 +4,7 @@ import { MigrationInterface, QueryRunner, Table } from "typeorm";
 export class CreateEvaluation1622843703631 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.createTable(
+        await queryRunner.createTable(
             new Table({
                 name: 'evaluation',
                 columns: [
@@ -37,12 +37,12 @@ export class CreateEvaluation1622843703631 implements MigrationInterface {
                     }
                 ]
 
-            })
+            }), true
         );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.dropTable('evaluation');
+        await queryRunner.dropTable('evaluation');
     }
 
 }

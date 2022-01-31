@@ -22,6 +22,9 @@ export class Service {
     @Column({ type: 'varchar' })
     price: string;
 
+    @Column({ type: 'bool' })
+    unread: boolean;
+
     @CreateDateColumn({ type: 'timestamp', name: 'created_At' })
     createdAt: Timestamp;
 

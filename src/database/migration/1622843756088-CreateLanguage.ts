@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner, Table } from "typeorm";
 export class CreateRole1622843756088 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.createTable(new Table({
+        await queryRunner.createTable(new Table({
             name: 'language',
             columns: [
                 {
@@ -31,12 +31,12 @@ export class CreateRole1622843756088 implements MigrationInterface {
                 }
             ]
 
-        }));
+        }), true);
 
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.dropTable('languague');
+        await queryRunner.dropTable('languague');
     }
 
 }

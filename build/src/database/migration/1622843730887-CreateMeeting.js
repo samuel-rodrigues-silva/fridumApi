@@ -44,55 +44,63 @@ var CreateMeeting1622843730887 = /** @class */ (function () {
     CreateMeeting1622843730887.prototype.up = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.createTable(new typeorm_1.Table({
-                    name: 'meeting',
-                    columns: [
-                        {
-                            name: 'id',
-                            type: 'varchar',
-                            isPrimary: true,
-                        },
-                        {
-                            name: 'street',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'district',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'city',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'state',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'meeting_time',
-                            type: 'timestamp'
-                        },
-                        {
-                            name: 'createdAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        },
-                        {
-                            name: 'updatedAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        }
-                    ]
-                }));
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.createTable(new typeorm_1.Table({
+                            name: 'meeting',
+                            columns: [
+                                {
+                                    name: 'id',
+                                    type: 'varchar',
+                                    isPrimary: true,
+                                },
+                                {
+                                    name: 'street',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'district',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'city',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'state',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'meeting_time',
+                                    type: 'timestamp'
+                                },
+                                {
+                                    name: 'createdAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                },
+                                {
+                                    name: 'updatedAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                }
+                            ]
+                        }), true)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
     CreateMeeting1622843730887.prototype.down = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.dropTable("meeting");
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.dropTable("meeting")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };

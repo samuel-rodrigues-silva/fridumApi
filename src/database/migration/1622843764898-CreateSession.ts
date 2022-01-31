@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner, Table } from "typeorm";
 export class CreateSession1622843764898 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.createTable(new Table({
+        await queryRunner.createTable(new Table({
             name: 'session',
             columns: [
                 {
@@ -31,12 +31,12 @@ export class CreateSession1622843764898 implements MigrationInterface {
                 }
             ]
 
-        }));
+        }), true);
 
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.dropTable('session');
+        await queryRunner.dropTable('session');
     }
 
 }

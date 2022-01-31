@@ -44,39 +44,47 @@ var CreateChatMessage1622843694135 = /** @class */ (function () {
     CreateChatMessage1622843694135.prototype.up = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.createTable(new typeorm_1.Table({
-                    name: 'chatMessage',
-                    columns: [
-                        {
-                            name: 'id',
-                            type: 'varchar',
-                            isPrimary: true,
-                        },
-                        {
-                            name: 'message',
-                            type: 'text'
-                        },
-                        {
-                            name: 'createdAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        },
-                        {
-                            name: 'updatedAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        }
-                    ]
-                }));
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.createTable(new typeorm_1.Table({
+                            name: 'chatMessage',
+                            columns: [
+                                {
+                                    name: 'id',
+                                    type: 'varchar',
+                                    isPrimary: true,
+                                },
+                                {
+                                    name: 'message',
+                                    type: 'text'
+                                },
+                                {
+                                    name: 'createdAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                },
+                                {
+                                    name: 'updatedAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                }
+                            ]
+                        }), true)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
     CreateChatMessage1622843694135.prototype.down = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.dropTable('chatMessage');
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.dropTable('chatMessage')];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };

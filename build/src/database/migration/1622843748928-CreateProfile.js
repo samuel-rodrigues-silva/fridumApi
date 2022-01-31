@@ -44,55 +44,63 @@ var CreateProfile1622843748928 = /** @class */ (function () {
     CreateProfile1622843748928.prototype.up = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.createTable(new typeorm_1.Table({
-                    name: 'profile',
-                    columns: [
-                        {
-                            name: 'id',
-                            type: 'varchar',
-                            isPrimary: true,
-                        },
-                        {
-                            name: 'role',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'work_resume',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'image',
-                            type: 'varchar',
-                        },
-                        {
-                            name: 'video',
-                            type: 'varchar',
-                        },
-                        {
-                            name: 'description',
-                            type: 'text'
-                        },
-                        {
-                            name: 'createdAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        },
-                        {
-                            name: 'updatedAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        }
-                    ]
-                }));
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.createTable(new typeorm_1.Table({
+                            name: 'profile',
+                            columns: [
+                                {
+                                    name: 'id',
+                                    type: 'varchar',
+                                    isPrimary: true,
+                                },
+                                {
+                                    name: 'role',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'work_resume',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'image',
+                                    type: 'varchar',
+                                },
+                                {
+                                    name: 'video',
+                                    type: 'varchar',
+                                },
+                                {
+                                    name: 'description',
+                                    type: 'text'
+                                },
+                                {
+                                    name: 'createdAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                },
+                                {
+                                    name: 'updatedAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                }
+                            ]
+                        }), true)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
     CreateProfile1622843748928.prototype.down = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.dropTable('profile');
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.dropTable('profile')];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };

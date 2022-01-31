@@ -59,12 +59,12 @@ export class InitialSetup1622744280571 implements MigrationInterface {
                         },
                     ]
                 }
-            )
+            ), true
         );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.dropTable('user')
+        await queryRunner.dropTable('user')
     }
 
 }

@@ -97,7 +97,7 @@ var InitialSetup1622744280571 = /** @class */ (function () {
                                     default: 'now()',
                                 },
                             ]
-                        }))];
+                        }), true)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -108,8 +108,12 @@ var InitialSetup1622744280571 = /** @class */ (function () {
     InitialSetup1622744280571.prototype.down = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.dropTable('user');
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.dropTable('user')];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };

@@ -16,6 +16,11 @@ serviceRouter.get('/:id/follow', celebrate({
     }
 }), serviceController.fetchByFollowId)
 
+serviceRouter.get('/:id/unread', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), serviceController.fetchUnreadServices)
 
 serviceRouter.post('/', celebrate({
     [Segments.BODY]: {

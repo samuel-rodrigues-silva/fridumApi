@@ -38,7 +38,16 @@ postRouter.patch('/:id', (0, celebrate_1.celebrate)((_d = {},
     _d[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
-    _d)), postController.update);
+    _d[celebrate_1.Segments.BODY] = {
+        city: celebrate_1.Joi.string(),
+        state: celebrate_1.Joi.string(),
+        description: celebrate_1.Joi.string(),
+        title: celebrate_1.Joi.string(),
+        image: celebrate_1.Joi.any().allow(null),
+        price: celebrate_1.Joi.string(),
+        expected_date_of_delivery: celebrate_1.Joi.date()
+    },
+    _d)), upload.single('img'), postController.update);
 postRouter.delete('/:id', (0, celebrate_1.celebrate)((_e = {},
     _e[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()

@@ -44,47 +44,55 @@ var CreateEvaluation1622843703631 = /** @class */ (function () {
     CreateEvaluation1622843703631.prototype.up = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.createTable(new typeorm_1.Table({
-                    name: 'evaluation',
-                    columns: [
-                        {
-                            name: 'id',
-                            type: 'varchar',
-                            isPrimary: true,
-                        },
-                        {
-                            name: 'service_id',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'description',
-                            type: 'varchar',
-                        },
-                        {
-                            name: 'rating',
-                            type: 'integer'
-                        },
-                        {
-                            name: 'createdAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        },
-                        {
-                            name: 'updatedAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        }
-                    ]
-                }));
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.createTable(new typeorm_1.Table({
+                            name: 'evaluation',
+                            columns: [
+                                {
+                                    name: 'id',
+                                    type: 'varchar',
+                                    isPrimary: true,
+                                },
+                                {
+                                    name: 'service_id',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'description',
+                                    type: 'varchar',
+                                },
+                                {
+                                    name: 'rating',
+                                    type: 'integer'
+                                },
+                                {
+                                    name: 'createdAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                },
+                                {
+                                    name: 'updatedAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                }
+                            ]
+                        }), true)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
     CreateEvaluation1622843703631.prototype.down = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.dropTable('evaluation');
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.dropTable('evaluation')];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };

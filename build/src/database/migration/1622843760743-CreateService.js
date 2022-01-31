@@ -44,52 +44,60 @@ var CreateService1622843760743 = /** @class */ (function () {
     CreateService1622843760743.prototype.up = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.createTable(new typeorm_1.Table({
-                    name: 'service',
-                    columns: [
-                        {
-                            name: 'id',
-                            type: 'varchar',
-                            isPrimary: true,
-                        },
-                        {
-                            name: 'title',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'status',
-                            type: 'enum',
-                            enum: ['done', 'doing', 'penging', 'refused', 'contact', 'waitingDeal']
-                        },
-                        {
-                            name: 'finishedAt',
-                            type: 'timestamp',
-                        },
-                        {
-                            name: 'price',
-                            type: 'varchar',
-                        },
-                        {
-                            name: 'createdAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        },
-                        {
-                            name: 'updatedAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        }
-                    ]
-                }));
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.createTable(new typeorm_1.Table({
+                            name: 'service',
+                            columns: [
+                                {
+                                    name: 'id',
+                                    type: 'varchar',
+                                    isPrimary: true,
+                                },
+                                {
+                                    name: 'title',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'status',
+                                    type: 'enum',
+                                    enum: ['done', 'doing', 'penging', 'refused', 'contact', 'waitingDeal']
+                                },
+                                {
+                                    name: 'finishedAt',
+                                    type: 'timestamp',
+                                },
+                                {
+                                    name: 'price',
+                                    type: 'varchar',
+                                },
+                                {
+                                    name: 'createdAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                },
+                                {
+                                    name: 'updatedAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                }
+                            ]
+                        }), true)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
     CreateService1622843760743.prototype.down = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.dropTable('service');
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.dropTable('service')];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };

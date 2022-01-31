@@ -19,10 +19,10 @@ occupationRouter.patch('/:id', celebrate({
         id: Joi.string().uuid().required()
     },
     [Segments.BODY]: {
-        role: Joi.string().required(),
-        company: Joi.string().required(),
-        date_in: Joi.string().required(),
-        date_out: Joi.string().required()
+        role: Joi.string(),
+        company: Joi.string(),
+        date_in: Joi.string(),
+        date_out: Joi.string()
     }
 }), occupationController.update)
 

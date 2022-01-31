@@ -44,55 +44,63 @@ var AcademicFormation1630024890665 = /** @class */ (function () {
     AcademicFormation1630024890665.prototype.up = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.createTable(new typeorm_1.Table({
-                    name: 'academicformation',
-                    columns: [
-                        {
-                            name: 'id',
-                            type: 'varchar',
-                            isPrimary: true,
-                        },
-                        {
-                            name: 'title',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'institution',
-                            type: 'varchar',
-                        },
-                        {
-                            name: 'description',
-                            type: 'text',
-                        },
-                        {
-                            name: 'image',
-                            type: 'varchar',
-                        },
-                        {
-                            name: 'conclusion_date',
-                            type: 'timestamp',
-                        },
-                        {
-                            name: 'createdAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        },
-                        {
-                            name: 'updatedAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        }
-                    ]
-                }));
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.createTable(new typeorm_1.Table({
+                            name: 'academicformation',
+                            columns: [
+                                {
+                                    name: 'id',
+                                    type: 'varchar',
+                                    isPrimary: true,
+                                },
+                                {
+                                    name: 'title',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'institution',
+                                    type: 'varchar',
+                                },
+                                {
+                                    name: 'description',
+                                    type: 'text',
+                                },
+                                {
+                                    name: 'image',
+                                    type: 'varchar',
+                                },
+                                {
+                                    name: 'conclusion_date',
+                                    type: 'timestamp',
+                                },
+                                {
+                                    name: 'createdAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                },
+                                {
+                                    name: 'updatedAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                }
+                            ]
+                        }), true)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
     AcademicFormation1630024890665.prototype.down = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.dropTable('academicformation');
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.dropTable('academicformation')];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };

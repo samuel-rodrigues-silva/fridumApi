@@ -6,7 +6,7 @@ import UpdateServiceService from './../../../services/UpdateServiceService';
 import DeleteServiceService from './../../../services/DeleteServiceService';
 import ShowServiceService from './../../../services/ShowServiceService';
 import ShowFollowServiceService from '../../../services/ShowFollowServiceService';
-
+import ShowUnreadServiceService from '../../../services/ShowUnreadServiceService';
 class ServiceController {
 
     public async fetchById(request: Request, response: Response): Promise<Response> {
@@ -30,6 +30,18 @@ class ServiceController {
             return response.status(401).send(err.message);
         }
     }
+
+    public async fetchUnreadServices(request: Request, response: Response): Promise<Response> {
+        try {
+            const { id } = request.params
+            const service = container.resolve(ShowUnreadServiceService);
+            const res = await service.execute(id);
+            return response.json(res)
+        } catch (err) {
+            return response.status(401).send(err.message);
+        }
+    }
+
 
     public async create(request: Request, response: Response): Promise<Response> {
         try {

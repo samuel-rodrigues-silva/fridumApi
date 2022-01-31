@@ -1,10 +1,10 @@
 import { query } from "express";
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableColumn } from "typeorm";
 
 export class CreateService1622843760743 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.createTable(new Table({
+        await queryRunner.createTable(new Table({
             name: 'service',
             columns: [
                 {
@@ -41,12 +41,12 @@ export class CreateService1622843760743 implements MigrationInterface {
                 }
             ]
 
-        }));
+        }), true);
 
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.dropTable('service')
+        await queryRunner.dropTable('service')
     }
 
 }

@@ -5,6 +5,7 @@ import chatMessageRouter from '../../../../modules/ChatMessage/infra/http/routes
 import evaluationRouter from '../../../../modules/Evaluation/infra/http/routes/Evaluation.routes';
 import focusAreaRouter from '../../../../modules/FocusArea/infra/http/routes/FocusArea.routes';
 import followRouter from '../../../../modules/Follow/infra/http/routes/Follow.routes';
+import infrastructureRouter from '../../../../modules/Infrastructure/infra/http/routes/Infrastructure.routes';
 import meetingRouter from '../../../../modules/Meeting/infra/http/routes/Meeting.routes';
 import occupationRouter from '../../../../modules/Occupation/infra/http/routes/Occupation.routes';
 import postRouter from '../../../../modules/Post/infra/http/routes/Post.routes';
@@ -15,6 +16,7 @@ import starredRouter from '../../../../modules/Starred/infra/http/routes/Starred
 import userRouter from '../../../../modules/User/infra/http/routes/User.routes';
 import languageRouter from './../../../../modules/Language/infra/http/routes/Language.routes';
 import academicFormationRouter from './../../../../modules/AcademicFormation/infra/http/routes/academicFormation.routes';
+import { Infrastructure } from './../../../../modules/Infrastructure/infra/typeorm/entities/Infrastructure';
 
 const routes = express.Router();
 
@@ -25,11 +27,12 @@ routes.use('/chatmessage', chatMessageRouter)
 routes.use('/evaluation', evaluationRouter)
 routes.use('/focusarea', focusAreaRouter)
 routes.use('/follow', followRouter)
+routes.use('/infrastructure', infrastructureRouter)
+routes.use('/language', languageRouter)
 routes.use('/meeting', meetingRouter)
 routes.use('/occupation', occupationRouter)
 routes.use('/post', postRouter)
 routes.use('/profile', profileRouter)
-routes.use('/language', languageRouter)
 routes.use('/service', serviceRouter)
 routes.use('/session', sessionRouter)
 routes.use('/starred', starredRouter)

@@ -35,8 +35,17 @@ postRouter.post('/', celebrate({
 postRouter.patch('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
+    },
+    [Segments.BODY]: {
+        city: Joi.string(),
+        state: Joi.string(),
+        description: Joi.string(),
+        title: Joi.string(),
+        image: Joi.any().allow(null),
+        price: Joi.string(),
+        expected_date_of_delivery: Joi.date()
     }
-}), postController.update)
+}), upload.single('img'), postController.update)
 
 postRouter.delete('/:id', celebrate({
     [Segments.PARAMS]: {

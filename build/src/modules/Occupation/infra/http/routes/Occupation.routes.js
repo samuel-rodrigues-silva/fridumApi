@@ -23,10 +23,10 @@ occupationRouter.patch('/:id', (0, celebrate_1.celebrate)((_b = {},
         id: celebrate_1.Joi.string().uuid().required()
     },
     _b[celebrate_1.Segments.BODY] = {
-        role: celebrate_1.Joi.string().required(),
-        company: celebrate_1.Joi.string().required(),
-        date_in: celebrate_1.Joi.string().required(),
-        date_out: celebrate_1.Joi.string().required()
+        role: celebrate_1.Joi.string(),
+        company: celebrate_1.Joi.string(),
+        date_in: celebrate_1.Joi.string(),
+        date_out: celebrate_1.Joi.string()
     },
     _b)), occupationController.update);
 occupationRouter.delete('/:id', (0, celebrate_1.celebrate)((_c = {},

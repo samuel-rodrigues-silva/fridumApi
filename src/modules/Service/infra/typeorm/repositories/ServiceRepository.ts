@@ -20,6 +20,12 @@ class ServiceRepository implements IServiceRepository {
         this.postRepository = getRepository(Post);
         this.followRepository = getRepository(User);
     }
+    public async fetchUnreadServices(id: string): Promise<string> {
+        const user = await this.userRepository.findOne({ where: { id: id } })
+        const counting = await this.ormRepository.findAndCount({ where: { user: user } })
+        console.log(counting.toString());
+        return counting.toString();
+    }
 
     public async findById(id: string): Promise<Service[]> {
         return await this.ormRepository.find({ where: { user: id }, relations: ['user', 'user.profile', 'post', 'follow', 'follow.profile'] });

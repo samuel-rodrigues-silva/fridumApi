@@ -44,67 +44,75 @@ var CreatePost1622843743561 = /** @class */ (function () {
     CreatePost1622843743561.prototype.up = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.createTable(new typeorm_1.Table({
-                    name: 'post',
-                    columns: [
-                        {
-                            name: 'id',
-                            type: 'varchar',
-                            isPrimary: true,
-                        },
-                        {
-                            name: 'user_id',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'description',
-                            type: 'text',
-                        },
-                        {
-                            name: 'title',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'city',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'state',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'image',
-                            type: 'varchar'
-                        },
-                        {
-                            name: 'price',
-                            type: 'double'
-                        },
-                        {
-                            name: 'expected_date_of_delivery',
-                            type: 'timestamp'
-                        },
-                        {
-                            name: 'createdAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        },
-                        {
-                            name: 'updatedAt',
-                            type: 'timestamp',
-                            default: 'now()'
-                        }
-                    ]
-                }));
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.createTable(new typeorm_1.Table({
+                            name: 'post',
+                            columns: [
+                                {
+                                    name: 'id',
+                                    type: 'varchar',
+                                    isPrimary: true,
+                                },
+                                {
+                                    name: 'user_id',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'description',
+                                    type: 'text',
+                                },
+                                {
+                                    name: 'title',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'city',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'state',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'image',
+                                    type: 'varchar'
+                                },
+                                {
+                                    name: 'price',
+                                    type: 'double'
+                                },
+                                {
+                                    name: 'expected_date_of_delivery',
+                                    type: 'timestamp'
+                                },
+                                {
+                                    name: 'createdAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                },
+                                {
+                                    name: 'updatedAt',
+                                    type: 'timestamp',
+                                    default: 'now()'
+                                }
+                            ]
+                        }), true)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
     CreatePost1622843743561.prototype.down = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                queryRunner.dropTable('post');
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.dropTable('post')];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
