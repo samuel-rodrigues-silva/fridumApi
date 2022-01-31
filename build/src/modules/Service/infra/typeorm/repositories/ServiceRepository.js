@@ -61,9 +61,9 @@ var ServiceRepository = /** @class */ (function () {
                         return [4 /*yield*/, this.ormRepository.findAndCount({ where: { follow: user, unread: true } })];
                     case 3:
                         countingFollow = _a.sent();
-                        console.log('USER' + (countingUser));
-                        console.log('FOLLOW' + (countingFollow));
-                        return [2 /*return*/, (Number(countingUser) + Number(countingFollow)).toString()];
+                        console.log('USER' + (countingUser[1]));
+                        console.log('FOLLOW' + (countingFollow[1]));
+                        return [2 /*return*/, (Number(countingUser[1]) + Number(countingFollow[1])).toString()];
                 }
             });
         });
