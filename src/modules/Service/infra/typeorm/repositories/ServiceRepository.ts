@@ -24,6 +24,8 @@ class ServiceRepository implements IServiceRepository {
         const user = await this.userRepository.findOne({ where: { id: id } })
         const countingUser = await this.ormRepository.findAndCount({ where: { user: user, unread: true } })
         const countingFollow = await this.ormRepository.findAndCount({ where: { follow: user, unread: true } })
+        console.log('USER' + (countingUser))
+        console.log('FOLLOW' + (countingFollow))
         return (Number(countingUser) + Number(countingFollow)).toString();
     }
 
