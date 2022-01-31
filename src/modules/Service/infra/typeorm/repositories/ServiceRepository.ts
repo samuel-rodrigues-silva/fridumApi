@@ -22,9 +22,9 @@ class ServiceRepository implements IServiceRepository {
     }
     public async fetchUnreadServices(id: string): Promise<string> {
         const user = await this.userRepository.findOne({ where: { id: id } })
-        const counting = await this.ormRepository.findAndCount({ where: { user: user } })
-        console.log(counting.toString());
-        return counting.toString();
+        const countingUser = await this.ormRepository.findAndCount({ where: { user: user, unread: true } })
+        const countingFollow = await this.ormRepository.findAndCount({ where: { follow: user, unread: true } })
+        return (Number(countingUser) + Number(countingFollow)).toString();
     }
 
     public async findById(id: string): Promise<Service[]> {
@@ -47,6 +47,7 @@ class ServiceRepository implements IServiceRepository {
         service.user = user;
         service.post = post;
         service.follow = follow
+        service.unread = true
         return await this.ormRepository.save(service);
     }
 
