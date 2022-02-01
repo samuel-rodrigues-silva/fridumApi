@@ -49,21 +49,17 @@ var ServiceRepository = /** @class */ (function () {
     }
     ServiceRepository.prototype.fetchUnreadServices = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, countingUser, countingFollow;
+            var user, countingFollow;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id } })];
                     case 1:
                         user = _a.sent();
-                        return [4 /*yield*/, this.ormRepository.findAndCount({ where: { user: user, unread: true } })];
-                    case 2:
-                        countingUser = _a.sent();
                         return [4 /*yield*/, this.ormRepository.findAndCount({ where: { follow: user, unread: true } })];
-                    case 3:
+                    case 2:
                         countingFollow = _a.sent();
-                        console.log('USER' + (countingUser[1]));
                         console.log('FOLLOW' + (countingFollow[1]));
-                        return [2 /*return*/, (Number(countingUser[1]) + Number(countingFollow[1])).toString()];
+                        return [2 /*return*/, (Number(countingFollow[1])).toString()];
                 }
             });
         });
