@@ -41,6 +41,7 @@ serviceRouter.patch('/:id', (0, celebrate_1.celebrate)((_e = {},
     },
     _e[celebrate_1.Segments.BODY] = {
         status: celebrate_1.Joi.string(),
+        unread: celebrate_1.Joi.string().allow(null),
         finishedAt: celebrate_1.Joi.date(),
         price: celebrate_1.Joi.string(),
         title: celebrate_1.Joi.string()
