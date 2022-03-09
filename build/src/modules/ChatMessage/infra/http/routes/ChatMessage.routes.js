@@ -15,7 +15,8 @@ chatMessageRouter.post('/:id', (0, celebrate_1.celebrate)((_a = {},
     },
     _a[celebrate_1.Segments.BODY] = {
         userId: celebrate_1.Joi.string().uuid().required(),
-        message: celebrate_1.Joi.string().required()
+        message: celebrate_1.Joi.string().required(),
+        unread: celebrate_1.Joi.bool().allow(null),
     },
     _a)), chatMessageController.create);
 chatMessageRouter.delete('/:id', (0, celebrate_1.celebrate)((_b = {},

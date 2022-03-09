@@ -17,6 +17,9 @@ export class ChatMessage {
     @Column('text')
     message: string
 
+    @Column({ type: 'bool' })
+    unread: boolean;
+
     @CreateDateColumn({ type: 'timestamp', name: 'created_At' })
     createdAt: Timestamp;
 

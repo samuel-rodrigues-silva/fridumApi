@@ -10,7 +10,8 @@ chatMessageRouter.post('/:id', celebrate({
     },
     [Segments.BODY]: {
         userId: Joi.string().uuid().required(),
-        message: Joi.string().required()
+        message: Joi.string().required(),
+        unread: Joi.bool().allow(null),
     }
 }), chatMessageController.create)
 

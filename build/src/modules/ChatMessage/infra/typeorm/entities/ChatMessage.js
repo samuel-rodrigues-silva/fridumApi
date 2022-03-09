@@ -33,6 +33,10 @@ var ChatMessage = /** @class */ (function () {
         __metadata("design:type", String)
     ], ChatMessage.prototype, "message", void 0);
     __decorate([
+        (0, typeorm_1.Column)({ type: 'bool' }),
+        __metadata("design:type", Boolean)
+    ], ChatMessage.prototype, "unread", void 0);
+    __decorate([
         (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', name: 'created_At' }),
         __metadata("design:type", typeorm_1.Timestamp)
     ], ChatMessage.prototype, "createdAt", void 0);
