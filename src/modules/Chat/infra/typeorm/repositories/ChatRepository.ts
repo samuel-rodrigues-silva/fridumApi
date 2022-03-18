@@ -37,11 +37,28 @@ class ChatRepository implements IChatRepository {
             });
     }
 
-    public async list(id: string): Promise<Chat[]> {
+    public async list(id: string): Promise<{ chat: Chat[], totalFollowChatsWithMessagesUnread: number, totalUserChatsWithMessagesUnread: number }> {
         const user = await this.userRepository.findOne({ where: { id: id } })
         const chatByUserList = await this.ormRepository.find({ where: { user: user }, relations: ['user', 'user.profile', 'follow', 'follow.profile', 'service', 'chatMessage', 'chatMessage.user'] })
         const chatByFollowList = await this.ormRepository.find({ where: { follow: user }, relations: ['user', 'user.profile', 'follow', 'follow.profile', 'service', 'chatMessage', 'chatMessage.user'] })
-        return chatByUserList.concat(chatByFollowList)
+        let concatenatedChatLists: Chat[] = chatByUserList.concat(chatByFollowList);
+        let totalFollowChatsWithMessagesUnread = 0;
+        let totalUserChatsWithMessagesUnread = 0;
+        chatByUserList.map((chat) => {
+            if (chat.chatMessage[chat.chatMessage.length - 1]) {
+                totalUserChatsWithMessagesUnread++
+            }
+        })
+        chatByFollowList.map((chat) => {
+            if (chat.chatMessage[chat.chatMessage.length - 1]) {
+                totalFollowChatsWithMessagesUnread++
+            }
+        })
+        return {
+            chat: concatenatedChatLists,
+            totalFollowChatsWithMessagesUnread,
+            totalUserChatsWithMessagesUnread
+        }
     }
 
     public async create(data: ICreateChatDTO): Promise<Chat | null> {

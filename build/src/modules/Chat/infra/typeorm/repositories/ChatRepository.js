@@ -73,7 +73,7 @@ var ChatRepository = /** @class */ (function () {
     };
     ChatRepository.prototype.list = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, chatByUserList, chatByFollowList;
+            var user, chatByUserList, chatByFollowList, concatenatedChatLists, totalFollowChatsWithMessagesUnread, totalUserChatsWithMessagesUnread;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.userRepository.findOne({ where: { id: id } })];
@@ -85,7 +85,24 @@ var ChatRepository = /** @class */ (function () {
                         return [4 /*yield*/, this.ormRepository.find({ where: { follow: user }, relations: ['user', 'user.profile', 'follow', 'follow.profile', 'service', 'chatMessage', 'chatMessage.user'] })];
                     case 3:
                         chatByFollowList = _a.sent();
-                        return [2 /*return*/, chatByUserList.concat(chatByFollowList)];
+                        concatenatedChatLists = chatByUserList.concat(chatByFollowList);
+                        totalFollowChatsWithMessagesUnread = 0;
+                        totalUserChatsWithMessagesUnread = 0;
+                        chatByUserList.map(function (chat) {
+                            if (chat.chatMessage[chat.chatMessage.length - 1]) {
+                                totalUserChatsWithMessagesUnread++;
+                            }
+                        });
+                        chatByFollowList.map(function (chat) {
+                            if (chat.chatMessage[chat.chatMessage.length - 1]) {
+                                totalFollowChatsWithMessagesUnread++;
+                            }
+                        });
+                        return [2 /*return*/, {
+                                chat: concatenatedChatLists,
+                                totalFollowChatsWithMessagesUnread: totalFollowChatsWithMessagesUnread,
+                                totalUserChatsWithMessagesUnread: totalUserChatsWithMessagesUnread
+                            }];
                 }
             });
         });
