@@ -37,11 +37,20 @@ class ChatRepository implements IChatRepository {
             });
     }
 
-    public async list(id: string): Promise<{ chat: Chat[], totalFollowChatsWithMessagesUnread: number, totalUserChatsWithMessagesUnread: number }> {
+    public async list(id: string): Promise<Chat[]> {
         const user = await this.userRepository.findOne({ where: { id: id } })
         const chatByUserList = await this.ormRepository.find({ where: { user: user }, relations: ['user', 'user.profile', 'follow', 'follow.profile', 'service', 'chatMessage', 'chatMessage.user'] })
         const chatByFollowList = await this.ormRepository.find({ where: { follow: user }, relations: ['user', 'user.profile', 'follow', 'follow.profile', 'service', 'chatMessage', 'chatMessage.user'] })
         let concatenatedChatLists: Chat[] = chatByUserList.concat(chatByFollowList);
+        return concatenatedChatLists
+    }
+
+    public async fetchChatsTotalMessagesUnread(id: string): Promise<
+        { totalFollowChatsWithMessagesUnread: number, totalUserChatsWithMessagesUnread: number }
+    > {
+        const user = await this.userRepository.findOne({ where: { id: id } })
+        const chatByUserList = await this.ormRepository.find({ where: { user: user }, relations: ['chatMessage'] })
+        const chatByFollowList = await this.ormRepository.find({ where: { follow: user }, relations: ['chatMessage'] })
         let totalFollowChatsWithMessagesUnread = 0;
         let totalUserChatsWithMessagesUnread = 0;
         chatByUserList.map((chat) => {
@@ -55,7 +64,6 @@ class ChatRepository implements IChatRepository {
             }
         })
         return {
-            chat: concatenatedChatLists,
             totalFollowChatsWithMessagesUnread,
             totalUserChatsWithMessagesUnread
         }

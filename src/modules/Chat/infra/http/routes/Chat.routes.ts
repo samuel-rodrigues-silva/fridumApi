@@ -18,6 +18,12 @@ chatRouter.get('/:id', celebrate({
     }
 }), chatController.fetchById)
 
+chatRouter.get('/:id/messagesCount', celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}), chatController.fetchChatsTotalMessagesUnread)
+
 chatRouter.get('/:id/messages', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()

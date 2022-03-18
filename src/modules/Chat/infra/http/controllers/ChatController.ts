@@ -5,6 +5,7 @@ import { classToClass } from 'class-transformer';
 import DeleteChatService from './../../../services/DeleteChatService';
 import ListChatService from '../../../services/ListChatService';
 import ShowChatService from '../../../services/ShowChatService';
+import FetchChatsTotalMessagesUnread from '../../../services/fetchChatsTotalMessagesUnread';
 
 class ChatController {
 
@@ -13,6 +14,17 @@ class ChatController {
             const { id } = request.params
             const showChat = container.resolve(ShowChatService)
             const chat = await showChat.execute(id);
+            return response.json(classToClass(chat))
+        } catch (err) {
+            return response.status(401).send(err.message);
+        }
+    }
+
+    public async fetchChatsTotalMessagesUnread(request: Request, response: Response): Promise<Response> {
+        try {
+            const { id } = request.params
+            const totalUnread = container.resolve(FetchChatsTotalMessagesUnread)
+            const chat = await totalUnread.execute(id);
             return response.json(classToClass(chat))
         } catch (err) {
             return response.status(401).send(err.message);

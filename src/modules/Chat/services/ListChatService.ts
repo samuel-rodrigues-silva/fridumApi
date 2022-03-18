@@ -10,13 +10,7 @@ class ListChatService {
         private chatRepository: IChatRepository,
     ) { }
 
-    public async execute(id: string): Promise<
-        {
-            chat: Chat[],
-            totalFollowChatsWithMessagesUnread: number,
-            totalUserChatsWithMessagesUnread: number
-        }
-    > {
+    public async execute(id: string): Promise<Chat[]> {
         return await this.chatRepository.list(id);
     }
 }
