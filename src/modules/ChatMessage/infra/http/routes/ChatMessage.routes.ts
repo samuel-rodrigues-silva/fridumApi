@@ -17,7 +17,7 @@ chatMessageRouter.post('/:id', celebrate({
 
 chatMessageRouter.post('/unreadMessages', celebrate({
     [Segments.BODY]: {
-        idList: Joi.array().required(),
+        idList: Joi.any(),
     }
 }), chatMessageController.manageUnreadMessages)
 
