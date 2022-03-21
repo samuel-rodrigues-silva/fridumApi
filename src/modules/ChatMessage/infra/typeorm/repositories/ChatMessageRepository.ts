@@ -22,7 +22,7 @@ class ChatMessageRepository implements IChatMessageRepository {
         console.log(messageList)
         messageList.map((item) => {
             if (item.unread) {
-                item.unread = true
+                item.unread = false
             }
         })
         console.log(messageList);

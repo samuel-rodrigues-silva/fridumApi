@@ -57,7 +57,7 @@ var ChatMessageRepository = /** @class */ (function () {
                         console.log(messageList);
                         messageList.map(function (item) {
                             if (item.unread) {
-                                item.unread = true;
+                                item.unread = false;
                             }
                         });
                         console.log(messageList);
