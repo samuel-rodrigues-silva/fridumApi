@@ -43,12 +43,34 @@ var tsyringe_1 = require("tsyringe");
 var CreateChatMessageService_1 = __importDefault(require("./../../../services/CreateChatMessageService"));
 var class_transformer_1 = require("class-transformer");
 var DeleteChatMessageService_1 = __importDefault(require("./../../../services/DeleteChatMessageService"));
+var ManageUnreadMessages_1 = __importDefault(require("./../../../services/ManageUnreadMessages"));
 var ChatMessageController = /** @class */ (function () {
     function ChatMessageController() {
     }
+    ChatMessageController.prototype.manageUnreadMessages = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var idList, unreadMessages, chatMessage, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        idList = request.body.idList;
+                        unreadMessages = tsyringe_1.container.resolve(ManageUnreadMessages_1.default);
+                        return [4 /*yield*/, unreadMessages.execute(idList)];
+                    case 1:
+                        chatMessage = _a.sent();
+                        return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(chatMessage))];
+                    case 2:
+                        err_1 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_1.message)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     ChatMessageController.prototype.create = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, createChatMessage, chatMessage, err_1;
+            var id, createChatMessage, chatMessage, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -60,8 +82,8 @@ var ChatMessageController = /** @class */ (function () {
                         chatMessage = _a.sent();
                         return [2 /*return*/, response.json((0, class_transformer_1.classToClass)(chatMessage))];
                     case 2:
-                        err_1 = _a.sent();
-                        return [2 /*return*/, response.status(401).send(err_1.message)];
+                        err_2 = _a.sent();
+                        return [2 /*return*/, response.status(401).send(err_2.message)];
                     case 3: return [2 /*return*/];
                 }
             });

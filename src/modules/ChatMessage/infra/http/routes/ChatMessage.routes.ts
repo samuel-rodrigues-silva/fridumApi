@@ -15,6 +15,12 @@ chatMessageRouter.post('/:id', celebrate({
     }
 }), chatMessageController.create)
 
+chatMessageRouter.post('/unreadMessages', celebrate({
+    [Segments.BODY]: {
+        idList: Joi.array().required,
+    }
+}), chatMessageController.manageUnreadMessages)
+
 chatMessageRouter.delete('/:id', celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()

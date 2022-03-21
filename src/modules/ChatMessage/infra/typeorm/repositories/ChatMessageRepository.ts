@@ -17,6 +17,19 @@ class ChatMessageRepository implements IChatMessageRepository {
         this.userRepository = getRepository(User);
     }
 
+    public async fetchAndSetMessagesAsRead(idList: []): Promise<ChatMessage[]> {
+        let messageList = await this.ormRepository.findByIds(idList);
+        console.log(messageList)
+        messageList.map((item) => {
+            if (item.unread) {
+                item.unread = true
+            }
+        })
+        console.log(messageList);
+        await this.ormRepository.save(messageList);
+        return messageList
+    }
+
     public async create(data: ICreateChatMessageDTO, id: string): Promise<ChatMessage> {
         const user = await this.userRepository.findOne({ where: { id: data.userId } })
         const chat = await this.chatRepository.findOne({ where: { id: id } })

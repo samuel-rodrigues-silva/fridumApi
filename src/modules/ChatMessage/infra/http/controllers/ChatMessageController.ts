@@ -3,8 +3,21 @@ import { container } from 'tsyringe';
 import CreateChatMessageService from './../../../services/CreateChatMessageService';
 import { classToClass } from 'class-transformer';
 import DeleteChatMessageService from './../../../services/DeleteChatMessageService';
+import ManageUnreadMessages from './../../../services/ManageUnreadMessages';
 
 class ChatMessageController {
+
+    public async manageUnreadMessages(request: Request, response: Response): Promise<Response> {
+        try {
+            const { idList } = request.body
+            const unreadMessages = container.resolve(ManageUnreadMessages)
+            const chatMessage = await unreadMessages.execute(idList);
+            return response.json(classToClass(chatMessage))
+        } catch (err) {
+            return response.status(401).send(err.message);
+        }
+
+    }
 
     public async create(request: Request, response: Response): Promise<Response> {
         try {

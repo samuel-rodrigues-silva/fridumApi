@@ -46,6 +46,29 @@ var ChatMessageRepository = /** @class */ (function () {
         this.chatRepository = (0, typeorm_1.getRepository)(Chat_1.Chat);
         this.userRepository = (0, typeorm_1.getRepository)(User_1.User);
     }
+    ChatMessageRepository.prototype.fetchAndSetMessagesAsRead = function (idList) {
+        return __awaiter(this, void 0, void 0, function () {
+            var messageList;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.ormRepository.findByIds(idList)];
+                    case 1:
+                        messageList = _a.sent();
+                        console.log(messageList);
+                        messageList.map(function (item) {
+                            if (item.unread) {
+                                item.unread = true;
+                            }
+                        });
+                        console.log(messageList);
+                        return [4 /*yield*/, this.ormRepository.save(messageList)];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/, messageList];
+                }
+            });
+        });
+    };
     ChatMessageRepository.prototype.create = function (data, id) {
         return __awaiter(this, void 0, void 0, function () {
             var user, chat, chatMessage;
