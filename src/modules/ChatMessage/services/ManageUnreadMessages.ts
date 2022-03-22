@@ -11,7 +11,7 @@ class ManageUnreadMessages {
         private chatMessageRepository: IChatMessageRepository,
     ) { }
 
-    public async execute(idList: []): Promise<ChatMessage[]> {
+    public async execute(idList: Array<String>): Promise<ChatMessage[]> {
         return await this.chatMessageRepository.fetchAndSetMessagesAsRead(idList);
     }
 }

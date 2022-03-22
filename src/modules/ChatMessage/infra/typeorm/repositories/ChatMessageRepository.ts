@@ -17,7 +17,7 @@ class ChatMessageRepository implements IChatMessageRepository {
         this.userRepository = getRepository(User);
     }
 
-    public async fetchAndSetMessagesAsRead(idList: []): Promise<ChatMessage[]> {
+    public async fetchAndSetMessagesAsRead(idList: Array<String>): Promise<ChatMessage[]> {
         let messageList = await this.ormRepository.findByIds(idList);
         console.log(messageList)
         messageList.map((item) => {
