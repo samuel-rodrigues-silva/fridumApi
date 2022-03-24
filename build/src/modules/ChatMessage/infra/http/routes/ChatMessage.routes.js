@@ -2,7 +2,7 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a, _b, _c;
+var _a, _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 var celebrate_1 = require("celebrate");
 var express_1 = require("express");
@@ -19,15 +19,17 @@ chatMessageRouter.post('/:id', (0, celebrate_1.celebrate)((_a = {},
         unread: celebrate_1.Joi.bool().allow(null),
     },
     _a)), chatMessageController.create);
-chatMessageRouter.post('/unreadMessages', (0, celebrate_1.celebrate)((_b = {},
-    _b[celebrate_1.Segments.BODY] = {
-        idList: celebrate_1.Joi.array().items(celebrate_1.Joi.string().uuid()),
-    },
-    _b)), chatMessageController.manageUnreadMessages);
-chatMessageRouter.delete('/:id', (0, celebrate_1.celebrate)((_c = {},
-    _c[celebrate_1.Segments.PARAMS] = {
+chatMessageRouter.post('/unreadMessages'
+// celebrate({
+//     [Segments.BODY]: {
+//         idList: Joi.array().items(Joi.string().uuid()),
+//     }
+// })
+, chatMessageController.manageUnreadMessages);
+chatMessageRouter.delete('/:id', (0, celebrate_1.celebrate)((_b = {},
+    _b[celebrate_1.Segments.PARAMS] = {
         id: celebrate_1.Joi.string().uuid().required()
     },
-    _c)), chatMessageController.remove);
+    _b)), chatMessageController.remove);
 exports.default = chatMessageRouter;
 //# sourceMappingURL=ChatMessage.routes.js.map
